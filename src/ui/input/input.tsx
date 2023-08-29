@@ -5,6 +5,8 @@ import { IInputProps } from "@src/types/interfaces";
 import eye from "@assets/ui/Eye.svg";
 import eyeOff from "@assets/ui/Eye Off.svg";
 
+import "./input.css";
+
 interface IProps extends IInputProps {}
 
 const Input: FC<IProps> = ({
@@ -32,7 +34,7 @@ const Input: FC<IProps> = ({
           error ? errorClass : theme == "light" ? lightClass : darkClass,
           className,
         )}
-        type={type} // this is for changing input type by setType()
+        type={type} // this is for changing input's type by setType()
         {...props}
       />
     );
