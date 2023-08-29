@@ -10,24 +10,19 @@ interface IProps extends IInputProps {}
 const Input: FC<IProps> = ({
   theme = "light",
   type = "text",
-  name,
-  id,
-  placeholder,
-  style,
   className,
   error,
+  ...props
 }) => {
   const [inputType, setType] = useState(type);
 
   const baseClass = "p-[1rem] border outline-none rounded-[5px]";
 
-  // TODO: разобраться с классами, почему-то не работал синтаксис вида border-iborder-${theme}
   const lightClass =
     "input-bg-light input-border-light input-text-light focus:input-border-focus";
   const darkClass =
     "input-bg-dark input-border-dark input-text-dark focus:input-border-focus";
   const errorClass = `input-bg-${theme} input-border-error input-text-${theme} focus:input-border-error`;
-  // const extraClass = `input-bg-${theme} input-border-${theme}`;
 
   const renderInput = (type: HTMLInputTypeAttribute) => {
     return (
@@ -37,11 +32,8 @@ const Input: FC<IProps> = ({
           error ? errorClass : theme == "light" ? lightClass : darkClass,
           className,
         )}
-        type={type}
-        name={name}
-        id={id}
-        placeholder={placeholder}
-        style={style}
+        type={type} // this is for changing input type by setType()
+        {...props}
       />
     );
   };

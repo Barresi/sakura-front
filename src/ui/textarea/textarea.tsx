@@ -4,15 +4,7 @@ import { ITextareaProps } from "@src/types/interfaces";
 
 interface IProps extends ITextareaProps {}
 
-const Textarea: FC<IProps> = ({
-  name = "",
-  id,
-  placeholder = "",
-  style = {},
-  theme = "light",
-  className,
-  error,
-}) => {
+const Textarea: FC<IProps> = ({ theme = "light", className, error, ...props }) => {
   const baseClass = "p-[1rem] border outline-none rounded-[5px]";
 
   const lightClass =
@@ -28,12 +20,7 @@ const Textarea: FC<IProps> = ({
         error ? errorClass : theme === "light" ? lightClass : darkClass,
         className,
       )}
-      name={name}
-      id={id}
-      cols={30}
-      rows={10}
-      placeholder={placeholder}
-      style={style}
+      {...props}
     ></textarea>
   );
 };

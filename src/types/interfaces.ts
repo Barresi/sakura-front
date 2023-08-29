@@ -1,14 +1,11 @@
-import { HTMLInputTypeAttribute, CSSProperties } from "react";
+import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 
-export interface IInputProps {
+export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   theme?: "light" | "dark";
-  placeholder?: string;
-  type?: HTMLInputTypeAttribute;
-  name?: string;
-  id?: string;
-  style?: CSSProperties;
-  className?: string;
   error?: boolean;
 }
 
-export interface ITextareaProps extends Omit<IInputProps, "type"> {}
+export interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  theme?: "light" | "dark";
+  error?: boolean;
+}
