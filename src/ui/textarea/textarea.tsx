@@ -9,7 +9,6 @@ const Textarea: FC<IProps> = ({
   id,
   placeholder = "",
   style = {},
-  size,
   theme = "light",
   className,
   error,
@@ -27,7 +26,6 @@ const Textarea: FC<IProps> = ({
       className={clsx(
         baseClass,
         error ? errorClass : theme === "light" ? lightClass : darkClass,
-        `text-${size}`,
         className,
       )}
       name={name}

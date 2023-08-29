@@ -7,7 +7,6 @@ export interface IInputProps {
   name?: string;
   id?: string;
   style?: CSSProperties;
-  size?: "sm" | "base" | "lg";
   className?: string;
   error?: boolean;
 }

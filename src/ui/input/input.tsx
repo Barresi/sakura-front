@@ -14,7 +14,6 @@ const Input: FC<IProps> = ({
   id,
   placeholder,
   style,
-  size = "base",
   className,
   error,
 }) => {
@@ -28,7 +27,6 @@ const Input: FC<IProps> = ({
   const darkClass =
     "input-bg-dark input-border-dark input-text-dark focus:input-border-focus";
   const errorClass = `input-bg-${theme} input-border-error input-text-${theme} focus:input-border-error`;
-
   // const extraClass = `input-bg-${theme} input-border-${theme}`;
 
   const renderInput = (type: HTMLInputTypeAttribute) => {
@@ -37,8 +35,6 @@ const Input: FC<IProps> = ({
         className={clsx(
           baseClass,
           error ? errorClass : theme == "light" ? lightClass : darkClass,
-          // error ? errorClass : extraClass,
-          `text-${size}`,
           className,
         )}
         type={type}
