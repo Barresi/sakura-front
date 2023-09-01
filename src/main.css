@@ -4,31 +4,33 @@
 
 @layer base {
   :root {
+    /* body background color */
     --background: 0 0% 100%;
+    /* text color */
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
+    /* primary button bg color */
     --primary: 0 68% 49%;
-    --primary-hover: 120 100% 25%;
-    /* --primary-hover: 0 70% 45%; */
-    --primary-foreground: 210 40% 98%;
+    /* primary button bg on hover color */
+    --primary-hover: 0 70% 45%;
+    /* primary button text color */
+    --primary-foreground: 0 0% 100%;
+
+    /* TODO: comment all colors */
 
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 213 19% 41%;
+    --secondary-border: 210 40% 96.1%;
+    --secondary-borderHover: 213 19% 41%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* --outline: ; */
+    --outline-foreground: 213 19% 41%;
+    --outline-border: 213 19% 41%;
+    --outline-hover: 210 11% 71%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* --link: #fff; */
+    --link-foreground: 213 19% 41%;
+    --link-hover: 197 86% 53%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
@@ -38,29 +40,26 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 240 15% 16%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --secondary: 240 11% 14%;
+    --secondary-hover: 240 15% 16%;
+    --secondary-foreground: 0 0% 95%;
+    --secondary-hover: 240 15% 16%;
+    --secondary-border: 240 11% 14%;
+    --secondary-border-hover: 240 15% 16%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    /* --outline: ; */
+    /* --outline-foreground: 213 19% 41%;
+    --outline-border: 213 19% 41%;
+    --outline-hover: 210 11% 71%; */
+    --outline-foreground: 210 11% 71%;
+    --outline-border: 210 11% 71%;
+    --outline-hover: 213 19% 41%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* --link: ; */
+    --link-foreground: 0 0% 95%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
