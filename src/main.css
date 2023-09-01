@@ -9,6 +9,8 @@
     /* text color */
     --foreground: 222.2 84% 4.9%;
 
+    /* buttons */
+
     /* primary button bg color */
     --primary: 0 68% 49%;
     /* primary button bg on hover color */
@@ -32,16 +34,25 @@
     --link-foreground: 213 19% 41%;
     --link-hover: 197 86% 53%;
 
+    /* inputs & textarea */
+
+    --input: 0 0% 95%;
+    --input-foreground: 0 0% 16%;
+    --input-background: 0 0% 100%;
+    --input-hoverBorder: 216 100% 64%;
+    --input-errorBorder: 0 68% 49%;
+
     --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 15% 16%;
+    --background: 240 19% 12%;
     --foreground: 210 40% 98%;
+
+    /* buttons */
 
     --secondary: 240 11% 14%;
     --secondary-hover: 240 15% 16%;
@@ -50,10 +61,6 @@
     --secondary-border: 240 11% 14%;
     --secondary-border-hover: 240 15% 16%;
 
-    /* --outline: ; */
-    /* --outline-foreground: 213 19% 41%;
-    --outline-border: 213 19% 41%;
-    --outline-hover: 210 11% 71%; */
     --outline-foreground: 210 11% 71%;
     --outline-border: 210 11% 71%;
     --outline-hover: 213 19% 41%;
@@ -61,8 +68,15 @@
     /* --link: ; */
     --link-foreground: 0 0% 95%;
 
+    /* inputs */
+
+    --input: 213 19% 41%;
+    --input-foreground: 0 0% 95%;
+    --input-background: 240 15% 16%;
+    --input-hoverBorder: 197 86% 53%;
+    --input-errorBorder: 0 68% 49%;
+
     --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
 }

@@ -1,25 +1,55 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@utils/utils"
+import { cn } from "@utils/utils";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+import eye from "@assets/ui/Eye.svg";
+import eyeOff from "@assets/ui/Eye Off.svg";
+
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
+  ({ className, type, error, ...props }, ref) => {
+    const [inputType, setType] = React.useState(type);
+
+    const toggleType = () => setType((type) => (type === "text" ? "password" : "text"));
+
+    const baseClass =
+      "flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
+
+    const input = (
       <input
-        type={type}
+        type={inputType}
         className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-          className
+          baseClass,
+          error
+            ? "border-input-errorBorder focus:border-input-errorBorder"
+            : "border-input focus:border-input-hoverBorder",
+          className,
         )}
         ref={ref}
         {...props}
       />
-    )
-  }
-)
-Input.displayName = "Input"
+    );
 
-export { Input }
+    if (type === "password") {
+      return (
+        <div className="flex items-center relative">
+          {input}
+          <img
+            className="cursor-pointer absolute top-[50%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]"
+            onClick={toggleType}
+            src={inputType === "text" ? eye : eyeOff}
+            alt=""
+          />
+        </div>
+      );
+    }
+
+    return input;
+  },
+);
+Input.displayName = "Input";
+
+export { Input };

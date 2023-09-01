@@ -18,10 +18,11 @@ module.exports = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        // buttons
         primary: {
           DEFAULT: "hsl(var(--primary))",
           hover: "hsl(var(--primary-hover))",
@@ -42,6 +43,15 @@ module.exports = {
         link: {
           hover: "hsl(var(--link-hover))",
           foreground: "hsl(var(--link-foreground))",
+        },
+
+        // inputs
+        input: {
+          DEFAULT: "hsl(var(--input))",
+          foreground: "hsl(var(--input-foreground))",
+          background: "hsl(var(--input-background))",
+          hoverBorder: "hsl(var(--input-hoverBorder))",
+          errorBorder: "hsl(var(--input-errorBorder))",
         },
       },
       borderRadius: {
