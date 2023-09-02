@@ -17,28 +17,31 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const baseClass =
       "flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
+    const errorClass = error
+      ? "border-input-errorBorder focus:border-input-errorBorder"
+      : "border-input focus:border-input-hoverBorder";
+    const errorDivClass = error
+      ? `relative pb-6 after:content-["${error}"] after:absolute after:top-[3.75rem] after:left-5 after:text-input-errorBorder`
+      : "";
+    const errorImgClass = error ? "top-[35%]" : "top-[50%]";
 
     const input = (
-      <input
-        type={inputType}
-        className={cn(
-          baseClass,
-          error
-            ? "border-input-errorBorder focus:border-input-errorBorder"
-            : "border-input focus:border-input-hoverBorder",
-          className,
-        )}
-        ref={ref}
-        {...props}
-      />
+      <div className={errorDivClass}>
+        <input
+          type={inputType}
+          className={cn(baseClass, errorClass, className)}
+          ref={ref}
+          {...props}
+        />
+      </div>
     );
 
     if (type === "password") {
       return (
-        <div className="flex items-center relative">
+        <div className="relative">
           {input}
           <img
-            className="cursor-pointer absolute top-[50%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]"
+            className={`cursor-pointer absolute ${errorImgClass} translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}
             onClick={toggleType}
             src={inputType === "text" ? eye : eyeOff}
             alt=""

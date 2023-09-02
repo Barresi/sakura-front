@@ -54,6 +54,20 @@ const App: FC = () => {
           <Input className="min-w-[400px]" placeholder="Password" type="password" />
           <Textarea className="min-w-[400px]" placeholder="Text" />
         </div>
+      </div>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <div className="p-4 flex flex-col justify-center items-center gap-4">
+          <Input
+            error="Error"
+            minLength={4}
+            required
+            className="min-w-[400px]"
+            placeholder="Login"
+            type="text"
+          />
+          <Textarea error="Error" className="min-w-[400px]" placeholder="Text" />
+        </div>
 
         <div className="p-4 flex flex-col justify-center items-center gap-4">
           <Input
@@ -65,6 +79,32 @@ const App: FC = () => {
           <Textarea error="Error" className="min-w-[400px]" placeholder="Text" />
         </div>
       </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Form</h1>
+
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="mt-4 flex flex-col justify-center items-center gap-4 flex-wrap"
+      >
+        <Input
+          className="w-[400px]"
+          minLength={4}
+          type="text"
+          placeholder="Login"
+          required
+        />
+        <Input
+          className="w-[400px]"
+          minLength={8}
+          type="password"
+          placeholder="Password"
+          required
+        />
+        <Textarea className="w-[400px]" placeholder="Your Comment" />
+        <Button className="w-[400px]" type="submit" variant={"default"}>
+          Send
+        </Button>
+      </form>
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Buttons</h1>
 
