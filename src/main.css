@@ -42,6 +42,17 @@
     --input-hoverBorder: 216 100% 64%;
     --input-errorBorder: 0 68% 49%;
 
+    /* avatar */
+
+    --avatar-foreground: 0 0% 16%;
+
+    /* text */
+
+    --text: 0 0% 95%;
+    --text-foreground: 0 0% 16%;
+
+    /* others */
+
     --border: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
@@ -49,7 +60,7 @@
   }
 
   .dark {
-    --background: 240 19% 12%;
+    --background: 240 15% 16%;
     --foreground: 210 40% 98%;
 
     /* buttons */
@@ -75,6 +86,16 @@
     --input-background: 240 15% 16%;
     --input-hoverBorder: 197 86% 53%;
     --input-errorBorder: 0 68% 49%;
+
+    /* avatar */
+    --avatar-foreground: 0 0% 95%;
+
+    /* text */
+
+    --text: 240 11% 14%;
+    --text-foreground: 0 0% 95%;
+
+    /* others */
 
     --border: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;

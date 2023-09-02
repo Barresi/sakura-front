@@ -13,16 +13,17 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const errorClass = error
       ? "border-input-errorBorder focus:border-input-errorBorder"
       : "border-input focus:border-input-hoverBorder";
-    const errorDivClass = error
-      ? `relative pb-6 after:content-["${error}"] after:absolute after:top-[90%] after:left-5 after:text-input-errorBorder`
+    const errorSpanClass = error
+      ? `absolute top-[90%] left-5 text-input-errorBorder`
       : "";
     return (
-      <div className={errorDivClass}>
+      <div className="relative pb-6">
         <textarea className={cn(baseClass, errorClass, className)} ref={ref} {...props} />
+        <span className={errorSpanClass}>{error}</span>
       </div>
     );
   },
 );
 Textarea.displayName = "Textarea";
 
-export { Textarea };
+export default Textarea;

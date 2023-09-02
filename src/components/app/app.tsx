@@ -1,8 +1,15 @@
 import { FC } from "react";
-import { Input } from "@ui/input";
-import { Textarea } from "@src/ui/textarea";
-import Button from "@src/ui/button";
 import { useTheme } from "../theme-provider/theme-provider";
+import Input from "@ui/form/input/input";
+import Textarea from "@ui/form/textarea/textarea";
+import Button from "@src/ui/button/button";
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Avatar } from "@src/ui/avatar/avatar";
+
+import avatar from "@assets/478889.jpg";
+import andrey from "@assets/andrey.png";
+import { Badge } from "@src/ui/badge/badge";
+import Sidebar from "@ui/sidebar/sidebar";
 
 const App: FC = () => {
   const { setTheme, theme } = useTheme();
@@ -36,13 +43,34 @@ const App: FC = () => {
     </svg>
   );
 
+  const menuIcon = (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="User Circle">
+        <path
+          id="Vector 1"
+          d="M16.9696 19.5047C16.7257 17.5293 15.0414 16 13 16H11C8.95858 16 7.27433 17.5293 7.03036 19.5047M16.9696 19.5047C19.3986 17.893 21 15.1335 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 15.1335 4.60137 17.893 7.03036 19.5047M16.9696 19.5047C15.5456 20.4496 13.8371 21 12 21C10.1629 21 8.45441 20.4496 7.03036 19.5047M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+
   return (
     <div className="pb-4">
-      <div className="mt-4 flex justify-center items-center">
+      <div className="mt-4 flex justify-center items-center fixed top-0 left-[50%] translate-x-[-50%] z-10">
         <Button onClick={() => toggleTheme(theme)}>Change Theme</Button>
       </div>
 
-      <h1 className="text-center text-4xl mt-8 text-red-500">Inputs</h1>
+      <h1 className="text-center text-4xl mt-16 text-red-500">Inputs</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <div className="p-4 flex flex-col justify-center items-center gap-4">
@@ -127,6 +155,42 @@ const App: FC = () => {
             {icon}
           </Button>
         </div>
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Avatar</h1>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <Avatar className="w-[90px] h-[90px]" text="Name">
+          <AvatarImage src={avatar} className="" />
+          <AvatarFallback>Subaru</AvatarFallback>
+        </Avatar>
+
+        <Avatar className="w-[90px] h-[90px]" text="Андрей">
+          <AvatarImage src={andrey} className="" />
+          <AvatarFallback>Subaru</AvatarFallback>
+        </Avatar>
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Menu buttons</h1>
+
+      <div className="mt-4 flex flex-col justify-center items-center gap-4 flex-wrap">
+        <Button variant="text">
+          {menuIcon}
+          Моя страница
+        </Button>
+
+        <Button variant="text">
+          Моя страница
+          <Badge className="w-[25px] h-[25px]" variant="default">
+            9
+          </Badge>
+        </Button>
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Sidebar</h1>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <Sidebar />
       </div>
     </div>
   );

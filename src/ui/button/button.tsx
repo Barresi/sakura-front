@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@utils/utils";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "inline-flex items-center justify-center gap-[5px] rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transition-all active:scale-[0.95]",
   {
     variants: {
@@ -15,6 +15,7 @@ const buttonVariants = cva(
         outline:
           "text-outline-border border border-outline-border bg-background hover:border-outline-hover hover:text-outline-hover",
         link: "text-link-foreground underline-offset-4 hover:text-link-hover",
+        text: "text-text-foreground hover:bg-text",
       },
       size: {
         default: "h-10 px-[0.95rem] py-[0.625rem]",
@@ -34,7 +35,6 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  arrow?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -54,5 +54,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { buttonVariants };
 export default Button;

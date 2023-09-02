@@ -44,6 +44,10 @@ module.exports = {
           hover: "hsl(var(--link-hover))",
           foreground: "hsl(var(--link-foreground))",
         },
+        text: {
+          DEFAULT: "hsl(var(--text))",
+          foreground: "hsl(var(--text-foreground))",
+        },
 
         // inputs
         input: {
@@ -52,6 +56,11 @@ module.exports = {
           background: "hsl(var(--input-background))",
           hoverBorder: "hsl(var(--input-hoverBorder))",
           errorBorder: "hsl(var(--input-errorBorder))",
+        },
+
+        // avatar
+        avatar: {
+          foreground: "hsl(var(--avatar-foreground))",
         },
       },
       borderRadius: {

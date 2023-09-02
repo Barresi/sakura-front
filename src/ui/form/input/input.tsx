@@ -15,24 +15,27 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const toggleType = () => setType((type) => (type === "text" ? "password" : "text"));
 
+    const a = ``;
     const baseClass =
       "flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
     const errorClass = error
       ? "border-input-errorBorder focus:border-input-errorBorder"
       : "border-input focus:border-input-hoverBorder";
-    const errorDivClass = error
-      ? `relative pb-6 after:content-["${error}"] after:absolute after:top-[3.75rem] after:left-5 after:text-input-errorBorder`
+    const errorSpanClass = error
+      ? `absolute top-[3.75rem] left-5 text-input-errorBorder`
       : "";
     const errorImgClass = error ? "top-[35%]" : "top-[50%]";
 
     const input = (
-      <div className={errorDivClass}>
+      <div className="relative pb-6">
         <input
           type={inputType}
           className={cn(baseClass, errorClass, className)}
           ref={ref}
           {...props}
         />
+
+        <span className={errorSpanClass}>{error}</span>
       </div>
     );
 
@@ -55,4 +58,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 Input.displayName = "Input";
 
-export { Input };
+export default Input;
