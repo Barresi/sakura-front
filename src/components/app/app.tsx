@@ -6,9 +6,7 @@ import Button from "@src/UI-components/button/button";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Avatar } from "@src/UI-components/avatar/avatar";
 
-import avatar from "@assets/478889.jpg";
 import andrey from "@assets/andrey.png";
-import { Badge } from "@src/UI-components/badge/badge";
 import Sidebar from "@src/UI-components/sidebar/sidebar";
 import NavButton from "@src/UI-components/button/nav-button/nav-button";
 

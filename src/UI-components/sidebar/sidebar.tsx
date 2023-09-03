@@ -1,6 +1,5 @@
 import { FC } from "react";
 import Logo from "../logo/logo";
-import Button from "../button/button";
 
 import user from "@assets/menu/user.svg";
 import news from "@assets/menu/news.svg";
