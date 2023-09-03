@@ -27,7 +27,7 @@
       "@pages/*": ["./src/pages/*"],
       "@store/*": ["./src/store/*"],
       "@types/*": ["./src/types/*"],
-      "@ui/*": ["./src/ui/*"],
+      "@ui/*": ["src/UI-components/*"],
       "@utils/*": ["./src/utils/*"]
     }
   },

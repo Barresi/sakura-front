@@ -23,7 +23,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const errorSpanClass = error
       ? `absolute top-[3.75rem] left-5 text-input-errorBorder`
       : "";
-    const errorImgClass = error ? "top-[35%]" : "top-[50%]";
 
     const input = (
       <div className="relative pb-6">
@@ -43,7 +42,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           {input}
           <img
-            className={`cursor-pointer absolute ${errorImgClass} translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}
+            className={`cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}
             onClick={toggleType}
             src={inputType === "text" ? eye : eyeOff}
             alt=""

@@ -1,15 +1,16 @@
 import { FC } from "react";
 import { useTheme } from "../theme-provider/theme-provider";
-import Input from "@ui/form/input/input";
-import Textarea from "@ui/form/textarea/textarea";
-import Button from "@src/ui/button/button";
+import Input from "@src/UI-components/form/input/input";
+import Textarea from "@src/UI-components/form/textarea/textarea";
+import Button from "@src/UI-components/button/button";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Avatar } from "@src/ui/avatar/avatar";
+import { Avatar } from "@src/UI-components/avatar/avatar";
 
 import avatar from "@assets/478889.jpg";
 import andrey from "@assets/andrey.png";
-import { Badge } from "@src/ui/badge/badge";
-import Sidebar from "@ui/sidebar/sidebar";
+import { Badge } from "@src/UI-components/badge/badge";
+import Sidebar from "@src/UI-components/sidebar/sidebar";
+import NavButton from "@src/UI-components/button/nav-button/nav-button";
 
 const App: FC = () => {
   const { setTheme, theme } = useTheme();
@@ -138,21 +139,17 @@ const App: FC = () => {
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <div className="p-4 flex flex-col justify-center items-center gap-4">
-          <Button variant="default">
+          <Button icon={icon} variant="default">
             Добавить в друзья
-            {icon}
           </Button>
-          <Button variant="secondary">
+          <Button icon={icon} variant="secondary">
             Добавить в друзья
-            {icon}
           </Button>
-          <Button variant="link">
+          <Button icon={icon} variant="link">
             Добавить в друзья
-            {icon}
           </Button>
-          <Button variant="outline">
+          <Button icon={icon} variant="outline">
             Добавить в друзья
-            {icon}
           </Button>
         </div>
       </div>
@@ -160,11 +157,6 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Avatar</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <Avatar className="w-[90px] h-[90px]" text="Name">
-          <AvatarImage src={avatar} className="" />
-          <AvatarFallback>Subaru</AvatarFallback>
-        </Avatar>
-
         <Avatar className="w-[90px] h-[90px]" text="Андрей">
           <AvatarImage src={andrey} className="" />
           <AvatarFallback>Subaru</AvatarFallback>
@@ -174,17 +166,11 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Menu buttons</h1>
 
       <div className="mt-4 flex flex-col justify-center items-center gap-4 flex-wrap">
-        <Button variant="text">
-          {menuIcon}
-          Моя страница
-        </Button>
+        <NavButton icon={menuIcon}>Моя страница</NavButton>
 
-        <Button variant="text">
+        <NavButton badge={4} variant="text">
           Моя страница
-          <Badge className="w-[25px] h-[25px]" variant="default">
-            9
-          </Badge>
-        </Button>
+        </NavButton>
       </div>
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Sidebar</h1>
