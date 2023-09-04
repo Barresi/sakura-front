@@ -1,14 +1,25 @@
 import { FC } from "react";
 import { useTheme } from "../theme-provider/theme-provider";
-import Input from "@src/UI-components/form/input/input";
-import Textarea from "@src/UI-components/form/textarea/textarea";
-import Button from "@src/UI-components/button/button";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Avatar } from "@src/UI-components/avatar/avatar";
+import Input from "@ui/form/input/input";
+import Textarea from "@ui/form/textarea/textarea";
+import Button from "@ui/button/button";
+import { AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
+import { Avatar } from "@ui/avatar/avatar";
+import Sidebar from "@ui/sidebar/sidebar";
+import NavButton from "@ui/button/nav-button/nav-button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@ui/form/select/select";
 
 import andrey from "@assets/andrey.png";
-import Sidebar from "@src/UI-components/sidebar/sidebar";
-import NavButton from "@src/UI-components/button/nav-button/nav-button";
+import suba from "@assets/478889.jpg";
+import suba2 from "@assets/478889_photo-resizer.ru.jpg";
 
 const App: FC = () => {
   const { setTheme, theme } = useTheme();
@@ -23,7 +34,6 @@ const App: FC = () => {
     }
   };
 
-  // TODO: обсудить вставку картинок
   const icon = (
     <svg
       width="20"
@@ -75,11 +85,45 @@ const App: FC = () => {
         <div className="p-4 flex flex-col justify-center items-center gap-4">
           <Input className="min-w-[400px]" placeholder="Login" type="text" />
           <Textarea className="min-w-[400px]" placeholder="Text" />
+
+          <Select>
+            <SelectTrigger className="min-w-[400px] px-5 py-4">
+              <SelectValue placeholder="Theme" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="light">Light</SelectItem>
+              <SelectItem value="dark">Dark</SelectItem>
+              <SelectItem value="system">System</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="p-4 flex flex-col justify-center items-center gap-4">
           <Input className="min-w-[400px]" placeholder="Password" type="password" />
           <Textarea className="min-w-[400px]" placeholder="Text" />
+
+          <Select>
+            <SelectTrigger className="min-w-[400px] px-5 py-4">
+              <SelectValue placeholder="Theme" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="light">Light</SelectItem>
+              <SelectItem value="dark">Dark</SelectItem>
+              <SelectItem value="system">System</SelectItem>
+              <SelectItem value="light1">Light</SelectItem>
+              <SelectItem value="dark1">Dark</SelectItem>
+              <SelectItem value="system1">System</SelectItem>
+              <SelectItem value="light2">Light</SelectItem>
+              <SelectItem value="dark2">Dark</SelectItem>
+              <SelectItem value="system2">System</SelectItem>
+              <SelectItem value="light3">Light</SelectItem>
+              <SelectItem value="dark3">Dark</SelectItem>
+              <SelectItem value="system3">System</SelectItem>
+              <SelectItem value="light4">Light</SelectItem>
+              <SelectItem value="dark4">Dark</SelectItem>
+              <SelectItem value="system4">System</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
@@ -155,10 +199,36 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Avatar</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <Avatar className="w-[90px] h-[90px]" text="Андрей">
+        <Avatar className="w-[190px] h-[190px]" text="Андрей">
           <AvatarImage src={andrey} className="" />
+          <AvatarFallback>Andrey</AvatarFallback>
+        </Avatar>
+
+        <Avatar className="w-[190px] h-[190px]" text="Subaru 2000x1000">
+          <AvatarImage src={suba} className="rounded-none" />
           <AvatarFallback>Subaru</AvatarFallback>
         </Avatar>
+
+        <Avatar className="w-[190px] h-[190px]" text="Subaru 300x150">
+          <AvatarImage src={suba2} className="rounded-none" />
+          <AvatarFallback>Subaru</AvatarFallback>
+        </Avatar>
+
+        <Avatar className="rounded-none w-[190px] h-[190px]" text="Subaru 2000x1000">
+          <AvatarImage src={suba} className="rounded-none" />
+          <AvatarFallback>Subaru</AvatarFallback>
+        </Avatar>
+
+        <Avatar className="rounded-none w-[190px] h-[190px]" text="Subaru 300x150">
+          <AvatarImage src={suba2} className="rounded-none" />
+          <AvatarFallback>Subaru</AvatarFallback>
+        </Avatar>
+
+        <p className="mt-4 text-xl text-red-500">
+          Даже если делать квадратные аватары, а сверху накладывать маску, то все будет
+          также, я думаю. <br /> Игра с размером не сработала, вроде как. Потом еще
+          посмотрю
+        </p>
       </div>
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Menu buttons</h1>
