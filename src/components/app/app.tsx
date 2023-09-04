@@ -10,9 +10,7 @@ import NavButton from "@ui/button/nav-button/nav-button";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@ui/form/select/select";
