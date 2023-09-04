@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Button from "../button";
 import { ButtonProps } from "../button";
-import { Badge } from "@src/UI-components/badge/badge";
+import { Badge } from "@src/ui/badge/badge";
 
 interface IProps extends ButtonProps {
   icon?: string | JSX.Element;

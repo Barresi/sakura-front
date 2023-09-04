@@ -51,6 +51,10 @@
     --text: 0 0% 95%;
     --text-foreground: 0 0% 16%;
 
+    /* select */
+
+    --select-itemHover: 0 0% 95%;
+
     /* others */
 
     --border: 214.3 31.8% 91.4%;
@@ -95,6 +99,10 @@
     --text: 240 11% 14%;
     --text-foreground: 0 0% 95%;
 
+    /* select */
+
+    --select-itemHover: 240 11% 14%;
+
     /* others */
 
     --border: 217.2 32.6% 17.5%;
@@ -109,4 +117,25 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d22828;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a01d1d;
 }

@@ -62,6 +62,11 @@ module.exports = {
         avatar: {
           foreground: "hsl(var(--avatar-foreground))",
         },
+
+        // select
+        select: {
+          itemHover: "hsl(var(--select-itemHover))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
