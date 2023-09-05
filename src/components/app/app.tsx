@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@ui/form/select/select";
+import Search from "@ui/form/search/search";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
@@ -243,6 +244,12 @@ const App: FC = () => {
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <Sidebar />
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Search</h1>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <Search className="min-w-[600px]" />
       </div>
     </div>
   );
