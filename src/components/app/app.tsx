@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@ui/form/select/select";
 import Search from "@ui/form/search/search";
+import ActionButton from "@ui/button/action-button/action-button";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
@@ -250,6 +251,26 @@ const App: FC = () => {
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <Search className="min-w-[600px]" />
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Action buttons</h1>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <ActionButton action="like">10</ActionButton>
+        <ActionButton action="comment">10</ActionButton>
+        <ActionButton action="share">10</ActionButton>
+      </div>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <ActionButton action="like" variant="text">
+          10
+        </ActionButton>
+        <ActionButton action="comment" variant="text">
+          10
+        </ActionButton>
+        <ActionButton action="share" variant="text">
+          10
+        </ActionButton>
       </div>
     </div>
   );

@@ -67,6 +67,13 @@ module.exports = {
         select: {
           itemHover: "hsl(var(--select-itemHover))",
         },
+
+        // action buttons
+        action: {
+          activeBorder: "hsl(var(--action-activeBorder))",
+          imgColor: "hsl(var(--action-imgColor))",
+          imgActiveColor: "hsl(var(--action-imgActiveColor))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

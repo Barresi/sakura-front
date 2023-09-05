@@ -55,6 +55,12 @@
 
     --select-itemHover: 0 0% 95%;
 
+    /* action button */
+
+    --action-activeBorder: 0 68% 49%;
+    --action-imgColor: 213 19% 41%;
+    --action-imgActiveColor: 0 68% 49%;
+
     /* others */
 
     --border: 214.3 31.8% 91.4%;
@@ -103,6 +109,12 @@
 
     --select-itemHover: 240 11% 14%;
 
+    /* action button */
+
+    --action-activeBorder: 0 68% 49%;
+    --action-imgColor: 213 19% 41%;
+    --action-imgActiveColor: 240 15% 16%;
+
     /* others */
 
     --border: 217.2 32.6% 17.5%;
@@ -118,6 +130,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Scroll bar */
 
 /* width */
 ::-webkit-scrollbar {
