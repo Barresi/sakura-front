@@ -13,7 +13,7 @@ const NavButton: FC<IProps> = ({ children, icon, badge, ...props }) => {
     <Button {...props}>
       {typeof icon == "string" ? <img src={icon} alt="" /> : icon}
       {children}
-      {badge! > 0 && <Badge className="w-6 h-6">{badge}</Badge>}
+      {badge! > 0 && <Badge>{badge}</Badge>}
     </Button>
   );
 };

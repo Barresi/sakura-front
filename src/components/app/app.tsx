@@ -16,6 +16,9 @@ import {
 } from "@ui/form/select/select";
 import Search from "@ui/form/search/search";
 import ActionButton from "@ui/button/action-button/action-button";
+import MessageCard from "@ui/card/message-card/message-card";
+import LikedCard from "@ui/card/liked-card/liked-card";
+import RequestCard from "@ui/card/request-card/request-card";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
@@ -271,6 +274,63 @@ const App: FC = () => {
         <ActionButton action="share" variant="text">
           10
         </ActionButton>
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Notifications</h1>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <MessageCard
+          data={{
+            img: andrey,
+            imgFallback: "Andrey",
+            name: "Андрей Петров",
+            message: "Привет, как дела?",
+            date: "вчера",
+            badge: "2",
+          }}
+        />
+        <MessageCard
+          data={{
+            img: andrey,
+            imgFallback: "Andrey",
+            name: "Андрей Петров",
+            message: "Там прислали новые баги!",
+            date: "вчера",
+            badge: "2",
+          }}
+        />
+      </div>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <LikedCard
+          img={andrey}
+          imgFallback="Andrey"
+          name="Андрей Петров"
+          date="10 минут назад"
+        />
+
+        <LikedCard
+          img={andrey}
+          imgFallback="Andrey"
+          name="Андрей Петров"
+          date="10 минут назад"
+        />
+      </div>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <RequestCard
+          img={andrey}
+          imgFallback="Andrey"
+          name="Андрей Петров"
+          date="30 минут назад"
+        />
+
+        <RequestCard
+          img={andrey}
+          imgFallback="Andrey"
+          name="Андрей Петров"
+          date="30 минут назад"
+        />
       </div>
     </div>
   );

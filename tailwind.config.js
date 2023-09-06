@@ -17,62 +17,75 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "var(--border)",
+        ring: "var(--ring)",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
 
         // buttons
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          hover: "hsl(var(--primary-hover))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--primary)",
+          hover: "var(--primary-hover)",
+          foreground: "var(--primary-foreground)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          hover: "hsl(var(--secondary-hover))",
-          border: "hsl(var(--secondary-border))",
-          borderHover: "hsl(var(--secondary-border-hover))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--secondary)",
+          hover: "var(--secondary-hover)",
+          border: "var(--secondary-border)",
+          borderHover: "var(--secondary-border-hover)",
+          foreground: "var(--secondary-foreground)",
         },
         outline: {
-          hover: "hsl(var(--outline-hover))",
-          border: "hsl(var(--outline-border))",
-          foreground: "hsl(var(--outline-foreground))",
+          hover: "var(--outline-hover)",
+          border: "var(--outline-border)",
+          foreground: "var(--outline-foreground)",
         },
         link: {
-          hover: "hsl(var(--link-hover))",
-          foreground: "hsl(var(--link-foreground))",
+          hover: "var(--link-hover)",
+          foreground: "var(--link-foreground)",
         },
         text: {
-          DEFAULT: "hsl(var(--text))",
-          foreground: "hsl(var(--text-foreground))",
+          DEFAULT: "var(--text)",
+          foreground: "var(--text-foreground)",
         },
 
         // inputs
         input: {
-          DEFAULT: "hsl(var(--input))",
-          foreground: "hsl(var(--input-foreground))",
-          background: "hsl(var(--input-background))",
-          hoverBorder: "hsl(var(--input-hoverBorder))",
-          errorBorder: "hsl(var(--input-errorBorder))",
+          DEFAULT: "var(--input)",
+          foreground: "var(--input-foreground)",
+          background: "var(--input-background)",
+          hoverBorder: "var(--input-hoverBorder)",
+          errorBorder: "var(--input-errorBorder)",
         },
 
         // avatar
         avatar: {
-          foreground: "hsl(var(--avatar-foreground))",
+          foreground: "var(--avatar-foreground)",
         },
 
         // select
         select: {
-          itemHover: "hsl(var(--select-itemHover))",
+          itemHover: "var(--select-itemHover)",
         },
 
         // action buttons
         action: {
-          activeBorder: "hsl(var(--action-activeBorder))",
-          imgColor: "hsl(var(--action-imgColor))",
-          imgActiveColor: "hsl(var(--action-imgActiveColor))",
+          activeBorder: "var(--action-activeBorder)",
+          imgColor: "var(--action-imgColor)",
+          imgActiveColor: "var(--action-imgActiveColor)",
+        },
+
+        // cards
+        message: {
+          DEFAULT: "var(--message)",
+          hover: "var(--message-hover)",
+          border: "var(--message-border)",
+          hoverBorder: "var(--message-hoverBorder)",
+        },
+
+        liked: {
+          foreground: "var(--liked-foreground)",
+          dateForeground: "var(--liked-dateForeground)",
         },
       },
       borderRadius: {

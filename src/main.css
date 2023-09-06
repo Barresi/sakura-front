@@ -5,120 +5,144 @@
 @layer base {
   :root {
     /* body background color */
-    --background: 0 0% 100%;
+    --background: hsl(0, 0%, 100%);
     /* text color */
-    --foreground: 222.2 84% 4.9%;
+    --foreground: hsl(222, 0.2, 84%, 4.9%);
 
     /* buttons */
 
     /* primary button bg color */
-    --primary: 0 68% 49%;
+    --primary: hsl(0, 68%, 49%);
     /* primary button bg on hover color */
-    --primary-hover: 0 70% 45%;
+    --primary-hover: hsl(0, 70%, 45%);
     /* primary button text color */
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: hsl(0, 0%, 100%);
 
     /* TODO: comment all colors */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 213 19% 41%;
-    --secondary-border: 210 40% 96.1%;
-    --secondary-borderHover: 213 19% 41%;
+    --secondary: hsl(210, 40%, 96.1%);
+    --secondary-foreground: hsl(213, 19%, 41%);
+    --secondary-border: hsl(210, 40%, 96.1%);
+    --secondary-borderHover: hsl(213, 19%, 41%);
 
     /* --outline: ; */
-    --outline-foreground: 213 19% 41%;
-    --outline-border: 213 19% 41%;
-    --outline-hover: 210 11% 71%;
+    --outline-foreground: hsl(213, 19%, 41%);
+    --outline-border: hsl(213, 19%, 41%);
+    --outline-hover: hsl(210, 11%, 71%);
 
     /* --link: #fff; */
-    --link-foreground: 213 19% 41%;
-    --link-hover: 197 86% 53%;
+    --link-foreground: hsl(213, 19%, 41%);
+    --link-hover: hsl(197, 86%, 53%);
 
     /* inputs & textarea */
 
-    --input: 0 0% 95%;
-    --input-foreground: 0 0% 16%;
-    --input-background: 0 0% 100%;
-    --input-hoverBorder: 216 100% 64%;
-    --input-errorBorder: 0 68% 49%;
+    --input: hsl(0, 0%, 95%);
+    --input-foreground: hsl(0, 0%, 16%);
+    --input-background: hsl(0, 0%, 100%);
+    --input-hoverBorder: hsl(216, 100%, 64%);
+    --input-errorBorder: hsl(0, 68%, 49%);
 
     /* avatar */
 
-    --avatar-foreground: 0 0% 16%;
+    --avatar-foreground: hsl(0, 0%, 16%);
 
     /* text */
 
-    --text: 0 0% 95%;
-    --text-foreground: 0 0% 16%;
+    --text: hsl(0, 0%, 95%);
+    --text-foreground: hsl(0, 0%, 16%);
 
     /* select */
 
-    --select-itemHover: 0 0% 95%;
+    --select-itemHover: hsl(0, 0%, 95%);
 
     /* action button */
 
-    --action-activeBorder: 0 68% 49%;
-    --action-imgColor: 213 19% 41%;
-    --action-imgActiveColor: 0 68% 49%;
+    --action-activeBorder: hsl(0, 68%, 49%);
+    --action-imgColor: hsl(213, 19%, 41%);
+    --action-imgActiveColor: hsl(0, 68%, 49%);
+
+    /* card (message) */
+
+    --message: hsl(0, 0%, 100%);
+    --message-hover: hsl(0, 0%, 100%);
+    --message-border: hsl(0, 0%, 95%);
+    --message-hoverBorder: hsl(0, 68%, 49%);
+
+    /* card (liked) */
+
+    --liked-foreground: hsl(0, 0%, 16%);
+    --liked-dateForeground: hsl(0, 0%, 16%);
 
     /* others */
 
-    --border: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: hsl(214.3, 31.8%, 91.4%);
+    --ring: hsl(222.2, 84%, 4.9%);
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 15% 16%;
-    --foreground: 210 40% 98%;
+    --background: hsl(240, 15%, 16%);
+    --foreground: hsl(210, 40%, 98%);
 
     /* buttons */
 
-    --secondary: 240 11% 14%;
-    --secondary-hover: 240 15% 16%;
-    --secondary-foreground: 0 0% 95%;
-    --secondary-hover: 240 15% 16%;
-    --secondary-border: 240 11% 14%;
-    --secondary-border-hover: 240 15% 16%;
+    --secondary: hsl(240, 11%, 14%);
+    --secondary-hover: hsl(240, 15%, 16%);
+    --secondary-foreground: hsl(0, 0%, 95%);
+    --secondary-hover: hsl(240, 15%, 16%);
+    --secondary-border: hsl(240, 11%, 14%);
+    --secondary-border-hover: hsl(240, 15%, 16%);
 
-    --outline-foreground: 210 11% 71%;
-    --outline-border: 210 11% 71%;
-    --outline-hover: 213 19% 41%;
+    --outline-foreground: hsl(210, 11%, 71%);
+    --outline-border: hsl(210, 11%, 71%);
+    --outline-hover: hsl(213, 19%, 41%);
 
     /* --link: ; */
-    --link-foreground: 0 0% 95%;
+    --link-foreground: hsl(0, 0%, 95%);
 
     /* inputs */
 
-    --input: 213 19% 41%;
-    --input-foreground: 0 0% 95%;
-    --input-background: 240 15% 16%;
-    --input-hoverBorder: 197 86% 53%;
-    --input-errorBorder: 0 68% 49%;
+    --input: hsl(213, 19%, 41%);
+    --input-foreground: hsl(0, 0%, 95%);
+    --input-background: hsl(240, 15%, 16%);
+    --input-hoverBorder: hsl(197, 86%, 53%);
+    --input-errorBorder: hsl(0, 68%, 49%);
 
     /* avatar */
-    --avatar-foreground: 0 0% 95%;
+    --avatar-foreground: hsl(0, 0%, 95%);
 
     /* text */
 
-    --text: 240 11% 14%;
-    --text-foreground: 0 0% 95%;
+    --text: hsl(240, 11%, 14%);
+    --text-foreground: hsl(0, 0%, 95%);
 
     /* select */
 
-    --select-itemHover: 240 11% 14%;
+    --select-itemHover: hsl(240, 11%, 14%);
 
     /* action button */
 
-    --action-activeBorder: 0 68% 49%;
-    --action-imgColor: 213 19% 41%;
-    --action-imgActiveColor: 240 15% 16%;
+    --action-activeBorder: hsl(0, 68%, 49%);
+    --action-imgColor: hsl(213, 19%, 41%);
+    --action-imgActiveColor: hsl(240, 15%, 16%);
+
+    /* card (message) */
+
+    --message: hsl(240, 15%, 16%);
+    --message-hover: hsl(240, 11%, 14%);
+    --message-border: hsl(213, 19%, 41%);
+    --message-hoverBorder: hsl(213, 19%, 41%);
+
+    /* card (liked) */
+
+    --liked-foreground: hsl(213, 19%, 41%);
+    --liked-dateForeground: #55677d;
 
     /* others */
 
-    --border: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: hsl(217, 0.2, 32) 6% 17.5%;
+    --ring: hsl(212, 0.7, 26) 8% 83.9%;
   }
 }
 
