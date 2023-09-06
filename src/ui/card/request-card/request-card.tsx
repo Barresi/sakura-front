@@ -9,7 +9,7 @@ export interface RequestCardProps
 
 const RequestCard: FC<RequestCardProps> = ({ img, imgFallback, date, name }) => {
   return (
-    <Card className="block hover:border-background">
+    <Card className="block hover:border-message-border hover:border-t-background hover:border-l-background">
       <div className="flex items-center gap-[15px]">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />

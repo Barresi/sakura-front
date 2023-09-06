@@ -11,7 +11,7 @@ export interface LikedCardProps
 
 const LikedCard: FC<LikedCardProps> = ({ img, imgFallback, name, date, link }) => {
   return (
-    <Card className="hover:border-background">
+    <Card className="hover:border-message-border hover:border-t-background hover:border-l-background">
       <div className="flex items-center gap-[15px]">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />
