@@ -253,7 +253,7 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Search</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <Search className="min-w-[600px]" />
+        <Search className="min-w-[300px] lg:min-w-[600px]" />
       </div>
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Action buttons</h1>
