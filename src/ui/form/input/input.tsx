@@ -33,7 +33,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
 
-        <span className={errorSpanClass}>{error}</span>
+        {error && <span className={errorSpanClass}>{error}</span>}
       </div>
     );
 

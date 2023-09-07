@@ -19,10 +19,13 @@ import ActionButton from "@ui/button/action-button/action-button";
 import MessageCard from "@ui/card/message-card/message-card";
 import LikedCard from "@ui/card/liked-card/liked-card";
 import RequestCard from "@ui/card/request-card/request-card";
+import NewInput from "@ui/form/new-input/new-input";
+import MessageInput from "@ui/form/message-input/message-input";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
 import suba2 from "@assets/478889_photo-resizer.ru.jpg";
+import photo from "@assets/photo.svg";
 
 const App: FC = () => {
   const { setTheme, theme } = useTheme();
@@ -331,6 +334,17 @@ const App: FC = () => {
           name="Андрей Петров"
           date="30 минут назад"
         />
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Smth</h1>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <MessageInput className="min-w-[50vw]" />
+      </div>
+
+      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <NewInput className="min-w-[50vw]" />
+        <NewInput avatar={photo} className="min-w-[50vw]" />
       </div>
     </div>
   );
