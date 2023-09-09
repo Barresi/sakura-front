@@ -25,7 +25,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       : "";
 
     const input = (
-      <div className="relative pb-6">
+      <div className="w-full relative pb-6">
         <input
           type={inputType}
           className={cn(baseClass, errorClass, className)}
@@ -39,7 +39,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     if (type === "password") {
       return (
-        <div className="relative">
+        <div className="w-full relative">
           {input}
           <img
             className={`cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}

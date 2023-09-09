@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useTheme } from "../theme-provider/theme-provider";
 import Input from "@ui/form/input/input";
 import Textarea from "@ui/form/textarea/textarea";
 import Button from "@ui/button/button";
@@ -21,6 +20,9 @@ import LikedCard from "@ui/card/liked-card/liked-card";
 import RequestCard from "@ui/card/request-card/request-card";
 import NewInput from "@ui/form/new-input/new-input";
 import MessageInput from "@ui/form/message-input/message-input";
+import FriendCard from "@ui/card/friend-card/friend-card";
+import SettingButton from "@ui/button/setting-button/setting-button";
+import Header from "@ui/header/header";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
@@ -28,18 +30,6 @@ import suba2 from "@assets/478889_photo-resizer.ru.jpg";
 import photo from "@assets/photo.svg";
 
 const App: FC = () => {
-  const { setTheme, theme } = useTheme();
-
-  const toggleTheme = (theme: string) => {
-    if (theme == "dark") {
-      setTheme("light");
-    } else if (theme == "light") {
-      setTheme("dark");
-    } else {
-      setTheme("system");
-    }
-  };
-
   const icon = (
     <svg
       width="20"
@@ -81,11 +71,9 @@ const App: FC = () => {
 
   return (
     <div className="pb-4">
-      <div className="mt-4 flex justify-center items-center fixed top-0 left-[50%] translate-x-[-50%] z-10">
-        <Button onClick={() => toggleTheme(theme)}>Change Theme</Button>
-      </div>
+      <Header className="fixed top-0 left-0" avatar={photo} />
 
-      <h1 className="text-center text-4xl mt-16 text-red-500">Inputs</h1>
+      <h1 className="text-center text-4xl mt-20 text-red-500">Inputs</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <div className="p-4 flex flex-col justify-center items-center gap-4">
@@ -281,8 +269,9 @@ const App: FC = () => {
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Notifications</h1>
 
-      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+      <div className="mt-4 flex flex-col lg:flex-row justify-center items-center gap-4 flex-wrap">
         <MessageCard
+          className="w-[90%] lg:w-[40%] mb-8 lg:mb-0"
           data={{
             img: andrey,
             imgFallback: "Andrey",
@@ -293,6 +282,7 @@ const App: FC = () => {
           }}
         />
         <MessageCard
+          className="w-[90%] lg:w-[40%]"
           data={{
             img: andrey,
             imgFallback: "Andrey",
@@ -304,8 +294,9 @@ const App: FC = () => {
         />
       </div>
 
-      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+      <div className="mt-4 flex flex-col lg:flex-row justify-center items-center gap-4 flex-wrap">
         <LikedCard
+          className="w-[90%] lg:w-[40%] mb-8 lg:mb-0"
           img={andrey}
           imgFallback="Andrey"
           name="Андрей Петров"
@@ -313,6 +304,7 @@ const App: FC = () => {
         />
 
         <LikedCard
+          className="w-[90%] lg:w-[40%]"
           img={andrey}
           imgFallback="Andrey"
           name="Андрей Петров"
@@ -320,8 +312,9 @@ const App: FC = () => {
         />
       </div>
 
-      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+      <div className="mt-4 flex flex-col lg:flex-row justify-center items-center gap-4 flex-wrap">
         <RequestCard
+          className="w-[90%] lg:w-[40%] mb-8 lg:mb-0"
           img={andrey}
           imgFallback="Andrey"
           name="Андрей Петров"
@@ -329,6 +322,7 @@ const App: FC = () => {
         />
 
         <RequestCard
+          className="w-[90%] lg:w-[40%]"
           img={andrey}
           imgFallback="Andrey"
           name="Андрей Петров"
@@ -338,13 +332,44 @@ const App: FC = () => {
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Smth</h1>
 
+      <div className="flex flex-col w-[90%] mx-auto">
+        <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+          <MessageInput className="min-w-[50vw]" />
+        </div>
+
+        <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
+          <NewInput className="" />
+          <NewInput avatar={photo} className="" />
+        </div>
+      </div>
+      <h1 className="text-center text-4xl mt-8 text-red-500">Friend card</h1>
+
+      <div className="mt-4 flex flex-col lg:flex-row justify-center items-center gap-4 flex-wrap">
+        <FriendCard
+          className="w-[90%] lg:w-[40%] mb-8 lg:mb-0"
+          img={andrey}
+          imgFallback="Andrey"
+          name="Андрей Петров"
+        />
+
+        <FriendCard
+          className="w-[90%] lg:w-[40%]"
+          img={andrey}
+          imgFallback="Andrey"
+          name="Андрей Петров"
+        />
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Setting buttons</h1>
+
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <MessageInput className="min-w-[50vw]" />
+        <SettingButton />
+        <SettingButton kind="notification" />
       </div>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <NewInput className="min-w-[50vw]" />
-        <NewInput avatar={photo} className="min-w-[50vw]" />
+        <SettingButton badge={5} />
+        <SettingButton kind="notification" badge={9} />
       </div>
     </div>
   );

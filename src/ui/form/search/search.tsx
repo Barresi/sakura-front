@@ -2,7 +2,7 @@ import { FC } from "react";
 import Input, { InputProps } from "../input/input";
 
 import icon from "@assets/ui/Search.svg";
-import { cn } from "@src/utils/utils";
+import { cn } from "@utils/utils";
 
 interface IProps extends Omit<InputProps, "type"> {}
 

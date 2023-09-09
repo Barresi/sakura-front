@@ -2,14 +2,28 @@ import { FC } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
-import Button from "@src/ui/button/button";
+import Button from "@ui/button/button";
+import { cn } from "@utils/utils";
 
 export interface RequestCardProps
-  extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {}
+  extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
+  className?: string;
+}
 
-const RequestCard: FC<RequestCardProps> = ({ img, imgFallback, date, name }) => {
+const RequestCard: FC<RequestCardProps> = ({
+  className,
+  img,
+  imgFallback,
+  date,
+  name,
+}) => {
   return (
-    <Card className="block hover:border-message-border hover:border-t-background hover:border-l-background">
+    <Card
+      className={cn(
+        "block hover:border-message-border hover:border-t-background hover:border-l-background",
+        className,
+      )}
+    >
       <div className="flex items-center gap-[15px]">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />

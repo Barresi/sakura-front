@@ -87,6 +87,15 @@ module.exports = {
           foreground: "var(--liked-foreground)",
           dateForeground: "var(--liked-dateForeground)",
         },
+
+        // setting button
+        setting: {
+          DEFAULT: "var(--setting)",
+          active: "var(--setting-active)",
+          border: "var(--setting-border)",
+          foreground: "var(--setting-foreground)",
+          activeForeground: "var(--setting-activeForeground)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

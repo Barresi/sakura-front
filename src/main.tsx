@@ -4,8 +4,8 @@ import ReactDOM from "react-dom/client";
 import "./main.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "@src/store/store";
-import App from "@src/components/app/app";
+import { store } from "@store/store";
+import App from "@components/app/app";
 import { ThemeProvider } from "./components/theme-provider/theme-provider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

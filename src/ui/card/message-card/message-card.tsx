@@ -1,25 +1,28 @@
 import { FC } from "react";
 import { Badge } from "@ui/badge/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
+import { cn } from "@utils/utils";
 
 import Card from "../card";
 
 export interface MessageCardProps {
+  className?: string;
   data: {
     img: string;
     imgFallback: string;
     name: string;
-    message: string;
-    date: string;
-    badge: number | string;
+    message?: string;
+    date?: string;
+    badge?: number | string;
   };
 }
 
 const MessageCard: FC<MessageCardProps> = ({
+  className,
   data: { img, imgFallback, name, message, date, badge },
 }) => {
   return (
-    <Card className="flex items-center justify-between cursor-pointer">
+    <Card className={cn("flex items-center justify-between cursor-pointer", className)}>
       <div className="flex items-center gap-[15px]">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />

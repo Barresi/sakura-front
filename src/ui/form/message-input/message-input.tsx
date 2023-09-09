@@ -9,7 +9,7 @@ interface IProps extends InputProps {}
 
 const MessageInput: FC<IProps> = ({ ...props }) => {
   return (
-    <div className="relative">
+    <div className="w-full relative">
       <Input placeholder="Написать сообщение..." {...props} />
 
       <img

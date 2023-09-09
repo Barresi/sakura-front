@@ -1,5 +1,5 @@
-import { useTheme } from "@src/components/theme-provider/theme-provider";
-import { cn } from "@src/utils/utils";
+import { useTheme } from "@components/theme-provider/theme-provider";
+import { cn } from "@utils/utils";
 import { FC, ReactNode } from "react";
 
 interface IProps {
@@ -19,7 +19,7 @@ const Card: FC<IProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        "bg-message px-8 py-5 rounded-tl-[10px] border border-background border-r-message-border border-b-message-border",
+        "w-full bg-message px-8 py-5 rounded-tl-[10px] border border-background border-r-message-border border-b-message-border",
         hover[theme],
         className,
       )}

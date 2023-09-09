@@ -3,15 +3,29 @@ import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
+import { cn } from "@utils/utils";
 
 export interface LikedCardProps
   extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
   link?: string;
+  className?: string;
 }
 
-const LikedCard: FC<LikedCardProps> = ({ img, imgFallback, name, date, link }) => {
+const LikedCard: FC<LikedCardProps> = ({
+  className,
+  img,
+  imgFallback,
+  name,
+  date,
+  link,
+}) => {
   return (
-    <Card className="hover:border-message-border hover:border-t-background hover:border-l-background">
+    <Card
+      className={cn(
+        "hover:border-message-border hover:border-t-background hover:border-l-background",
+        className,
+      )}
+    >
       <div className="flex items-center gap-[15px]">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />
@@ -20,7 +34,7 @@ const LikedCard: FC<LikedCardProps> = ({ img, imgFallback, name, date, link }) =
 
         <div className="mr-16">
           <h3 className="leading-6 text-[#55677D]">
-            <span className="font-bold text-liked-foreground">{name}</span> оценил вашу
+            <span className="font-bold text-liked-foreground">{name}</span> оценил вашу{" "}
             <Link className="text-[#4791FF] hover:underline" to="/">
               фотографию
             </Link>
