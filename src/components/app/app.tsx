@@ -23,6 +23,7 @@ import MessageInput from "@ui/form/message-input/message-input";
 import FriendCard from "@ui/card/friend-card/friend-card";
 import SettingButton from "@ui/button/setting-button/setting-button";
 import Header from "@ui/header/header";
+import Profile from "@ui/profile/profile";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
@@ -370,6 +371,12 @@ const App: FC = () => {
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <SettingButton badge={5} />
         <SettingButton kind="notification" badge={9} />
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Profile</h1>
+
+      <div className="w-[90%] lg:w-[485px] mx-auto mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <Profile />
       </div>
     </div>
   );
