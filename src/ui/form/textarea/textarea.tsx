@@ -17,7 +17,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ? `absolute top-[90%] left-5 text-input-errorBorder`
       : "";
     return (
-      <div className="relative pb-6">
+      <div className="w-full relative pb-6">
         <textarea className={cn(baseClass, errorClass, className)} ref={ref} {...props} />
         <span className={errorSpanClass}>{error}</span>
       </div>

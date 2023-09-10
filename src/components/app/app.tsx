@@ -149,24 +149,18 @@ const App: FC = () => {
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="mt-4 flex flex-col justify-center items-center gap-4 flex-wrap"
+        className="w-[400px] mx-auto mt-4 flex flex-col justify-center items-center gap-4 flex-wrap"
       >
+        <Input className="" minLength={4} type="text" placeholder="Login" required />
         <Input
-          className="w-[400px]"
-          minLength={4}
-          type="text"
-          placeholder="Login"
-          required
-        />
-        <Input
-          className="w-[400px]"
+          className=""
           minLength={8}
           type="password"
           placeholder="Password"
           required
         />
-        <Textarea className="w-[400px]" placeholder="Your Comment" />
-        <Button className="w-[400px]" type="submit" variant={"default"}>
+        <Textarea placeholder="Your Comment" />
+        <Button type="submit" variant={"default"}>
           Send
         </Button>
       </form>
@@ -227,7 +221,7 @@ const App: FC = () => {
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Menu buttons</h1>
 
-      <div className="mt-4 flex flex-col justify-center items-center gap-4 flex-wrap">
+      <div className="w-[200px] mx-auto mt-4 flex flex-col justify-center items-center gap-4 flex-wrap">
         <NavButton icon={menuIcon}>Моя страница</NavButton>
 
         <NavButton badge={4} variant="text">
@@ -249,20 +243,26 @@ const App: FC = () => {
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Action buttons</h1>
 
-      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <ActionButton action="like">10</ActionButton>
-        <ActionButton action="comment">10</ActionButton>
-        <ActionButton action="share">10</ActionButton>
+      <div className="mx-auto mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <ActionButton className="w-[200px]" action="like">
+          10
+        </ActionButton>
+        <ActionButton className="w-[200px]" action="comment">
+          10
+        </ActionButton>
+        <ActionButton className="w-[200px]" action="share">
+          10
+        </ActionButton>
       </div>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <ActionButton action="like" variant="text">
+        <ActionButton className="w-[200px]" action="like" variant="text">
           10
         </ActionButton>
-        <ActionButton action="comment" variant="text">
+        <ActionButton className="w-[200px]" action="comment" variant="text">
           10
         </ActionButton>
-        <ActionButton action="share" variant="text">
+        <ActionButton className="w-[200px]" action="share" variant="text">
           10
         </ActionButton>
       </div>

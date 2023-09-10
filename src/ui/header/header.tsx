@@ -1,7 +1,7 @@
 import { cn } from "@utils/utils";
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import SettingButton from "../button/setting-button/setting-button";
-import { Avatar } from "../avatar/avatar";
+import { Avatar, AvatarFallback } from "../avatar/avatar";
 import { AvatarImage } from "../avatar/avatar";
 import { useTheme } from "@components/theme-provider/theme-provider";
 import Logo from "../logo/logo";
@@ -33,13 +33,15 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
       )}
       {...props}
     >
-      <Logo />
+      <Logo isAdaptive />
+
       <div className="flex items-center justify-center gap-[15px]">
         <SettingButton kind="theme" onClick={() => toggleTheme(theme)} />
         <SettingButton kind="notification" />
 
         <Avatar className="translate-y-[3px]">
           <AvatarImage src={avatar} />
+          <AvatarFallback>Avatar</AvatarFallback>
         </Avatar>
       </div>
     </header>
