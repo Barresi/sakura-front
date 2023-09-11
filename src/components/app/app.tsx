@@ -256,18 +256,6 @@ const App: FC = () => {
         </ActionButton>
       </div>
 
-      <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <ActionButton className="w-[200px]" action="like" variant="text">
-          10
-        </ActionButton>
-        <ActionButton className="w-[200px]" action="comment" variant="text">
-          10
-        </ActionButton>
-        <ActionButton className="w-[200px]" action="share" variant="text">
-          10
-        </ActionButton>
-      </div>
-
       <h1 className="text-center text-4xl mt-8 text-red-500">Notifications</h1>
 
       <div className="mt-4 flex flex-col lg:flex-row justify-center items-center gap-4 flex-wrap">

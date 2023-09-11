@@ -3,7 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
 import Button from "@ui/button/button";
-import { cn } from "@utils/utils";
+import { cn, useWindowSize } from "@utils/utils";
 
 export interface RequestCardProps
   extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
@@ -17,6 +17,8 @@ const RequestCard: FC<RequestCardProps> = ({
   date,
   name,
 }) => {
+  const isMobile = useWindowSize(1024);
+
   return (
     <Card
       className={cn(
@@ -30,20 +32,31 @@ const RequestCard: FC<RequestCardProps> = ({
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
-        <div className="mr-16">
+        <div>
           <h3 className="leading-6 text-[#55677D]">
-            <span className="font-bold text-liked-foreground">{name}</span> подал заявку в
-            друзья
+            <span
+              className={cn(
+                "font-bold text-liked-foreground",
+                isMobile ? "flex flex-col" : "",
+              )}
+            >
+              {name}
+            </span>{" "}
+            подал заявку в друзья
           </h3>
           <span className="leading-6 text-liked-dateForeground">{date}</span>
         </div>
       </div>
-
-      <div className="mt-[10px] flex justify-between gap-[10px]">
-        <Button variant="default" className="w-[49%]">
+      <div
+        className={cn(
+          "mt-[10px] flex justify-between gap-[10px]",
+          isMobile ? "w-full flex-col" : "",
+        )}
+      >
+        <Button variant="default" className="lg:w-[49%]">
           Добавить в друзья
         </Button>
-        <Button variant="secondary" className="w-[49%]">
+        <Button variant="secondary" className="lg:w-[49%]">
           Отклонить
         </Button>
       </div>

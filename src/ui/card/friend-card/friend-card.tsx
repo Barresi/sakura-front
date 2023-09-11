@@ -43,7 +43,7 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
-        <div className="mr-16">
+        <div>
           <h3 className="font-bold text-liked-foreground leading-6 text-[#55677D]">
             {name}
           </h3>

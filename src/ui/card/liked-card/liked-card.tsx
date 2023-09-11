@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import { cn, useWindowSize } from "@utils/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
-import { cn } from "@utils/utils";
 
 export interface LikedCardProps
   extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
@@ -19,6 +19,8 @@ const LikedCard: FC<LikedCardProps> = ({
   date,
   link,
 }) => {
+  const isMobile = useWindowSize(1024);
+
   return (
     <Card
       className={cn(
@@ -26,14 +28,14 @@ const LikedCard: FC<LikedCardProps> = ({
         className,
       )}
     >
-      <div className="flex items-center gap-[15px]">
+      <div className={cn("flex gap-[15px]", isMobile ? "items-start" : "items-center")}>
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
-        <div className="mr-16">
-          <h3 className="leading-6 text-[#55677D]">
+        <div>
+          <h3 className={cn("leading-6 text-[#55677D]", isMobile ? "flex flex-col" : "")}>
             <span className="font-bold text-liked-foreground">{name}</span> оценил вашу{" "}
             <Link className="text-[#4791FF] hover:underline" to="/">
               фотографию

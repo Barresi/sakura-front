@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Badge } from "@ui/badge/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
-import { cn } from "@utils/utils";
+import { cn, useWindowSize } from "@utils/utils";
 
 import Card from "../card";
 
@@ -21,17 +21,23 @@ const MessageCard: FC<MessageCardProps> = ({
   className,
   data: { img, imgFallback, name, message, date, badge },
 }) => {
+  const isMobile = useWindowSize(1024);
+
   return (
     <Card className={cn("flex items-center justify-between cursor-pointer", className)}>
       <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[60px] h-[60px]">
+        <Avatar className={isMobile ? "w-[50px] h-[50px]" : "w-[60px] h-[60px]"}>
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
-        <div className="mr-16">
+        <div>
           <h3 className="font-bold leading-6">{name}</h3>
-          <span className="w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis">
+          <span
+            className={`${
+              isMobile ? "w-[120px]" : "w-[150px]"
+            }  block leading-6 whitespace-nowrap overflow-hidden text-ellipsis`}
+          >
             {message}
           </span>
         </div>

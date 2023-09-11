@@ -1,5 +1,5 @@
 import { useTheme } from "@components/theme-provider/theme-provider";
-import { cn } from "@utils/utils";
+import { cn, useWindowSize } from "@utils/utils";
 import { FC, ReactNode } from "react";
 
 interface IProps {
@@ -8,6 +8,7 @@ interface IProps {
 }
 
 const Card: FC<IProps> = ({ children, className }) => {
+  const isMobile = useWindowSize(1024);
   const { theme } = useTheme();
 
   const hover = {
@@ -19,7 +20,8 @@ const Card: FC<IProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        "w-full bg-message px-8 py-5 rounded-tl-[10px] border border-background border-r-message-border border-b-message-border",
+        "w-full bg-message  rounded-tl-[10px] border border-background border-r-message-border border-b-message-border",
+        isMobile ? "px-[15px] py-[20px]" : "px-[30px] py-[20px]",
         hover[theme],
         className,
       )}
