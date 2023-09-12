@@ -17,8 +17,6 @@ const RequestCard: FC<RequestCardProps> = ({
   date,
   name,
 }) => {
-  const isMobile = useWindowSize(1024);
-
   return (
     <Card
       className={cn(
@@ -34,12 +32,7 @@ const RequestCard: FC<RequestCardProps> = ({
 
         <div>
           <h3 className="leading-6 text-[#55677D]">
-            <span
-              className={cn(
-                "font-bold text-liked-foreground",
-                isMobile ? "flex flex-col" : "",
-              )}
-            >
+            <span className="font-bold text-liked-foreground flex flex-col lg:flex-row">
               {name}
             </span>{" "}
             подал заявку в друзья
@@ -47,12 +40,7 @@ const RequestCard: FC<RequestCardProps> = ({
           <span className="leading-6 text-liked-dateForeground">{date}</span>
         </div>
       </div>
-      <div
-        className={cn(
-          "mt-[10px] flex justify-between gap-[10px]",
-          isMobile ? "w-full flex-col" : "",
-        )}
-      >
+      <div className="mt-[10px] flex justify-between gap-[10px] w-full flex-col lg:flex-row">
         <Button variant="default" className="lg:w-[49%]">
           Добавить в друзья
         </Button>

@@ -19,8 +19,6 @@ const LikedCard: FC<LikedCardProps> = ({
   date,
   link,
 }) => {
-  const isMobile = useWindowSize(1024);
-
   return (
     <Card
       className={cn(
@@ -28,14 +26,14 @@ const LikedCard: FC<LikedCardProps> = ({
         className,
       )}
     >
-      <div className={cn("flex gap-[15px]", isMobile ? "items-start" : "items-center")}>
+      <div className="flex gap-[15px] items-start lg:items-center">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
         <div>
-          <h3 className={cn("leading-6 text-[#55677D]", isMobile ? "flex flex-col" : "")}>
+          <h3 className="leading-6 text-[#55677D] flex flex-col lg:flex-row">
             <span className="font-bold text-liked-foreground">{name}</span> оценил вашу{" "}
             <Link className="text-[#4791FF] hover:underline" to="/">
               фотографию

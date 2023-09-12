@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const Card: FC<IProps> = ({ children, className }) => {
-  const isMobile = useWindowSize(1024);
   const { theme } = useTheme();
 
   const hover = {
@@ -20,8 +19,7 @@ const Card: FC<IProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        "w-full bg-message  rounded-tl-[10px] border border-background border-r-message-border border-b-message-border",
-        isMobile ? "px-[15px] py-[20px]" : "px-[30px] py-[20px]",
+        "w-full bg-message  rounded-tl-[10px] border border-background border-r-message-border border-b-message-border px-[15px] lg:px-[30px] py-[20px]",
         hover[theme],
         className,
       )}
