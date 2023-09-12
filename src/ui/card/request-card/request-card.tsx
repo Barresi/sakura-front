@@ -3,7 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
 import Button from "@ui/button/button";
-import { cn, useWindowSize } from "@utils/utils";
+import { cn } from "@utils/utils";
 
 export interface RequestCardProps
   extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
