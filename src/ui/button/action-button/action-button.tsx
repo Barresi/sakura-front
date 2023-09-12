@@ -45,6 +45,7 @@ const ActionButton: FC<IProps> = ({ children, className, action, onClick, ...pro
       className={cn(
         "px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border",
         active && activeClass,
+        theme == "dark" ? "hover:bg-background border-background" : "",
         className,
       )}
       onClick={onClick || toggleActive}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Badge } from "@ui/badge/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
-import { cn, useWindowSize } from "@utils/utils";
+import { cn } from "@utils/utils";
 
 import Card from "../card";
 

@@ -1,5 +1,5 @@
 import { useTheme } from "@components/theme-provider/theme-provider";
-import { cn, useWindowSize } from "@utils/utils";
+import { cn } from "@utils/utils";
 import { FC, ReactNode } from "react";
 
 interface IProps {
