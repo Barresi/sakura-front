@@ -29,6 +29,7 @@ import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
 import suba2 from "@assets/478889_photo-resizer.ru.jpg";
 import photo from "@assets/photo.svg";
+import FriendPanel from "@src/ui/friend-panel/friend-panel";
 
 const App: FC = () => {
   const icon = (
@@ -365,6 +366,12 @@ const App: FC = () => {
 
       <div className="w-[90%] lg:w-[485px] mx-auto mt-4 flex justify-center items-center gap-4 flex-wrap">
         <Profile />
+      </div>
+
+      <h1 className="text-center text-4xl mt-8 text-red-500">Friend Panel</h1>
+
+      <div className="w-[300px] lg:w-[700px] mx-auto mt-4 flex justify-center items-center gap-4 flex-wrap">
+        <FriendPanel />
       </div>
     </div>
   );
