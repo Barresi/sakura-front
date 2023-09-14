@@ -34,7 +34,9 @@ const LikedCard: FC<LikedCardProps> = ({
 
         <div>
           <h3 className="leading-6 text-[#55677D] flex flex-col lg:flex-row">
-            <span className="font-bold text-liked-foreground">{name}</span> оценил вашу{" "}
+            <span className="font-bold text-liked-foreground mr-1">
+              {name} оценил вашу
+            </span>
             <Link className="text-[#4791FF] hover:underline" to="/">
               фотографию
             </Link>

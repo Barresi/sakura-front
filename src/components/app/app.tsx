@@ -30,8 +30,12 @@ import suba from "@assets/478889.jpg";
 import suba2 from "@assets/478889_photo-resizer.ru.jpg";
 import photo from "@assets/photo.svg";
 import FriendPanel from "@src/ui/friend-panel/friend-panel";
+import MobileNav from "@src/ui/button/mobile-nav/mobile-nav";
+import { useWindowSize } from "@src/utils/utils";
 
 const App: FC = () => {
+  const isMobile = useWindowSize(1024);
+
   const icon = (
     <svg
       width="20"
@@ -72,7 +76,7 @@ const App: FC = () => {
   );
 
   return (
-    <div className="pb-4">
+    <div className="pb-20 lg:pb-4">
       <Header className="fixed top-0 left-0" avatar={photo} />
 
       <h1 className="text-center text-4xl mt-20 text-red-500">Inputs</h1>
@@ -373,6 +377,8 @@ const App: FC = () => {
       <div className="w-[300px] lg:w-[700px] mx-auto mt-4 flex justify-center items-center gap-4 flex-wrap">
         <FriendPanel />
       </div>
+
+      {isMobile && <MobileNav />}
     </div>
   );
 };

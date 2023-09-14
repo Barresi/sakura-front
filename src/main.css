@@ -25,6 +25,11 @@
     --secondary-border: hsl(210, 40%, 96.1%);
     --secondary-borderHover: hsl(213, 19%, 41%);
 
+    /* nav button mobile */
+
+    --nav: hsl(0, 0%, 100%);
+    --nav-foreground: hsl(0, 0%, 16%);
+
     /* --outline: ; */
     --outline-foreground: hsl(213, 19%, 41%);
     --outline-border: hsl(213, 19%, 41%);
@@ -105,6 +110,11 @@
     --outline-foreground: hsl(210, 11%, 71%);
     --outline-border: hsl(210, 11%, 71%);
     --outline-hover: hsl(213, 19%, 41%);
+
+    /* nav button mobile */
+
+    --nav: hsl(240, 15%, 16%);
+    --nav-foreground: hsl(0, 0%, 95%);
 
     /* --link: ; */
     --link-foreground: hsl(0, 0%, 95%);

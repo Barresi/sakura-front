@@ -11,7 +11,11 @@ interface IProps extends ButtonProps {
 const NavButton: FC<IProps> = ({ children, icon, badge, ...props }) => {
   return (
     <Button {...props}>
-      {typeof icon == "string" ? <img src={icon} alt="" /> : icon}
+      {typeof icon == "string" ? (
+        <img src={icon} className="w-[24px] h-[24px]" alt="" />
+      ) : (
+        icon
+      )}
       {children}
       {badge! > 0 && <Badge>{badge}</Badge>}
     </Button>

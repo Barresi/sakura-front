@@ -49,6 +49,13 @@ module.exports = {
           foreground: "var(--text-foreground)",
         },
 
+        // nav button mobile
+
+        nav: {
+          DEFAULT: "var(--navButton)",
+          foreground: "var(--navButton-foreground)",
+        },
+
         // inputs
         input: {
           DEFAULT: "var(--input)",
