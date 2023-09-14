@@ -193,27 +193,27 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Avatar</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <Avatar className="w-[190px] h-[190px]" text="Андрей">
+        <Avatar className="w-[96px] h-[96px]" text="Андрей">
           <AvatarImage src={andrey} className="" />
           <AvatarFallback>Andrey</AvatarFallback>
         </Avatar>
 
-        <Avatar className="w-[190px] h-[190px]" text="Subaru 2000x1000">
+        <Avatar className="w-[96px] h-[96px]" text="Subaru 2000x1000">
           <AvatarImage src={suba} className="rounded-none" />
           <AvatarFallback>Subaru</AvatarFallback>
         </Avatar>
 
-        <Avatar className="w-[190px] h-[190px]" text="Subaru 300x150">
+        <Avatar className="w-[96px] h-[96px]" text="Subaru 300x150">
           <AvatarImage src={suba2} className="rounded-none" />
           <AvatarFallback>Subaru</AvatarFallback>
         </Avatar>
 
-        <Avatar className="rounded-none w-[190px] h-[190px]" text="Subaru 2000x1000">
+        <Avatar className="rounded-none w-[96px] h-[96px]" text="Subaru 2000x1000">
           <AvatarImage src={suba} className="rounded-none" />
           <AvatarFallback>Subaru</AvatarFallback>
         </Avatar>
 
-        <Avatar className="rounded-none w-[190px] h-[190px]" text="Subaru 300x150">
+        <Avatar className="rounded-none w-[96px] h-[96px]" text="Subaru 300x150">
           <AvatarImage src={suba2} className="rounded-none" />
           <AvatarFallback>Subaru</AvatarFallback>
         </Avatar>

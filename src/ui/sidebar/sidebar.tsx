@@ -1,12 +1,12 @@
 import { FC } from "react";
 import Logo from "../logo/logo";
+import NavButton from "../button/nav-button/nav-button";
 
 import user from "@assets/menu/user.svg";
 import news from "@assets/menu/news.svg";
 import friends from "@assets/menu/friends.svg";
 import message from "@assets/menu/message.svg";
 import photos from "@assets/menu/photos.svg";
-import NavButton from "../button/nav-button/nav-button";
 
 const Sidebar: FC = () => {
   return (
