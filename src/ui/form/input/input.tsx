@@ -16,7 +16,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const toggleType = () => setType((type) => (type === "text" ? "password" : "text"));
 
     const baseClass =
-      "flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
+      "flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 pr-[15%] text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
     const errorClass = error
       ? "border-input-errorBorder focus:border-input-errorBorder"
       : "border-input focus:border-input-hoverBorder";

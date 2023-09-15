@@ -20,7 +20,11 @@ const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
         </Avatar>
       )}
       <Input
-        className={cn("py-[20px] px-[20px] rounded-[10px]", withAvatar, className)}
+        className={cn(
+          "py-[20px] px-[20px] pr-[10%] rounded-[10px]",
+          withAvatar,
+          className,
+        )}
         placeholder="Что у вас нового?"
         {...props}
       />

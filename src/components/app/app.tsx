@@ -328,12 +328,12 @@ const App: FC = () => {
 
       <div className="flex flex-col w-[90%] mx-auto">
         <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-          <MessageInput className="min-w-[50vw]" />
+          <MessageInput className="min-w-[50vw] mr-[15%]" />
         </div>
 
         <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-          <NewInput className="" />
-          <NewInput avatar={photo} className="" />
+          <NewInput />
+          <NewInput avatar={photo} />
         </div>
       </div>
       <h1 className="text-center text-4xl mt-8 text-red-500">Friend card</h1>
