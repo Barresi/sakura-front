@@ -2,12 +2,6 @@ import { FC } from "react";
 import Logo from "../logo/logo";
 import NavButton from "../button/nav-button/nav-button";
 
-import user from "@assets/menu/user.svg";
-import news from "@assets/menu/news.svg";
-import friends from "@assets/menu/friends.svg";
-import message from "@assets/menu/message.svg";
-import photos from "@assets/menu/photos.svg";
-
 const Sidebar: FC = () => {
   return (
     <div className="rounded-[10px] px-5 py-8 flex flex-col justify-start items-start">
@@ -15,19 +9,26 @@ const Sidebar: FC = () => {
 
       <NavButton
         className="w-full justify-start mt-[50px] gap-[10px]"
-        icon={user}
+        iconPos="left"
+        icon="user"
         variant="text"
       >
         Моя страница
       </NavButton>
 
-      <NavButton className="w-full justify-start gap-[10px]" icon={news} variant="text">
+      <NavButton
+        className="w-full justify-start gap-[10px]"
+        iconPos="left"
+        icon="news"
+        variant="text"
+      >
         Новости
       </NavButton>
 
       <NavButton
         className="w-full justify-start gap-[10px]"
-        icon={message}
+        iconPos="left"
+        icon="message"
         badge={6}
         variant="text"
       >
@@ -36,13 +37,19 @@ const Sidebar: FC = () => {
 
       <NavButton
         className="w-full justify-start gap-[10px]"
-        icon={friends}
+        iconPos="left"
+        icon="friends"
         variant="text"
       >
         Друзья
       </NavButton>
 
-      <NavButton className="w-full justify-start gap-[10px]" icon={photos} variant="text">
+      <NavButton
+        className="w-full justify-start gap-[10px]"
+        iconPos="left"
+        icon="photos"
+        variant="text"
+      >
         Фотографии
       </NavButton>
     </div>

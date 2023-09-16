@@ -24,56 +24,17 @@ import FriendCard from "@ui/card/friend-card/friend-card";
 import SettingButton from "@ui/button/setting-button/setting-button";
 import Header from "@ui/header/header";
 import Profile from "@ui/profile/profile";
+import FriendPanel from "@ui/friend-panel/friend-panel";
+import MobileNav from "@ui/button/mobile-nav/mobile-nav";
+import { useWindowSize } from "@utils/utils";
 
 import andrey from "@assets/andrey.png";
 import suba from "@assets/478889.jpg";
 import suba2 from "@assets/478889_photo-resizer.ru.jpg";
 import photo from "@assets/photo.svg";
-import FriendPanel from "@src/ui/friend-panel/friend-panel";
-import MobileNav from "@src/ui/button/mobile-nav/mobile-nav";
-import { useWindowSize } from "@src/utils/utils";
 
 const App: FC = () => {
   const isMobile = useWindowSize(1024);
-
-  const icon = (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 25"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M18.3786 8.94975L8.96373 18.3648C8.68452 18.644 8.32892 18.8343 7.94174 18.9117L5 19.5001L5.58835 16.5583C5.66579 16.1711 5.85609 15.8155 6.13529 15.5363L15.5502 6.12132M18.3786 8.94975L19.7928 7.53553C20.1834 7.14501 20.1834 6.51184 19.7928 6.12132L18.3786 4.70711C17.9881 4.31658 17.3549 4.31658 16.9644 4.70711L15.5502 6.12132M18.3786 8.94975L15.5502 6.12132"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-
-  const menuIcon = (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g id="User Circle">
-        <path
-          id="Vector 1"
-          d="M16.9696 19.5047C16.7257 17.5293 15.0414 16 13 16H11C8.95858 16 7.27433 17.5293 7.03036 19.5047M16.9696 19.5047C19.3986 17.893 21 15.1335 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 15.1335 4.60137 17.893 7.03036 19.5047M16.9696 19.5047C15.5456 20.4496 13.8371 21 12 21C10.1629 21 8.45441 20.4496 7.03036 19.5047M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
-    </svg>
-  );
 
   return (
     <div className="pb-20 lg:pb-4">
@@ -175,16 +136,16 @@ const App: FC = () => {
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
         <div className="p-4 flex flex-col justify-center items-center gap-4">
-          <Button icon={icon} variant="default">
+          <Button icon="edit" variant="default">
             Добавить в друзья
           </Button>
-          <Button icon={icon} variant="secondary">
+          <Button icon="edit" variant="secondary">
             Добавить в друзья
           </Button>
-          <Button icon={icon} variant="link">
+          <Button icon="edit" variant="link">
             Добавить в друзья
           </Button>
-          <Button icon={icon} variant="outline">
+          <Button icon="edit" variant="outline">
             Добавить в друзья
           </Button>
         </div>
@@ -228,7 +189,9 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Menu buttons</h1>
 
       <div className="w-[200px] mx-auto mt-4 flex flex-col justify-center items-center gap-4 flex-wrap">
-        <NavButton icon={menuIcon}>Моя страница</NavButton>
+        <NavButton iconPos="left" icon="user">
+          Моя страница
+        </NavButton>
 
         <NavButton badge={4} variant="text">
           Моя страница
@@ -250,13 +213,13 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Action buttons</h1>
 
       <div className="mx-auto mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <ActionButton className="w-[200px]" action="like">
+        <ActionButton className="w-[200px]" iconPos="left" icon="like">
           10
         </ActionButton>
-        <ActionButton className="w-[200px]" action="comment">
+        <ActionButton className="w-[200px]" iconPos="left" icon="comment">
           10
         </ActionButton>
-        <ActionButton className="w-[200px]" action="share">
+        <ActionButton className="w-[200px]" iconPos="left" icon="share">
           10
         </ActionButton>
       </div>
@@ -357,13 +320,13 @@ const App: FC = () => {
       <h1 className="text-center text-4xl mt-8 text-red-500">Setting buttons</h1>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <SettingButton />
-        <SettingButton kind="notification" />
+        <SettingButton icon="setting" />
+        <SettingButton icon="notification" />
       </div>
 
       <div className="mt-4 flex justify-center items-center gap-4 flex-wrap">
-        <SettingButton badge={5} />
-        <SettingButton kind="notification" badge={9} />
+        <SettingButton icon="setting" badge={5} />
+        <SettingButton icon="notification" badge={9} />
       </div>
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Profile</h1>

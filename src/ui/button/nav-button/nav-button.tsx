@@ -4,18 +4,12 @@ import { ButtonProps } from "../button";
 import { Badge } from "@ui/badge/badge";
 
 interface IProps extends ButtonProps {
-  icon?: string | JSX.Element;
   badge?: number;
 }
 
-const NavButton: FC<IProps> = ({ children, icon, badge, ...props }) => {
+const NavButton: FC<IProps> = ({ children, badge, ...props }) => {
   return (
     <Button {...props}>
-      {typeof icon == "string" ? (
-        <img src={icon} className="w-[24px] h-[24px]" alt="" />
-      ) : (
-        icon
-      )}
       {children}
       {badge! > 0 && <Badge>{badge}</Badge>}
     </Button>

@@ -36,8 +36,8 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
       <Logo isAdaptive />
 
       <div className="flex items-center justify-center gap-[15px]">
-        <SettingButton kind="theme" onClick={() => toggleTheme(theme)} />
-        <SettingButton kind="notification" />
+        <SettingButton icon="theme" onClick={() => toggleTheme(theme)} />
+        <SettingButton icon="notification" />
 
         <Avatar className="translate-y-[3px]">
           <AvatarImage src={avatar} />
