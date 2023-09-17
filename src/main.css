@@ -5,7 +5,10 @@
 @layer base {
   :root {
     /* body background color */
-    --background: hsl(0, 0%, 100%);
+    --body: hsl(0, 0%, 100%);
+
+    /* components background */
+    --background: hsl(220, 9%, 94%);
     /* text color */
     --foreground: hsl(222, 0.2, 84%, 4.9%);
 
@@ -95,6 +98,8 @@
   }
 
   .dark {
+    --body: hsl(240, 19%, 12%);
+
     --background: hsl(240, 15%, 16%);
     --foreground: hsl(210, 40%, 98%);
 
@@ -179,6 +184,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  background-color: var(--body);
 }
 
 /* Scroll bar */

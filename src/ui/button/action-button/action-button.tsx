@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
-import Button, { ButtonProps } from "../button";
 import { useTheme } from "@components/theme-provider/theme-provider";
 import { cn } from "@utils/utils";
+import Button, { ButtonProps } from "../button";
 
 interface IProps extends ButtonProps {}
 
@@ -14,7 +14,6 @@ const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props
     setActive((active) => !active);
   };
 
-  const activeClass = "lg:border-[#D22828]";
   const whichLike = active ? "likeActive" : "like";
 
   return (
@@ -23,7 +22,6 @@ const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props
       className={cn(
         "px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border border-background  hover:bg-background lg:hover:bg-text",
         theme === "light" ? "lg:border-text" : "",
-        active && activeClass,
         className,
       )}
       onClick={onClick || toggleActive}

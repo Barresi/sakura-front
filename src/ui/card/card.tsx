@@ -19,7 +19,7 @@ const Card: FC<IProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        "w-full bg-message  rounded-tl-[10px] border border-background border-r-message-border border-b-message-border px-[15px] lg:px-[30px] py-[20px]",
+        "w-full bg-message  rounded-tl-[10px] border border-background border-b-message-border px-[15px] lg:px-[30px] py-[20px]",
         hover[theme],
         className,
       )}

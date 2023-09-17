@@ -20,12 +20,7 @@ const LikedCard: FC<LikedCardProps> = ({
   link,
 }) => {
   return (
-    <Card
-      className={cn(
-        "hover:border-message-border hover:border-t-background hover:border-l-background",
-        className,
-      )}
-    >
+    <Card className={cn("", className)}>
       <div className="flex gap-[15px] items-start lg:items-center">
         <Avatar className="w-[60px] h-[60px]">
           <AvatarImage src={img} className="" />

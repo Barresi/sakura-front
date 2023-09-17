@@ -5,7 +5,6 @@ import Button from "@ui/button/button";
 import { AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
 import { Avatar } from "@ui/avatar/avatar";
 import Sidebar from "@ui/sidebar/sidebar";
-import NavButton from "@ui/button/nav-button/nav-button";
 import {
   Select,
   SelectContent,
@@ -184,18 +183,6 @@ const App: FC = () => {
           также, я думаю. <br /> Игра с размером не сработала, вроде как. Потом еще
           посмотрю
         </p>
-      </div>
-
-      <h1 className="text-center text-4xl mt-8 text-red-500">Menu buttons</h1>
-
-      <div className="w-[200px] mx-auto mt-4 flex flex-col justify-center items-center gap-4 flex-wrap">
-        <NavButton iconPos="left" icon="user">
-          Моя страница
-        </NavButton>
-
-        <NavButton badge={4} variant="text">
-          Моя страница
-        </NavButton>
       </div>
 
       <h1 className="text-center text-4xl mt-8 text-red-500">Sidebar</h1>
