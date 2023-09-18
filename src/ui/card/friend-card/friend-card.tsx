@@ -15,10 +15,7 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
 
   return (
     <Card
-      className={cn(
-        "block hover:border-message-border hover:border-t-background hover:border-l-background hover:bg-background",
-        className,
-      )}
+      className={cn("block hover:border-b-message-border hover:bg-background", className)}
     >
       <div className="flex items-center gap-[15px]">
         <Avatar className="w-[60px] h-[60px]">
@@ -33,15 +30,26 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
 
           {isMobile ? (
             <div className="mt-[10px] whitespace-nowrap flex justify-between gap-[10px]">
-              <Button icon="edit" variant="secondary" className="w-[49%]" />
-              <Button icon="edit" variant="text" className="w-[49%] whitespace-nowrap" />
+              <Button
+                icon="edit"
+                variant="secondary"
+                className="w-[49%] hover:bg-background border-2 hover:border-secondary"
+              />
+              <Button
+                icon="edit"
+                variant="text"
+                className="w-[49%] whitespace-nowrap hover:bg-background border-2 hover:border-secondary"
+              />
             </div>
           ) : (
             <div className="mt-[10px] whitespace-nowrap flex justify-between gap-[10px]">
-              <Button variant="secondary" className="w-[49%]">
+              <Button
+                variant="secondary"
+                className="w-[49%] hover:bg-background border-2 hover:border-secondary"
+              >
                 Написать сообщение
               </Button>
-              <Button variant="text" className="w-[49%] whitespace-nowrap">
+              <Button variant="text" className="w-[49%] whitespace-nowrap ">
                 Удалить из друзей
               </Button>
             </div>
