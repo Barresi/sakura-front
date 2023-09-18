@@ -14,7 +14,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ? "border-input-errorBorder focus:border-input-errorBorder"
       : "border-input focus:border-input-hoverBorder";
     const errorSpanClass = error
-      ? `absolute top-[90%] left-5 text-input-errorBorder`
+      ? `absolute bottom-[-1rem] left-5 text-input-errorBorder`
       : "";
     return (
       <div className="w-full relative pb-6">
