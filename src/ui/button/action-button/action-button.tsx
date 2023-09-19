@@ -14,7 +14,11 @@ const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props
     setActive((active) => !active);
   };
 
-  const whichLike = active ? "likeActive" : "like";
+  const whichLike = active
+    ? theme === "dark"
+      ? "likeActiveDark"
+      : "likeActive"
+    : "like";
 
   return (
     <Button

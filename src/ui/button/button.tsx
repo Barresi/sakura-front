@@ -10,6 +10,7 @@ import message from "@assets/menu/message.svg";
 import photos from "@assets/menu/photos.svg";
 import like from "@assets/ui/Like.svg";
 import likeActive from "@assets/ui/Like Active.svg";
+import likeActiveDark from "@assets/ui/Like Active Dark.svg";
 import comment from "@assets/ui/Comment.svg";
 import share from "@assets/ui/Share.svg";
 
@@ -127,6 +128,7 @@ const icons = {
   photos,
   like,
   likeActive,
+  likeActiveDark,
   comment,
   share,
 };
@@ -187,7 +189,8 @@ type Icon =
   | "like"
   | "likeActive"
   | "comment"
-  | "share";
+  | "share"
+  | "likeActiveDark";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
