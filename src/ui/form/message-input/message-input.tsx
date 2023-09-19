@@ -4,6 +4,7 @@ import Input, { InputProps } from "../input/input";
 import media from "@assets/ui/paperclip.svg";
 import smile from "@assets/ui/Smile.svg";
 import send from "@assets/ui/send.svg";
+import { cn } from "@src/utils/utils";
 
 interface IProps extends InputProps {}
 
@@ -13,7 +14,7 @@ const MessageInput: FC<IProps> = ({ ...props }) => {
       <Input
         placeholder="Написать сообщение..."
         {...props}
-        className={props.className + " pr-[120px]"}
+        className={cn(props.className, "pr-[120px]")}
       />
 
       <div className="absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]">
