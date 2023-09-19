@@ -96,6 +96,10 @@ module.exports = {
           dateForeground: "var(--liked-dateForeground)",
         },
 
+        request: {
+          foreground: "var(--request-foreground)",
+        },
+
         // setting button
         setting: {
           DEFAULT: "var(--setting)",

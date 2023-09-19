@@ -82,6 +82,10 @@
     --liked-foreground: hsl(0, 0%, 16%);
     --liked-dateForeground: hsl(0, 0%, 16%);
 
+    /* card (request) */
+
+    --request-foreground: hsl(0, 0%, 16%);
+
     /* setting button */
 
     --setting: hsl(0, 0%, 100%);
@@ -163,6 +167,10 @@
 
     --liked-foreground: hsl(213, 19%, 41%);
     --liked-dateForeground: #55677d;
+
+    /* card (request) */
+
+    --request-foreground: hsl(0, 0%, 95%);
 
     /* setting button */
 

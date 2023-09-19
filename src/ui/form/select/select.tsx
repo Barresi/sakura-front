@@ -4,7 +4,6 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { Check, ChevronDown } from "lucide-react";
 
 import { cn } from "@utils/utils";
-import "./select.css";
 
 const Select = SelectPrimitive.Root;
 

@@ -27,7 +27,7 @@ const RequestCard: FC<RequestCardProps> = ({
 
         <div>
           <h3 className="leading-6 text-[#55677D]">
-            <span className="font-bold text-liked-foreground flex flex-col lg:flex-row">
+            <span className="font-bold text-request-foreground flex flex-col lg:flex-row">
               {name}
             </span>{" "}
             подал заявку в друзья
