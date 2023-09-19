@@ -18,18 +18,18 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
       className={cn("block hover:border-b-message-border hover:bg-background", className)}
     >
       <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[60px] h-[60px]">
+        <Avatar className="w-[100px] h-[100px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
         <div>
-          <h3 className="font-bold text-liked-foreground leading-6 text-[#55677D]">
+          <h3 className="font-bold text-liked-foreground leading-6 text-[#55677D] text-lg">
             {name}
           </h3>
 
           {isMobile ? (
-            <div className="mt-[10px] whitespace-nowrap flex justify-between gap-[10px]">
+            <div className="mt-[25px] whitespace-nowrap flex justify-between gap-[10px]">
               <Button
                 icon="edit"
                 variant="secondary"
@@ -42,7 +42,7 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
               />
             </div>
           ) : (
-            <div className="mt-[10px] whitespace-nowrap flex justify-between gap-[10px]">
+            <div className="mt-[25px] whitespace-nowrap flex justify-between gap-[10px]">
               <Button
                 variant="secondary"
                 className="w-[49%] hover:bg-background border-2 hover:border-secondary"
