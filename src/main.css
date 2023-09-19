@@ -205,7 +205,6 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #d22828;
-  border-radius: 50px;
 }
 
 /* Handle on hover */
