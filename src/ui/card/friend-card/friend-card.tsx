@@ -18,13 +18,13 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
       className={cn("block hover:border-b-message-border hover:bg-background", className)}
     >
       <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[100px] h-[100px]">
+        <Avatar className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
         <div>
-          <h3 className="font-bold text-liked-foreground leading-6 text-[#55677D] text-lg">
+          <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
             {name}
           </h3>
 

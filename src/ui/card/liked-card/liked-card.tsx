@@ -22,7 +22,7 @@ const LikedCard: FC<LikedCardProps> = ({
   return (
     <Card className={cn("", className)}>
       <div className="flex gap-[15px] items-start lg:items-center">
-        <Avatar className="w-[60px] h-[60px]">
+        <Avatar className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>

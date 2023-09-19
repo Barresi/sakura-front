@@ -20,7 +20,7 @@ const RequestCard: FC<RequestCardProps> = ({
   return (
     <Card className={cn("block", className)}>
       <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[60px] h-[60px]">
+        <Avatar className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
