@@ -49,7 +49,7 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
               >
                 Написать сообщение
               </Button>
-              <Button variant="text" className="w-[49%] whitespace-nowrap ">
+              <Button variant="default" className="w-[49%] whitespace-nowrap ">
                 Удалить из друзей
               </Button>
             </div>
