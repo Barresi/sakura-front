@@ -21,7 +21,7 @@ const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
       )}
       <Input
         className={cn(
-          "py-[20px] px-[20px] pr-[10%] rounded-[10px]",
+          "py-[20px] px-[20px] pr-[60px] rounded-[10px]",
           withAvatar,
           className,
         )}

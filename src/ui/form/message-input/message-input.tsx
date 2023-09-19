@@ -10,32 +10,38 @@ interface IProps extends InputProps {}
 const MessageInput: FC<IProps> = ({ ...props }) => {
   return (
     <div className="w-full relative">
-      <Input placeholder="Написать сообщение..." {...props} />
+      <Input
+        placeholder="Написать сообщение..."
+        {...props}
+        className={props.className + " pr-[120px]"}
+      />
 
-      <img
-        className="cursor-pointer absolute top-[50%] right-[90px] translate-y-[-90%] active:scale-[.95]"
-        src={media}
-        alt=""
-        onClick={() => {
-          alert("Будет реализовано в будущем!");
-        }}
-      />
-      <img
-        className="cursor-pointer absolute top-[50%] right-[50px] translate-y-[-90%] active:scale-[.95]"
-        src={smile}
-        alt=""
-        onClick={() => {
-          alert("Будет реализовано в будущем!");
-        }}
-      />
-      <img
-        className="cursor-pointer absolute top-[50%] right-[10px] translate-y-[-90%] active:scale-[.95]"
-        src={send}
-        alt=""
-        onClick={() => {
-          alert("Будет реализовано в будущем!");
-        }}
-      />
+      <div className="absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]">
+        <img
+          className="cursor-pointer active:scale-[.95]"
+          src={media}
+          alt=""
+          onClick={() => {
+            alert("Будет реализовано в будущем!");
+          }}
+        />
+        <img
+          className="cursor-pointer active:scale-[.95]"
+          src={smile}
+          alt=""
+          onClick={() => {
+            alert("Будет реализовано в будущем!");
+          }}
+        />
+        <img
+          className="cursor-pointer active:scale-[.95]"
+          src={send}
+          alt=""
+          onClick={() => {
+            alert("Будет реализовано в будущем!");
+          }}
+        />
+      </div>
     </div>
   );
 };
