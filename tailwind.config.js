@@ -72,6 +72,7 @@ module.exports = {
 
         // select
         select: {
+          DEFAULT: "var(--select)",
           itemHover: "var(--select-itemHover)",
         },
 

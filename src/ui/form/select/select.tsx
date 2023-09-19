@@ -42,7 +42,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 min-w-[8rem] overflow-hidden rounded-[1px] border  bg-background text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        "relative z-50 min-w-[8rem] overflow-hidden rounded-[1px] border bg-select text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className,
@@ -50,22 +50,25 @@ const SelectContent = React.forwardRef<
       position={position}
       {...props}
     >
-      <ScrollArea.Root className="ScrollAreaRoot" type="auto">
+      <ScrollArea.Root
+        className="w-full overflow-hidden bg-[rgba(34,34,46,1)]"
+        type="auto"
+      >
         <SelectPrimitive.Viewport
           className={cn(
-            "p-1",
+            "bg-select",
             position === "popper" &&
               "max-h-[32vh] w-full min-w-[var(--radix-select-trigger-width)]",
           )}
           asChild
         >
-          <ScrollArea.Viewport className="ScrollAreaViewport">
+          <ScrollArea.Viewport className="w-full h-full rounded-inherit">
             {children}
           </ScrollArea.Viewport>
         </SelectPrimitive.Viewport>
 
-        <ScrollArea.Scrollbar className="ScrollAreaScrollbar">
-          <ScrollArea.Thumb className="ScrollAreaThumb" />
+        <ScrollArea.Scrollbar className="flex p-[2px] data-[orientation=vertical]:w-[10px] data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-[10px]">
+          <ScrollArea.Thumb className="flex-[1] bg-[rgba(210,40,40,1)] rounded-[50px] relative" />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
     </SelectPrimitive.Content>

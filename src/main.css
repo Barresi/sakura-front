@@ -61,6 +61,7 @@
 
     /* select */
 
+    --select: hsl(0, 0%, 100%);
     --select-itemHover: hsl(0, 0%, 95%);
 
     /* action button */
@@ -142,6 +143,7 @@
 
     /* select */
 
+    --select: hsl(240, 15%, 16%);
     --select-itemHover: hsl(240, 11%, 14%);
 
     /* action button */
