@@ -1,0 +1,92 @@
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { ILoginForm } from "../../types/forms";
+import { loginThunk } from "@src/store/reducers/profileInfo/async-thunks";
+import { useAppDispatch } from "@src/store/hooks";
+import SettingButton from "@src/ui/button/setting-button/setting-button";
+import Logo from "@src/ui/logo/logo";
+import Button from "@src/ui/button/button";
+import { useTheme } from "@src/components/theme-provider/theme-provider";
+import Input from "@src/ui/form/input/input";
+
+const LoginPage: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { setTheme, theme } = useTheme();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginForm>({ mode: "onSubmit" });
+
+  const onSubmit: SubmitHandler<ILoginForm> = (data) => dispatch(loginThunk(data));
+  const toggleTheme = () => {
+    if (theme == "dark") {
+      setTheme("light");
+    } else if (theme == "light") {
+      setTheme("dark");
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center w-screen h-screen">
+      <SettingButton
+        icon="theme"
+        className=" absolute top-5 left-5"
+        onClick={() => toggleTheme()}
+      />
+      <div className="max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%]">
+        <div>
+          <Logo />
+          <div className=" text-2xl text-center mt-5">Авторизация</div>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className=" w-[100%]">
+          <Input
+            {...register("email", {
+              required: "Обязательное поле",
+            })}
+            error={errors.email && (errors.email.message || "Неправильный логин")}
+            className=" w-[100%]"
+            placeholder="e-mail"
+          />
+
+          <Input
+            {...register("password", {
+              required: "Обязательное поле",
+              minLength: {
+                value: 8,
+                message: "Минимальное кол-во символов: 8",
+              },
+              maxLength: {
+                value: 20,
+                message: "Максимальное кол-во символов: 20",
+              },
+              pattern: {
+                value: /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/,
+                message: "Пароль должен иметь минимум 1 символ и 1 цифру",
+              },
+            })}
+            error={errors.password && (errors.password.message || "Неправильный пароль")}
+            className=" w-[100%]"
+            placeholder="password"
+            type="password"
+          />
+
+          <div className=" mt-12 flex flex-col gap-2">
+            <Button variant="default" type="submit">
+              Войти
+            </Button>
+            <p className=" text-center">или</p>
+            <Button variant="link" type="button" onClick={() => navigate("registration")}>
+              Регистрация
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;

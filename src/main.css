@@ -5,10 +5,10 @@
 @layer base {
   :root {
     /* body background color */
-    --body: hsl(0, 0%, 100%);
+    --body: hsl(220, 9%, 94%);
 
     /* components background */
-    --background: hsl(220, 9%, 94%);
+    --background: hsl(0, 0%, 100%);
     /* text color */
     --foreground: hsl(222, 0.2, 84%, 4.9%);
 

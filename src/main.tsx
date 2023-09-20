@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./main.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "@store/store";
 import App from "@components/app/app";
@@ -13,9 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-storage">
       <Provider store={store}>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<App />} />
-          </Routes>
+          <App />
         </BrowserRouter>
       </Provider>
     </ThemeProvider>
