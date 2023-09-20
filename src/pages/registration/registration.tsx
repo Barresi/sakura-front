@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IRegistrationForm } from "../../types/forms";
 import { registrationThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import { useAppDispatch } from "@src/store/hooks";
+import { useAppDispatch } from "@src/hooks/store-hooks";
 import Logo from "@src/ui/logo/logo";
 import SettingButton from "@src/ui/button/setting-button/setting-button";
 import { useTheme } from "@src/components/theme-provider/theme-provider";

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ILoginForm } from "../../types/forms";
 import { loginThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import { useAppDispatch } from "@src/store/hooks";
+import { useAppDispatch } from "@src/hooks/store-hooks";
 import SettingButton from "@src/ui/button/setting-button/setting-button";
 import Logo from "@src/ui/logo/logo";
 import Button from "@src/ui/button/button";
