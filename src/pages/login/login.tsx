@@ -34,7 +34,7 @@ const LoginPage: FC = () => {
       <SettingButton
         icon="theme"
         className=" absolute top-5 left-5"
-        onClick={() => toggleTheme()}
+        onClick={toggleTheme}
       />
       <div className="max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%]">
         <div>

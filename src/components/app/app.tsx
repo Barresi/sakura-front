@@ -3,6 +3,7 @@ import RegistrationPage from "@src/pages/registration/registration";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRouteElement from "../protected-route-element/protected-route-element";
+import MainPage from "@src/pages/main/main";
 
 const App: FC = () => {
   return (
@@ -23,7 +24,12 @@ const App: FC = () => {
         }
       />
 
-      <Route path="/main"></Route>
+      <Route
+        path="/main"
+        element={
+          <ProtectedRouteElement protectedPageType="main" element={<MainPage />} />
+        }
+      ></Route>
     </Routes>
   );
 };
