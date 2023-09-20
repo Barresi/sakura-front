@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk } from "./async-thunks";
-import { setCookie } from "@src/utils/cookie";
+import { loginThunk, logoutThunk, registrationThunk } from "./async-thunks";
+import { deleteCookie, setCookie } from "@src/utils/cookie";
 import { AuthStatus, IUser } from "@src/types/types";
 
 interface IInitialState {
@@ -43,6 +43,37 @@ const profileInfoSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload as string;
       state.status = AuthStatus.notAuthorized;
+    });
+    // Registration
+    builder.addCase(registrationThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = "";
+    });
+    builder.addCase(registrationThunk.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(registrationThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
+    });
+    // LogOut
+    builder.addCase(logoutThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = "";
+      state.status = AuthStatus.pending;
+    });
+    builder.addCase(logoutThunk.fulfilled, (state) => {
+      state.isLoading = false;
+      state.status = AuthStatus.notAuthorized;
+      state.user.email = "";
+      state.user.id = "";
+      deleteCookie("accessToken");
+      localStorage.removeItem("refreshToken");
+    });
+    builder.addCase(logoutThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.status = AuthStatus.authorized;
+      state.error = action.payload as string;
     });
   },
 });

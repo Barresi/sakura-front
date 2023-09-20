@@ -4,8 +4,11 @@ import NavButton from "../../ui/button/nav-button/nav-button";
 import { useNavigate } from "react-router-dom";
 import SettingButton from "@src/ui/button/setting-button/setting-button";
 import { useTheme } from "../theme-provider/theme-provider";
+import { useAppDispatch } from "@src/hooks/store-hooks";
+import { logoutThunk } from "@src/store/reducers/profileInfo/async-thunks";
 
 const Sidebar: FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { setTheme, theme } = useTheme();
   const toggleTheme = () => {
@@ -75,7 +78,7 @@ const Sidebar: FC = () => {
       </div>
 
       <div className="flex justify-between w-[100%]">
-        <SettingButton icon="theme" />
+        <SettingButton icon="theme" onClick={() => dispatch(logoutThunk())} />
         <SettingButton icon="theme" />
         <SettingButton icon="theme" onClick={toggleTheme} />
         <SettingButton icon="setting" />

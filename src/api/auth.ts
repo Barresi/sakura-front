@@ -10,3 +10,9 @@ export const registrationRequest = async (form: IRegistrationForm) => {
   const res = await axios.post("/auth/signup", form).catch(errorHandler);
   return res.data;
 };
+export const logoutRequest = async () => {
+  const res = await axios
+    .post("auth/logout", { refreshToken: localStorage.getItem("refreshToken") })
+    .catch(errorHandler);
+  return res.data;
+};
