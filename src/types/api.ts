@@ -8,3 +8,6 @@ export interface ILoginResponse {
 export interface IRegistrationResponse {
   id: number;
 }
+export interface IProtectedInfoResponse {
+  user: IUser;
+}

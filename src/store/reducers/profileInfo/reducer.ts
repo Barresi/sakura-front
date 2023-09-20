@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, logoutThunk, registrationThunk } from "./async-thunks";
+import {
+  loginThunk,
+  logoutThunk,
+  protectedInfoThunk,
+  registrationThunk,
+} from "./async-thunks";
 import { deleteCookie, setCookie } from "@src/utils/cookie";
 import { AuthStatus, IUser } from "@src/types/types";
 
@@ -73,6 +78,22 @@ const profileInfoSlice = createSlice({
     builder.addCase(logoutThunk.rejected, (state, action) => {
       state.isLoading = false;
       state.status = AuthStatus.authorized;
+      state.error = action.payload as string;
+    });
+    // Protected Info
+    builder.addCase(protectedInfoThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = "";
+      state.status = AuthStatus.pending;
+    });
+    builder.addCase(protectedInfoThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload.user;
+      state.status = AuthStatus.authorized;
+    });
+    builder.addCase(protectedInfoThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.status = AuthStatus.notAuthorized;
       state.error = action.payload as string;
     });
   },

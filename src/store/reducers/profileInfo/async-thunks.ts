@@ -1,6 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { loginRequest, logoutRequest, registrationRequest } from "@src/api/auth";
-import { ILoginResponse, IRegistrationResponse } from "@src/types/api";
+import {
+  getProtectedInfo,
+  loginRequest,
+  logoutRequest,
+  registrationRequest,
+} from "@src/api/auth";
+import {
+  ILoginResponse,
+  IProtectedInfoResponse,
+  IRegistrationResponse,
+} from "@src/types/api";
 import { ILoginForm, IRegistrationForm } from "@src/types/forms";
 
 export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
@@ -38,6 +47,21 @@ export const logoutThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       return await logoutRequest();
+    } catch (err) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      } else {
+        return rejectWithValue("Упс, что-то пошло не так");
+      }
+    }
+  },
+);
+
+export const protectedInfoThunk = createAsyncThunk<IProtectedInfoResponse>(
+  "profileInfo/protectedInfo",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await getProtectedInfo();
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message);
