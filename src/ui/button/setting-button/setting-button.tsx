@@ -3,12 +3,20 @@ import { cn } from "@utils/utils";
 import { ButtonProps } from "../button";
 import Button from "../button";
 import { Badge } from "@ui/badge/badge";
+import { useTheme } from "@src/components/theme-provider/theme-provider";
 
 interface SettingButtonProps extends ButtonProps {
   badge?: number;
 }
 
-const SettingButton: FC<SettingButtonProps> = ({ className, badge = 0, ...props }) => {
+const SettingButton: FC<SettingButtonProps> = ({
+  className,
+  icon,
+  badge = 0,
+  ...props
+}) => {
+  const { theme } = useTheme();
+
   return (
     <Button
       className={cn(
@@ -16,6 +24,7 @@ const SettingButton: FC<SettingButtonProps> = ({ className, badge = 0, ...props 
         className,
       )}
       variant="secondary"
+      icon={icon === "theme" ? (theme === "light" ? "theme" : "darkTheme") : icon}
       {...props}
     >
       {/* если ширина кнопки не равна 45px, тогда badge будет не в нужном месте, нужно как нибудь исправить */}

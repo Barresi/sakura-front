@@ -28,7 +28,7 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
   return (
     <header
       className={cn(
-        "max-w-[100%] flex items-center justify-between py-[10px] px-[20px] bg-background rounded-[10px] ml-[310px] h-[84px]",
+        "max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] bg-background rounded-[10px] rounded-tl-none rounded-tr-none z-[100] ",
         className,
       )}
       {...props}

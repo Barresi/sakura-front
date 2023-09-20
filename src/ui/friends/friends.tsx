@@ -1,4 +1,4 @@
-import { cn, useWindowSize } from "@src/utils/utils";
+import { cn, useWindowSize } from "@utils/utils";
 import { FC } from "react";
 
 interface FriendsProps {
