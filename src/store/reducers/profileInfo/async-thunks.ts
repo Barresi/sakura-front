@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { loginRequest } from "@src/api/auth";
-import { ILoginResponse } from "@src/types/api";
-import { ILoginForm } from "@src/types/forms";
+import { loginRequest, registrationRequest } from "@src/api/auth";
+import { ILoginResponse, IRegistrationResponse } from "@src/types/api";
+import { ILoginForm, IRegistrationForm } from "@src/types/forms";
 
 export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
   "profileInfo/login",
@@ -17,3 +17,18 @@ export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
     }
   },
 );
+
+export const registrationThunk = createAsyncThunk<
+  IRegistrationResponse,
+  IRegistrationForm
+>("profileInfo/regist", async (form, { rejectWithValue }) => {
+  try {
+    return await registrationRequest(form);
+  } catch (err) {
+    if (err instanceof Error) {
+      return rejectWithValue(err.message);
+    } else {
+      return rejectWithValue("Упс, что-то пошло не так");
+    }
+  }
+});

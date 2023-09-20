@@ -5,3 +5,6 @@ export interface ILoginResponse {
   refreshToken: string;
   userWithoutPassword: IUser;
 }
+export interface IRegistrationResponse {
+  id: number;
+}

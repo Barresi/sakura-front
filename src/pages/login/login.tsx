@@ -42,14 +42,17 @@ const LoginPage: FC = () => {
           <div className=" text-2xl text-center mt-5">Авторизация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=" w-[100%]">
+        <form onSubmit={handleSubmit(onSubmit)} className=" w-[100%] flex flex-col gap-2">
           <Input
             {...register("email", {
               required: "Обязательное поле",
+              pattern: {
+                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                message: "Данный E-mail не существует",
+              },
             })}
             error={errors.email && (errors.email.message || "Неправильный логин")}
-            className=" w-[100%]"
-            placeholder="e-mail"
+            placeholder="E-mail"
           />
 
           <Input
@@ -64,13 +67,12 @@ const LoginPage: FC = () => {
                 message: "Максимальное кол-во символов: 20",
               },
               pattern: {
-                value: /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/,
+                value: /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/,
                 message: "Пароль должен иметь минимум 1 символ и 1 цифру",
               },
             })}
             error={errors.password && (errors.password.message || "Неправильный пароль")}
-            className=" w-[100%]"
-            placeholder="password"
+            placeholder="Password"
             type="password"
           />
 

@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       ? "border-input-errorBorder focus:border-input-errorBorder"
       : "border-input focus:border-input-hoverBorder";
     const errorSpanClass = error
-      ? `absolute top-[3.25rem] left-5 text-input-errorBorder`
+      ? `absolute top-[3.55rem] left-5 text-input-errorBorder`
       : "";
 
     const input = (
