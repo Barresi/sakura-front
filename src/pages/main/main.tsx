@@ -5,7 +5,7 @@ import { Outlet } from "react-router";
 
 const MainPage: FC = () => {
   return (
-    <div className="pt-5 px-5 flex ">
+    <div className="pt-5 px-5 flex max-w-[1920px] mx-auto">
       <Sidebar />
       <div className=" flex-auto">
         <Header />
