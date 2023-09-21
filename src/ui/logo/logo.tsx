@@ -13,7 +13,7 @@ interface LogoProps {
 
 const Logo: FC<LogoProps> = ({ isAdaptive = false }) => {
   const { theme } = useTheme();
-  const isMobile = useWindowSize(1024);
+  const isMobile = useWindowSize(768);
 
   const desk = theme === "dark" ? logoDark : logoLight;
   const mobile = theme === "dark" ? logoMobileDark : logoMobileLight;

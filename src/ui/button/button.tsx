@@ -11,7 +11,7 @@ import {
   darkTheme,
   exit,
   info,
-} from "@ui/icons/icons";
+} from "@src/assets/icons/icons";
 
 import user from "@assets/menu/user.svg";
 import news from "@assets/menu/news.svg";

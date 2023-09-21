@@ -78,8 +78,8 @@ const Sidebar: FC = () => {
       </div>
 
       <div className="flex justify-between w-[100%]">
-        <SettingButton icon="theme" onClick={() => dispatch(logoutThunk())} />
-        <SettingButton icon="theme" />
+        <SettingButton icon="exit" onClick={() => dispatch(logoutThunk())} />
+        <SettingButton icon="info" />
         <SettingButton icon="theme" onClick={toggleTheme} />
         <SettingButton icon="setting" />
       </div>

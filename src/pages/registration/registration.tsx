@@ -32,13 +32,13 @@ const RegistrationPage: FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen pt-20 px-5">
+    <div className="flex justify-center items-center px-5 py-5 min-h-[100vh]">
       <SettingButton
         icon="theme"
         className=" absolute top-5 left-5"
         onClick={toggleTheme}
       />
-      <div className="max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%] ">
+      <div className="max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%] mt-[64px] md:mt-auto ">
         <div>
           <Logo />
           <div className=" text-2xl text-center mt-5">Регистрация</div>

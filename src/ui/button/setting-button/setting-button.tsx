@@ -24,7 +24,7 @@ const SettingButton: FC<SettingButtonProps> = ({
         className,
       )}
       variant="secondary"
-      icon={icon === "theme" ? (theme === "light" ? "theme" : "darkTheme") : icon}
+      icon={icon === "theme" ? (theme === "light" ? "darkTheme" : "theme") : icon}
       {...props}
     >
       {/* если ширина кнопки не равна 45px, тогда badge будет не в нужном месте, нужно как нибудь исправить */}

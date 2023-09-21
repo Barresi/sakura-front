@@ -229,3 +229,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a01d1d;
 }
+
+/* Отключает изменение цвета background и color у input при автозаполнении*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
+  -webkit-text-fill-color: var(--foreground);
+}

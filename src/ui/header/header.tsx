@@ -29,7 +29,7 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
   return (
     <header
       className={cn(
-        "max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-background rounded-[10px] rounded-tl-none rounded-tr-none z-[100] ",
+        "max-w-[100%] h-[54px] md:h-[84px] lg:ml-[310px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-background lg:rounded-[10px] ",
         className,
       )}
       {...props}
@@ -38,7 +38,11 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
       {isMobile ? <Logo isAdaptive /> : <div></div>}
 
       <div className="flex items-center justify-center gap-[15px]">
-        <SettingButton icon="theme" onClick={() => toggleTheme(theme)} />
+        <SettingButton
+          icon="theme"
+          onClick={() => toggleTheme(theme)}
+          className="flex lg:hidden"
+        />
         <SettingButton icon="notification" />
 
         <Avatar className="translate-y-[3px]">
