@@ -238,3 +238,7 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
   -webkit-text-fill-color: var(--foreground);
 }
+
+html {
+  min-height: 100vh;
+}

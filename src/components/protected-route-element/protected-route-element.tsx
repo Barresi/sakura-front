@@ -18,14 +18,15 @@ const ProtectedRouteElement: FC<IProtectedRouteElement> = ({
   useEffect(() => {
     switch (protectedPageType) {
       case "auth":
-        if (userStatus === AuthStatus.authorized) navigate("/main");
+        if (userStatus === AuthStatus.authorized) navigate("/main/profile");
         break;
       case "main":
         if (userStatus === AuthStatus.notAuthorized) navigate("/");
         break;
     }
   }, [navigate, userStatus]);
-  return <div>{element}</div>;
+
+  return element;
 };
 
 export default ProtectedRouteElement;
