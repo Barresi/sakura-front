@@ -9,6 +9,7 @@ const MobileNav: FC = () => {
         iconPos="left"
         icon="user"
         variant="text"
+        to="profile"
       >
         Главная
       </NavButton>
@@ -18,6 +19,7 @@ const MobileNav: FC = () => {
         iconPos="left"
         icon="news"
         variant="text"
+        to="feed"
       >
         Новости
       </NavButton>
@@ -27,6 +29,7 @@ const MobileNav: FC = () => {
         iconPos="left"
         icon="message"
         variant="text"
+        to="messenger"
       >
         Мессенджер
       </NavButton>
@@ -36,6 +39,7 @@ const MobileNav: FC = () => {
         iconPos="left"
         icon="friends"
         variant="text"
+        to="friends"
       >
         Друзья
       </NavButton>
@@ -45,6 +49,7 @@ const MobileNav: FC = () => {
         iconPos="left"
         icon="photos"
         variant="text"
+        to="photos"
       >
         Фотографии
       </NavButton>
