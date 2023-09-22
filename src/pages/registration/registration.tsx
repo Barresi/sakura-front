@@ -4,11 +4,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { IRegistrationForm } from "../../types/forms";
 import { registrationThunk } from "@src/store/reducers/profileInfo/async-thunks";
 import { useAppDispatch } from "@src/hooks/store-hooks";
-import Logo from "@src/ui/logo/logo";
-import SettingButton from "@src/ui/button/setting-button/setting-button";
+import Logo from "@src/components/ui/logo/logo";
+import SettingButton from "@src/components/ui/button/setting-button/setting-button";
 import { useTheme } from "@src/components/theme-provider/theme-provider";
-import Input from "@src/ui/form/input/input";
-import Button from "@src/ui/button/button";
+import Input from "@src/components/ui/form/input/input";
+import Button from "@src/components/ui/button/button";
 
 const RegistrationPage: FC = () => {
   const dispatch = useAppDispatch();

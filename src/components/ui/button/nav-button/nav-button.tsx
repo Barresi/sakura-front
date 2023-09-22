@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { buttonVariants } from "../button";
-import { Badge } from "@ui/badge/badge";
+import { Badge } from "@src/components/ui/badge/badge";
 import { NavLink, NavLinkProps } from "react-router-dom";
 import { cn } from "@src/utils/utils";
 import { VariantProps } from "class-variance-authority";

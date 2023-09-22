@@ -1,6 +1,6 @@
 import Sidebar from "@src/components/sidebar/sidebar";
 import MobileNav from "@src/components/mobile-nav/mobile-nav";
-import Header from "@src/ui/header/header";
+import Header from "@src/components/ui/header/header";
 import { FC } from "react";
 import { Outlet } from "react-router";
 import { useWindowSize } from "@src/utils/utils";

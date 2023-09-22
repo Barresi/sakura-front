@@ -4,11 +4,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ILoginForm } from "../../types/forms";
 import { loginThunk } from "@src/store/reducers/profileInfo/async-thunks";
 import { useAppDispatch } from "@src/hooks/store-hooks";
-import SettingButton from "@src/ui/button/setting-button/setting-button";
-import Logo from "@src/ui/logo/logo";
-import Button from "@src/ui/button/button";
+import SettingButton from "@src/components/ui/button/setting-button/setting-button";
+import Logo from "@src/components/ui/logo/logo";
+import Button from "@src/components/ui/button/button";
 import { useTheme } from "@src/components/theme-provider/theme-provider";
-import Input from "@src/ui/form/input/input";
+import Input from "@src/components/ui/form/input/input";
 
 const LoginPage: FC = () => {
   const dispatch = useAppDispatch();

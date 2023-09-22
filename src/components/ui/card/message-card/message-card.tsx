@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Badge } from "@ui/badge/badge";
-import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
+import { Badge } from "@src/components/ui/badge/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@src/components/ui/avatar/avatar";
 import { cn } from "@utils/utils";
 
 import Card from "../card";

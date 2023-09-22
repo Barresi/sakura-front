@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Button from "../button/button";
-import Friends from "../friends/friends";
+import Friends from "@src/components/ui/friends/friends";
 import { Avatar } from "../avatar/avatar";
 import { AvatarImage } from "../avatar/avatar";
 

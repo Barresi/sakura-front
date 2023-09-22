@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { cn } from "@utils/utils";
 import Input, { InputProps } from "../input/input";
-import { Avatar, AvatarImage } from "@ui/avatar/avatar";
+import { Avatar, AvatarImage } from "@src/components/ui/avatar/avatar";
 
 import smile from "@assets/ui/Smile.svg";
 

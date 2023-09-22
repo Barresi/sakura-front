@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
-import Button from "@ui/button/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@src/components/ui/avatar/avatar";
+import Button from "@src/components/ui/button/button";
 import { cn, useWindowSize } from "@utils/utils";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";

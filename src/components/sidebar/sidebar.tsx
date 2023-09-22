@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Logo from "../../ui/logo/logo";
-import NavButton from "../../ui/button/nav-button/nav-button";
-import SettingButton from "@src/ui/button/setting-button/setting-button";
+import Logo from "../ui/logo/logo";
+import NavButton from "../ui/button/nav-button/nav-button";
+import SettingButton from "@src/components/ui/button/setting-button/setting-button";
 import { useTheme } from "../theme-provider/theme-provider";
 import { useAppDispatch } from "@src/hooks/store-hooks";
 import { logoutThunk } from "@src/store/reducers/profileInfo/async-thunks";

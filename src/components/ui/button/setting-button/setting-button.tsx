@@ -2,7 +2,7 @@ import { FC } from "react";
 import { cn } from "@utils/utils";
 import { ButtonProps } from "../button";
 import Button from "../button";
-import { Badge } from "@ui/badge/badge";
+import { Badge } from "@src/components/ui/badge/badge";
 import { useTheme } from "@src/components/theme-provider/theme-provider";
 
 interface SettingButtonProps extends ButtonProps {

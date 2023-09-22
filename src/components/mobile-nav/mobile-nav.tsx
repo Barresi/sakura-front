@@ -1,5 +1,5 @@
 import { FC } from "react";
-import NavButton from "../../ui/button/nav-button/nav-button";
+import NavButton from "../ui/button/nav-button/nav-button";
 
 const MobileNav: FC = () => {
   return (

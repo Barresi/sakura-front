@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@src/components/ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
-import Button from "@ui/button/button";
+import Button from "@src/components/ui/button/button";
 import { cn } from "@utils/utils";
 
 export interface RequestCardProps

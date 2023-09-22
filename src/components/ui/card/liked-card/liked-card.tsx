@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@utils/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@src/components/ui/avatar/avatar";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
 
