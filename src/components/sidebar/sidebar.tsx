@@ -27,7 +27,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="user"
             variant="text"
-            to="/profile"
+            to="profile"
           >
             Моя страница
           </NavButton>
@@ -37,7 +37,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="news"
             variant="text"
-            to="/feed"
+            to="feed"
           >
             Новости
           </NavButton>
@@ -48,7 +48,7 @@ const Sidebar: FC = () => {
             icon="message"
             badge={6}
             variant="text"
-            to="/messenger"
+            to="messenger"
           >
             Мессенджер
           </NavButton>
@@ -58,7 +58,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="friends"
             variant="text"
-            to="/friends"
+            to="friends"
           >
             Друзья
           </NavButton>
@@ -68,7 +68,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="photos"
             variant="text"
-            to="/photos"
+            to="photos"
           >
             Фотографии
           </NavButton>
