@@ -13,16 +13,12 @@ import {
   info,
 } from "@src/assets/icons/icons";
 
-import user from "@assets/menu/user.svg";
-import news from "@assets/menu/news.svg";
-import friends from "@assets/menu/friends.svg";
-import message from "@assets/menu/message.svg";
-import photos from "@assets/menu/photos.svg";
 import like from "@assets/ui/Like.svg";
 import likeActive from "@assets/ui/Like Active.svg";
 import likeActiveDark from "@assets/ui/Like Active Dark.svg";
 import comment from "@assets/ui/Comment.svg";
 import share from "@assets/ui/Share.svg";
+import { renderIcon } from "@src/utils/renders";
 
 const icons = {
   edit,
@@ -32,11 +28,6 @@ const icons = {
   darkTheme,
   info,
   exit,
-  user,
-  news,
-  friends,
-  message,
-  photos,
   like,
   likeActive,
   likeActiveDark,
@@ -71,40 +62,7 @@ export const buttonVariants = cva(
   },
 );
 
-const renderIcon = (icon?: Icon) => {
-  if (!icon) {
-    return;
-  }
-
-  const result = icons[icon as keyof typeof icons];
-
-  if (typeof result == "string") {
-    return <img src={result} alt="" />;
-  } else if (typeof result == "object") {
-    return result;
-  } else {
-    console.error(`Error in renderIcon, button.tsx! ${icon} is not an icon`);
-  }
-};
-
-export type Icon =
-  | "edit"
-  | "user"
-  | "news"
-  | "friends"
-  | "message"
-  | "photos"
-  | "setting"
-  | "notification"
-  | "theme"
-  | "darkTheme"
-  | "info"
-  | "exit"
-  | "like"
-  | "likeActive"
-  | "comment"
-  | "share"
-  | "likeActiveDark";
+export type Icon = keyof typeof icons;
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -123,7 +81,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       iconPos = "right",
       asChild = false,
       children,
-      // TODO: Добавить иконку ошибки, если не найдена нужная иконка
       icon,
       ...props
     },
@@ -137,9 +94,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {iconPos === "left" && renderIcon(icon)}
+        {iconPos === "left" && renderIcon<Icon, typeof icons>(icon, icons)}
         {children}
-        {iconPos === "right" && renderIcon(icon)}
+        {iconPos === "right" && renderIcon<Icon, typeof icons>(icon, icons)}
       </Comp>
     );
   },

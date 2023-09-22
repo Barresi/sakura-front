@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Logo from "../../ui/logo/logo";
 import NavButton from "../../ui/button/nav-button/nav-button";
-import { useNavigate } from "react-router-dom";
 import SettingButton from "@src/ui/button/setting-button/setting-button";
 import { useTheme } from "../theme-provider/theme-provider";
 import { useAppDispatch } from "@src/hooks/store-hooks";
@@ -9,7 +8,6 @@ import { logoutThunk } from "@src/store/reducers/profileInfo/async-thunks";
 
 const Sidebar: FC = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { setTheme, theme } = useTheme();
   const toggleTheme = () => {
     if (theme == "dark") {
@@ -23,13 +21,13 @@ const Sidebar: FC = () => {
       <div>
         <Logo />
 
-        <div>
+        <div className="pt-[50px]">
           <NavButton
-            className="w-full justify-start mt-[50px] gap-[10px]"
+            className="w-full justify-start gap-[10px]"
             iconPos="left"
             icon="user"
             variant="text"
-            onClick={() => navigate("profile")}
+            to="/profile"
           >
             Моя страница
           </NavButton>
@@ -39,7 +37,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="news"
             variant="text"
-            onClick={() => navigate("feed")}
+            to="/feed"
           >
             Новости
           </NavButton>
@@ -50,7 +48,7 @@ const Sidebar: FC = () => {
             icon="message"
             badge={6}
             variant="text"
-            onClick={() => navigate("messenger")}
+            to="/messenger"
           >
             Мессенджер
           </NavButton>
@@ -60,7 +58,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="friends"
             variant="text"
-            onClick={() => navigate("friends")}
+            to="/friends"
           >
             Друзья
           </NavButton>
@@ -70,7 +68,7 @@ const Sidebar: FC = () => {
             iconPos="left"
             icon="photos"
             variant="text"
-            onClick={() => navigate("photos")}
+            to="/photos"
           >
             Фотографии
           </NavButton>
