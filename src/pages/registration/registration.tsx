@@ -22,7 +22,9 @@ const RegistrationPage: FC = () => {
   } = useForm<IRegistrationForm>({ mode: "onSubmit" });
 
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) =>
-    dispatch(registrationThunk(data));
+    dispatch(registrationThunk(data)).then(
+      (data) => (data.payload as { id: number }).id && navigate("/"),
+    );
   const toggleTheme = () => {
     if (theme == "dark") {
       setTheme("light");
