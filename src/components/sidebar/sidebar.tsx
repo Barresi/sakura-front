@@ -23,24 +23,16 @@ const Sidebar: FC = () => {
         <Logo />
 
         <div className="pt-[50px]">
-          <NavButton
-            className={({ isActive }) => (isActive ? "clicked" : "")}
-            icon="user"
-            to="profile"
-          >
+          <NavButton className="w-full justify-start gap-[10px]" icon="user" to="profile">
             Моя страница
           </NavButton>
 
-          <NavButton
-            className={({ isActive }) => (isActive ? "clicked" : "")}
-            icon="news"
-            to="feed"
-          >
+          <NavButton className="w-full justify-start gap-[10px]" icon="news" to="feed">
             Новости
           </NavButton>
 
           <NavButton
-            className={({ isActive }) => (isActive ? "clicked" : "")}
+            className="w-full justify-start gap-[10px]"
             icon="message"
             badge={6}
             to="messenger"
@@ -49,7 +41,7 @@ const Sidebar: FC = () => {
           </NavButton>
 
           <NavButton
-            className={({ isActive }) => (isActive ? "clicked" : "")}
+            className="w-full justify-start gap-[10px]"
             icon="friends"
             to="friends"
           >
@@ -57,7 +49,7 @@ const Sidebar: FC = () => {
           </NavButton>
 
           <NavButton
-            className={({ isActive }) => (isActive ? "clicked" : "")}
+            className="w-full justify-start gap-[10px]"
             icon="photos"
             to="photos"
           >
