@@ -1,49 +1,25 @@
+import { Badge } from "@components/ui/badge/badge";
 import { FC, ReactNode } from "react";
-import { buttonVariants } from "../button";
-import { Badge } from "@src/components/ui/badge/badge";
 import { NavLink, NavLinkProps } from "react-router-dom";
-import { cn } from "@src/utils/utils";
-import { VariantProps } from "class-variance-authority";
+import Button, { Icon } from "../button";
 
-import user from "@assets/menu/user.svg";
-import news from "@assets/menu/news.svg";
-import friends from "@assets/menu/friends.svg";
-import message from "@assets/menu/message.svg";
-import photos from "@assets/menu/photos.svg";
-import { renderIcon } from "@src/utils/renders";
-
-const navIcons = {
-  user,
-  news,
-  friends,
-  message,
-  photos,
-};
-
-type NavIcon = keyof typeof navIcons;
-
-interface IProps extends NavLinkProps, VariantProps<typeof buttonVariants> {
+interface IProps extends NavLinkProps {
   badge?: number;
-  icon?: NavIcon;
-  iconPos?: "left" | "right";
+  icon: Icon;
 }
 
-const NavButton: FC<IProps> = ({
-  children,
-  variant,
-  size,
-  className,
-  iconPos,
-  icon,
-  badge,
-  ...props
-}) => {
+const NavButton: FC<IProps> = ({ children, icon, className, badge, ...props }) => {
   return (
-    <NavLink className={cn(buttonVariants({ variant, size, className }))} {...props}>
-      {iconPos === "left" && renderIcon<NavIcon, typeof navIcons>(icon, navIcons)}
-      {children as ReactNode}
-      {badge! > 0 && <Badge>{badge}</Badge>}
-      {iconPos === "right" && renderIcon<NavIcon, typeof navIcons>(icon, navIcons)}
+    <NavLink className={className} {...props}>
+      <Button
+        className="w-full justify-start gap-[10px]"
+        icon={icon}
+        iconPos="left"
+        variant="text"
+      >
+        {children as ReactNode}
+        {badge! > 0 && <Badge>{badge}</Badge>}
+      </Button>
     </NavLink>
   );
 };

@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@utils/utils";
+import { renderIcon } from "@utils/renders";
 
 import {
   edit,
@@ -11,14 +12,18 @@ import {
   darkTheme,
   exit,
   info,
-} from "@src/assets/icons/icons";
+} from "@assets/icons/icons";
 
 import like from "@assets/ui/Like.svg";
 import likeActive from "@assets/ui/Like Active.svg";
 import likeActiveDark from "@assets/ui/Like Active Dark.svg";
 import comment from "@assets/ui/Comment.svg";
 import share from "@assets/ui/Share.svg";
-import { renderIcon } from "@src/utils/renders";
+import friends from "@assets/menu/friends.svg";
+import message from "@assets/menu/message.svg";
+import news from "@assets/menu/news.svg";
+import photos from "@assets/menu/photos.svg";
+import user from "@assets/menu/user.svg";
 
 const icons = {
   edit,
@@ -33,6 +38,11 @@ const icons = {
   likeActiveDark,
   comment,
   share,
+  user,
+  news,
+  friends,
+  message,
+  photos,
 };
 
 export const buttonVariants = cva(
@@ -87,6 +97,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
+    const iconToRender = renderIcon<Icon, typeof icons>(icon, icons);
 
     return (
       <Comp
@@ -94,9 +105,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {iconPos === "left" && renderIcon<Icon, typeof icons>(icon, icons)}
+        {iconPos === "left" && iconToRender}
         {children}
-        {iconPos === "right" && renderIcon<Icon, typeof icons>(icon, icons)}
+        {iconPos === "right" && iconToRender}
       </Comp>
     );
   },

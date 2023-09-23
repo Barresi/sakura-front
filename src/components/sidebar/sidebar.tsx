@@ -5,6 +5,7 @@ import SettingButton from "@src/components/ui/button/setting-button/setting-butt
 import { useTheme } from "../theme-provider/theme-provider";
 import { useAppDispatch } from "@src/hooks/store-hooks";
 import { logoutThunk } from "@src/store/reducers/profileInfo/async-thunks";
+import { cn } from "@src/utils/utils";
 
 const Sidebar: FC = () => {
   const dispatch = useAppDispatch();
@@ -23,51 +24,41 @@ const Sidebar: FC = () => {
 
         <div className="pt-[50px]">
           <NavButton
-            className="w-full justify-start gap-[10px]"
-            iconPos="left"
+            className={({ isActive }) => (isActive ? "clicked" : "")}
             icon="user"
-            variant="text"
             to="profile"
           >
             Моя страница
           </NavButton>
 
           <NavButton
-            className="w-full justify-start gap-[10px]"
-            iconPos="left"
+            className={({ isActive }) => (isActive ? "clicked" : "")}
             icon="news"
-            variant="text"
             to="feed"
           >
             Новости
           </NavButton>
 
           <NavButton
-            className="w-full justify-start gap-[10px]"
-            iconPos="left"
+            className={({ isActive }) => (isActive ? "clicked" : "")}
             icon="message"
             badge={6}
-            variant="text"
             to="messenger"
           >
             Мессенджер
           </NavButton>
 
           <NavButton
-            className="w-full justify-start gap-[10px]"
-            iconPos="left"
+            className={({ isActive }) => (isActive ? "clicked" : "")}
             icon="friends"
-            variant="text"
             to="friends"
           >
             Друзья
           </NavButton>
 
           <NavButton
-            className="w-full justify-start gap-[10px]"
-            iconPos="left"
+            className={({ isActive }) => (isActive ? "clicked" : "")}
             icon="photos"
-            variant="text"
             to="photos"
           >
             Фотографии
