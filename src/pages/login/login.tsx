@@ -47,7 +47,7 @@ const LoginPage: FC = () => {
             {...register("email", {
               required: "Обязательное поле",
               pattern: {
-                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
                 message: "Данный E-mail не существует",
               },
             })}
