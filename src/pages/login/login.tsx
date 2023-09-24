@@ -7,8 +7,8 @@ import { useAppDispatch } from "@src/hooks/store-hooks";
 import SettingButton from "@src/components/ui/button/setting-button/setting-button";
 import Logo from "@src/components/ui/logo/logo";
 import Button from "@src/components/ui/button/button";
-import { useTheme } from "@src/components/theme-provider/theme-provider";
 import Input from "@src/components/ui/form/input/input";
+import { useTheme } from "@src/hooks/useTheme";
 
 const LoginPage: FC = () => {
   const dispatch = useAppDispatch();

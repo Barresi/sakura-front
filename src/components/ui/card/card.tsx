@@ -1,4 +1,4 @@
-import { useTheme } from "@components/theme-provider/theme-provider";
+import { useTheme } from "@src/hooks/useTheme";
 import { cn } from "@utils/utils";
 import { FC, ReactNode } from "react";
 

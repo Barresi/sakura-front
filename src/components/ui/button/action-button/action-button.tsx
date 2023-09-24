@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
-import { useTheme } from "@components/theme-provider/theme-provider";
 import { cn } from "@utils/utils";
 import Button, { ButtonProps } from "../button";
+import { useTheme } from "@src/hooks/useTheme";
 
 interface IProps extends ButtonProps {}
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { useTheme } from "@components/theme-provider/theme-provider";
 import { useWindowSize } from "@src/hooks/useWindowSize";
+import { useTheme } from "@src/hooks/useTheme";
 
 import logoLight from "@assets/ui/logo-light.svg";
 import logoDark from "@assets/ui/logo-dark.svg";

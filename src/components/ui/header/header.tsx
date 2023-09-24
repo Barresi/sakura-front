@@ -3,8 +3,8 @@ import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import SettingButton from "../button/setting-button/setting-button";
 import { Avatar, AvatarFallback } from "../avatar/avatar";
 import { AvatarImage } from "../avatar/avatar";
-import { useTheme } from "@components/theme-provider/theme-provider";
 import Logo from "../logo/logo";
+import { useTheme } from "@src/hooks/useTheme";
 
 interface HeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
