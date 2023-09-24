@@ -5,7 +5,6 @@ import SettingButton from "@src/components/ui/button/setting-button/setting-butt
 import { useTheme } from "../theme-provider/theme-provider";
 import { useAppDispatch } from "@src/hooks/store-hooks";
 import { logoutThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import { cn } from "@src/utils/utils";
 
 const Sidebar: FC = () => {
   const dispatch = useAppDispatch();

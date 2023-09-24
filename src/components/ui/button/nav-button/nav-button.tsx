@@ -21,7 +21,9 @@ const NavButton: FC<IProps> = ({
   return (
     <NavLink
       className={({ isActive }) =>
-        isActive ? `${linkClassName} clicked` : linkClassName
+        isActive
+          ? `${linkClassName} [&>*]:text-red-600 w-[20%]`
+          : `${linkClassName} w-[20%]`
       }
       {...props}
     >

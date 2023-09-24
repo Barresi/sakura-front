@@ -242,8 +242,3 @@ input:-webkit-autofill:active {
 html {
   min-height: 100vh;
 }
-
-/* Example, delete after */
-.clicked > * {
-  color: rgb(255, 0, 0);
-}
