@@ -17,6 +17,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        body: "var(--body)",
         border: "var(--border)",
         ring: "var(--ring)",
         background: "var(--background)",
@@ -63,6 +64,12 @@ module.exports = {
           background: "var(--input-background)",
           hoverBorder: "var(--input-hoverBorder)",
           errorBorder: "var(--input-errorBorder)",
+        },
+
+        // search input
+        search: {
+          DEFAULT: "var(--search)",
+          border: "var(--search-border)",
         },
 
         // avatar

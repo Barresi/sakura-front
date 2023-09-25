@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@src/components/ui/avatar/avatar";
-import Button from "@src/components/ui/button/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar/avatar";
+import Button from "@ui/button/button";
 import { cn, useWindowSize } from "@utils/utils";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
+import more from "@assets/ui/More.svg";
 
 export interface FriendCardProps
   extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name"> {
@@ -23,10 +24,16 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
 
-        <div>
-          <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
-            {name}
-          </h3>
+        <div className="w-full">
+          <div className="flex justify-between">
+            <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
+              {name}
+            </h3>
+            <img
+              src={more}
+              className="px-2 cursor-pointer transition-all hover:scale-[1.1] active:scale-[0.9]"
+            />
+          </div>
 
           {isMobile ? (
             <div className="mt-[25px] whitespace-nowrap flex justify-between gap-[10px]">
