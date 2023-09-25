@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps } from "class-variance-authority";
 import { cn } from "@utils/utils";
-import { renderIcon } from "@utils/renders";
 
 import {
   edit,
@@ -54,6 +53,16 @@ export interface ButtonProps
   asChild?: boolean;
   icon?: Icon;
   iconPos?: "left" | "right";
+}
+
+function renderIcon<T, P>(icon?: T, icons?: P) {
+  const result = icons![icon as keyof typeof icons];
+
+  if (typeof result == "string") {
+    return <img src={result} alt="" />;
+  } else if (typeof result == "object") {
+    return result;
+  }
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
