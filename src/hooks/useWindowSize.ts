@@ -1,10 +1,4 @@
-import { type ClassValue, clsx } from "clsx";
-import { useState, useEffect } from "react";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { useEffect, useState } from "react";
 
 export function useWindowSize(maxWidth: string | number) {
   const [width, setWidth] = useState(window.innerWidth);
