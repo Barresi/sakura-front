@@ -108,6 +108,12 @@ module.exports = {
           foreground: "var(--setting-foreground)",
           activeForeground: "var(--setting-activeForeground)",
         },
+
+        // block message
+        blockMessage: {
+          my: "var(--message-my)",
+          other: "var(--message-other)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -130,5 +136,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar")],
 };

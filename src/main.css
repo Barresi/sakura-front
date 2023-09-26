@@ -98,6 +98,11 @@
     --setting-foreground: hsl(0, 0%, 16%);
     --setting-activeForeground: hsl(0, 0%, 16%);
 
+    /* message block */
+
+    --message-my: hsl(197, 89%, 89%);
+    --message-other: hsl(0, 0%, 95%);
+
     /* others */
 
     --border: hsl(214.3, 31.8%, 91.4%);
@@ -187,6 +192,11 @@
     --setting-border: hsl(213, 19%, 41%);
     --setting-foreground: hsl(213, 19%, 41%);
     --setting-activeForeground: hsl(0, 0%, 95%);
+
+    /* message block */
+
+    --message-my: hsl(197, 6%, 45%);
+    --message-other: hsl(240, 11%, 14%);
 
     /* others */
 
