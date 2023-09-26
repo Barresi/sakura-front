@@ -65,6 +65,13 @@ module.exports = {
           errorBorder: "var(--input-errorBorder)",
         },
 
+        // search
+
+        search: {
+          DEFAULT: "var(--search)",
+          border: "var(--search-border)",
+        },
+
         // avatar
         avatar: {
           foreground: "var(--avatar-foreground)",

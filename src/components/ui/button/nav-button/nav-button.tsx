@@ -5,7 +5,7 @@ import Button, { Icon } from "../button";
 
 interface IProps extends NavLinkProps {
   badge?: number;
-  icon: Icon;
+  icon?: Icon;
   linkClassName?: string;
   className?: string;
 }
