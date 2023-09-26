@@ -6,20 +6,31 @@ import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
 import more from "@assets/ui/More.svg";
 
-export interface FriendCardProps
-  extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name"> {
+export interface FriendCardProps {
   className?: string;
+  data: Pick<MessageCardProps["data"], "img" | "imgFallback" | "name">;
+  type?: "friends" | "sended" | "all";
 }
 
-const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) => {
+const types = {
+  friends: "Удалить из друзей",
+  sended: "Отменить заявку",
+  all: "Добавить в друзья",
+};
+
+const FriendCard: FC<FriendCardProps> = ({
+  className,
+  data: { img, imgFallback, name },
+  type,
+}) => {
   const isMobile = useWindowSize(1024);
 
   return (
     <Card
       className={cn("block hover:border-b-message-border hover:bg-background", className)}
     >
-      <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]">
+      <div className="flex items-start lg:items-center gap-[15px]">
+        <Avatar className="w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]">
           <AvatarImage src={img} className="" />
           <AvatarFallback>{imgFallback}</AvatarFallback>
         </Avatar>
@@ -38,14 +49,14 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
           {isMobile ? (
             <div className="mt-[25px] whitespace-nowrap flex justify-between gap-[10px]">
               <Button
-                icon="edit"
+                icon="comment"
                 variant="secondary"
-                className="w-[49%] hover:bg-background border-2 hover:border-secondary"
+                className="w-[49%] hover:bg-background border hover:border-secondary"
               />
               <Button
-                icon="edit"
-                variant="text"
-                className="w-[49%] whitespace-nowrap hover:bg-background border-2 hover:border-secondary"
+                icon={type == "friends" || type == "sended" ? "clear" : "add"}
+                variant={type == "all" ? "default" : "text"}
+                className="w-[49%] whitespace-nowrap hover:bg-background border-2 border-secondary hover:border-secondary"
               />
             </div>
           ) : (
@@ -56,8 +67,11 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
               >
                 Написать сообщение
               </Button>
-              <Button variant="default" className="w-[49%] whitespace-nowrap ">
-                Удалить из друзей
+              <Button
+                variant={type == "all" ? "default" : "text"}
+                className="w-[49%] whitespace-nowrap"
+              >
+                {types[type as keyof typeof types]}
               </Button>
             </div>
           )}

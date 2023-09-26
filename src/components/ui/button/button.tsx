@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps } from "class-variance-authority";
 import { cn } from "@utils/utils";
+import { buttonVariants } from "../variants/variants";
 
 import {
   edit,
@@ -10,6 +11,7 @@ import {
   theme,
   darkTheme,
   exit,
+  add,
   info,
 } from "@assets/icons/icons";
 
@@ -17,13 +19,13 @@ import like from "@assets/ui/Like.svg";
 import likeActive from "@assets/ui/Like Active.svg";
 import likeActiveDark from "@assets/ui/Like Active Dark.svg";
 import comment from "@assets/ui/Comment.svg";
+import clear from "@assets/ui/Clear.svg";
 import share from "@assets/ui/Share.svg";
 import friends from "@assets/menu/friends.svg";
 import message from "@assets/menu/message.svg";
 import news from "@assets/menu/news.svg";
 import photos from "@assets/menu/photos.svg";
 import user from "@assets/menu/user.svg";
-import { buttonVariants } from "../variants/variants";
 
 const icons = {
   edit,
@@ -43,6 +45,8 @@ const icons = {
   friends,
   message,
   photos,
+  add,
+  clear,
 };
 
 export type Icon = keyof typeof icons;

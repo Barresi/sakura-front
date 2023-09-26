@@ -5,17 +5,14 @@ import Card from "../card";
 import Button from "@src/components/ui/button/button";
 import { cn } from "@utils/utils";
 
-export interface RequestCardProps
-  extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
+export interface RequestCardProps {
   className?: string;
+  data: Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date">;
 }
 
 const RequestCard: FC<RequestCardProps> = ({
   className,
-  img,
-  imgFallback,
-  date,
-  name,
+  data: { img, imgFallback, date, name },
 }) => {
   return (
     <Card className={cn("block", className)}>
