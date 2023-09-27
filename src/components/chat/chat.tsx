@@ -1,8 +1,9 @@
 import MessageInput from "@src/components/ui/form/message-input/message-input";
 import Message from "@src/components/message/message";
 import { Avatar, AvatarFallback, AvatarImage } from "@src/components/ui/avatar/avatar";
-import more from "@assets/ui/More.svg";
 import { FC } from "react";
+import arrow from "@assets/ui/arrow.svg";
+import { Link } from "react-router-dom";
 
 const mockMessages = [
   {
@@ -53,18 +54,23 @@ const mockMessages = [
 
 const Chat: FC = () => {
   return (
-    <div className="flex flex-col flex-auto w-[70%] relative h-[100%] bg-background">
-      <div className=" absolute left-0 right-0 top-0 h-[80px] border-b border-border px-[30px] py-[20px] flex justify-between items-center z-10 bg-background">
+    <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background">
+      <div className=" absolute left-0 right-0 top-0 h-[80px] border-b border-border px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-100 bg-background">
         <p className=" text-foreground text-[20px] flex gap-[10px]">
-          <span className="font-bold">Андрей Петров</span>
-          <span className="text-[#55677D] font-normal">был в сети час назад</span>
+          <Link
+            to="/main/messenger"
+            className="flex justify-center items-center px-[10px]"
+          >
+            <img src={arrow} alt="arrow" className="w-[20px] h-[20px]" />
+          </Link>
+          <div className="flex flex-col md:flex-row md:gap-[10px]">
+            <span className="font-bold text-base sm:text-xl">Андрей Петров</span>
+            <span className="text-[#55677D] font-normal text-base sm:text-xl">
+              был в сети час назад
+            </span>
+          </div>
         </p>
-        <div className=" flex items-center gap-[10px]">
-          <img
-            src={more}
-            alt="more"
-            className="px-2 cursor-pointer transition-all hover:scale-[1.1] active:scale-[0.9]"
-          />
+        <div className=" flex items-center">
           <Avatar>
             <AvatarImage src="" />
             <AvatarFallback>Avatar</AvatarFallback>

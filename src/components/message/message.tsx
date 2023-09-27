@@ -10,7 +10,7 @@ interface IMessage {
 const Message: FC<IMessage> = ({ text, my, date }) => {
   return (
     <div
-      className={`p-[15px] flex items-center w-[40%] gap-[10px] ${
+      className={`p-[15px] flex items-center w-[60%] min-w-[250px] gap-[10px] ${
         my ? " self-end  flex-row-reverse" : " self-start"
       }`}
     >
