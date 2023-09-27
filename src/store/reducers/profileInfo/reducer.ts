@@ -22,6 +22,14 @@ const initialState: IInitialState = {
   user: {
     email: "",
     id: "",
+    role: "USER",
+    firstname: "",
+    lastname: "",
+    username: null,
+    createdAt: "",
+    friends: [],
+    friendOf: [],
+    outgoingRequests: [],
   },
 };
 
