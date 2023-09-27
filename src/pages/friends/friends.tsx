@@ -1,60 +1,16 @@
-import FriendCard from "@src/components/ui/card/friend-card/friend-card";
-import Search from "@src/components/ui/form/search/search";
-import { FC, ReactNode, useEffect, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs/tabs";
-import TabButton from "@components/tab-button/tab-button";
+import { FC, useEffect, useState } from "react";
 
-import RequestCard from "@src/components/ui/card/request-card/request-card";
 import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
-import { selectUser } from "@src/store/reducers/profileInfo/selectors";
-import { IFriend } from "@src/types/types";
+import { selectUser } from "@store/reducers/profileInfo/selectors";
+
+import { protectedInfoThunk } from "@store/reducers/profileInfo/async-thunks";
+import TabButton from "@components/tab/tab-button/tab-button";
+import FriendsTabContent from "@components/tab/tab-content/tab-content";
 
 import photo from "@assets/photo.svg";
-import avatar from "@assets/404 avatar.jpg";
-import { protectedInfoThunk } from "@src/store/reducers/profileInfo/async-thunks";
-
-const buttons = [
-  {
-    text: "Мои друзья",
-    type: "friends",
-  },
-  {
-    text: "Все пользователи",
-    type: "all",
-  },
-  {
-    text: "Заявки в друзья",
-    type: "requests",
-    badge: 5,
-  },
-  {
-    text: "Отправленные заявки",
-    type: "sended",
-  },
-];
-
-const render = (type: string, data: IFriend[]) => {
-  return data?.map((friend, index) => {
-    if (type === "friends") {
-      return <FriendCard key={index} type={type} data={friend} />;
-    }
-
-    if (type === "all") {
-      return <FriendCard key={index} type={type} data={friend} />;
-    }
-
-    if (type === "requests") {
-      return <RequestCard key={index} data={friend} />;
-    }
-
-    if (type === "sended") {
-      return <FriendCard key={index} type={type} data={friend} />;
-    }
-  });
-};
 
 const FriendsPage: FC = () => {
-  const [activeType, setActive] = useState(buttons[0].type);
+  const [activeType, setActive] = useState("friends");
   const [data, setData] = useState<any[]>([]);
 
   const dispatch = useAppDispatch();
@@ -140,41 +96,9 @@ const FriendsPage: FC = () => {
       </div>
 
       <div className="list w-full xl:w-2/3 bg-background rounded-[10px] p-[20px] xl:p-[30px]">
-        <Tab type={activeType} data={data} text="" />
+        <FriendsTabContent type={activeType} data={data} text="" />
       </div>
     </div>
-  );
-};
-
-interface TabProps {
-  type: string;
-  data: any[];
-  text: string;
-}
-
-const Tab: FC<TabProps> = ({ type, data }) => {
-  const text = {
-    friends: "Мои друзья",
-    all: "Все пользователи",
-    requests: "Заявки в друзья",
-    sended: "Отправленные заявки",
-  };
-
-  return (
-    <>
-      <h2 className="font-medium text-[24px] leading-[32px]">
-        {text[type as keyof typeof text]}
-      </h2>
-
-      <div className="mt-[20px]">
-        <Search />
-      </div>
-
-      <div className="flex flex-col gap-[20px]">{render(type, data)}</div>
-      {data?.length < 1 && (
-        <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
-      )}
-    </>
   );
 };
 
