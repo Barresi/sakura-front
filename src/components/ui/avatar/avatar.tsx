@@ -3,6 +3,7 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@utils/utils";
 
+import error from "@assets/404 avatar.jpg";
 interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   text?: string;
@@ -31,10 +32,11 @@ Avatar.displayName = AvatarPrimitive.Root.displayName;
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
+>(({ className, src, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
     className={cn("object-cover aspect-square h-full w-full", className)}
+    src={src || error}
     {...props}
   />
 ));
