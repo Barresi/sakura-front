@@ -54,8 +54,8 @@ const mockMessages = [
 
 const Chat: FC = () => {
   return (
-    <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background">
-      <div className=" absolute left-0 right-0 top-0 h-[80px] border-b border-border px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-100 bg-background">
+    <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] 3xl:rounded-r-[10px] 3xl:rounded-l-[0px]">
+      <div className=" absolute left-0 right-0 top-0 h-[80px] border-b border-message-border px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-100 bg-background rounded-t-[10px]">
         <p className=" text-foreground text-[20px] flex gap-[10px]">
           <Link
             to="/main/messenger"

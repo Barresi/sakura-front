@@ -15,7 +15,9 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+
     extend: {
+      screens: { "3xl": "1440px" },
       colors: {
         border: "var(--border)",
         ring: "var(--ring)",
