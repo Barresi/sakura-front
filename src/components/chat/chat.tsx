@@ -64,10 +64,7 @@ const Chat: FC = () => {
             <img src={arrow} alt="arrow" className="w-[20px] h-[20px]" />
           </Link>
           <div className="flex flex-col md:flex-row md:gap-[10px]">
-            <span className="font-bold text-base sm:text-xl">Андрей Петров</span>
-            <span className="text-[#55677D] font-normal text-base sm:text-xl">
-              был в сети час назад
-            </span>
+            <span className="font-bold text-xl">Андрей Петров</span>
           </div>
         </div>
         <div className=" flex items-center">
