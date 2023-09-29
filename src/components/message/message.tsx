@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar/avatar";
+import UserAvatar from "../ui/avatar/avatar";
 
 interface IMessage {
   text: string;
@@ -14,15 +14,12 @@ const Message: FC<IMessage> = ({ text, my, date }) => {
         my ? " self-end  flex-row-reverse" : " self-start"
       }`}
     >
-      <div className=" self-start">
-        <Avatar>
-          <AvatarImage src="" />
-          <AvatarFallback>avatar</AvatarFallback>
-        </Avatar>
-        <div>{date}</div>
+      <div className="flex flex-col items-center gap-2 self-start">
+        <UserAvatar />
+        <span>{date}</span>
       </div>
       <div
-        className={`p-[15px] rounded-[5px] ${
+        className={`p-[15px] rounded-[5px] self-start ${
           my ? " bg-blockMessage-my " : " bg-blockMessage-other"
         }`}
       >

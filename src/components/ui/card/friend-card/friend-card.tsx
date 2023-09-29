@@ -1,16 +1,15 @@
 import { FC } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@src/components/ui/avatar/avatar";
+import UserAvatar from "@src/components/ui/avatar/avatar";
 import Button from "@src/components/ui/button/button";
 import { cn, useWindowSize } from "@utils/utils";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
 
-export interface FriendCardProps
-  extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name"> {
+export interface FriendCardProps extends Pick<MessageCardProps["data"], "img" | "name"> {
   className?: string;
 }
 
-const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) => {
+const FriendCard: FC<FriendCardProps> = ({ className, img, name }) => {
   const isMobile = useWindowSize(1024);
 
   return (
@@ -18,11 +17,7 @@ const FriendCard: FC<FriendCardProps> = ({ className, img, imgFallback, name }) 
       className={cn("block hover:border-b-message-border hover:bg-background", className)}
     >
       <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]">
-          <AvatarImage src={img} className="" />
-          <AvatarFallback>{imgFallback}</AvatarFallback>
-        </Avatar>
-
+        <UserAvatar className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]" src={img} />
         <div>
           <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
             {name}

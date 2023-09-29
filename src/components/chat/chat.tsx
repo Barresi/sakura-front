@@ -1,6 +1,6 @@
 import MessageInput from "@src/components/ui/form/message-input/message-input";
 import Message from "@src/components/message/message";
-import { Avatar, AvatarFallback, AvatarImage } from "@src/components/ui/avatar/avatar";
+import UserAvatar from "@src/components/ui/avatar/avatar";
 import { FC } from "react";
 import arrow from "@assets/ui/arrow.svg";
 import { Link } from "react-router-dom";
@@ -67,12 +67,8 @@ const Chat: FC = () => {
             <span className="font-bold text-xl">Андрей Петров</span>
           </div>
         </div>
-        <div className=" flex items-center">
-          <Avatar>
-            <AvatarImage src="" />
-            <AvatarFallback>Avatar</AvatarFallback>
-          </Avatar>
-        </div>
+
+        <UserAvatar />
       </div>
       <div className="h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none">
         {mockMessages.map((item, ind) => (

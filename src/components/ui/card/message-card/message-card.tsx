@@ -1,15 +1,14 @@
 import { FC } from "react";
 import { Badge } from "@src/components/ui/badge/badge";
-import { Avatar, AvatarImage, AvatarFallback } from "@src/components/ui/avatar/avatar";
 import { cn } from "@utils/utils";
 
 import Card from "../card";
+import UserAvatar from "../../avatar/avatar";
 
 export interface MessageCardProps {
   className?: string;
   data: {
     img: string;
-    imgFallback: string;
     name: string;
     message?: string;
     date?: string;
@@ -19,7 +18,7 @@ export interface MessageCardProps {
 
 const MessageCard: FC<MessageCardProps> = ({
   className,
-  data: { img, imgFallback, name, message, date, badge },
+  data: { img, name, message, date, badge },
 }) => {
   return (
     <Card
@@ -29,11 +28,7 @@ const MessageCard: FC<MessageCardProps> = ({
       )}
     >
       <div className="flex items-center gap-[15px]">
-        <Avatar className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]">
-          <AvatarImage src={img} className="" />
-          <AvatarFallback>{imgFallback}</AvatarFallback>
-        </Avatar>
-
+        <UserAvatar src={img} className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]" />
         <div>
           <h3 className="font-bold leading-6">{name}</h3>
           <span className="w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis">
@@ -42,7 +37,7 @@ const MessageCard: FC<MessageCardProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col justify-between">
         <span className="text-[#55677D]">{date}</span>
         <Badge className="self-end">{badge}</Badge>
       </div>

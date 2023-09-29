@@ -99,7 +99,6 @@ const MessengerPage: FC = () => {
                   message: item.message,
                   badge: item.badge,
                   img: "",
-                  imgFallback: "avatar",
                   date: item.date,
                 }}
               />
