@@ -14,7 +14,7 @@ const Message: FC<IMessage> = ({ text, my, date }) => {
         my ? " self-end  flex-row-reverse" : " self-start"
       }`}
     >
-      <div className="">
+      <div className=" self-start">
         <Avatar>
           <AvatarImage src="" />
           <AvatarFallback>avatar</AvatarFallback>
