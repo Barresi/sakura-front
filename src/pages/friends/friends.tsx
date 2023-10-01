@@ -1,67 +1,142 @@
 import { FC, useEffect, useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
+import { useAppSelector } from "@src/hooks/store-hooks";
 import { selectUser } from "@store/reducers/profileInfo/selectors";
 
-import { protectedInfoThunk } from "@store/reducers/profileInfo/async-thunks";
 import TabButton from "@components/tab/tab-button/tab-button";
 import FriendsTabContent from "@components/tab/tab-content/tab-content";
-
-import photo from "@assets/photo.svg";
 
 const FriendsPage: FC = () => {
   const [activeType, setActive] = useState("friends");
   const [data, setData] = useState<any[]>([]);
 
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(protectedInfoThunk());
-  }, [dispatch]);
-
   const user = useAppSelector(selectUser);
+  const outgoingReqLength = user?.outgoingRequests?.length;
 
   useEffect(() => {
     switch (activeType) {
+      // mock data, will replaced in future
+
       case "friends":
-        setData(user.friends);
+        // setData(user.friends);
+        setData([
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Dieter Phillips",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Sebastian Sellers",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Tamekah Oliver",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Jesse Hancock",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Keegan Colon",
+          },
+        ]);
         break;
       case "all":
         setData([
           {
-            img: photo,
-            imgFallback: "",
+            img: "",
+            imgFallback: "404 IMG",
             name: "Dieter Phillips",
           },
           {
-            img: photo,
-            imgFallback: "",
+            img: "",
+            imgFallback: "404 IMG",
             name: "Sebastian Sellers",
           },
           {
-            img: photo,
-            imgFallback: "",
+            img: "",
+            imgFallback: "404 IMG",
             name: "Tamekah Oliver",
           },
           {
-            img: photo,
-            imgFallback: "",
+            img: "",
+            imgFallback: "404 IMG",
             name: "Jesse Hancock",
           },
           {
-            img: photo,
-            imgFallback: "",
+            img: "",
+            imgFallback: "404 IMG",
             name: "Keegan Colon",
           },
         ]);
         break;
       case "requests":
         // setData(заявки в друзья)
-        setData(user.friendOf);
+        // setData(user.friendOf);
+        setData([
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Dieter Phillips",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Sebastian Sellers",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Tamekah Oliver",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Jesse Hancock",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Keegan Colon",
+          },
+        ]);
         break;
       case "sended":
         // setData(отправленные заявки)
-        setData(user.outgoingRequests);
+        // setData(user.outgoingRequests);
+        setData([
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Dieter Phillips",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Sebastian Sellers",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Tamekah Oliver",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Jesse Hancock",
+          },
+          {
+            img: "",
+            imgFallback: "404 IMG",
+            name: "Keegan Colon",
+          },
+        ]);
         break;
 
       default:
@@ -82,14 +157,14 @@ const FriendsPage: FC = () => {
         <TabButton
           active={activeType == "requests"}
           onClick={() => setActive("requests")}
-          badge={user.friendOf.length}
+          badge={user?.friendOf?.length}
         >
           Заявки в друзья
         </TabButton>
         <TabButton
           active={activeType == "sended"}
           onClick={() => setActive("sended")}
-          badge={user.outgoingRequests.length}
+          badge={outgoingReqLength > 0 ? outgoingReqLength : undefined}
         >
           Отправленные заявки
         </TabButton>

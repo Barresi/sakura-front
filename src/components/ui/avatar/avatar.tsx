@@ -3,7 +3,6 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@utils/utils";
 
-import error from "@assets/404 avatar.jpg";
 interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   text?: string;
@@ -35,8 +34,8 @@ const AvatarImage = React.forwardRef<
 >(({ className, src, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
-    className={cn("object-cover aspect-square h-full w-full", className)}
-    src={src || error}
+    className={cn("object-cover aspect-square h-full w-full", "", className)}
+    src={src}
     {...props}
   />
 ));
@@ -49,7 +48,7 @@ const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted",
+      "flex h-full w-full text-center items-center justify-center rounded-full bg-muted border border-gray-700",
       className,
     )}
     {...props}

@@ -201,9 +201,9 @@ export const add = (
         id="Vector_4"
         d="M22.75 11H16.75"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </g>
   </svg>
