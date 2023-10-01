@@ -37,9 +37,9 @@ const MessageCard: FC<MessageCardProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col  self-start gap-[5px]">
         <span className="text-[#55677D]">{date}</span>
-        <Badge className="self-end">{badge}</Badge>
+        {badge && <Badge className="self-end">{badge}</Badge>}
       </div>
     </Card>
   );

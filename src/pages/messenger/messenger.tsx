@@ -7,7 +7,7 @@ const mockData = [
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
-    badge: 2,
+
     date: "18 авг",
     id: "dsadas32r2asdf",
   },
@@ -21,7 +21,7 @@ const mockData = [
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
-    badge: 2,
+
     date: "18 авг",
     id: "dsadas32r2asdf",
   },
