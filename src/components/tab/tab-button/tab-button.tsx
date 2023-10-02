@@ -10,7 +10,7 @@ interface TabButtonProps {
   active?: boolean;
 }
 
-const TabButton: FC<TabButtonProps> = ({ children, badge, onClick, active }) => {
+const TabButton: FC<TabButtonProps> = ({ children, badge = 0, onClick, active }) => {
   return (
     <Button
       className={cn("w-full flex justify-start", active && "bg-text")}
@@ -18,7 +18,7 @@ const TabButton: FC<TabButtonProps> = ({ children, badge, onClick, active }) => 
       onClick={onClick}
     >
       {children}
-      {badge && <Badge>{badge}</Badge>}
+      {badge > 0 ? <Badge>{badge}</Badge> : null}
     </Button>
   );
 };

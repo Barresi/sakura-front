@@ -11,7 +11,6 @@ const FriendsPage: FC = () => {
   const [data, setData] = useState<any[]>([]);
 
   const user = useAppSelector(selectUser);
-  const outgoingReqLength = user?.outgoingRequests?.length;
 
   useEffect(() => {
     switch (activeType) {
@@ -157,14 +156,14 @@ const FriendsPage: FC = () => {
         <TabButton
           active={activeType == "requests"}
           onClick={() => setActive("requests")}
-          badge={outgoingReqLength > 0 ? outgoingReqLength : undefined}
+          badge={user?.outgoingRequests?.length}
         >
           Заявки в друзья
         </TabButton>
         <TabButton
           active={activeType == "sended"}
           onClick={() => setActive("sended")}
-          badge={outgoingReqLength > 0 ? outgoingReqLength : undefined}
+          badge={user?.outgoingRequests?.length}
         >
           Отправленные заявки
         </TabButton>
