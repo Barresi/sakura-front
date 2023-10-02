@@ -157,7 +157,7 @@ const FriendsPage: FC = () => {
         <TabButton
           active={activeType == "requests"}
           onClick={() => setActive("requests")}
-          badge={user?.friendOf?.length}
+          badge={outgoingReqLength > 0 ? outgoingReqLength : undefined}
         >
           Заявки в друзья
         </TabButton>
