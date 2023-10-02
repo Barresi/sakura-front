@@ -89,11 +89,16 @@ const MessengerPage: FC = () => {
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!mobile || pathname === "/main/messenger" ? (
-        <ul className=" flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] scrollbar-none rounded-[10px] bg-background border-r-message-border 3xl:border-r 3xl:rounded-l-[10px] 3xl:rounded-r-[0px]">
+        <ul className="flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-background border-r-message-border 3xl:border-r 3xl:rounded-l-[10px] 3xl:rounded-r-[0px]">
           {mockData.map((item, ind) => (
             <Link to={item.id} key={ind}>
               <MessageCard
-                className="rounded-none"
+                className={`rounded-none ${
+                  ind === 0 && "rounded-tr-[10px] rounded-tl-[10px]"
+                } ${
+                  ind === mockData.length - 1 &&
+                  "border-b-none rounded-br-[10px] rounded-bl-[10px]"
+                }`}
                 data={{
                   name: item.name,
                   message: item.message,
