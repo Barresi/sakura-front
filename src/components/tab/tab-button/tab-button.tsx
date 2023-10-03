@@ -13,7 +13,10 @@ interface TabButtonProps {
 const TabButton: FC<TabButtonProps> = ({ children, badge = 0, onClick, active }) => {
   return (
     <Button
-      className={cn("w-full flex justify-start", active && "bg-text")}
+      className={cn(
+        "w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center",
+        active && "bg-text",
+      )}
       variant="text"
       onClick={onClick}
     >
