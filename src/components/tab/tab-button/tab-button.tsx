@@ -14,7 +14,7 @@ const TabButton: FC<TabButtonProps> = ({ children, badge = 0, onClick, active })
   return (
     <Button
       className={cn(
-        "w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center",
+        "w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]",
         active && "bg-text",
       )}
       variant="text"
