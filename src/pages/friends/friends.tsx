@@ -69,7 +69,7 @@ const FriendsPage: FC = () => {
   }, [user, activeType]);
 
   return (
-    <div className="w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] mt-[20px] xl:mt-[30px] mb-[120px] lg:mb-[20px] px-[20px] lg:px-0">
+    <div className="w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] mt-[20px] xl:mt-[30px] mb-[60px] lg:mb-[20px] px-[20px] lg:px-0">
       <div className="w-full xl:w-1/3 h-auto max-h-[220px] flex flex-col bg-background rounded-[10px] p-[20px] xl:p-[30px]">
         <TabButton active={activeType == "friends"} onClick={() => setActive("friends")}>
           Мои друзья
