@@ -46,7 +46,10 @@ const RequestCard: FC<RequestCardProps> = ({
             <Button variant="default" className="lg:w-[49%]">
               Добавить в друзья
             </Button>
-            <Button variant="secondary" className="lg:w-[49%]">
+            <Button
+              variant="secondary"
+              className="lg:w-[49%] hover:bg-background border-2 hover:border-secondary"
+            >
               Отклонить
             </Button>
           </>

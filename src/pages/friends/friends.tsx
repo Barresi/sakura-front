@@ -6,6 +6,34 @@ import { selectUser } from "@store/reducers/profileInfo/selectors";
 import TabButton from "@components/tab/tab-button/tab-button";
 import FriendsTabContent from "@components/tab/tab-content/tab-content";
 
+const mockData = [
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Dieter Phillips",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Sebastian Sellers",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Tamekah Oliver",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Jesse Hancock",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Keegan Colon",
+  },
+];
+
 const FriendsPage: FC = () => {
   const [activeType, setActive] = useState("friends");
   const [data, setData] = useState<any[]>([]);
@@ -18,124 +46,20 @@ const FriendsPage: FC = () => {
 
       case "friends":
         // setData(user.friends);
-        setData([
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Dieter Phillips",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Sebastian Sellers",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Tamekah Oliver",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Jesse Hancock",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Keegan Colon",
-          },
-        ]);
+        setData(mockData);
         break;
       case "all":
-        setData([
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Dieter Phillips",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Sebastian Sellers",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Tamekah Oliver",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Jesse Hancock",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Keegan Colon",
-          },
-        ]);
+        setData(mockData);
         break;
       case "requests":
         // setData(заявки в друзья)
         // setData(user.friendOf);
-        setData([
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Dieter Phillips",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Sebastian Sellers",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Tamekah Oliver",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Jesse Hancock",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Keegan Colon",
-          },
-        ]);
+        setData(mockData);
         break;
       case "sended":
         // setData(отправленные заявки)
         // setData(user.outgoingRequests);
-        setData([
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Dieter Phillips",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Sebastian Sellers",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Tamekah Oliver",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Jesse Hancock",
-          },
-          {
-            img: "",
-            imgFallback: "404 IMG",
-            name: "Keegan Colon",
-          },
-        ]);
+        setData(mockData);
         break;
 
       default:
