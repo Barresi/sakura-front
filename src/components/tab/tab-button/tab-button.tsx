@@ -1,28 +1,27 @@
 import { FC, ReactNode } from "react";
 import Button from "@ui/button/button";
 import { Badge } from "@ui/badge/badge";
-import { cn } from "@src/utils/utils";
+import { NavLink } from "react-router-dom";
 
 interface TabButtonProps {
   children: ReactNode;
+  to: string;
   badge?: number;
-  onClick?: () => void;
-  active?: boolean;
 }
 
-const TabButton: FC<TabButtonProps> = ({ children, badge = 0, onClick, active }) => {
+const TabButton: FC<TabButtonProps> = ({ children, to, badge }) => {
   return (
-    <Button
-      className={cn(
-        "w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]",
-        active && "bg-text",
-      )}
-      variant="text"
-      onClick={onClick}
-    >
-      {children}
-      {badge > 0 ? <Badge>{badge}</Badge> : null}
-    </Button>
+    <NavLink to={to} className={({ isActive }) => (isActive ? "bg-text" : "")}>
+      <Button
+        className={
+          "w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]"
+        }
+        variant="text"
+      >
+        {children}
+        {badge ? <Badge>{badge}</Badge> : null}
+      </Button>
+    </NavLink>
   );
 };
 

@@ -3,40 +3,60 @@ import FriendCard from "@src/components/ui/card/friend-card/friend-card";
 import RequestCard from "@src/components/ui/card/request-card/request-card";
 import Search from "@src/components/ui/form/search/search";
 import { IFriend } from "@src/types/types";
+import { useParams } from "react-router-dom";
 
-interface TabProps {
-  type: string;
-  data: any[];
-  text: string;
-}
+const mockData = [
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Dieter Phillips",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Sebastian Sellers",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Tamekah Oliver",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Jesse Hancock",
+  },
+  {
+    img: "",
+    imgFallback: "404 IMG",
+    name: "Keegan Colon",
+  },
+];
 
-const render = (type: string, data: IFriend[]) => {
+const text = {
+  friends: "Мои друзья",
+  all: "Все пользователи",
+  requests: "Заявки в друзья",
+  sended: "Отправленные заявки",
+};
+
+const render = (type: string | undefined, data: IFriend[]) => {
   return data?.map((friend, index) => {
-    if (type === "friends") {
-      return <FriendCard key={index} type={type} data={friend} />;
-    }
-
-    if (type === "all") {
-      return <FriendCard key={index} type={type} data={friend} />;
-    }
-
-    if (type === "requests") {
-      return <RequestCard key={index} data={friend} />;
-    }
-
-    if (type === "sended") {
-      return <FriendCard key={index} type={type} data={friend} />;
+    switch (type) {
+      case "friends":
+        return <FriendCard key={index} type={type} data={friend} />;
+      case "all":
+        return <FriendCard key={index} type={type} data={friend} />;
+      case "requests":
+        return <RequestCard key={index} data={friend} />;
+      case "sended":
+        return <FriendCard key={index} type={type} data={friend} />;
     }
   });
 };
 
-const FriendsTabContent: FC<TabProps> = ({ type, data }) => {
-  const text = {
-    friends: "Мои друзья",
-    all: "Все пользователи",
-    requests: "Заявки в друзья",
-    sended: "Отправленные заявки",
-  };
+const FriendsTabContent: FC = () => {
+  const { type } = useParams();
 
   return (
     <>
@@ -48,8 +68,8 @@ const FriendsTabContent: FC<TabProps> = ({ type, data }) => {
         <Search />
       </div>
 
-      <div className="flex flex-col gap-[20px]">{render(type, data)}</div>
-      {data?.length < 1 && (
+      <div className="flex flex-col gap-[20px]">{render(type, mockData)}</div>
+      {mockData?.length < 1 && (
         <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
       )}
     </>
