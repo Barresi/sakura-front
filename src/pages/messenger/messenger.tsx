@@ -11,84 +11,84 @@ const mockData = [
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsa2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadas32r2f",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "as32r2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadas3sdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadfdsas32r2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadas3dsd2r2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsfddadas32r2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadas32r2asfdsddf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dssdfadas32r2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadas32r2asfddf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadddas32r2asdf",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2asdf",
+    id: "dsadas3ff2r2asdf",
   },
 ];
 
@@ -100,7 +100,7 @@ const MessengerPage: FC = () => {
     return (
       <div className="flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-background rounded-[10px] mx-5 lg:mx-0">
         <img src={notActiveChats} alt="not active chat" />
-        <p>У вас нет активных чатов</p>
+        <p className="text-lg">У вас нет активных чатов</p>
       </div>
     );
 
@@ -118,10 +118,10 @@ const MessengerPage: FC = () => {
             <NavLink
               to={item.id}
               key={ind}
-              className={({ isActive }) => (isActive ? "[&>div]:" : "")}
+              className={({ isActive }) => (isActive ? "[&>div]:bg-message-hover" : "")}
             >
               <MessageCard
-                className=" rounded-none hover:border-background hover:border-b-message-border"
+                className="rounded-none"
                 data={{
                   name: item.name,
                   message: item.message,
@@ -141,7 +141,7 @@ const MessengerPage: FC = () => {
         !isMobile && (
           <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background justify-center items-center rounded-r-[10px]">
             <img src={chooseChat} alt="choose chat" />
-            <p>Выберите Чат</p>
+            <p className="text-lg">Выберите Чат</p>
           </div>
         )
       )}

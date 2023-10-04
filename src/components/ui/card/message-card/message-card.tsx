@@ -21,12 +21,7 @@ const MessageCard: FC<MessageCardProps> = ({
   data: { img, name, message, date, badge },
 }) => {
   return (
-    <Card
-      className={cn(
-        "flex items-center justify-between cursor-pointer hover:border-message-hoverBorder",
-        className,
-      )}
-    >
+    <Card className={cn("flex items-center justify-between cursor-pointer", className)}>
       <div className="flex items-center gap-[15px]">
         <UserAvatar src={img} className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]" />
         <div>

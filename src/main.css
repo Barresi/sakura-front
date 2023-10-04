@@ -73,7 +73,7 @@
     /* card (message) */
 
     --message: hsl(0, 0%, 100%);
-    --message-hover: hsl(0, 0%, 100%);
+    --message-hover: hsl(0, 0%, 95%);
     --message-border: hsl(0, 0%, 95%);
     --message-hoverBorder: hsl(0, 68%, 49%);
 

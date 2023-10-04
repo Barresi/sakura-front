@@ -11,7 +11,7 @@ const Card: FC<IProps> = ({ children, className }) => {
   const { theme } = useTheme();
 
   const hover = {
-    light: "hover:border hover:border-message-hoverBorder",
+    light: "hover:bg-message-hover",
     dark: "hover:bg-message-hover",
     system: "",
   };
