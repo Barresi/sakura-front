@@ -1,7 +1,9 @@
 import MessageCard from "@src/components/ui/card/message-card/message-card";
 import { useWindowSize } from "@src/utils/utils";
 import { FC } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import notActiveChats from "@assets/messenger/not active chats.svg";
+import chooseChat from "@assets/messenger/choose chat.svg";
 
 const mockData = [
   {
@@ -35,7 +37,7 @@ const mockData = [
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
-    badge: 2,
+
     date: "18 авг",
     id: "dsadas32r2asdf",
   },
@@ -49,7 +51,7 @@ const mockData = [
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
-    badge: 2,
+
     date: "18 авг",
     id: "dsadas32r2asdf",
   },
@@ -63,7 +65,21 @@ const mockData = [
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
+
+    date: "18 авг",
+    id: "dsadas32r2asdf",
+  },
+  {
+    name: "Андрей Филяев",
+    message: "Ты сегодня был на работе?",
     badge: 2,
+    date: "18 авг",
+    id: "dsadas32r2asdf",
+  },
+  {
+    name: "Андрей Филяев",
+    message: "Ты сегодня был на работе?",
+
     date: "18 авг",
     id: "dsadas32r2asdf",
   },
@@ -78,7 +94,15 @@ const mockData = [
 
 const MessengerPage: FC = () => {
   const { pathname } = useLocation();
-  const mobile = useWindowSize(1440);
+  const isMobile = useWindowSize(1440);
+
+  if (!mockData.length)
+    return (
+      <div className="flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-background rounded-[10px] mx-5 lg:mx-0">
+        <img src={notActiveChats} alt="not active chat" />
+        <p>У вас нет активных чатов</p>
+      </div>
+    );
 
   return (
     <div
@@ -88,17 +112,16 @@ const MessengerPage: FC = () => {
           : "h-[calc(100vh-150px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-144px)]"
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
-      {!mobile || pathname === "/main/messenger" ? (
+      {!isMobile || pathname === "/main/messenger" ? (
         <ul className="flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-background border-r-message-border 3xl:border-r 3xl:rounded-l-[10px] 3xl:rounded-r-[0px]">
           {mockData.map((item, ind) => (
-            <Link to={item.id} key={ind}>
+            <NavLink
+              to={item.id}
+              key={ind}
+              className={({ isActive }) => (isActive ? "[&>div]:" : "")}
+            >
               <MessageCard
-                className={`rounded-none ${
-                  ind === 0 && "rounded-tr-[10px] rounded-tl-[10px]"
-                } ${
-                  ind === mockData.length - 1 &&
-                  "border-b-none rounded-br-[10px] rounded-bl-[10px]"
-                }`}
+                className=" rounded-none hover:border-background hover:border-b-message-border"
                 data={{
                   name: item.name,
                   message: item.message,
@@ -107,7 +130,7 @@ const MessengerPage: FC = () => {
                   date: item.date,
                 }}
               />
-            </Link>
+            </NavLink>
           ))}
         </ul>
       ) : null}
@@ -115,9 +138,10 @@ const MessengerPage: FC = () => {
       {pathname !== "/main/messenger" ? (
         <Outlet />
       ) : (
-        !mobile && (
+        !isMobile && (
           <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background justify-center items-center rounded-r-[10px]">
-            Выберите Чат
+            <img src={chooseChat} alt="choose chat" />
+            <p>Выберите Чат</p>
           </div>
         )
       )}

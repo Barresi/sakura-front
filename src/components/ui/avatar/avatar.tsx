@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import avatarLight from "@assets/default avatar light.svg";
+import avatarLight from "@assets/avatar/default avatar light.svg";
 import { cn } from "@utils/utils";
 
 interface AvatarProps
