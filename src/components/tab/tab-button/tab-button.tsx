@@ -11,7 +11,11 @@ interface TabButtonProps {
 
 const TabButton: FC<TabButtonProps> = ({ children, to, badge }) => {
   return (
-    <NavLink to={to} className={({ isActive }) => (isActive ? "bg-text" : "")}>
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? "bg-text rounded-md" : "rounded-md")}
+      end
+    >
       <Button
         className={
           "w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]"

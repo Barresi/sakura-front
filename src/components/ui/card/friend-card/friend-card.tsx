@@ -4,12 +4,11 @@ import Button from "@ui/button/button";
 import { cn, useWindowSize } from "@utils/utils";
 import { MessageCardProps } from "../message-card/message-card";
 import Card from "../card";
-import more from "@assets/ui/More.svg";
 
 export interface FriendCardProps {
   className?: string;
   data: Pick<MessageCardProps["data"], "img" | "imgFallback" | "name">;
-  type?: "friends" | "sended" | "all";
+  type?: "friends" | "sended" | "all" | "";
 }
 
 const types = {

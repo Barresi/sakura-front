@@ -42,7 +42,10 @@ const App: FC = () => {
         }
       >
         <Route path="friends" element={<FriendsPage />}>
-          <Route path=":type" element={<FriendsTabContent />} />
+          <Route index element={<FriendsTabContent type="friends" />} />
+          <Route path="all" element={<FriendsTabContent type="all" />} />
+          <Route path="requests" element={<FriendsTabContent type="requests" />} />
+          <Route path="sended" element={<FriendsTabContent type="sended" />} />
         </Route>
         <Route path="*" element={<NotFoundPage type="inside" />} />
       </Route>

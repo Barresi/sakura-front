@@ -33,7 +33,6 @@ const Sidebar: FC = () => {
           <NavButton
             className="w-full justify-start gap-[10px]"
             icon="message"
-            badge={6}
             to="messenger"
           >
             Мессенджер

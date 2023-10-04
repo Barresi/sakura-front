@@ -3,7 +3,6 @@ import FriendCard from "@src/components/ui/card/friend-card/friend-card";
 import RequestCard from "@src/components/ui/card/request-card/request-card";
 import Search from "@src/components/ui/form/search/search";
 import { IFriend } from "@src/types/types";
-import { useParams } from "react-router-dom";
 
 const mockData = [
   {
@@ -43,21 +42,21 @@ const text = {
 const render = (type: string | undefined, data: IFriend[]) => {
   return data?.map((friend, index) => {
     switch (type) {
-      case "friends":
-        return <FriendCard key={index} type={type} data={friend} />;
       case "all":
         return <FriendCard key={index} type={type} data={friend} />;
       case "requests":
         return <RequestCard key={index} data={friend} />;
       case "sended":
         return <FriendCard key={index} type={type} data={friend} />;
+      case "friends":
+        return <FriendCard key={index} type={type} data={friend} />;
     }
   });
 };
 
-const FriendsTabContent: FC = () => {
-  const { type } = useParams();
-
+const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }> = ({
+  type,
+}) => {
   return (
     <>
       <h2 className="font-medium text-[24px] leading-[32px]">
