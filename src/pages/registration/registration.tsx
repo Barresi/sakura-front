@@ -2,17 +2,18 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IRegistrationForm } from "../../types/forms";
-import { registrationThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import { useAppDispatch } from "@src/hooks/store-hooks";
 import Logo from "@src/components/ui/logo/logo";
 import SettingButton from "@src/components/ui/button/setting-button/setting-button";
 import Input from "@src/components/ui/form/input/input";
 import Button from "@src/components/ui/button/button";
 import { useTheme } from "@src/hooks/useTheme";
+import { useRegistrationMutation } from "@src/api/auth";
 
 const RegistrationPage: FC = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [registration, params] = useRegistrationMutation();
+
   const { setTheme, theme } = useTheme();
   const {
     register,
@@ -21,10 +22,11 @@ const RegistrationPage: FC = () => {
     formState: { errors },
   } = useForm<IRegistrationForm>({ mode: "onSubmit" });
 
-  const onSubmit: SubmitHandler<IRegistrationForm> = (data) =>
-    dispatch(registrationThunk(data)).then(
-      (data) => (data.payload as { id: number }).id && navigate("/"),
-    );
+  const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
+    registration(data);
+    navigate("/");
+  };
+
   const toggleTheme = () => {
     if (theme == "dark") {
       setTheme("light");

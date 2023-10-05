@@ -6,16 +6,18 @@ import ProtectedRouteElement from "../protected-route-element/protected-route-el
 import MainPage from "@src/pages/main/main";
 import NotFoundPage from "@src/pages/not-found-page/not-found-page";
 import FriendsPage from "@src/pages/friends/friends";
-import { useAppDispatch } from "@src/hooks/store-hooks";
-import { protectedInfoThunk } from "@src/store/reducers/profileInfo/async-thunks";
 import FriendsTabContent from "../tab/tab-content/tab-content";
+import { useProtectedQuery } from "@src/api/auth";
+import { useAppSelector } from "@src/hooks/store-hooks";
+import { selectUserStatus } from "@src/store/reducers/profileInfo/selectors";
+import { AuthStatus } from "@src/types/types";
+import { skipToken } from "@reduxjs/toolkit/dist/query";
 
 const App: FC = () => {
-  const dispatch = useAppDispatch();
+  const userStatus = useAppSelector(selectUserStatus);
 
-  useEffect(() => {
-    dispatch(protectedInfoThunk());
-  }, [dispatch]);
+  // делаем запрос только когда пользователь авторизован
+  useProtectedQuery(userStatus === AuthStatus.authorized ? undefined : skipToken);
 
   return (
     <Routes>

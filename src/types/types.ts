@@ -28,3 +28,12 @@ export interface IFriend {
   imgFallback: string;
   name: string;
 }
+
+export interface ILoginResponse {
+  accessToken: string;
+  refreshToken: string;
+  userWithoutPassword: {
+    id: number;
+    email: string;
+  };
+}

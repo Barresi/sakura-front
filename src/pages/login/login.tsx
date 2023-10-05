@@ -2,17 +2,18 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ILoginForm } from "../../types/forms";
-import { loginThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import { useAppDispatch } from "@src/hooks/store-hooks";
 import SettingButton from "@src/components/ui/button/setting-button/setting-button";
 import Logo from "@src/components/ui/logo/logo";
 import Button from "@src/components/ui/button/button";
 import Input from "@src/components/ui/form/input/input";
 import { useTheme } from "@src/hooks/useTheme";
+import { useLoginMutation } from "@src/api/auth";
 
 const LoginPage: FC = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [login, params] = useLoginMutation();
+
   const { setTheme, theme } = useTheme();
   const {
     register,
@@ -20,7 +21,8 @@ const LoginPage: FC = () => {
     formState: { errors },
   } = useForm<ILoginForm>({ mode: "onSubmit" });
 
-  const onSubmit: SubmitHandler<ILoginForm> = (data) => dispatch(loginThunk(data));
+  const onSubmit: SubmitHandler<ILoginForm> = (data) => login(data);
+
   const toggleTheme = () => {
     if (theme == "dark") {
       setTheme("light");
