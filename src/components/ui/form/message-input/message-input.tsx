@@ -6,9 +6,11 @@ import smile from "@assets/ui/Smile.svg";
 import send from "@assets/ui/send.svg";
 import { cn } from "@src/utils/utils";
 
-interface IProps extends InputProps {}
+interface IProps extends InputProps {
+  sendMessage: (e: React.FormEvent) => void;
+}
 
-const MessageInput: FC<IProps> = ({ ...props }) => {
+const MessageInput: FC<IProps> = ({ sendMessage, ...props }) => {
   return (
     <div className="w-full relative">
       <Input
@@ -38,9 +40,7 @@ const MessageInput: FC<IProps> = ({ ...props }) => {
           className="cursor-pointer active:scale-[.95]"
           src={send}
           alt=""
-          onClick={() => {
-            alert("Будет реализовано в будущем!");
-          }}
+          onClick={sendMessage}
         />
       </div>
     </div>

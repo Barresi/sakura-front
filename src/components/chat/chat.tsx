@@ -1,58 +1,39 @@
 import MessageInput from "@src/components/ui/form/message-input/message-input";
 import Message from "@src/components/message/message";
 import UserAvatar from "@src/components/ui/avatar/avatar";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import arrow from "@assets/ui/arrow.svg";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "@src/hooks/store-hooks";
+import { io } from "socket.io-client";
+import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 
-const mockMessages = [
-  {
-    my: false,
-    text: "Добрый день! Я ознакомился с ТЗ, я согласен учавствовать в вашей кампании.",
-    date: "9:30",
-  },
-  {
-    my: true,
-
-    text: "Добрый день, отлично, когда можете приступить?",
-    date: "9:35",
-  },
-  {
-    my: false,
-    text: "Добрый день! Я ознакомился с ТЗ, я согласен учавствовать в вашей кампании.",
-    date: "9:30",
-  },
-  {
-    my: true,
-
-    text: "Добрый день, отлично, когда можете приступить?",
-    date: "9:35",
-  },
-  {
-    my: false,
-    text: "Добрый день! Я ознакомился с ТЗ, я согласен учавствовать в вашей кампании.",
-    date: "9:30",
-  },
-  {
-    my: true,
-
-    text: "Добрый день, отлично, когда можете приступить?",
-    date: "9:35",
-  },
-  {
-    my: false,
-    text: "Добрый день! Я ознакомился с ТЗ, я согласен учавствовать в вашей кампании.",
-    date: "9:30",
-  },
-  {
-    my: true,
-
-    text: "Добрый день, отлично, когда можете приступить?",
-    date: "9:35",
-  },
-];
+const useSocket = () => {
+  const { id } = useAppSelector(selectUser);
+  const socket = io("http://localhost:5000", {
+    query: {
+      userId: id,
+    },
+  });
+  return socket;
+};
 
 const Chat: FC = () => {
+  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState<any[]>([]);
+  const socket = useSocket();
+  const { id } = useAppSelector(selectUser);
+  const sendChat = (e: React.FormEvent) => {
+    e.preventDefault();
+    socket.emit("chat", { id, message });
+    setMessage("");
+  };
+
+  useEffect(() => {
+    socket.on("chat", (payload) => {
+      setChat([...chat, payload]);
+    });
+  });
   return (
     <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] 3xl:rounded-r-[10px] 3xl:rounded-l-[0px]">
       <div className=" absolute left-0 right-0 top-0 h-[80px] border-b border-message-border px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-background rounded-t-[10px]">
@@ -71,12 +52,18 @@ const Chat: FC = () => {
         <UserAvatar />
       </div>
       <div className="h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none">
-        {mockMessages.map((item, ind) => (
-          <Message text={item.text} date={item.date} my={item.my} key={ind} />
+        {chat.map((item, ind) => (
+          <Message text={item.message} date={item.date} my={item.id === id} key={ind} />
         ))}
       </div>
       <div className="absolute bottom-0 right-5 left-5">
-        <MessageInput />
+        <MessageInput
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+          value={message}
+          sendMessage={sendChat}
+        />
       </div>
     </div>
   );
