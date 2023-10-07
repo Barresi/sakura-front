@@ -11,84 +11,14 @@ const mockData = [
     message: "Ты сегодня был на работе?",
 
     date: "18 авг",
-    id: "dsa2asdf",
+    chatId: "sss",
   },
   {
     name: "Андрей Филяев",
     message: "Ты сегодня был на работе?",
     badge: 2,
     date: "18 авг",
-    id: "dsadas32r2f",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-
-    date: "18 авг",
-    id: "as32r2asdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-    badge: 2,
-    date: "18 авг",
-    id: "dsadas3sdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-
-    date: "18 авг",
-    id: "dsadfdsas32r2asdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-    badge: 2,
-    date: "18 авг",
-    id: "dsadas3dsd2r2asdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-
-    date: "18 авг",
-    id: "dsfddadas32r2asdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-    badge: 2,
-    date: "18 авг",
-    id: "dsadas32r2asfdsddf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-
-    date: "18 авг",
-    id: "dssdfadas32r2asdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-    badge: 2,
-    date: "18 авг",
-    id: "dsadas32r2asfddf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-
-    date: "18 авг",
-    id: "dsadddas32r2asdf",
-  },
-  {
-    name: "Андрей Филяев",
-    message: "Ты сегодня был на работе?",
-    badge: 2,
-    date: "18 авг",
-    id: "dsadas3ff2r2asdf",
+    chatId: "ddd",
   },
 ];
 
@@ -116,7 +46,7 @@ const MessengerPage: FC = () => {
         <ul className="flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-background border-r-message-border 3xl:border-r 3xl:rounded-l-[10px] 3xl:rounded-r-[0px]">
           {mockData.map((item, ind) => (
             <NavLink
-              to={item.id}
+              to={item.chatId}
               key={ind}
               className={({ isActive }) => (isActive ? "[&>div]:bg-message-hover" : "")}
             >

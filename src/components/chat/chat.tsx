@@ -3,16 +3,20 @@ import Message from "@src/components/message/message";
 import UserAvatar from "@src/components/ui/avatar/avatar";
 import { FC, useEffect, useState } from "react";
 import arrow from "@assets/ui/arrow.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAppSelector } from "@src/hooks/store-hooks";
 import { io } from "socket.io-client";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 
 const useSocket = () => {
+  const chatId = useParams();
   const { id } = useAppSelector(selectUser);
+  const friendId = +id === 1 ? 2 : 1;
   const socket = io("http://localhost:5000", {
     query: {
       userId: id,
+      friend: friendId,
+      chatId: chatId.id,
     },
   });
   return socket;
