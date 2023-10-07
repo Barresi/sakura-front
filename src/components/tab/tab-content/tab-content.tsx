@@ -1,12 +1,14 @@
 import { ChangeEventHandler, FC, useState } from "react";
-import FriendCard from "@src/components/ui/card/friend-card/friend-card";
-import RequestCard from "@src/components/ui/card/request-card/request-card";
 import Search from "@src/components/ui/form/search/search";
 import { IFriend } from "@src/types/types";
+import FriendCard from "@src/components/cards/friend-card/friend-card";
+import RequestCard from "@src/components/cards/request-card/request-card";
+
+import photo from "@assets/photo.svg";
 
 const mockData = [
   {
-    img: "",
+    img: photo,
     imgFallback: "404 IMG",
     name: "Dieter Phillips",
   },
