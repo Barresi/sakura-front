@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEventHandler, FC, useState } from "react";
 import FriendCard from "@src/components/ui/card/friend-card/friend-card";
 import RequestCard from "@src/components/ui/card/request-card/request-card";
 import Search from "@src/components/ui/form/search/search";
@@ -57,6 +57,11 @@ const render = (type: string | undefined, data: IFriend[]) => {
 const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }> = ({
   type,
 }) => {
+  const [search, setSearch] = useState("");
+
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
+    setSearch(e.target.value);
+
   return (
     <>
       <h2 className="font-medium text-[24px] leading-[32px]">
@@ -64,10 +69,17 @@ const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }>
       </h2>
 
       <div className="mt-[20px]">
-        <Search />
+        <Search onChange={handleChange} />
       </div>
 
-      <div className="flex flex-col gap-[20px]">{render(type, mockData)}</div>
+      <div className="flex flex-col gap-[20px]">
+        {render(
+          type,
+          mockData.filter((item) =>
+            item.name.toLowerCase().includes(search.toLowerCase()),
+          ),
+        )}
+      </div>
       {mockData?.length < 1 && (
         <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
       )}
