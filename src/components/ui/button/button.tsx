@@ -13,6 +13,7 @@ import {
   exit,
   add,
   info,
+  deleteFriend,
 } from "@assets/icons/icons";
 
 import like from "@assets/ui/Like.svg";
@@ -47,6 +48,7 @@ const icons = {
   photos,
   add,
   clear,
+  deleteFriend,
 };
 
 export type Icon = keyof typeof icons;

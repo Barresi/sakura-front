@@ -13,31 +13,31 @@ const types = {
     primary: {
       text: "Написать сообщение",
       variant: "default",
-      icon: "comment",
+      icon: "edit",
     },
     secondary: {
       text: "Удалить из друзей",
       variant: "secondary",
-      icon: "clear",
+      icon: "deleteFriend",
     },
   },
   sended: {
     primary: {
       text: "Написать сообщение",
       variant: "default",
-      icon: "comment",
+      icon: "edit",
     },
     secondary: {
       text: "Отменить заявку",
       variant: "secondary",
-      icon: "clear",
+      icon: "deleteFriend",
     },
   },
   all: {
     primary: {
       text: "Написать сообщение",
       variant: "default",
-      icon: "comment",
+      icon: "edit",
     },
     secondary: {
       text: "Добавить в друзья",
@@ -54,7 +54,7 @@ const types = {
     secondary: {
       text: "Отклонить заявку",
       variant: "secondary",
-      icon: "clear",
+      icon: "deleteFriend",
     },
   },
 };
@@ -66,15 +66,11 @@ const FriendButton: FC<IFriendButtonProps> = ({ type }) => {
   if (isMobile)
     return (
       <>
-        <Button
-          icon={data.primary.icon as Icon}
-          variant="default"
-          className="w-[49%] hover:bg-background border hover:border-secondary"
-        />
+        <Button icon={data.primary.icon as Icon} variant="default" className="w-[49%]" />
         <Button
           icon={data.secondary.icon as Icon}
           variant="secondary"
-          className="w-[49%] whitespace-nowrap hover:bg-secondary-hover border-secondary"
+          className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
         />
       </>
     );
