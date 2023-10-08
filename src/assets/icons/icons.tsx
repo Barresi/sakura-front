@@ -219,7 +219,7 @@ export const deleteFriend = (
   >
     <path
       d="M4.75 20V19C4.75 16.2386 6.98858 14 9.75 14H13.5M16.75 15L19.25 17.5M19.25 17.5L21.75 20M19.25 17.5L21.75 15M19.25 17.5L16.75 20M15.75 7C15.75 9.20914 13.9591 11 11.75 11C9.54086 11 7.75 9.20914 7.75 7C7.75 4.79086 9.54086 3 11.75 3C13.9591 3 15.75 4.79086 15.75 7Z"
-      stroke="#292929"
+      stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
