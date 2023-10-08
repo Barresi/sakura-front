@@ -34,13 +34,20 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, data, type = "friends" 
   );
 
   const info = (
-    <div className={`flex justify-between ${type === "requests" && "flex-col"}`}>
+    <div
+      className={`flex justify-between ${
+        (type === "requests" || type === "sended") && "flex-col"
+      }`}
+    >
       <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">{name}</h3>
       {type === "requests" && (
-        <span className="text-[#55677D]">подал заявку в друзья</span>
+        <span className="text-[#55677D]">подал вам заявку в друзья</span>
       )}
       {type === "requests" && date && (
         <span className="text-liked-dateForeground">{date}</span>
+      )}
+      {type === "sended" && (
+        <span className="text-[#55677D]">вы отправили заявку в друзья</span>
       )}
     </div>
   );

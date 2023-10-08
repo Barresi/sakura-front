@@ -28,7 +28,7 @@ const types = {
       icon: "edit",
     },
     secondary: {
-      text: "Отменить заявку",
+      text: "Отменить",
       variant: "secondary",
       icon: "deleteFriend",
     },
@@ -47,12 +47,12 @@ const types = {
   },
   requests: {
     primary: {
-      text: "Принять в друзья",
+      text: "Принять",
       variant: "default",
       icon: "add",
     },
     secondary: {
-      text: "Отклонить заявку",
+      text: "Отклонить",
       variant: "secondary",
       icon: "deleteFriend",
     },
