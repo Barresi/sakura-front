@@ -2,6 +2,7 @@ import { cn, useWindowSize } from "@src/utils/utils";
 import { FC, ReactNode } from "react";
 import Card from "../card";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
 
 interface IData {
   img?: string;
@@ -13,18 +14,11 @@ interface IData {
 interface IFriendsCardProps {
   className?: string;
   data: IData;
-  type?: "friends" | "requests";
+  type?: Tab;
   buttons?: ReactNode;
-  buttonsMobile?: ReactNode;
 }
 
-const FriendsCard: FC<IFriendsCardProps> = ({
-  className,
-  data,
-  type = "friends",
-  buttons,
-  buttonsMobile,
-}) => {
+const FriendsCard: FC<IFriendsCardProps> = ({ className, data, type = "friends" }) => {
   const { img, imgFallback, name, date } = data;
   const isMobile = useWindowSize(1024);
 
@@ -65,7 +59,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
         </div>
         <div className="mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-          {buttonsMobile}
+          <FriendButton type={type} />
         </div>
       </Card>
     );
@@ -82,7 +76,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
 
           <div className="mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-            {buttons}
+            <FriendButton type={type} />
           </div>
         </div>
       </div>

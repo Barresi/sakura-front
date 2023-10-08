@@ -1,8 +1,6 @@
 import { ChangeEventHandler, FC, useState } from "react";
 import Search from "@src/components/ui/form/search/search";
-import { IFriend } from "@src/types/types";
-import FriendCard from "@src/components/cards/friend-card/friend-card";
-import RequestCard from "@src/components/cards/request-card/request-card";
+import FriendsCard from "@src/components/ui/card/friends-card/friends-card";
 
 import photo from "@assets/photo.svg";
 
@@ -41,21 +39,6 @@ const text = {
   sended: "Отправленные заявки",
 };
 
-const render = (type: string | undefined, data: IFriend[]) => {
-  return data?.map((friend, index) => {
-    switch (type) {
-      case "all":
-        return <FriendCard key={index} type={type} data={friend} />;
-      case "requests":
-        return <RequestCard key={index} data={friend} />;
-      case "sended":
-        return <FriendCard key={index} type={type} data={friend} />;
-      case "friends":
-        return <FriendCard key={index} type={type} data={friend} />;
-    }
-  });
-};
-
 const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }> = ({
   type,
 }) => {
@@ -75,12 +58,11 @@ const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }>
       </div>
 
       <div className="flex flex-col gap-[20px]">
-        {render(
-          type,
-          mockData.filter((item) =>
-            item.name.toLowerCase().includes(search.toLowerCase()),
-          ),
-        )}
+        {mockData
+          .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+          .map((friend, index) => (
+            <FriendsCard key={index} type={type} data={friend} />
+          ))}
       </div>
       {mockData?.length < 1 && (
         <span className="text-lg flex justify-center">Здесь пока ничего нет</span>

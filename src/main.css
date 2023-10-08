@@ -118,6 +118,13 @@
 
     /* buttons */
 
+    /* primary button bg color */
+    --primary: hsl(0, 68%, 49%);
+    /* primary button bg on hover color */
+    --primary-hover: hsl(0, 70%, 45%);
+    /* primary button text color */
+    --primary-foreground: hsl(0, 0%, 100%);
+
     --secondary: hsl(240, 11%, 14%);
     --secondary-hover: hsl(240, 15%, 16%);
     --secondary-foreground: hsl(0, 0%, 95%);
