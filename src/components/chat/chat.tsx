@@ -8,28 +8,35 @@ import { useAppSelector } from "@src/hooks/store-hooks";
 import { io } from "socket.io-client";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 
-const useSocket = () => {
-  const chatId = useParams();
+const useSocket = (chatId: string) => {
   const { id } = useAppSelector(selectUser);
-  const friendId = +id === 1 ? 2 : 1;
+  const friendId = +id === 1 ? 3 : 1;
   const socket = io("http://localhost:5000", {
     query: {
       userId: id,
-      friend: friendId,
-      chatId: chatId.id,
+      friendId: friendId,
+      chatId: chatId,
     },
   });
   return socket;
 };
 
 const Chat: FC = () => {
+  const chatId = useParams();
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState<any[]>([]);
-  const socket = useSocket();
+  const socket = useSocket(chatId.id as string);
   const { id } = useAppSelector(selectUser);
+
+  /*useEffect(() => {
+    socket.on("chatRoomCreated", (createdChatId: string) => {
+      setChatId(createdChatId);
+    });
+  }, [socket]);*/
+
   const sendChat = (e: React.FormEvent) => {
     e.preventDefault();
-    socket.emit("chat", { id, message });
+    socket.emit("chat", { id, message, chatId: chatId.id, socketId: socket.id });
     setMessage("");
   };
 
@@ -37,7 +44,8 @@ const Chat: FC = () => {
     socket.on("chat", (payload) => {
       setChat([...chat, payload]);
     });
-  });
+  }, [socket, chat]);
+
   return (
     <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] 3xl:rounded-r-[10px] 3xl:rounded-l-[0px]">
       <div className=" absolute left-0 right-0 top-0 h-[80px] border-b border-message-border px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-background rounded-t-[10px]">

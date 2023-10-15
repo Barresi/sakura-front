@@ -1,3 +1,4 @@
+import { setCookie } from "@src/utils/cookie";
 import axios, { AxiosError } from "axios";
 
 export const URL = "http://localhost:5000/api/v1";
@@ -17,5 +18,29 @@ export const errorHandler = (err: AxiosError) => {
   } else {
     // Произошло что-то при настройке запроса, вызвавшее ошибку
     throw new Error("Что-то пошло не так, попробуйте перезагрузить страницу");
+  }
+};
+
+export const refreshRequest = async () => {
+  const res = await axios
+    .post("auth/token", { refreshToken: localStorage.getItem("refreshToken") })
+    .catch(errorHandler);
+  setCookie("accessToken", res.data.accessToken);
+  localStorage.setItem("refreshToken", res.data.refreshToken);
+};
+
+export const fetchWithRefresh = async (func: () => void) => {
+  try {
+    return await func();
+  } catch (err) {
+    if (
+      (err as Error).message ===
+      "Access token устарел. Пожалуйста, обновите токен или авторизуйтесь заново"
+    ) {
+      await refreshRequest();
+      return await func();
+    } else {
+      throw err;
+    }
   }
 };
