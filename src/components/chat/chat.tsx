@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAppSelector } from "@src/hooks/store-hooks";
 import { io } from "socket.io-client";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
+import { getHistoryChat } from "@src/api/messenger";
 
 const useSocket = (chatId: string) => {
   const { id } = useAppSelector(selectUser);
@@ -45,6 +46,11 @@ const Chat: FC = () => {
       setChat([...chat, payload]);
     });
   }, [socket, chat]);
+
+  useEffect(() => {
+    setChat([]);
+    getHistoryChat(chatId.id as string).then((messages) => setChat(messages as any));
+  }, [chatId]);
 
   return (
     <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] 3xl:rounded-r-[10px] 3xl:rounded-l-[0px]">

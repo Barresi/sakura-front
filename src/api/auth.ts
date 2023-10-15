@@ -17,7 +17,7 @@ export const logoutRequest = async () => {
     .catch(errorHandler);
   return res.data;
 };
-export const protectedInfoRequest = async () => {
+const protectedInfoRequest = async () => {
   const res = await axios
     .get("auth/protected", {
       headers: { Authorization: `Bearer ${getCookie("accessToken")}` },
