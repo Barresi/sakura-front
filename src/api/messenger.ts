@@ -4,7 +4,7 @@ import { getCookie } from "@src/utils/cookie";
 
 const historyChatRequest = async (chatId: string) => {
   const res = await axios
-    .get("/auth/chat", {
+    .get("/messenger/chat", {
       headers: { Authorization: `Bearer ${getCookie("accessToken")}` },
       params: {
         chatId,

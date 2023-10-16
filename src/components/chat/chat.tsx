@@ -11,7 +11,7 @@ import { getHistoryChat } from "@src/api/messenger";
 
 const useSocket = (chatId: string) => {
   const { id } = useAppSelector(selectUser);
-  const friendId = +id === 1 ? 3 : 1;
+  const friendId = id === "1" ? "2" : "1";
   const socket = io("http://localhost:5000", {
     query: {
       userId: id,
@@ -24,7 +24,6 @@ const useSocket = (chatId: string) => {
 
 const Chat: FC = () => {
   const chatId = useParams();
-  const [message, setMessage] = useState("");
   const [chat, setChat] = useState<any[]>([]);
   const socket = useSocket(chatId.id as string);
   const { id } = useAppSelector(selectUser);
@@ -35,22 +34,20 @@ const Chat: FC = () => {
     });
   }, [socket]);*/
 
-  const sendChat = (e: React.FormEvent) => {
-    e.preventDefault();
-    socket.emit("chat", { id, message, chatId: chatId.id, socketId: socket.id });
-    setMessage("");
+  const sendChat = (message: string) => {
+    socket.emit("chatMessages", { id, message, chatId: chatId.id, socketId: socket.id });
   };
 
   useEffect(() => {
-    socket.on("chat", (payload) => {
+    socket.on("chatMessages", (payload) => {
       setChat([...chat, payload]);
     });
-  }, [socket, chat]);
+  }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     setChat([]);
     getHistoryChat(chatId.id as string).then((messages) => setChat(messages as any));
-  }, [chatId]);
+  }, [chatId]);*/
 
   return (
     <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] 3xl:rounded-r-[10px] 3xl:rounded-l-[0px]">
@@ -75,13 +72,7 @@ const Chat: FC = () => {
         ))}
       </div>
       <div className="absolute bottom-0 right-5 left-5">
-        <MessageInput
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-          value={message}
-          sendMessage={sendChat}
-        />
+        <MessageInput sendMessage={sendChat} />
       </div>
     </div>
   );
