@@ -11,7 +11,8 @@ import { IMessage } from "@src/types/messenger";
 
 const JOIN_CHAT_EVENT = "joinChat";
 const LEAVE_CHAT_EVENT = "leaveChat";
-const CHAT_MESSAGES_EVENT = "chatMessages";
+const SEND_MESSAGE_EVENT = "sendMessage";
+const GET_MESSAGES_EVENT = "getMessages";
 
 const Chat: FC = () => {
   const chatId = useParams();
@@ -21,7 +22,7 @@ const Chat: FC = () => {
 
   const sendMessage = (message: string) => {
     if (!socket) return;
-    socket.emit(CHAT_MESSAGES_EVENT, {
+    socket.emit(SEND_MESSAGE_EVENT, {
       id,
       message,
       chatId: chatId.id,
@@ -41,9 +42,9 @@ const Chat: FC = () => {
 
   useEffect(() => {
     if (!socket) return;
-    socket.on(CHAT_MESSAGES_EVENT, getMessage);
+    socket.on(GET_MESSAGES_EVENT, getMessage);
     return () => {
-      socket.off(CHAT_MESSAGES_EVENT, getMessage);
+      socket.off(GET_MESSAGES_EVENT, getMessage);
     };
   }, [socket]);
 
