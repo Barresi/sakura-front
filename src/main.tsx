@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "@store/store";
 import App from "@components/app/app";
-import { ThemeProvider } from "./components/theme-provider/theme-provider";
+import { ThemeProvider } from "./context/theme-provider";
 import { SocketProvider } from "./context/socket-context";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
