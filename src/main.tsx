@@ -7,15 +7,18 @@ import { Provider } from "react-redux";
 import { store } from "@store/store";
 import App from "@components/app/app";
 import { ThemeProvider } from "./components/theme-provider/theme-provider";
+import { SocketProvider } from "./context/socket-context";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-storage">
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <SocketProvider>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-storage">
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </SocketProvider>
+    </Provider>
   </React.StrictMode>,
 );

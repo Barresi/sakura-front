@@ -5,49 +5,47 @@ import { FC, useEffect, useState } from "react";
 import arrow from "@assets/ui/arrow.svg";
 import { Link, useParams } from "react-router-dom";
 import { useAppSelector } from "@src/hooks/store-hooks";
-import { io } from "socket.io-client";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
-import { getHistoryChat } from "@src/api/messenger";
+import { useSocket } from "@src/context/socket-context";
+import { IMessage } from "@src/types/messenger";
 
-const useSocket = (chatId: string) => {
-  const { id } = useAppSelector(selectUser);
-  const friendId = id === "1" ? "2" : "1";
-  const socket = io("http://localhost:5000", {
-    query: {
-      userId: id,
-      friendId: friendId,
-      chatId: chatId,
-    },
-  });
-  return socket;
-};
+const JOIN_CHAT_EVENT = "joinChat";
+const LEAVE_CHAT_EVENT = "leaveChat";
+const CHAT_MESSAGES_EVENT = "chatMessages";
 
 const Chat: FC = () => {
   const chatId = useParams();
-  const [chat, setChat] = useState<any[]>([]);
-  const socket = useSocket(chatId.id as string);
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const { id } = useAppSelector(selectUser);
+  const { socket } = useSocket();
 
-  /*useEffect(() => {
-    socket.on("chatRoomCreated", (createdChatId: string) => {
-      setChatId(createdChatId);
+  const sendMessage = (message: string) => {
+    if (!socket) return;
+    socket.emit(CHAT_MESSAGES_EVENT, {
+      id,
+      message,
+      chatId: chatId.id,
+      socketId: socket.id,
     });
-  }, [socket]);*/
-
-  const sendChat = (message: string) => {
-    socket.emit("chatMessages", { id, message, chatId: chatId.id, socketId: socket.id });
+  };
+  const getMessage = (messages: IMessage[]) => {
+    setMessages(messages);
   };
 
   useEffect(() => {
-    socket.on("chatMessages", (payload) => {
-      setChat([...chat, payload]);
-    });
-  }, []);
+    socket?.emit(JOIN_CHAT_EVENT, chatId.id);
+    return () => {
+      socket?.emit(LEAVE_CHAT_EVENT, chatId.id);
+    };
+  }, [chatId, socket]);
 
-  /*useEffect(() => {
-    setChat([]);
-    getHistoryChat(chatId.id as string).then((messages) => setChat(messages as any));
-  }, [chatId]);*/
+  useEffect(() => {
+    if (!socket) return;
+    socket.on(CHAT_MESSAGES_EVENT, getMessage);
+    return () => {
+      socket.off(CHAT_MESSAGES_EVENT, getMessage);
+    };
+  }, [socket]);
 
   return (
     <div className="flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] 3xl:rounded-r-[10px] 3xl:rounded-l-[0px]">
@@ -67,12 +65,12 @@ const Chat: FC = () => {
         <UserAvatar />
       </div>
       <div className="h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none">
-        {chat.map((item, ind) => (
-          <Message text={item.message} date={item.date} my={item.id === id} key={ind} />
+        {messages.map((item, ind) => (
+          <Message text={item.text} date={item.date} my={item.userId === id} key={ind} />
         ))}
       </div>
       <div className="absolute bottom-0 right-5 left-5">
-        <MessageInput sendMessage={sendChat} />
+        <MessageInput sendMessage={sendMessage} />
       </div>
     </div>
   );
