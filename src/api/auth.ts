@@ -21,12 +21,13 @@ export const refreshRequest = async () => {
   const res = await axios
     .post("auth/token", { refreshToken: localStorage.getItem("refreshToken") })
     .catch(errorHandler);
+  // deleteCookie('')
   setCookie("accessToken", res.data.accessToken);
   localStorage.setItem("refreshToken", res.data.refreshToken);
 };
 export const protectedInfoRequest = async () => {
   const res = await axios
-    .get("auth/protected", {
+    .get("auth/me", {
       headers: { Authorization: `Bearer ${getCookie("accessToken")}` },
     })
     .catch(errorHandler);

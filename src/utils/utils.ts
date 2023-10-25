@@ -21,3 +21,11 @@ export function useWindowSize(maxWidth: string | number) {
 
   return width < Number(maxWidth);
 }
+
+export const filterFriendsData = (item: any, search: string) => {
+  return (
+    item?.username?.toLowerCase().includes(search.toLowerCase()) ||
+    item?.firstName?.toLowerCase().includes(search.toLowerCase()) ||
+    item?.lastName?.toLowerCase().includes(search.toLowerCase())
+  );
+};

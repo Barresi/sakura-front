@@ -1,20 +1,26 @@
-// User
 export interface IUser {
   id: string;
   username: string | null;
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
-  role: "USER";
-  createdAt: string;
   friends: any[];
-  friendOf: IFriendOf[];
-  outgoingRequests: IFriendOf[];
+  friended: any[];
+  received: any[];
 }
 
-export interface IFriendOf {
+export interface ISendRequestResponse {
   id: number;
-  email: string;
+  fromId: number;
+  toId: number;
+  status: SendRequestStatus;
+  createdAt: string;
+}
+
+export enum SendRequestStatus {
+  pending = "PENDING",
+  accepted = "ACCEPTED",
+  rejected = "REJECTED",
 }
 
 export enum AuthStatus {

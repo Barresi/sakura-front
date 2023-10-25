@@ -1,26 +1,38 @@
-import { cn, useWindowSize } from "@src/utils/utils";
 import { FC, ReactNode } from "react";
-import Card from "../card";
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
-
-interface IData {
-  img?: string;
-  imgFallback?: string;
-  name: string;
-  date?: string;
-}
+import { cn, useWindowSize } from "@src/utils/utils";
+import Card from "../card";
+import { useAppSelector } from "@src/hooks/store-hooks";
+import { selectUsers } from "@src/store/reducers/users/selectors";
 
 interface IFriendsCardProps {
   className?: string;
-  data: IData;
+  data: any;
   type?: Tab;
   buttons?: ReactNode;
 }
 
-const FriendsCard: FC<IFriendsCardProps> = ({ className, data, type = "friends" }) => {
-  const { img, imgFallback, name, date } = data;
+const FriendsCard: FC<IFriendsCardProps> = ({
+  className,
+  data: { id },
+  type = "friends",
+}) => {
   const isMobile = useWindowSize(1024);
+
+  const user = useAppSelector(selectUsers).filter((user) => user.id === id)[0];
+  const { firstName, lastName } = user;
+
+  // mock
+  const img = "";
+  const imgFallback = "";
+  const date = "";
+
+  // handlersfor buttons
+  const sendRequest = () => {};
+  const cancelRequest = () => {};
+  const acceptRequest = () => {};
+  const rejectRequest = () => {};
 
   const avatar = (
     <Avatar
@@ -34,12 +46,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, data, type = "friends" 
   );
 
   const info = (
-    <div
-      className={`flex justify-between ${
-        (type === "requests" || type === "sended") && "flex-col"
-      }`}
-    >
-      <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">{name}</h3>
+    <div className={`flex justify-between ${type === "requests" && "flex-col"}`}>
+      <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
+        {firstName} {lastName}
+      </h3>
       {type === "requests" && (
         <span className="text-[#55677D]">подал вам заявку в друзья</span>
       )}

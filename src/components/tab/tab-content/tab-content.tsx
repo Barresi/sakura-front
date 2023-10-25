@@ -1,36 +1,14 @@
-import { ChangeEventHandler, FC, useState } from "react";
+import { ChangeEventHandler, FC, useEffect, useState } from "react";
 import Search from "@src/components/ui/form/search/search";
 import FriendsCard from "@src/components/ui/card/friends-card/friends-card";
-
-import photo from "@assets/photo.svg";
-
-const mockData = [
-  {
-    img: photo,
-    imgFallback: "404 IMG",
-    name: "Dieter Phillips",
-  },
-  {
-    img: "",
-    imgFallback: "404 IMG",
-    name: "Sebastian Sellers",
-  },
-  {
-    img: "",
-    imgFallback: "404 IMG",
-    name: "Tamekah Oliver",
-  },
-  {
-    img: "",
-    imgFallback: "404 IMG",
-    name: "Jesse Hancock",
-  },
-  {
-    img: "",
-    imgFallback: "404 IMG",
-    name: "Keegan Colon",
-  },
-];
+import { useAppSelector } from "@src/hooks/store-hooks";
+import { selectUsers } from "@src/store/reducers/users/selectors";
+import {
+  selectProfileInfoFriends,
+  selectProfileInfoReceived,
+  selectProfileInfoSended,
+} from "@src/store/reducers/profileInfo/selectors";
+import { filterFriendsData } from "@src/utils/utils";
 
 const text = {
   friends: "Мои друзья",
@@ -39,10 +17,37 @@ const text = {
   sended: "Отправленные заявки",
 };
 
-const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }> = ({
-  type,
-}) => {
+interface IFriendsTabContentProps {
+  type: "all" | "requests" | "sended" | "friends";
+}
+
+const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   const [search, setSearch] = useState("");
+  const [data, setData] = useState<any[]>([]);
+  const users = useAppSelector(selectUsers);
+  const friends = useAppSelector(selectProfileInfoFriends);
+  const received = useAppSelector(selectProfileInfoReceived);
+  const sended = useAppSelector(selectProfileInfoSended);
+
+  useEffect(() => {
+    switch (type) {
+      case "all":
+        setData(users);
+        break;
+
+      case "friends":
+        setData(friends);
+        break;
+
+      case "requests":
+        setData(received);
+        break;
+
+      case "sended":
+        setData(sended);
+        break;
+    }
+  }, [type]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setSearch(e.target.value);
@@ -58,15 +63,13 @@ const FriendsTabContent: FC<{ type: "all" | "requests" | "sended" | "friends" }>
       </div>
 
       <div className="flex flex-col gap-[20px]">
-        {mockData
-          .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
-          .map((friend, index) => (
-            <FriendsCard key={index} type={type} data={friend} />
-          ))}
+        {data
+          // ?.filter((item) => filterFriendsData(item, search))
+          ?.map((friend, index) => <FriendsCard key={index} type={type} data={friend} />)}
       </div>
-      {mockData?.length < 1 && (
+      {!data || data?.length < 1 ? (
         <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
-      )}
+      ) : null}
     </>
   );
 };

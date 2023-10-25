@@ -9,3 +9,9 @@ export const selectProfileInfoIsLoading: (store: RootState) => boolean = (store)
   store.profileInfo.isLoading;
 export const selectProfileInfoError: (store: RootState) => string = (store) =>
   store.profileInfo.error;
+export const selectProfileInfoFriends: (store: RootState) => any[] = (state) =>
+  state.profileInfo.user.friends;
+export const selectProfileInfoReceived: (store: RootState) => any[] = (state) =>
+  state.profileInfo.user.received;
+export const selectProfileInfoSended: (store: RootState) => any[] = (state) =>
+  state.profileInfo.user.friended;
