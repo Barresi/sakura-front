@@ -6,6 +6,12 @@ export type Tab = "friends" | "sended" | "all" | "requests";
 
 interface IFriendButtonProps {
   type?: Tab;
+  clickHandlers: {
+    friends: any[];
+    all: any[];
+    requests: any[];
+    sended: any[];
+  };
 }
 
 const types = {
@@ -59,16 +65,23 @@ const types = {
   },
 };
 
-const FriendButton: FC<IFriendButtonProps> = ({ type }) => {
+const FriendButton: FC<IFriendButtonProps> = ({ type, clickHandlers }) => {
   const isMobile = useWindowSize(1024);
   const data = types[type as keyof typeof types];
 
   if (isMobile)
     return (
       <>
-        <Button icon={data.primary.icon as Icon} variant="default" className="w-[49%]" />
+        <Button
+          // onClick={}
+          icon={data.primary.icon as Icon}
+          onClick={clickHandlers[type as keyof typeof clickHandlers][0]}
+          variant="default"
+          className="w-[49%]"
+        />
         <Button
           icon={data.secondary.icon as Icon}
+          onClick={clickHandlers[type as keyof typeof clickHandlers][1]}
           variant="secondary"
           className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
         />
@@ -77,12 +90,17 @@ const FriendButton: FC<IFriendButtonProps> = ({ type }) => {
 
   return (
     <>
-      <Button variant="default" className="w-[49%]">
+      <Button
+        variant="default"
+        className="w-[49%]"
+        onClick={clickHandlers[type as keyof typeof clickHandlers][0]}
+      >
         {data.primary.text}
       </Button>
       <Button
         variant="secondary"
         className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
+        onClick={clickHandlers[type as keyof typeof clickHandlers][1]}
       >
         {data.secondary.text}
       </Button>

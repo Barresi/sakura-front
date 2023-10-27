@@ -1,38 +1,70 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
 import { cn, useWindowSize } from "@src/utils/utils";
 import Card from "../card";
 import { useAppSelector } from "@src/hooks/store-hooks";
 import { selectUsers } from "@src/store/reducers/users/selectors";
+import { selectUser } from "@src/store/reducers/profileInfo/selectors";
+import { addFriend } from "@src/api/users";
+import { acceptRequest, cancelRequest } from "@src/api/requests";
+import { rejectRequest } from "@src/api/requests";
+import { deleteFriend } from "@src/api/friends";
 
 interface IFriendsCardProps {
   className?: string;
-  data: any;
+  id: number;
   type?: Tab;
-  buttons?: ReactNode;
+  isMine?: boolean;
 }
 
 const FriendsCard: FC<IFriendsCardProps> = ({
   className,
-  data: { id },
+  id,
   type = "friends",
+  isMine,
 }) => {
   const isMobile = useWindowSize(1024);
 
-  const user = useAppSelector(selectUsers).filter((user) => user.id === id)[0];
-  const { firstName, lastName } = user;
+  const { id: currentId, friended, received } = useAppSelector(selectUser);
+  const user = useAppSelector(selectUsers).filter((user) => Number(user.id) === id)[0];
+  const { firstName, lastName } = user || {};
 
   // mock
   const img = "";
   const imgFallback = "";
   const date = "";
 
-  // handlersfor buttons
-  const sendRequest = () => {};
-  const cancelRequest = () => {};
-  const acceptRequest = () => {};
-  const rejectRequest = () => {};
+  // handlers for buttons
+  const addFriendHandler = async () => {
+    await addFriend(id);
+  };
+  const deleteFriendHandler = async () => {
+    await deleteFriend(id);
+  };
+
+  const acceptRequestHandler = async () => {
+    console.log(
+      received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id,
+    );
+
+    await acceptRequest(
+      received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id,
+    );
+  };
+  const rejectRequestHandler = async () => {
+    // console.log(id, currentId);
+    // console.log(received.filter((item) => item.fromId === id && item.toId === currentId));
+
+    await rejectRequest(
+      received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id,
+    );
+  };
+  const cancelRequestHandler = async () => {
+    await cancelRequest(
+      friended.filter((item) => item.fromId === currentId && item.toId === id)[0]?.id,
+    );
+  };
 
   const avatar = (
     <Avatar
@@ -46,9 +78,9 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   );
 
   const info = (
-    <div className={`flex justify-between ${type === "requests" && "flex-col"}`}>
+    <div className={`flex flex-col justify-between ${type === "requests" && "flex-col"}`}>
       <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
-        {firstName} {lastName}
+        {firstName} {lastName} {isMine ? "(Вы)" : null}
       </h3>
       {type === "requests" && (
         <span className="text-[#55677D]">подал вам заявку в друзья</span>
@@ -76,7 +108,17 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
         </div>
         <div className="mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-          <FriendButton type={type} />
+          {isMine || (
+            <FriendButton
+              type={type}
+              clickHandlers={{
+                friends: [() => {}, deleteFriendHandler],
+                all: [() => {}, addFriendHandler],
+                requests: [acceptRequestHandler, rejectRequestHandler],
+                sended: [() => {}, cancelRequestHandler],
+              }}
+            />
+          )}
         </div>
       </Card>
     );
@@ -93,7 +135,17 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
 
           <div className="mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-            <FriendButton type={type} />
+            {isMine || (
+              <FriendButton
+                type={type}
+                clickHandlers={{
+                  friends: [() => {}, deleteFriendHandler],
+                  all: [() => {}, addFriendHandler],
+                  requests: [acceptRequestHandler, rejectRequestHandler],
+                  sended: [() => {}, cancelRequestHandler],
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

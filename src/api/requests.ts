@@ -25,18 +25,28 @@ export const getSended = async () => {
 export const acceptRequest = async (id: number) => {
   const access = getCookie("accessToken");
 
+  console.log("DONE! TOKEN => ", access);
+
   const res = await axios
-    .post(`/requests/${id}/accept`, { headers: { Authorization: `Bearer ${access}` } })
+    .post(
+      `/friend-requests/${id}/accept`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${access}` },
+      },
+    )
     .catch(errorHandler);
 
   return res.data;
 };
 
-export const rejectFriend = async (id: number) => {
+export const rejectRequest = async (id: number) => {
   const access = getCookie("accessToken");
 
   const res = await axios
-    .delete(`/requests/${id}/reject`, { headers: { Authorization: `Bearer ${access}` } })
+    .delete(`/friend-requests/${id}/reject`, {
+      headers: { Authorization: `Bearer ${access}` },
+    })
     .catch(errorHandler);
 
   return res.data;
@@ -46,7 +56,9 @@ export const cancelRequest = async (id: number) => {
   const access = getCookie("accessToken");
 
   const res = await axios
-    .delete(`/requests/${id}/cancel`, { headers: { Authorization: `Bearer ${access}` } })
+    .delete(`/friend-requests/${id}/cancel`, {
+      headers: { Authorization: `Bearer ${access}` },
+    })
     .catch(errorHandler);
 
   return res.data;

@@ -16,7 +16,7 @@ export const addFriend = async (id: number) => {
   const access = getCookie("accessToken");
 
   const res = await axios
-    .post(`/users/${id}`, { headers: { Authorization: `Bearer ${access}` } })
+    .post(`/users/${id}`, {}, { headers: { Authorization: `Bearer ${access}` } })
     .catch(errorHandler);
 
   return res.data;

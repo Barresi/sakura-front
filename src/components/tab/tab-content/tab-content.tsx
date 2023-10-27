@@ -7,6 +7,7 @@ import {
   selectProfileInfoFriends,
   selectProfileInfoReceived,
   selectProfileInfoSended,
+  selectUser,
 } from "@src/store/reducers/profileInfo/selectors";
 import { filterFriendsData } from "@src/utils/utils";
 
@@ -25,6 +26,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState<any[]>([]);
   const users = useAppSelector(selectUsers);
+  const { id } = useAppSelector(selectUser);
   const friends = useAppSelector(selectProfileInfoFriends);
   const received = useAppSelector(selectProfileInfoReceived);
   const sended = useAppSelector(selectProfileInfoSended);
@@ -47,7 +49,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
         setData(sended);
         break;
     }
-  }, [type]);
+  }, [type, users, friends, received, sended]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setSearch(e.target.value);
@@ -65,7 +67,16 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
       <div className="flex flex-col gap-[20px]">
         {data
           // ?.filter((item) => filterFriendsData(item, search))
-          ?.map((friend, index) => <FriendsCard key={index} type={type} data={friend} />)}
+          ?.map((friend, index) => {
+            let dataId = friend.toId;
+
+            if (type == "all") dataId = friend.id;
+            if (type == "requests") dataId = friend.fromId;
+
+            return (
+              <FriendsCard key={index} type={type} id={dataId} isMine={dataId == id} />
+            );
+          })}
       </div>
       {!data || data?.length < 1 ? (
         <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
