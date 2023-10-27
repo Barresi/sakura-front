@@ -13,6 +13,7 @@ import {
   IRegistrationResponse,
 } from "@src/types/api";
 import { ILoginForm, IRegistrationForm } from "@src/types/forms";
+import { IFriendsRequestResponse, IUser } from "@src/types/types";
 
 export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
   "profileInfo/login",
@@ -74,7 +75,7 @@ export const protectedInfoThunk = createAsyncThunk<IProtectedInfoResponse>(
   },
 );
 
-export const getFriendsThunk = createAsyncThunk<any[]>(
+export const getFriendsThunk = createAsyncThunk<IUser[]>(
   "profileInfo/getFriends",
   async (_, { rejectWithValue }) => {
     try {
@@ -89,7 +90,7 @@ export const getFriendsThunk = createAsyncThunk<any[]>(
   },
 );
 
-export const getReceivedThunk = createAsyncThunk<any[]>(
+export const getReceivedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   "profileInfo/getReceived",
   async (_, { rejectWithValue }) => {
     try {
@@ -104,7 +105,7 @@ export const getReceivedThunk = createAsyncThunk<any[]>(
   },
 );
 
-export const getSendedThunk = createAsyncThunk<any[]>(
+export const getSendedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   "profileInfo/getSended",
   async (_, { rejectWithValue }) => {
     try {

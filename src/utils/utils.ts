@@ -1,3 +1,4 @@
+import { IUser } from "@src/types/types";
 import { type ClassValue, clsx } from "clsx";
 import { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
@@ -22,7 +23,7 @@ export function useWindowSize(maxWidth: string | number) {
   return width < Number(maxWidth);
 }
 
-export const filterFriendsData = (item: any, search: string) => {
+export const filterFriendsData = (item: IUser, search: string) => {
   return (
     item?.username?.toLowerCase().includes(search.toLowerCase()) ||
     item?.firstName?.toLowerCase().includes(search.toLowerCase()) ||

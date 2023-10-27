@@ -4,20 +4,20 @@ export interface IUser {
   firstName?: string;
   lastName?: string;
   email: string;
-  friends: any[];
-  friended: any[];
-  received: any[];
+  friends: IFriendsRequestResponse[];
+  friended: IFriendsRequestResponse[];
+  received: IFriendsRequestResponse[];
 }
 
-export interface ISendRequestResponse {
+export interface IFriendsRequestResponse {
   id: number;
   fromId: number;
   toId: number;
-  status: SendRequestStatus;
+  status: FriendsRequestStatus;
   createdAt: string;
 }
 
-export enum SendRequestStatus {
+export enum FriendsRequestStatus {
   pending = "PENDING",
   accepted = "ACCEPTED",
   rejected = "REJECTED",

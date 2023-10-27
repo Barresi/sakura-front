@@ -7,10 +7,10 @@ export type Tab = "friends" | "sended" | "all" | "requests";
 interface IFriendButtonProps {
   type?: Tab;
   clickHandlers: {
-    friends: any[];
-    all: any[];
-    requests: any[];
-    sended: any[];
+    friends: (() => Promise<void> | void)[];
+    all: (() => Promise<void> | void)[];
+    requests: (() => Promise<void> | void)[];
+    sended: (() => Promise<void> | void)[];
   };
 }
 

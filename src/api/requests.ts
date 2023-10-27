@@ -25,8 +25,6 @@ export const getSended = async () => {
 export const acceptRequest = async (id: number) => {
   const access = getCookie("accessToken");
 
-  console.log("DONE! TOKEN => ", access);
-
   const res = await axios
     .post(
       `/friend-requests/${id}/accept`,

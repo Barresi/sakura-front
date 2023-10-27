@@ -11,6 +11,7 @@ import {
   selectUser,
 } from "@src/store/reducers/profileInfo/selectors";
 import { filterFriendsData } from "@src/utils/utils";
+import { IFriendsRequestResponse, IUser } from "@src/types/types";
 
 const text = {
   friends: "Мои друзья",
@@ -24,14 +25,15 @@ interface IFriendsTabContentProps {
 }
 
 const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
+  // TODO: fix searching
   const [search, setSearch] = useState("");
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<IUser[] | IFriendsRequestResponse[]>([]);
   const users = useAppSelector(selectUsers);
   const { id } = useAppSelector(selectUser);
-  const isLoading = useAppSelector(selectProfileInfoIsLoading);
   const friends = useAppSelector(selectProfileInfoFriends);
   const received = useAppSelector(selectProfileInfoReceived);
   const sended = useAppSelector(selectProfileInfoSended);
+  const isLoading = useAppSelector(selectProfileInfoIsLoading);
 
   useEffect(() => {
     switch (type) {
@@ -76,17 +78,18 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
             {data
               // ?.filter((item) => filterFriendsData(item, search))
               ?.map((friend, index) => {
-                let dataId = friend.toId;
+                let dataId = (friend as IFriendsRequestResponse).toId;
 
-                if (type == "all") dataId = friend.id;
-                if (type == "requests") dataId = friend.fromId;
+                if (type == "all") dataId = Number((friend as IUser).id);
+                if (type == "requests")
+                  dataId = (friend as IFriendsRequestResponse).fromId;
 
                 return (
                   <FriendsCard
                     key={index}
                     type={type}
                     id={dataId}
-                    isMine={dataId == id}
+                    isMine={dataId == Number(id)}
                   />
                 );
               })}

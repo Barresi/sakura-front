@@ -28,7 +28,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
 
   const { id: currentId, friended, received } = useAppSelector(selectUser);
   const user = useAppSelector(selectUsers).filter((user) => Number(user.id) === id)[0];
-  const { firstName, lastName } = user || {};
+  const { firstName, lastName } = user || { firstName: "Unknown", lastName: "User" };
 
   // mock
   const img = "";
@@ -44,25 +44,21 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   };
 
   const acceptRequestHandler = async () => {
-    console.log(
-      received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id,
-    );
-
     await acceptRequest(
-      received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id,
+      received.filter((item) => item.fromId === id && item.toId === Number(currentId))[0]
+        ?.id,
     );
   };
   const rejectRequestHandler = async () => {
-    // console.log(id, currentId);
-    // console.log(received.filter((item) => item.fromId === id && item.toId === currentId));
-
     await rejectRequest(
-      received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id,
+      received.filter((item) => item.fromId === id && item.toId === Number(currentId))[0]
+        ?.id,
     );
   };
   const cancelRequestHandler = async () => {
     await cancelRequest(
-      friended.filter((item) => item.fromId === currentId && item.toId === id)[0]?.id,
+      friended.filter((item) => item.fromId === Number(currentId) && item.toId === id)[0]
+        ?.id,
     );
   };
 
