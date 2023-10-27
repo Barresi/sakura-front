@@ -5,6 +5,7 @@ import { useAppSelector } from "@src/hooks/store-hooks";
 import { selectUsers } from "@src/store/reducers/users/selectors";
 import {
   selectProfileInfoFriends,
+  selectProfileInfoIsLoading,
   selectProfileInfoReceived,
   selectProfileInfoSended,
   selectUser,
@@ -27,6 +28,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   const [data, setData] = useState<any[]>([]);
   const users = useAppSelector(selectUsers);
   const { id } = useAppSelector(selectUser);
+  const isLoading = useAppSelector(selectProfileInfoIsLoading);
   const friends = useAppSelector(selectProfileInfoFriends);
   const received = useAppSelector(selectProfileInfoReceived);
   const sended = useAppSelector(selectProfileInfoSended);
@@ -64,23 +66,36 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
         <Search onChange={handleChange} />
       </div>
 
-      <div className="flex flex-col gap-[20px]">
-        {data
-          // ?.filter((item) => filterFriendsData(item, search))
-          ?.map((friend, index) => {
-            let dataId = friend.toId;
+      {isLoading ? (
+        <div style={{ textAlign: "center" }}>
+          <h2>Loading...</h2>
+        </div>
+      ) : (
+        <>
+          <div className="flex flex-col gap-[20px]">
+            {data
+              // ?.filter((item) => filterFriendsData(item, search))
+              ?.map((friend, index) => {
+                let dataId = friend.toId;
 
-            if (type == "all") dataId = friend.id;
-            if (type == "requests") dataId = friend.fromId;
+                if (type == "all") dataId = friend.id;
+                if (type == "requests") dataId = friend.fromId;
 
-            return (
-              <FriendsCard key={index} type={type} id={dataId} isMine={dataId == id} />
-            );
-          })}
-      </div>
-      {!data || data?.length < 1 ? (
-        <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
-      ) : null}
+                return (
+                  <FriendsCard
+                    key={index}
+                    type={type}
+                    id={dataId}
+                    isMine={dataId == id}
+                  />
+                );
+              })}
+          </div>
+          {data?.length < 1 ? (
+            <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
+          ) : null}
+        </>
+      )}
     </>
   );
 };
