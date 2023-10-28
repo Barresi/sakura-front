@@ -81,7 +81,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
                 let dataId = (friend as IFriendsRequestResponse).toId;
 
                 if (type == "all") dataId = Number((friend as IUser).id);
-                if (type == "requests")
+                if (type == "requests" || type == "friends")
                   dataId = (friend as IFriendsRequestResponse).fromId;
 
                 return (
