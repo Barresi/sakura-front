@@ -4,12 +4,16 @@ import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
 import { cn, useWindowSize } from "@src/utils/utils";
 import Card from "../card";
 import { useAppSelector } from "@src/hooks/store-hooks";
-import { selectUsers } from "@src/store/reducers/users/selectors";
-import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 import { addFriend } from "@src/api/users";
 import { acceptRequest, cancelRequest } from "@src/api/requests";
 import { rejectRequest } from "@src/api/requests";
 import { deleteFriend } from "@src/api/friends";
+import { selectUser } from "@src/store/reducers/profileInfo/selectors";
+import {
+  selectAllUsers,
+  selectReceived,
+  selectSended,
+} from "@src/store/reducers/friends/selectors";
 
 interface IFriendsCardProps {
   className?: string;
@@ -26,8 +30,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({
 }) => {
   const isMobile = useWindowSize(1024);
 
-  const { id: currentId, friended, received } = useAppSelector(selectUser);
-  const user = useAppSelector(selectUsers).filter((user) => Number(user.id) === id)[0];
+  const { id: currentId } = useAppSelector(selectUser);
+  const sended = useAppSelector(selectSended);
+  const received = useAppSelector(selectReceived);
+  const user = useAppSelector(selectAllUsers).filter((user) => Number(user.id) === id)[0];
   const { firstName, lastName } = user || { firstName: "Unknown", lastName: "User" };
 
   // mock
@@ -57,7 +63,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   };
   const cancelRequestHandler = async () => {
     await cancelRequest(
-      friended.filter((item) => item.fromId === Number(currentId) && item.toId === id)[0]
+      sended.filter((item) => item.fromId === Number(currentId) && item.toId === id)[0]
         ?.id,
     );
   };

@@ -2,21 +2,19 @@ import { FC, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import TabButton from "@components/tab/tab-button/tab-button";
 import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
-import { getAllUsersThunk } from "@src/store/reducers/users/async-thunks";
+import {} from "@src/store/reducers/profileInfo/async-thunks";
+import { selectReceived, selectSended } from "@src/store/reducers/friends/selectors";
 import {
+  getAllUsersThunk,
   getFriendsThunk,
   getReceivedThunk,
   getSendedThunk,
-} from "@src/store/reducers/profileInfo/async-thunks";
-import {
-  selectProfileInfoReceived,
-  selectProfileInfoSended,
-} from "@src/store/reducers/profileInfo/selectors";
+} from "@src/store/reducers/friends/async-thunks";
 
 const FriendsPage: FC = () => {
   const dispatch = useAppDispatch();
-  const received = useAppSelector(selectProfileInfoReceived);
-  const sended = useAppSelector(selectProfileInfoSended);
+  const received = useAppSelector(selectReceived);
+  const sended = useAppSelector(selectSended);
 
   useEffect(() => {
     dispatch(getAllUsersThunk());

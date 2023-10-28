@@ -17,10 +17,6 @@ export const selectProfileInfoFriends: (store: RootState) => IFriendsRequestResp
   state,
 ) => state.profileInfo.user.friends;
 
-export const selectProfileInfoReceived: (
-  store: RootState,
-) => IFriendsRequestResponse[] = (state) => state.profileInfo.user.received;
-
 export const selectProfileInfoSended: (store: RootState) => IFriendsRequestResponse[] = (
   state,
 ) => state.profileInfo.user.friended;

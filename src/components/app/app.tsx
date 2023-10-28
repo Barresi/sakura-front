@@ -11,11 +11,11 @@ import { protectedInfoThunk } from "@src/store/reducers/profileInfo/async-thunks
 import FriendsTabContent from "../tab/tab-content/tab-content";
 
 const App: FC = () => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(protectedInfoThunk());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(protectedInfoThunk());
+  }, [dispatch]);
 
   return (
     <Routes>

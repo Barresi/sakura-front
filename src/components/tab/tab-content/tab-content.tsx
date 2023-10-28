@@ -2,16 +2,16 @@ import { ChangeEventHandler, FC, useEffect, useState } from "react";
 import Search from "@src/components/ui/form/search/search";
 import FriendsCard from "@src/components/ui/card/friends-card/friends-card";
 import { useAppSelector } from "@src/hooks/store-hooks";
-import { selectUsers } from "@src/store/reducers/users/selectors";
-import {
-  selectProfileInfoFriends,
-  selectProfileInfoIsLoading,
-  selectProfileInfoReceived,
-  selectProfileInfoSended,
-  selectUser,
-} from "@src/store/reducers/profileInfo/selectors";
 import { filterFriendsData } from "@src/utils/utils";
 import { IFriendsRequestResponse, IUser } from "@src/types/types";
+import {
+  selectFriends,
+  selectReceived,
+  selectSended,
+  selectAllUsers,
+  selectFriendsIsLoading,
+} from "@src/store/reducers/friends/selectors";
+import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 
 const text = {
   friends: "Мои друзья",
@@ -28,12 +28,12 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   // TODO: fix searching
   const [search, setSearch] = useState("");
   const [data, setData] = useState<IUser[] | IFriendsRequestResponse[]>([]);
-  const users = useAppSelector(selectUsers);
   const { id } = useAppSelector(selectUser);
-  const friends = useAppSelector(selectProfileInfoFriends);
-  const received = useAppSelector(selectProfileInfoReceived);
-  const sended = useAppSelector(selectProfileInfoSended);
-  const isLoading = useAppSelector(selectProfileInfoIsLoading);
+  const users = useAppSelector(selectAllUsers);
+  const friends = useAppSelector(selectFriends);
+  const received = useAppSelector(selectReceived);
+  const sended = useAppSelector(selectSended);
+  const isLoading = useAppSelector(selectFriendsIsLoading);
 
   useEffect(() => {
     switch (type) {

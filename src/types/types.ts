@@ -6,7 +6,6 @@ export interface IUser {
   email: string;
   friends: IFriendsRequestResponse[];
   friended: IFriendsRequestResponse[];
-  received: IFriendsRequestResponse[];
 }
 
 export interface IFriendsRequestResponse {

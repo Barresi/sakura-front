@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  getFriendsThunk,
-  getReceivedThunk,
-  getSendedThunk,
   loginThunk,
   logoutThunk,
   protectedInfoThunk,
@@ -30,7 +27,6 @@ const initialState: IInitialState = {
     lastName: "",
     friends: [],
     friended: [],
-    received: [],
   },
 };
 
@@ -48,7 +44,7 @@ const profileInfoSlice = createSlice({
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       state.isLoading = false;
       state.status = AuthStatus.authorized;
-      state.user = action.payload.userWithoutPassword;
+      state.user = { ...state.user, ...action.payload.userWithoutPassword };
 
       setCookie("accessToken", action.payload.accessToken);
       localStorage.setItem("refreshToken", action.payload.refreshToken);
@@ -103,51 +99,6 @@ const profileInfoSlice = createSlice({
     builder.addCase(protectedInfoThunk.rejected, (state, action) => {
       state.isLoading = false;
       state.status = AuthStatus.notAuthorized;
-      state.error = action.payload as string;
-    });
-
-    // friends
-    builder.addCase(getFriendsThunk.pending, (state) => {
-      state.isLoading = true;
-      state.error = "";
-    });
-    builder.addCase(getFriendsThunk.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = "";
-      state.user.friends = action.payload;
-    });
-    builder.addCase(getFriendsThunk.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
-    });
-
-    // Received requests to friends
-    builder.addCase(getReceivedThunk.pending, (state) => {
-      state.isLoading = true;
-      state.error = "";
-    });
-    builder.addCase(getReceivedThunk.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = "";
-      state.user.received = action.payload;
-    });
-    builder.addCase(getReceivedThunk.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
-    });
-
-    // Sended requests to friends
-    builder.addCase(getSendedThunk.pending, (state) => {
-      state.isLoading = true;
-      state.error = "";
-    });
-    builder.addCase(getSendedThunk.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = "";
-      state.user.friended = action.payload;
-    });
-    builder.addCase(getSendedThunk.rejected, (state, action) => {
-      state.isLoading = false;
       state.error = action.payload as string;
     });
   },
