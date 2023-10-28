@@ -78,18 +78,23 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
             {data
               // ?.filter((item) => filterFriendsData(item, search))
               ?.map((friend, index) => {
-                let dataId = (friend as IFriendsRequestResponse).toId;
+                let dataId = friend.id;
 
-                if (type == "all") dataId = Number((friend as IUser).id);
-                if (type == "requests" || type == "friends")
-                  dataId = (friend as IFriendsRequestResponse).fromId;
+                // Объясняю, зачем код ниже: user1 может отправить запрос user2, в итоге у нас будет
+                // request: {id: number, fromId: user1, toId: user2}
+                // а если user2 добавит user1
+                // то request: {id: number, fromId: user2, toId: user1}
+                // и проверка нужна, чтобы правильно передавать id для отображения
+                if (type != "all" && "fromId" in friend && "toId" in friend) {
+                  dataId = Number(id) == friend.fromId ? friend.toId : friend.fromId;
+                }
 
                 return (
                   <FriendsCard
                     key={index}
                     type={type}
-                    id={dataId}
-                    isMine={dataId == Number(id)}
+                    id={Number(dataId)}
+                    isMine={Number(dataId) == Number(id)}
                   />
                 );
               })}
