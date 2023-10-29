@@ -28,7 +28,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   // TODO: fix searching
   const [search, setSearch] = useState("");
   const [data, setData] = useState<IUser[] | IFriendsRequestResponse[]>([]);
-  const { id } = useAppSelector(selectUser);
+  const { id: currentId } = useAppSelector(selectUser);
   const users = useAppSelector(selectAllUsers);
   const friends = useAppSelector(selectFriends);
   const received = useAppSelector(selectReceived);
@@ -81,12 +81,15 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
                 let dataId = friend.id;
 
                 // Объясняю, зачем код ниже: user1 может отправить запрос user2, в итоге у нас будет
-                // request: {id: number, fromId: user1, toId: user2}
+                // request: {id: number, fromId: user1.id, toId: user2.id}
                 // а если user2 добавит user1
-                // то request: {id: number, fromId: user2, toId: user1}
-                // и проверка нужна, чтобы правильно передавать id для отображения
+                // то request: {id: id запроса, fromId: user2.id, toId: user1.id}.
+                // при type == 'all' у нас прилетает список пользователей
+                // user: {id: id пользователя, ...data}
+                // и проверка нужна, чтобы правильно определять id пользователя для отображения
                 if (type != "all" && "fromId" in friend && "toId" in friend) {
-                  dataId = Number(id) == friend.fromId ? friend.toId : friend.fromId;
+                  dataId =
+                    Number(currentId) == friend.fromId ? friend.toId : friend.fromId;
                 }
 
                 return (
@@ -94,7 +97,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
                     key={index}
                     type={type}
                     id={Number(dataId)}
-                    isMine={Number(dataId) == Number(id)}
+                    isMine={Number(dataId) == Number(currentId)}
                   />
                 );
               })}

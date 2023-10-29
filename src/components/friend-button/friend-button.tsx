@@ -6,6 +6,9 @@ export type Tab = "friends" | "sended" | "all" | "requests";
 
 interface IFriendButtonProps {
   type?: Tab;
+  isFriend?: boolean;
+  isSended?: boolean;
+  isReceived?: boolean;
   clickHandlers: {
     friends: (() => void)[];
     all: (() => void)[];
@@ -31,7 +34,7 @@ const types = {
       icon: "edit",
     },
     secondary: {
-      text: "Отменить",
+      text: "Отменить заявку",
       icon: "deleteFriend",
     },
   },
@@ -57,9 +60,44 @@ const types = {
   },
 };
 
-const FriendButton: FC<IFriendButtonProps> = ({ type, clickHandlers }) => {
+const FriendButton: FC<IFriendButtonProps> = ({
+  type,
+  isFriend,
+  isSended,
+  isReceived,
+  clickHandlers,
+}) => {
   const isMobile = useWindowSize(1024);
   const data = types[type as keyof typeof types];
+
+  const primaryClassName = "w-[49%]";
+  const primaryHandler = clickHandlers[type as keyof typeof clickHandlers][0];
+
+  const secondaryClassName = "w-[49%] whitespace-nowrap hover:bg-secondary-hover";
+
+  const secondaryIcon = () => {
+    if (isFriend) return types.friends.secondary.icon as Icon;
+    if (isSended) return types.sended.secondary.icon as Icon;
+    if (isReceived) return types.requests.primary.icon as Icon;
+
+    return data.secondary.icon as Icon;
+  };
+
+  const secondaryHandler = () => {
+    if (isFriend) return clickHandlers.friends[1]();
+    if (isSended) return clickHandlers.sended[1]();
+    if (isReceived) return clickHandlers.requests[0]();
+
+    return clickHandlers[type as keyof typeof clickHandlers][1]();
+  };
+
+  const renderSecondaryButton = () => {
+    if (isFriend) return types.friends.secondary.text;
+    if (isSended) return types.sended.secondary.text;
+    if (isReceived) return types.requests.primary.text;
+
+    return data.secondary.text;
+  };
 
   if (isMobile)
     return (
@@ -67,33 +105,29 @@ const FriendButton: FC<IFriendButtonProps> = ({ type, clickHandlers }) => {
         <Button
           icon={data.primary.icon as Icon}
           variant="default"
-          className="w-[49%]"
-          onClick={clickHandlers[type as keyof typeof clickHandlers][0]}
+          className={primaryClassName}
+          onClick={primaryHandler}
         />
         <Button
-          icon={data.secondary.icon as Icon}
+          icon={secondaryIcon()}
           variant="secondary"
           className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
-          onClick={clickHandlers[type as keyof typeof clickHandlers][1]}
+          onClick={() => secondaryHandler()}
         />
       </>
     );
 
   return (
     <>
-      <Button
-        variant="default"
-        className="w-[49%]"
-        onClick={clickHandlers[type as keyof typeof clickHandlers][0]}
-      >
+      <Button variant="default" className={primaryClassName} onClick={primaryHandler}>
         {data.primary.text}
       </Button>
       <Button
         variant="secondary"
-        className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
-        onClick={clickHandlers[type as keyof typeof clickHandlers][1]}
+        className={secondaryClassName}
+        onClick={secondaryHandler}
       >
-        {data.secondary.text}
+        {renderSecondaryButton()}
       </Button>
     </>
   );

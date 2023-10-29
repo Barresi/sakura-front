@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 import {
   selectAllUsers,
+  selectFriends,
   selectReceived,
   selectSended,
 } from "@src/store/reducers/friends/selectors";
@@ -13,6 +14,7 @@ import {
   acceptRequestHandler,
   addFriendHandler,
   cancelRequestHandler,
+  checkStates,
   cn,
   deleteFriendHandler,
   rejectRequestHandler,
@@ -36,10 +38,16 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   const dispatch = useAppDispatch();
 
   const { id: currentId } = useAppSelector(selectUser);
+  const friends = useAppSelector(selectFriends);
   const sended = useAppSelector(selectSended);
   const received = useAppSelector(selectReceived);
+
   const user = useAppSelector(selectAllUsers).filter((user) => Number(user.id) === id)[0];
   const { firstName, lastName } = user || { firstName: "Unknown", lastName: "User" };
+
+  const isFriend = checkStates(friends, Number(currentId), Number(user?.id));
+  const isRequestSended = checkStates(sended, Number(currentId), Number(user?.id));
+  const isRequestReceived = checkStates(received, Number(currentId), Number(user?.id));
 
   // mock
   const img = "";
@@ -101,7 +109,15 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
         </div>
         <div className="mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-          {isMine || <FriendButton type={type} clickHandlers={clickHandlers} />}
+          {isMine || (
+            <FriendButton
+              isFriend={isFriend}
+              isSended={isRequestSended}
+              isReceived={isRequestReceived}
+              type={type}
+              clickHandlers={clickHandlers}
+            />
+          )}
         </div>
       </Card>
     );
@@ -118,7 +134,15 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
 
           <div className="mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-            {isMine || <FriendButton type={type} clickHandlers={clickHandlers} />}
+            {isMine || (
+              <FriendButton
+                isFriend={isFriend}
+                isSended={isRequestSended}
+                isReceived={isRequestReceived}
+                type={type}
+                clickHandlers={clickHandlers}
+              />
+            )}
           </div>
         </div>
       </div>
