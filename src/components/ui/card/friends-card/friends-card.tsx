@@ -3,9 +3,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
 import { cn, useWindowSize } from "@src/utils/utils";
 import Card from "../card";
-import { useAppSelector } from "@src/hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
 import { addFriend } from "@src/api/users";
-import { acceptRequest, cancelRequest } from "@src/api/requests";
+import { acceptRequest, cancelRequest, getReceived, getSended } from "@src/api/requests";
 import { rejectRequest } from "@src/api/requests";
 import { deleteFriend } from "@src/api/friends";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
@@ -14,6 +14,11 @@ import {
   selectReceived,
   selectSended,
 } from "@src/store/reducers/friends/selectors";
+import {
+  getFriendsThunk,
+  getReceivedThunk,
+  getSendedThunk,
+} from "@src/store/reducers/friends/async-thunks";
 
 interface IFriendsCardProps {
   className?: string;
@@ -29,6 +34,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   isMine,
 }) => {
   const isMobile = useWindowSize(1024);
+  const dispatch = useAppDispatch();
 
   const { id: currentId } = useAppSelector(selectUser);
   const sended = useAppSelector(selectSended);
@@ -44,9 +50,13 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   // handlers for buttons
   const addFriendHandler = async () => {
     await addFriend(id);
+
+    dispatch(getSendedThunk());
   };
   const deleteFriendHandler = async () => {
     await deleteFriend(id);
+
+    dispatch(getFriendsThunk());
   };
 
   const acceptRequestHandler = async () => {
@@ -54,23 +64,30 @@ const FriendsCard: FC<IFriendsCardProps> = ({
       received.filter((item) => item.fromId === id && item.toId === Number(currentId))[0]
         ?.id,
     );
+
+    dispatch(getFriendsThunk());
+    dispatch(getReceivedThunk());
   };
   const rejectRequestHandler = async () => {
     await rejectRequest(
       received.filter((item) => item.fromId === id && item.toId === Number(currentId))[0]
         ?.id,
     );
+
+    dispatch(getReceivedThunk());
   };
   const cancelRequestHandler = async () => {
     await cancelRequest(
       sended.filter((item) => item.fromId === Number(currentId) && item.toId === id)[0]
         ?.id,
     );
+
+    dispatch(getSendedThunk());
   };
 
   const avatar = (
     <Avatar
-      className={`w-[50px] h-[50px] lg:w-[120px] lg:h-[100px] ${
+      className={`w-[50px] h-[50px] lg:max-w-[120px] lg:w-[120px] lg:h-[100px] box-content ${
         img ? "" : "border rounded-full text-center flex justify-center items-center"
       }`}
     >
