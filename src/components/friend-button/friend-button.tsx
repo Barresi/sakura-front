@@ -7,10 +7,10 @@ export type Tab = "friends" | "sended" | "all" | "requests";
 interface IFriendButtonProps {
   type?: Tab;
   clickHandlers: {
-    friends: (() => Promise<void> | void)[];
-    all: (() => Promise<void> | void)[];
-    requests: (() => Promise<void> | void)[];
-    sended: (() => Promise<void> | void)[];
+    friends: (() => void)[];
+    all: (() => void)[];
+    requests: (() => void)[];
+    sended: (() => void)[];
   };
 }
 
@@ -18,48 +18,40 @@ const types = {
   friends: {
     primary: {
       text: "Написать сообщение",
-      variant: "default",
       icon: "edit",
     },
     secondary: {
       text: "Удалить из друзей",
-      variant: "secondary",
       icon: "deleteFriend",
     },
   },
   sended: {
     primary: {
       text: "Написать сообщение",
-      variant: "default",
       icon: "edit",
     },
     secondary: {
       text: "Отменить",
-      variant: "secondary",
       icon: "deleteFriend",
     },
   },
   all: {
     primary: {
       text: "Написать сообщение",
-      variant: "default",
       icon: "edit",
     },
     secondary: {
       text: "Добавить в друзья",
-      variant: "secondary",
       icon: "add",
     },
   },
   requests: {
     primary: {
       text: "Принять",
-      variant: "default",
       icon: "add",
     },
     secondary: {
       text: "Отклонить",
-      variant: "secondary",
       icon: "deleteFriend",
     },
   },
@@ -73,17 +65,16 @@ const FriendButton: FC<IFriendButtonProps> = ({ type, clickHandlers }) => {
     return (
       <>
         <Button
-          // onClick={}
           icon={data.primary.icon as Icon}
-          onClick={clickHandlers[type as keyof typeof clickHandlers][0]}
           variant="default"
           className="w-[49%]"
+          onClick={clickHandlers[type as keyof typeof clickHandlers][0]}
         />
         <Button
           icon={data.secondary.icon as Icon}
-          onClick={clickHandlers[type as keyof typeof clickHandlers][1]}
           variant="secondary"
           className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
+          onClick={clickHandlers[type as keyof typeof clickHandlers][1]}
         />
       </>
     );

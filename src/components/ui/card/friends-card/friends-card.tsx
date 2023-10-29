@@ -1,13 +1,8 @@
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
-import { cn, useWindowSize } from "@src/utils/utils";
 import Card from "../card";
 import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
-import { addFriend } from "@src/api/users";
-import { acceptRequest, cancelRequest, getReceived, getSended } from "@src/api/requests";
-import { rejectRequest } from "@src/api/requests";
-import { deleteFriend } from "@src/api/friends";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 import {
   selectAllUsers,
@@ -15,10 +10,14 @@ import {
   selectSended,
 } from "@src/store/reducers/friends/selectors";
 import {
-  getFriendsThunk,
-  getReceivedThunk,
-  getSendedThunk,
-} from "@src/store/reducers/friends/async-thunks";
+  acceptRequestHandler,
+  addFriendHandler,
+  cancelRequestHandler,
+  cn,
+  deleteFriendHandler,
+  rejectRequestHandler,
+  useWindowSize,
+} from "@src/utils/utils";
 
 interface IFriendsCardProps {
   className?: string;
@@ -46,44 +45,6 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   const img = "";
   const imgFallback = "";
   const date = "";
-
-  // handlers for buttons
-  const addFriendHandler = async () => {
-    await addFriend(id);
-
-    dispatch(getSendedThunk());
-  };
-  const deleteFriendHandler = async () => {
-    await deleteFriend(id);
-
-    dispatch(getFriendsThunk());
-  };
-
-  const acceptRequestHandler = async () => {
-    await acceptRequest(
-      received.filter((item) => item.fromId === id && item.toId === Number(currentId))[0]
-        ?.id,
-    );
-
-    dispatch(getFriendsThunk());
-    dispatch(getReceivedThunk());
-  };
-  const rejectRequestHandler = async () => {
-    await rejectRequest(
-      received.filter((item) => item.fromId === id && item.toId === Number(currentId))[0]
-        ?.id,
-    );
-
-    dispatch(getReceivedThunk());
-  };
-  const cancelRequestHandler = async () => {
-    await cancelRequest(
-      sended.filter((item) => item.fromId === Number(currentId) && item.toId === id)[0]
-        ?.id,
-    );
-
-    dispatch(getSendedThunk());
-  };
 
   const avatar = (
     <Avatar
@@ -113,6 +74,19 @@ const FriendsCard: FC<IFriendsCardProps> = ({
     </div>
   );
 
+  const clickHandlers = {
+    friends: [() => {}, () => deleteFriendHandler(id, dispatch)],
+    all: [() => {}, () => addFriendHandler(id, dispatch)],
+    requests: [
+      () => acceptRequestHandler(id, received, Number(currentId), dispatch),
+      () => rejectRequestHandler(id, received, Number(currentId), dispatch),
+    ],
+    sended: [
+      () => {},
+      () => cancelRequestHandler(id, sended, Number(currentId), dispatch),
+    ],
+  };
+
   if (isMobile) {
     return (
       <Card
@@ -127,17 +101,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
         </div>
         <div className="mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-          {isMine || (
-            <FriendButton
-              type={type}
-              clickHandlers={{
-                friends: [() => {}, deleteFriendHandler],
-                all: [() => {}, addFriendHandler],
-                requests: [acceptRequestHandler, rejectRequestHandler],
-                sended: [() => {}, cancelRequestHandler],
-              }}
-            />
-          )}
+          {isMine || <FriendButton type={type} clickHandlers={clickHandlers} />}
         </div>
       </Card>
     );
@@ -154,17 +118,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           {info}
 
           <div className="mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
-            {isMine || (
-              <FriendButton
-                type={type}
-                clickHandlers={{
-                  friends: [() => {}, deleteFriendHandler],
-                  all: [() => {}, addFriendHandler],
-                  requests: [acceptRequestHandler, rejectRequestHandler],
-                  sended: [() => {}, cancelRequestHandler],
-                }}
-              />
-            )}
+            {isMine || <FriendButton type={type} clickHandlers={clickHandlers} />}
           </div>
         </div>
       </div>
