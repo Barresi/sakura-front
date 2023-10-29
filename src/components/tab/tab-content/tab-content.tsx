@@ -2,7 +2,7 @@ import { ChangeEventHandler, FC, useEffect, useState } from "react";
 import Search from "@src/components/ui/form/search/search";
 import FriendsCard from "@src/components/ui/card/friends-card/friends-card";
 import { useAppSelector } from "@src/hooks/store-hooks";
-import { filterFriendsData } from "@src/utils/utils";
+import { filterUsers, filterRequests } from "@src/utils/utils";
 import { IFriendsRequestResponse, IUser } from "@src/types/types";
 import {
   selectFriends,
@@ -25,35 +25,39 @@ interface IFriendsTabContentProps {
 }
 
 const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
-  // TODO: fix searching
   const [search, setSearch] = useState("");
   const [data, setData] = useState<IUser[] | IFriendsRequestResponse[]>([]);
+
   const { id: currentId } = useAppSelector(selectUser);
   const users = useAppSelector(selectAllUsers);
   const friends = useAppSelector(selectFriends);
   const received = useAppSelector(selectReceived);
   const sended = useAppSelector(selectSended);
+
   const isLoading = useAppSelector(selectFriendsIsLoading);
 
   useEffect(() => {
+    const filter = (item: IFriendsRequestResponse) =>
+      filterRequests(users, Number(currentId), item, search);
+
     switch (type) {
       case "all":
-        setData(users);
+        setData(users.filter((item) => filterUsers(item, search)));
         break;
 
       case "friends":
-        setData(friends);
+        setData(friends.filter(filter));
         break;
 
       case "requests":
-        setData(received);
+        setData(received.filter(filter));
         break;
 
       case "sended":
-        setData(sended);
+        setData(sended.filter(filter));
         break;
     }
-  }, [type, users, friends, received, sended]);
+  }, [type, users, friends, received, sended, search, currentId]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setSearch(e.target.value);
@@ -76,7 +80,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
         <>
           <div className="flex flex-col gap-[20px]">
             {data
-              // ?.filter((item) => filterFriendsData(item, search))
+              // .filter((item) => filterFriendsData(item, search))
               ?.map((friend, index) => {
                 let dataId = friend.id;
 
