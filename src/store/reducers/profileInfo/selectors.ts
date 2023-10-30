@@ -1,5 +1,5 @@
 import { RootState } from "@src/store/store";
-import { AuthStatus, IFriendsRequestResponse } from "@src/types/types";
+import { AuthStatus } from "@src/types/types";
 import { IUser } from "@src/types/types";
 
 export const selectUser: (store: RootState) => IUser = (store) => store.profileInfo.user;
@@ -12,11 +12,3 @@ export const selectProfileInfoIsLoading: (store: RootState) => boolean = (store)
 
 export const selectProfileInfoError: (store: RootState) => string = (store) =>
   store.profileInfo.error;
-
-export const selectProfileInfoFriends: (store: RootState) => IFriendsRequestResponse[] = (
-  state,
-) => state.profileInfo.user.friends;
-
-export const selectProfileInfoSended: (store: RootState) => IFriendsRequestResponse[] = (
-  state,
-) => state.profileInfo.user.friended;
