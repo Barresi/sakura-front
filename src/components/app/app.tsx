@@ -9,12 +9,14 @@ import FriendsPage from "@src/pages/friends/friends";
 import { useAppDispatch } from "@src/hooks/store-hooks";
 import { protectedInfoThunk } from "@src/store/reducers/profileInfo/async-thunks";
 import FriendsTabContent from "../friends/tab-content/tab-content";
+import { getReceivedThunk } from "@src/store/reducers/friends/async-thunks";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(protectedInfoThunk());
+    dispatch(getReceivedThunk());
   }, [dispatch]);
 
   return (

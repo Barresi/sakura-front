@@ -80,10 +80,13 @@ const FriendButton: FC<IFriendButtonProps> = ({
     if (isSended) return types.sended.secondary.icon as Icon;
     if (isReceived) return types.requests.primary.icon as Icon;
 
+    if (type === "requests") return data.secondary.icon as Icon;
     return data.secondary.icon as Icon;
   };
 
   const secondaryHandler = () => {
+    if (type === "requests")
+      return clickHandlers[type as keyof typeof clickHandlers][1]();
     if (isFriend) return clickHandlers.friends[1]();
     if (isSended) return clickHandlers.sended[1]();
     if (isReceived) return clickHandlers.requests[0]();
@@ -92,6 +95,7 @@ const FriendButton: FC<IFriendButtonProps> = ({
   };
 
   const renderSecondaryButton = () => {
+    if (type == "requests") return data.secondary.text;
     if (isFriend) return types.friends.secondary.text;
     if (isSended) return types.sended.secondary.text;
     if (isReceived) return types.requests.primary.text;
