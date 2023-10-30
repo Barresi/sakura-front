@@ -2,6 +2,8 @@ import { Badge } from "@components/ui/badge/badge";
 import { FC, ReactNode } from "react";
 import { NavLink, NavLinkProps } from "react-router-dom";
 import Button, { Icon } from "../button";
+import { useWindowSize } from "@src/hooks/useWindowSize";
+import { cn } from "@src/utils/utils";
 
 interface IProps extends NavLinkProps {
   badge?: number;
@@ -18,6 +20,8 @@ const NavButton: FC<IProps> = ({
   badge,
   ...props
 }) => {
+  const isMobile = useWindowSize(1024);
+
   return (
     <NavLink
       className={({ isActive }) =>
@@ -27,9 +31,16 @@ const NavButton: FC<IProps> = ({
       }
       {...props}
     >
-      <Button className={className} icon={icon} iconPos="left" variant="text">
+      <Button
+        className={cn(className, isMobile && "relative")}
+        icon={icon}
+        iconPos="left"
+        variant="text"
+      >
         {children as ReactNode}
-        {badge! > 0 && <Badge>{badge}</Badge>}
+        {badge! > 0 && (
+          <Badge className={isMobile ? "absolute top-0 right-0" : ""}>{badge}</Badge>
+        )}
       </Button>
     </NavLink>
   );

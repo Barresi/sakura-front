@@ -1,10 +1,9 @@
 import { cn, useWindowSize } from "@utils/utils";
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react";
 import SettingButton from "../button/setting-button/setting-button";
-import { Avatar, AvatarFallback } from "../avatar/avatar";
-import { AvatarImage } from "../avatar/avatar";
 import Logo from "../logo/logo";
 import { useTheme } from "@src/hooks/useTheme";
+import UserAvatar from "../avatar/avatar";
 
 interface HeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
@@ -45,10 +44,7 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
         />
         <SettingButton icon="notification" />
 
-        <Avatar className="translate-y-[3px]">
-          <AvatarImage src={avatar} />
-          <AvatarFallback>Avatar</AvatarFallback>
-        </Avatar>
+        <UserAvatar src={avatar} className="w-[44px] h-[44px] mt-2" />
       </div>
     </header>
   );
