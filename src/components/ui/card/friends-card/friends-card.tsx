@@ -14,12 +14,11 @@ import {
   acceptRequestHandler,
   addFriendHandler,
   cancelRequestHandler,
-  checkStates,
-  cn,
   deleteFriendHandler,
   rejectRequestHandler,
-  useWindowSize,
-} from "@src/utils/utils";
+} from "@src/utils/friends/handlers";
+import { cn, useWindowSize } from "@src/utils/utils";
+import { checkStates } from "@src/utils/friends/other";
 
 interface IFriendsCardProps {
   className?: string;

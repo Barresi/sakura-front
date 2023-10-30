@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getFriends } from "@src/api/friends";
-import { getReceived, getSended } from "@src/api/requests";
-import { getAllUsers } from "@src/api/users";
+import { getFriends } from "@src/api/friends/friends";
+import { getReceived, getSended } from "@src/api/friends/requests";
+import { getAllUsers } from "@src/api/friends/users";
 import { IFriendsRequestResponse, IUser } from "@src/types/types";
 
 export const getAllUsersThunk = createAsyncThunk<IUser[]>(

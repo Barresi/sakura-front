@@ -21,7 +21,7 @@ const FriendsPage: FC = () => {
     dispatch(getFriendsThunk());
     dispatch(getReceivedThunk());
     dispatch(getSendedThunk());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] mt-[20px] xl:mt-[30px] mb-[60px] lg:mb-[20px] px-[20px] lg:px-0">

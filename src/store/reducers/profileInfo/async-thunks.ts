@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  getProtectedInfo,
+  getUserInfo,
   loginRequest,
   logoutRequest,
   registrationRequest,
-} from "@src/api/auth";
+} from "@src/api/auth/auth";
 import {
   ILoginResponse,
   IProtectedInfoResponse,
@@ -61,7 +61,7 @@ export const protectedInfoThunk = createAsyncThunk<IProtectedInfoResponse>(
   "profileInfo/protectedInfo",
   async (_, { rejectWithValue }) => {
     try {
-      return await getProtectedInfo();
+      return await getUserInfo();
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message);

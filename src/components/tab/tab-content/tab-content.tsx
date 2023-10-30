@@ -2,7 +2,7 @@ import { ChangeEventHandler, FC, useEffect, useState } from "react";
 import Search from "@src/components/ui/form/search/search";
 import FriendsCard from "@src/components/ui/card/friends-card/friends-card";
 import { useAppSelector } from "@src/hooks/store-hooks";
-import { filterUsers, filterRequests } from "@src/utils/utils";
+import { filterUsers,filterRequests } from "@src/utils/friends/filters";
 import { IFriendsRequestResponse, IUser } from "@src/types/types";
 import {
   selectFriends,
