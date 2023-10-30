@@ -3,6 +3,8 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@utils/utils";
 
+import avatarLight from "@assets/default avatar light.svg";
+
 interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   text?: string;
@@ -56,4 +58,17 @@ const AvatarFallback = React.forwardRef<
 ));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
-export { Avatar, AvatarImage, AvatarFallback };
+const UserAvatar: React.FC<{ src?: string; className?: string }> = ({
+  src,
+  className,
+}) => {
+  const img = src ? src : avatarLight;
+  return (
+    <Avatar className={className}>
+      <AvatarImage src={img} />
+      <AvatarFallback>Avatar</AvatarFallback>
+    </Avatar>
+  );
+};
+
+export default UserAvatar;

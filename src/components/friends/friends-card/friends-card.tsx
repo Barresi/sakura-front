@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import FriendButton, { Tab } from "@src/components/friends/friend-button/friend-button";
 import Card from "../../ui/card/card";
 import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
@@ -19,6 +18,7 @@ import {
 } from "@src/utils/friends/handlers";
 import { cn, useWindowSize } from "@src/utils/utils";
 import { checkStates } from "@src/utils/friends/other";
+import UserAvatar from "@src/components/ui/avatar/avatar";
 
 interface IFriendsCardProps {
   className?: string;
@@ -50,18 +50,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({
 
   // mock
   const img = "";
-  const imgFallback = "";
   const date = "";
 
   const avatar = (
-    <Avatar
-      className={`w-[50px] h-[50px] lg:max-w-[120px] lg:w-[120px] lg:h-[100px] box-content ${
-        img ? "" : "border rounded-full text-center flex justify-center items-center"
-      }`}
-    >
-      <AvatarImage src={img} className="w-full" />
-      <AvatarFallback>{imgFallback}</AvatarFallback>
-    </Avatar>
+    <UserAvatar src={img} className="w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]" />
   );
 
   const info = (
