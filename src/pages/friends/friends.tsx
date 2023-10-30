@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import TabButton from "@components/tab/tab-button/tab-button";
+import TabButton from "@src/components/friends/tab-button/tab-button";
 import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
 import {} from "@src/store/reducers/profileInfo/async-thunks";
 import { selectReceived, selectSended } from "@src/store/reducers/friends/selectors";

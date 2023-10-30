@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import FriendButton, { Tab } from "@src/components/friend-button/friend-button";
-import Card from "../card";
+import FriendButton, { Tab } from "@src/components/friends/friend-button/friend-button";
+import Card from "../../ui/card/card";
 import { useAppDispatch, useAppSelector } from "@src/hooks/store-hooks";
 import { selectUser } from "@src/store/reducers/profileInfo/selectors";
 import {

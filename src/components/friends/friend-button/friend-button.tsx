@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Button, { Icon } from "../ui/button/button";
+import Button, { Icon } from "../../ui/button/button";
 import { useWindowSize } from "@src/utils/utils";
 
 export type Tab = "friends" | "sended" | "all" | "requests";

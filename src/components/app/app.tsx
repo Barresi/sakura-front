@@ -8,7 +8,7 @@ import NotFoundPage from "@src/pages/not-found-page/not-found-page";
 import FriendsPage from "@src/pages/friends/friends";
 import { useAppDispatch } from "@src/hooks/store-hooks";
 import { protectedInfoThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import FriendsTabContent from "../tab/tab-content/tab-content";
+import FriendsTabContent from "../friends/tab-content/tab-content";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
