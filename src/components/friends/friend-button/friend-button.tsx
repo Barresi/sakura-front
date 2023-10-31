@@ -76,11 +76,11 @@ const FriendButton: FC<IFriendButtonProps> = ({
   const secondaryClassName = "w-[49%] whitespace-nowrap hover:bg-secondary-hover";
 
   const secondaryIcon = () => {
+    if (type === "requests") return data.secondary.icon as Icon;
     if (isFriend) return types.friends.secondary.icon as Icon;
     if (isSended) return types.sended.secondary.icon as Icon;
     if (isReceived) return types.requests.primary.icon as Icon;
 
-    if (type === "requests") return data.secondary.icon as Icon;
     return data.secondary.icon as Icon;
   };
 
