@@ -37,7 +37,7 @@ const NavButton: FC<IProps> = ({
         {children as ReactNode}
         {badge! > 0 && (
           <Badge
-            className={`absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-0`}
+            className={`absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4`}
           >
             {badge}
           </Badge>
