@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 import Button, { type Icon } from '../../ui/button/button'
-import { useWindowSize } from '@src/utils/utils'
+import { useWindowSize } from '@src/hooks/useWindowSize'
 
 export type Tab = 'friends' | 'sended' | 'all' | 'requests'
 
@@ -75,7 +75,7 @@ const FriendButton: FC<IFriendButtonProps> = ({
 
   const secondaryClassName = 'w-[49%] whitespace-nowrap hover:bg-secondary-hover'
 
-  const secondaryIcon = () => {
+  const secondaryIcon = (): Icon => {
     if (type === 'requests') return data.secondary.icon as Icon
     if (isFriend) return types.friends.secondary.icon as Icon
     if (isSended) return types.sended.secondary.icon as Icon
@@ -84,7 +84,7 @@ const FriendButton: FC<IFriendButtonProps> = ({
     return data.secondary.icon as Icon
   }
 
-  const secondaryHandler = () => {
+  const secondaryHandler = (): void => {
     if (type === 'requests') { clickHandlers[type as keyof typeof clickHandlers][1](); return }
     if (isFriend) { clickHandlers.friends[1](); return }
     if (isSended) { clickHandlers.sended[1](); return }
@@ -93,8 +93,8 @@ const FriendButton: FC<IFriendButtonProps> = ({
     clickHandlers[type as keyof typeof clickHandlers][1]()
   }
 
-  const renderSecondaryButton = () => {
-    if (type == 'requests') return data.secondary.text
+  const renderSecondaryButton = (): string => {
+    if (type === 'requests') return data.secondary.text
     if (isFriend) return types.friends.secondary.text
     if (isSended) return types.sended.secondary.text
     if (isReceived) return types.requests.primary.text
