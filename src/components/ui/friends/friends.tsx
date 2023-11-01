@@ -18,7 +18,7 @@ const Friends: FC<FriendsProps> = ({ avatars }) => {
     'mr-[-0px] z-[60]'
   ]
 
-  const renderImg = (avatars: string[]) => {
+  const renderImg = (avatars: string[]): JSX.Element[] => {
     return avatars.map((avatar, i) => {
       return (
         <img
