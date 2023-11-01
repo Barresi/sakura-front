@@ -25,7 +25,7 @@ export const errorHandler = (err: AxiosError): never => {
 // вместе с access token в заголовке Authorization,
 // если запрос падает с ошибкой "Access token устарел ...", то
 // обновляется refresh token и повторно отправляется предыдущий запрос
-export const requestWithRefreshToken = async (func: () => Promise<unknown>): Promise<unknown> => {
+export const requestWithRefreshToken = async <T>(func: () => Promise<T>): Promise<T> => {
   try {
     return await func()
   } catch (err) {
