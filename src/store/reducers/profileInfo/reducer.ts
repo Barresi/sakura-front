@@ -22,11 +22,11 @@ const initialState: IInitialState = {
   user: {
     id: '',
     email: '',
-    username: null,
     firstName: '',
     lastName: '',
     friends: [],
     friended: []
+
   }
 }
 
