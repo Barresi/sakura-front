@@ -21,14 +21,15 @@ const RegistrationPage: FC = () => {
     formState: { errors }
   } = useForm<IRegistrationForm>({ mode: 'onSubmit' })
 
-  const onSubmit: SubmitHandler<IRegistrationForm> = async (data) =>
+  const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
     await dispatch(registrationThunk(data)).then(
-      (data) => (data.payload as { id: number }).id && navigate('/')
+      (data) => { (data.payload as { id: number }).id && navigate('/') }
     )
-  const toggleTheme = () => {
-    if (theme == 'dark') {
+  }
+  const toggleTheme = (): void => {
+    if (theme === 'dark') {
       setTheme('light')
-    } else if (theme == 'light') {
+    } else if (theme === 'light') {
       setTheme('dark')
     }
   }
@@ -116,7 +117,7 @@ const RegistrationPage: FC = () => {
             {...register('confirmPassword', {
               required: 'Обязательное поле',
               validate: (val: string) => {
-                if (watch('password') != val) {
+                if (watch('password') !== val) {
                   return 'Ваши пароли не совпадают'
                 }
               }
