@@ -1,10 +1,10 @@
-import { FC } from "react";
-import NavButton from "../ui/button/nav-button/nav-button";
-import { useAppSelector } from "@src/hooks/store-hooks";
-import { selectReceived } from "@src/store/reducers/friends/selectors";
+import { type FC } from 'react'
+import NavButton from '../ui/button/nav-button/nav-button'
+import { useAppSelector } from '@src/hooks/store-hooks'
+import { selectReceived } from '@src/store/reducers/friends/selectors'
 
 const MobileNav: FC = () => {
-  const received = useAppSelector(selectReceived);
+  const received = useAppSelector(selectReceived)
 
   return (
     <div className="w-full fixed bottom-0 left-0 flex items-center justify-between gap-[5px] lg:gap-[10px] bg-navButton text-navButton-foreground py-[10px] px-[10px] lg:px-[20px] rounded-tl-[10px] rounded-tr-[10px] z-[10000] bg-background border-t-message-border border-t">
@@ -49,7 +49,7 @@ const MobileNav: FC = () => {
         Фотографии
       </NavButton>
     </div>
-  );
-};
+  )
+}
 
-export default MobileNav;
+export default MobileNav

@@ -1,31 +1,31 @@
-import { FC } from "react";
-import { Badge } from "@src/components/ui/badge/badge";
-import UserAvatar from "@src/components/ui/avatar/avatar";
-import { cn } from "@utils/utils";
+import { type FC } from 'react'
+import { Badge } from '@src/components/ui/badge/badge'
+import UserAvatar from '@src/components/ui/avatar/avatar'
+import { cn } from '@utils/utils'
 
-import Card from "../card";
+import Card from '../card'
 
 export interface MessageCardProps {
-  className?: string;
+  className?: string
   data: {
-    img: string;
-    imgFallback: string;
-    name: string;
-    message?: string;
-    date?: string;
-    badge?: number | string;
-  };
+    img: string
+    imgFallback: string
+    name: string
+    message?: string
+    date?: string
+    badge?: number | string
+  }
 }
 
 const MessageCard: FC<MessageCardProps> = ({
   className,
-  data: { img, name, message, date, badge },
+  data: { img, name, message, date, badge }
 }) => {
   return (
     <Card
       className={cn(
-        "flex items-center justify-between cursor-pointer hover:border-message-hoverBorder",
-        className,
+        'flex items-center justify-between cursor-pointer hover:border-message-hoverBorder',
+        className
       )}
     >
       <div className="flex items-center gap-[15px]">
@@ -44,7 +44,7 @@ const MessageCard: FC<MessageCardProps> = ({
         <Badge className="self-end">{badge}</Badge>
       </div>
     </Card>
-  );
-};
+  )
+}
 
-export default MessageCard;
+export default MessageCard

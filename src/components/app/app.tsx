@@ -1,12 +1,12 @@
-import LoginPage from "@src/pages/login/login";
-import RegistrationPage from "@src/pages/registration/registration";
-import { FC } from "react";
-import { Route, Routes } from "react-router-dom";
-import ProtectedRouteElement from "../protected-route-element/protected-route-element";
-import MainPage from "@src/pages/main/main";
-import NotFoundPage from "@src/pages/not-found-page/not-found-page";
-import FriendsPage from "@src/pages/friends/friends";
-import FriendsTabContent from "../friends/tab-content/tab-content";
+import LoginPage from '@src/pages/login/login'
+import RegistrationPage from '@src/pages/registration/registration'
+import { type FC } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ProtectedRouteElement from '../protected-route-element/protected-route-element'
+import MainPage from '@src/pages/main/main'
+import NotFoundPage from '@src/pages/not-found-page/not-found-page'
+import FriendsPage from '@src/pages/friends/friends'
+import FriendsTabContent from '../friends/tab-content/tab-content'
 
 const App: FC = () => {
   return (
@@ -44,7 +44,7 @@ const App: FC = () => {
 
       <Route path="*" element={<NotFoundPage type="outside" />} />
     </Routes>
-  );
-};
+  )
+}
 
-export default App;
+export default App

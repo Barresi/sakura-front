@@ -1,8 +1,8 @@
-import { FC } from "react";
-import UserAvatar from "../avatar/avatar";
+import { type FC } from 'react'
+import UserAvatar from '../avatar/avatar'
 
-import photo from "@assets/photo.svg";
-import more from "@assets/ui/More.svg";
+import photo from '@assets/photo.svg'
+import more from '@assets/ui/More.svg'
 
 const FriendPanel: FC = () => {
   return (
@@ -24,7 +24,7 @@ const FriendPanel: FC = () => {
         className="px-2 cursor-pointer transition-all hover:scale-[1.1] active:scale-[0.9]"
       />
     </div>
-  );
-};
+  )
+}
 
-export default FriendPanel;
+export default FriendPanel

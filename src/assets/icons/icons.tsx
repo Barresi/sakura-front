@@ -14,7 +14,7 @@ export const edit = (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
 
 export const setting = (
   <svg
@@ -43,7 +43,7 @@ export const setting = (
       </g>
     </g>
   </svg>
-);
+)
 
 export const notification = (
   <svg
@@ -77,7 +77,7 @@ export const notification = (
       />
     </g>
   </svg>
-);
+)
 
 export const theme = (
   <svg
@@ -98,7 +98,7 @@ export const theme = (
       />
     </g>
   </svg>
-);
+)
 
 export const info = (
   <svg
@@ -120,7 +120,7 @@ export const info = (
       <circle id="Ellipse 28" cx="12" cy="17" r="1" fill="currentColor" />
     </g>
   </svg>
-);
+)
 
 export const exit = (
   <svg
@@ -141,7 +141,7 @@ export const exit = (
       />
     </g>
   </svg>
-);
+)
 
 export const darkTheme = (
   <svg
@@ -162,7 +162,7 @@ export const darkTheme = (
       />
     </g>
   </svg>
-);
+)
 
 export const add = (
   <svg
@@ -207,7 +207,7 @@ export const add = (
       />
     </g>
   </svg>
-);
+)
 
 export const deleteFriend = (
   <svg
@@ -225,4 +225,4 @@ export const deleteFriend = (
       strokeLinejoin="round"
     />
   </svg>
-);
+)

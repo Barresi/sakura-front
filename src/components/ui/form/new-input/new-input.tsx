@@ -1,16 +1,16 @@
-import { FC } from "react";
-import { cn } from "@utils/utils";
-import Input, { InputProps } from "../input/input";
-import UserAvatar from "@src/components/ui/avatar/avatar";
+import { type FC } from 'react'
+import { cn } from '@utils/utils'
+import Input, { type InputProps } from '../input/input'
+import UserAvatar from '@src/components/ui/avatar/avatar'
 
-import smile from "@assets/ui/Smile.svg";
+import smile from '@assets/ui/Smile.svg'
 
 interface IProps extends InputProps {
-  avatar?: string;
+  avatar?: string
 }
 
 const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
-  const withAvatar = avatar ? "pl-[80px]" : "";
+  const withAvatar = avatar ? 'pl-[80px]' : ''
 
   return (
     <div className="w-full relative flex">
@@ -22,9 +22,9 @@ const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
       )}
       <Input
         className={cn(
-          "py-[20px] px-[20px] pr-[60px] rounded-[10px]",
+          'py-[20px] px-[20px] pr-[60px] rounded-[10px]',
           withAvatar,
-          className,
+          className
         )}
         placeholder="Что у вас нового?"
         {...props}
@@ -34,11 +34,11 @@ const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
         src={smile}
         alt=""
         onClick={() => {
-          alert("Будет реализовано в будущем!");
+          alert('Будет реализовано в будущем!')
         }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default NewInput;
+export default NewInput

@@ -1,13 +1,13 @@
-import { IUser } from "./types";
+import { type IUser } from './types'
 
 export interface ILoginResponse {
-  accessToken: string;
-  refreshToken: string;
-  userWithoutPassword: IUser;
+  accessToken: string
+  refreshToken: string
+  userWithoutPassword: IUser
 }
 export interface IRegistrationResponse {
-  id: number;
+  id: number
 }
 export interface IProtectedInfoResponse {
-  user: IUser;
+  user: IUser
 }

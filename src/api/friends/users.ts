@@ -1,18 +1,18 @@
-import axios from "axios";
-import { errorHandler, requestWithRefreshToken } from "../api";
-import { getCookie } from "@src/utils/cookie";
+import axios from 'axios'
+import { errorHandler, requestWithRefreshToken } from '../api'
+import { getCookie } from '@src/utils/cookie'
 
 export const getAllUsers = async () => {
   const getAllUsersRequest = async () => {
     const res = await axios
-      .get("/users", { headers: { Authorization: `Bearer ${getCookie("accessToken")}` } })
-      .catch(errorHandler);
+      .get('/users', { headers: { Authorization: `Bearer ${getCookie('accessToken')}` } })
+      .catch(errorHandler)
 
-    return res.data;
-  };
+    return res.data
+  }
 
-  return requestWithRefreshToken(getAllUsersRequest);
-};
+  await requestWithRefreshToken(getAllUsersRequest)
+}
 
 export const addFriend = async (id: number) => {
   const addFriendRequest = async () => {
@@ -20,12 +20,12 @@ export const addFriend = async (id: number) => {
       .post(
         `/users/${id}`,
         {},
-        { headers: { Authorization: `Bearer ${getCookie("accessToken")}` } },
+        { headers: { Authorization: `Bearer ${getCookie('accessToken')}` } }
       )
-      .catch(errorHandler);
+      .catch(errorHandler)
 
-    return res.data;
-  };
+    return res.data
+  }
 
-  return requestWithRefreshToken(addFriendRequest);
-};
+  await requestWithRefreshToken(addFriendRequest)
+}

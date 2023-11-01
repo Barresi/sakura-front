@@ -1,19 +1,19 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
-import { cn } from "@utils/utils";
-import UserAvatar from "@src/components/ui/avatar/avatar";
-import { MessageCardProps } from "../message-card/message-card";
-import Card from "../card";
+import { type FC } from 'react'
+import { Link } from 'react-router-dom'
+import { cn } from '@utils/utils'
+import UserAvatar from '@src/components/ui/avatar/avatar'
+import { type MessageCardProps } from '../message-card/message-card'
+import Card from '../card'
 
 export interface LikedCardProps
-  extends Pick<MessageCardProps["data"], "img" | "imgFallback" | "name" | "date"> {
-  link?: string;
-  className?: string;
+  extends Pick<MessageCardProps['data'], 'img' | 'imgFallback' | 'name' | 'date'> {
+  link?: string
+  className?: string
 }
 
 const LikedCard: FC<LikedCardProps> = ({ className, img, name, date, link }) => {
   return (
-    <Card className={cn("", className)}>
+    <Card className={cn('', className)}>
       <div className="flex gap-[15px] items-start lg:items-center">
         <UserAvatar src={img} className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]" />
         <div>
@@ -29,7 +29,7 @@ const LikedCard: FC<LikedCardProps> = ({ className, img, name, date, link }) => 
         {link && <UserAvatar src={link} className="w-[67px] h-[67px] rounded-none" />}
       </div>
     </Card>
-  );
-};
+  )
+}
 
-export default LikedCard;
+export default LikedCard

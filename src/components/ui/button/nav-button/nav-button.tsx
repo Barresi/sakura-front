@@ -1,14 +1,14 @@
-import { Badge } from "@components/ui/badge/badge";
-import { FC, ReactNode } from "react";
-import { NavLink, NavLinkProps } from "react-router-dom";
-import Button, { Icon } from "../button";
-import { cn } from "@src/utils/utils";
+import { Badge } from '@components/ui/badge/badge'
+import { type FC, type ReactNode } from 'react'
+import { NavLink, type NavLinkProps } from 'react-router-dom'
+import Button, { type Icon } from '../button'
+import { cn } from '@src/utils/utils'
 
 interface IProps extends NavLinkProps {
-  badge?: number;
-  icon?: Icon;
-  linkClassName?: string;
-  className?: string;
+  badge?: number
+  icon?: Icon
+  linkClassName?: string
+  className?: string
 }
 
 const NavButton: FC<IProps> = ({
@@ -29,7 +29,7 @@ const NavButton: FC<IProps> = ({
       {...props}
     >
       <Button
-        className={cn(className, "relative")}
+        className={cn(className, 'relative')}
         icon={icon}
         iconPos="left"
         variant="text"
@@ -37,14 +37,14 @@ const NavButton: FC<IProps> = ({
         {children as ReactNode}
         {badge! > 0 && (
           <Badge
-            className={`absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4`}
+            className={'absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4'}
           >
             {badge}
           </Badge>
         )}
       </Button>
     </NavLink>
-  );
-};
+  )
+}
 
-export default NavButton;
+export default NavButton

@@ -1,14 +1,14 @@
-import { FC } from "react";
-import Button from "../button/button";
-import Friends from "@src/components/ui/friends/friends";
-import UserAvatar from "../avatar/avatar";
+import { type FC } from 'react'
+import Button from '../button/button'
+import Friends from '@src/components/ui/friends/friends'
+import UserAvatar from '../avatar/avatar'
 
-import friend from "@assets/friend.svg";
-import avatar from "@assets/photo.svg";
-import location from "@assets/ui/Location Point.svg";
-import user from "@assets/ui/User.svg";
-import bank from "@assets/ui/bank.svg";
-import calendar from "@assets/ui/Calendar.svg";
+import friend from '@assets/friend.svg'
+import avatar from '@assets/photo.svg'
+import location from '@assets/ui/Location Point.svg'
+import user from '@assets/ui/User.svg'
+import bank from '@assets/ui/bank.svg'
+import calendar from '@assets/ui/Calendar.svg'
 
 const Profile: FC = () => {
   return (
@@ -53,7 +53,7 @@ const Profile: FC = () => {
         Я - опытный UX/UI дизайнер с более чем 4-летним стажем работы в этой области.
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile
