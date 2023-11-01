@@ -21,10 +21,10 @@ const LoginPage: FC = () => {
   } = useForm<ILoginForm>({ mode: 'onSubmit' })
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => await dispatch(loginThunk(data))
-  const toggleTheme = () => {
-    if (theme == 'dark') {
+  const toggleTheme = (): void => {
+    if (theme === 'dark') {
       setTheme('light')
-    } else if (theme == 'light') {
+    } else if (theme === 'light') {
       setTheme('dark')
     }
   }
