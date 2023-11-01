@@ -13,7 +13,7 @@ import { type IFriendsRequestResponse } from '@src/types/types'
 export const addFriendHandler = async (
   id: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
-) => {
+): Promise<void> => {
   await addFriend(id)
 
   dispatch(getSendedThunk())
@@ -22,7 +22,7 @@ export const addFriendHandler = async (
 export const deleteFriendHandler = async (
   id: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
-) => {
+): Promise<void> => {
   await deleteFriend(id)
 
   dispatch(getFriendsThunk())
@@ -33,7 +33,7 @@ export const acceptRequestHandler = async (
   received: IFriendsRequestResponse[],
   currentId: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
-) => {
+): Promise<void> => {
   await acceptFriend(
     received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id
   )
@@ -47,7 +47,7 @@ export const rejectRequestHandler = async (
   received: IFriendsRequestResponse[],
   currentId: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
-) => {
+): Promise<void> => {
   await rejectFriend(
     received.filter((item) => item.fromId === id && item.toId === currentId)[0]?.id
   )
@@ -60,7 +60,7 @@ export const cancelRequestHandler = async (
   sended: IFriendsRequestResponse[],
   currentId: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
-) => {
+): Promise<void> => {
   await cancelFriend(
     sended.filter((item) => item.fromId === currentId && item.toId === id)[0]?.id
   )
