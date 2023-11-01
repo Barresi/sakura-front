@@ -4,7 +4,7 @@ import { refreshRequest } from './auth/auth'
 export const URL = 'http://localhost:5000/api/v1'
 axios.defaults.baseURL = URL
 
-export const errorHandler = (err: AxiosError) => {
+export const errorHandler = (err: AxiosError): never => {
   if (err.response) {
     // Запрос был сделан, и сервер ответил кодом состояния, который выходит за пределы 2xx
     throw new Error(
@@ -25,13 +25,13 @@ export const errorHandler = (err: AxiosError) => {
 // вместе с access token в заголовке Authorization,
 // если запрос падает с ошибкой "Access token устарел ...", то
 // обновляется refresh token и повторно отправляется предыдущий запрос
-export const requestWithRefreshToken = async (func: () => void) => {
+export const requestWithRefreshToken = async (func: () => Promise<unknown>): Promise<unknown> => {
   try {
-    await func()
+    return await func()
   } catch (err) {
     if ((err as Error).message === 'Access token устарел') {
       await refreshRequest()
-      func()
+      return await func()
     } else {
       throw err
     }
