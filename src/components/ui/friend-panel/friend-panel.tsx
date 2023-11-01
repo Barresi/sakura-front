@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Avatar, AvatarImage } from "../avatar/avatar";
+import UserAvatar from "../avatar/avatar";
 
 import photo from "@assets/photo.svg";
 import more from "@assets/ui/More.svg";
@@ -8,10 +8,7 @@ const FriendPanel: FC = () => {
   return (
     <div className="w-full flex items-start justify-between">
       <div className="flex items-start gap-[15px]">
-        <Avatar className="w-[50px] h-[50px]">
-          <AvatarImage src={photo} />
-        </Avatar>
-
+        <UserAvatar src={photo} className="w-[50px] h-[50px]" />
         <div className="">
           <h3 className="text-[18px] font-bold leading-[24px] text-[#D22828]">
             Борис Маслов

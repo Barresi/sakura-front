@@ -1,8 +1,7 @@
 import { FC } from "react";
 import Button from "../button/button";
 import Friends from "@src/components/ui/friends/friends";
-import { Avatar } from "../avatar/avatar";
-import { AvatarImage } from "../avatar/avatar";
+import UserAvatar from "../avatar/avatar";
 
 import friend from "@assets/friend.svg";
 import avatar from "@assets/photo.svg";
@@ -15,10 +14,7 @@ const Profile: FC = () => {
   return (
     <div className="w-full">
       <div className="flex flex-col lg:flex-row gap-[15px]">
-        <Avatar className="w-36 h-36">
-          <AvatarImage src={avatar} />
-        </Avatar>
-
+        <UserAvatar src={avatar} className="w-36 h-36" />
         <div className="w-full flex flex-col gap-[10px]">
           <div className="w-full  flex items-center justify-between">
             <h2 className="text-[32px] leading-[41px]">Борис Маслов</h2>

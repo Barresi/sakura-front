@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { cn } from "@utils/utils";
 import Input, { InputProps } from "../input/input";
-import { Avatar, AvatarImage } from "@src/components/ui/avatar/avatar";
+import UserAvatar from "@src/components/ui/avatar/avatar";
 
 import smile from "@assets/ui/Smile.svg";
 
@@ -15,9 +15,10 @@ const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
   return (
     <div className="w-full relative flex">
       {avatar && (
-        <Avatar className="absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]">
-          <AvatarImage src={avatar} className="" />
-        </Avatar>
+        <UserAvatar
+          src={avatar}
+          className="absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]"
+        />
       )}
       <Input
         className={cn(
