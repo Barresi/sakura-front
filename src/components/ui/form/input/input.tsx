@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, error, ...props }, ref) => {
     const [inputType, setType] = React.useState(type)
 
-    const toggleType = () => { setType((type) => (type === 'text' ? 'password' : 'text')) }
+    const toggleType = (): void => { setType((type) => (type === 'text' ? 'password' : 'text')) }
 
     const baseClass =
       'flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50'
