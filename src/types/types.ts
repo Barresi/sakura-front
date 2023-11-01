@@ -1,8 +1,8 @@
 export interface IUser {
   id: string
-  username: string | null
-  firstName?: string
-  lastName?: string
+  username: string
+  firstName: string
+  lastName: string
   email: string
   friends: IFriendsRequestResponse[]
   friended: IFriendsRequestResponse[]
