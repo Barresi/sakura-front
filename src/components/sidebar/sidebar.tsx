@@ -11,12 +11,15 @@ const Sidebar: FC = () => {
   const dispatch = useAppDispatch()
   const received = useAppSelector(selectReceived)
   const { setTheme, theme } = useTheme()
-  const toggleTheme = () => {
-    if (theme == 'dark') {
+  const toggleTheme = (): void => {
+    if (theme === 'dark') {
       setTheme('light')
-    } else if (theme == 'light') {
+    } else if (theme === 'light') {
       setTheme('dark')
     }
+  }
+  const logoutHandler = async (): Promise<void> => {
+    await dispatch(logoutThunk())
   }
   return (
     <div className="rounded-[10px] px-5 py-[30px] flex flex-col justify-between items-start w-[280px] bg-background fixed top-5 bottom-5">
@@ -60,7 +63,7 @@ const Sidebar: FC = () => {
       </div>
 
       <div className="flex justify-between w-[100%]">
-        <SettingButton icon="exit" onClick={async () => await dispatch(logoutThunk())} />
+        <SettingButton icon="exit" onClick={logoutHandler} />
         <SettingButton icon="info" />
         <SettingButton icon="theme" onClick={toggleTheme} />
         <SettingButton icon="setting" />
