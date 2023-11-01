@@ -10,7 +10,7 @@ const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props
 
   const { theme } = useTheme()
 
-  const toggleActive = () => {
+  const toggleActive = (): void => {
     setActive((active) => !active)
   }
 
@@ -29,7 +29,7 @@ const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props
         className
       )}
       onClick={onClick || toggleActive}
-      icon={icon == 'like' ? whichLike : icon}
+      icon={icon === 'like' ? whichLike : icon}
       {...props}
     >
       <span className="text-lg font-bold text-[#55677D] leading-[23px]">{children}</span>
