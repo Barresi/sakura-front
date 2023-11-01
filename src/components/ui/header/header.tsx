@@ -15,12 +15,12 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
   const { setTheme, theme } = useTheme()
   const isMobile = useWindowSize(1024)
 
-  const toggleTheme = (theme: string) => {
+  const toggleTheme = (theme: string): void => {
     setTheme('light')
 
-    if (theme == 'dark') {
+    if (theme === 'dark') {
       setTheme('light')
-    } else if (theme == 'light') {
+    } else if (theme === 'light') {
       setTheme('dark')
     }
   }
