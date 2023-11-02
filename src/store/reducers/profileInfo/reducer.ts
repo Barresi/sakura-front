@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   loginThunk,
   logoutThunk,
-  protectedInfoThunk,
+  userInfoThunk,
   registrationThunk
 } from './async-thunks'
 import { deleteCookie, setCookie } from '@src/utils/cookie'
@@ -74,6 +74,8 @@ const profileInfoSlice = createSlice({
       state.status = AuthStatus.notAuthorized
       state.user.email = ''
       state.user.id = ''
+      state.user.firstName = ''
+      state.user.lastName = ''
       deleteCookie('accessToken')
       localStorage.removeItem('refreshToken')
     })
@@ -83,17 +85,17 @@ const profileInfoSlice = createSlice({
       state.error = action.payload as string
     })
     // Protected Info
-    builder.addCase(protectedInfoThunk.pending, (state) => {
+    builder.addCase(userInfoThunk.pending, (state) => {
       state.isLoading = true
       state.error = ''
       state.status = AuthStatus.pending
     })
-    builder.addCase(protectedInfoThunk.fulfilled, (state, action) => {
+    builder.addCase(userInfoThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.user = action.payload.user
       state.status = AuthStatus.authorized
     })
-    builder.addCase(protectedInfoThunk.rejected, (state, action) => {
+    builder.addCase(userInfoThunk.rejected, (state, action) => {
       state.isLoading = false
       state.status = AuthStatus.notAuthorized
       state.error = action.payload as string

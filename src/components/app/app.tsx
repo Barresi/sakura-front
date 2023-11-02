@@ -1,16 +1,21 @@
 import LoginPage from '@src/pages/login/login'
 import RegistrationPage from '@src/pages/registration/registration'
-import { type FC } from 'react'
+import { type FC, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRouteElement from '../protected-route-element/protected-route-element'
 import MainPage from '@src/pages/main/main'
 import NotFoundPage from '@src/pages/not-found-page/not-found-page'
 import FriendsPage from '@src/pages/friends/friends'
 import FriendsTabContent from '../friends/tab-content/tab-content'
+import { useAppDispatch } from '@src/hooks/store-hooks'
+import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 
 const App: FC = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(userInfoThunk())
+  }, [dispatch])
   return (
-
     <Routes>
       <Route
         path="/"

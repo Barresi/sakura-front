@@ -7,7 +7,6 @@ import {
 } from '@src/api/auth/auth'
 import {
   type ILoginResponse,
-  type IProtectedInfoResponse,
   type IRegistrationResponse
 } from '@src/types/api'
 import { type ILoginForm, type IRegistrationForm } from '@src/types/forms'
@@ -57,8 +56,8 @@ export const logoutThunk = createAsyncThunk(
   }
 )
 
-export const protectedInfoThunk = createAsyncThunk<IProtectedInfoResponse>(
-  'profileInfo/protectedInfo',
+export const userInfoThunk = createAsyncThunk(
+  'profileInfo/userInfo',
   async (_, { rejectWithValue }) => {
     try {
       return await getUserInfo()
