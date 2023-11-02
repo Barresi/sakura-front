@@ -13,7 +13,7 @@ export const getReceived = async () => {
     return res.data
   }
 
-  await requestWithRefreshToken(getReceivedRequest)
+  return await requestWithRefreshToken(getReceivedRequest)
 }
 
 export const getSended = async () => {
@@ -27,7 +27,7 @@ export const getSended = async () => {
     return res.data
   }
 
-  await requestWithRefreshToken(getSendedRequest)
+  return await requestWithRefreshToken(getSendedRequest)
 }
 
 export const acceptFriend = async (id: number) => {
@@ -45,7 +45,7 @@ export const acceptFriend = async (id: number) => {
     return res.data
   }
 
-  await requestWithRefreshToken(acceptFriendRequest)
+  return await requestWithRefreshToken(acceptFriendRequest)
 }
 
 export const rejectFriend = async (id: number) => {
@@ -59,7 +59,7 @@ export const rejectFriend = async (id: number) => {
     return res.data
   }
 
-  await requestWithRefreshToken(rejectFriendRequest)
+  return await requestWithRefreshToken(rejectFriendRequest)
 }
 
 export const cancelFriend = async (id: number) => {
@@ -73,5 +73,5 @@ export const cancelFriend = async (id: number) => {
     return res.data
   }
 
-  await requestWithRefreshToken(cancelFriendRequest)
+  return await requestWithRefreshToken(cancelFriendRequest)
 }

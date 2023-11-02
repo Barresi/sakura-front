@@ -11,7 +11,7 @@ export const getAllUsers = async () => {
     return res.data
   }
 
-  await requestWithRefreshToken(getAllUsersRequest)
+  return await requestWithRefreshToken(getAllUsersRequest)
 }
 
 export const addFriend = async (id: number) => {
@@ -27,5 +27,5 @@ export const addFriend = async (id: number) => {
     return res.data
   }
 
-  await requestWithRefreshToken(addFriendRequest)
+  return await requestWithRefreshToken(addFriendRequest)
 }

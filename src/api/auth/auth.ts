@@ -38,5 +38,5 @@ export const getUserInfo = async () => {
     return res.data
   }
 
-  await requestWithRefreshToken(userInfoRequest)
+  return await requestWithRefreshToken(userInfoRequest)
 }

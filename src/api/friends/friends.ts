@@ -13,7 +13,7 @@ export const getFriends = async () => {
     return res.data
   }
 
-  await requestWithRefreshToken(getFriendsRequest)
+  return await requestWithRefreshToken(getFriendsRequest)
 }
 
 export const deleteFriend = async (id: number) => {
@@ -27,5 +27,5 @@ export const deleteFriend = async (id: number) => {
     return res.data
   }
 
-  await requestWithRefreshToken(deleteFriendRequest)
+  return await requestWithRefreshToken(deleteFriendRequest)
 }
