@@ -36,4 +36,5 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "indent": ["error", 2, { "SwitchCase": 1 }]
   },
+  ignorePatterns: [".eslintrc.cjs", "vite.config.ts"],
 };
