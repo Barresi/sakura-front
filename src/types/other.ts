@@ -1,1 +1,1 @@
-export interface IPropsForwardRefsUI { className: string }
+export interface IPropsForwardRefsUI { className?: string }

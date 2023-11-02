@@ -4,6 +4,7 @@ import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { cn } from '@utils/utils'
 
 import avatarLight from '@assets/default avatar light.svg'
+import { type IPropsForwardRefsUI } from '@src/types/other'
 
 interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
@@ -32,7 +33,7 @@ Avatar.displayName = AvatarPrimitive.Root.displayName
 
 const AvatarImage = React.forwardRef<
 React.ElementRef<typeof AvatarPrimitive.Image>,
-React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & IPropsForwardRefsUI
 >(({ className, src, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
@@ -45,7 +46,7 @@ AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
 const AvatarFallback = React.forwardRef<
 React.ElementRef<typeof AvatarPrimitive.Fallback>,
-React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     ref={ref}
