@@ -45,7 +45,7 @@ export const logoutThunk = createAsyncThunk(
   'profileInfo/logout',
   async (_, { rejectWithValue }) => {
     try {
-      return await logoutRequest()
+      await logoutRequest()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)
