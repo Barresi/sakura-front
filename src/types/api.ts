@@ -1,4 +1,4 @@
-import { type IUser } from './types'
+import { type FriendsRequestStatus, type IUser } from './types'
 
 export interface ILoginResponse {
   accessToken: string
@@ -14,4 +14,22 @@ export interface IUserInfoResponse {
 export interface IRefreshResponse {
   accessToken: string
   refreshToken: string
+}
+
+// Friends api
+
+export interface IFriendsRequestResponse {
+  id: number
+  fromId: number
+  toId: number
+  status: FriendsRequestStatus
+  createdAt: string
+}
+
+export interface IAllUsersResponse {
+  users: IUser[]
+}
+
+export interface IAddFriendResponse {
+  msg: string
 }

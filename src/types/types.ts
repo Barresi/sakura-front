@@ -5,14 +5,6 @@ export interface IUser {
   email: string
 }
 
-export interface IFriendsRequestResponse {
-  id: number
-  fromId: number
-  toId: number
-  status: FriendsRequestStatus
-  createdAt: string
-}
-
 export enum FriendsRequestStatus {
   pending = 'PENDING',
   accepted = 'ACCEPTED',
