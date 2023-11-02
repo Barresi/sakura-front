@@ -1,9 +1,10 @@
-import { cn, useWindowSize } from '@utils/utils'
+import { cn } from '@utils/utils'
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
 import SettingButton from '../button/setting-button/setting-button'
 import Logo from '../logo/logo'
 import { useTheme } from '@src/hooks/useTheme'
 import UserAvatar from '../avatar/avatar'
+import { useWindowSize } from '@src/hooks/useWindowSize'
 
 interface HeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
@@ -12,18 +13,8 @@ interface HeaderProps
 }
 
 const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
-  const { setTheme, theme } = useTheme()
+  const { toggleTheme } = useTheme()
   const isMobile = useWindowSize(1024)
-
-  const toggleTheme = (theme: string): void => {
-    setTheme('light')
-
-    if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
-    }
-  }
 
   return (
     <header
@@ -39,7 +30,7 @@ const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
       <div className="flex items-center justify-center gap-[15px]">
         <SettingButton
           icon="theme"
-          onClick={() => { toggleTheme(theme) }}
+          onClick={toggleTheme}
           className="flex lg:hidden"
         />
         <SettingButton icon="notification" />

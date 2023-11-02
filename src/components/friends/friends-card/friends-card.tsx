@@ -16,9 +16,10 @@ import {
   deleteFriendHandler,
   rejectRequestHandler
 } from '@src/utils/friends/handlers'
-import { cn, useWindowSize } from '@src/utils/utils'
+import { cn } from '@src/utils/utils'
 import { checkStates } from '@src/utils/friends/other'
 import UserAvatar from '@src/components/ui/avatar/avatar'
+import { useWindowSize } from '@src/hooks/useWindowSize'
 
 interface IFriendsCardProps {
   className?: string

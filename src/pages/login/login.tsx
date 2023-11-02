@@ -13,7 +13,7 @@ import { useTheme } from '@src/hooks/useTheme'
 const LoginPage: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { setTheme, theme } = useTheme()
+  const { toggleTheme } = useTheme()
   const {
     register,
     handleSubmit,
@@ -21,13 +21,6 @@ const LoginPage: FC = () => {
   } = useForm<ILoginForm>({ mode: 'onSubmit' })
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => await dispatch(loginThunk(data))
-  const toggleTheme = (): void => {
-    if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
-    }
-  }
 
   return (
     <div className="flex justify-center items-center py-5 px-5 min-h-[100vh]">

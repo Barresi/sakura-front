@@ -13,7 +13,7 @@ import { useTheme } from '@src/hooks/useTheme'
 const RegistrationPage: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { setTheme, theme } = useTheme()
+  const { toggleTheme } = useTheme()
   const {
     register,
     handleSubmit,
@@ -25,13 +25,6 @@ const RegistrationPage: FC = () => {
     await dispatch(registrationThunk(data)).then(
       (data) => { (data.payload as { id: number }).id && navigate('/') }
     )
-  }
-  const toggleTheme = (): void => {
-    if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
-    }
   }
 
   return (
