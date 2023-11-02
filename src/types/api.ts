@@ -33,3 +33,23 @@ export interface IAllUsersResponse {
 export interface IAddFriendResponse {
   msg: string
 }
+
+// Requests api
+
+export interface IReceivedResponse {
+  received: IFriendsRequestResponse[]
+}
+export interface ISendedResponse {
+  sended: IFriendsRequestResponse[]
+}
+export interface IAcceptResponse {
+  msg: string
+
+}
+export interface IRejectResponse {
+  msg: string
+
+}
+export interface ICancelResponse {
+  msg: string
+}
