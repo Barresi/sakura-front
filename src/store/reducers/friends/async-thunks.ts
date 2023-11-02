@@ -8,7 +8,7 @@ export const getAllUsersThunk = createAsyncThunk<IUser[]>(
   'users/getAll',
   async (_, { rejectWithValue }) => {
     try {
-      await getAllUsers()
+      return await getAllUsers()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)
@@ -23,7 +23,7 @@ export const getFriendsThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   'profileInfo/getFriends',
   async (_, { rejectWithValue }) => {
     try {
-      await getFriends()
+      return await getFriends()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)
@@ -38,7 +38,7 @@ export const getReceivedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   'profileInfo/getReceived',
   async (_, { rejectWithValue }) => {
     try {
-      await getReceived()
+      return await getReceived()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)
@@ -53,7 +53,7 @@ export const getSendedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   'profileInfo/getSended',
   async (_, { rejectWithValue }) => {
     try {
-      await getSended()
+      return await getSended()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)

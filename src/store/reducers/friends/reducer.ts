@@ -37,7 +37,7 @@ const friendsSlice = createSlice({
     })
     builder.addCase(getAllUsersThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.allUsers = action.payload
+      state.allUsers = [...action.payload]
     })
     builder.addCase(getAllUsersThunk.rejected, (state, action) => {
       state.isLoading = false
@@ -52,7 +52,7 @@ const friendsSlice = createSlice({
     builder.addCase(getFriendsThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.error = ''
-      state.friends = action.payload
+      state.friends = [...action.payload]
     })
     builder.addCase(getFriendsThunk.rejected, (state, action) => {
       state.isLoading = false
@@ -67,7 +67,7 @@ const friendsSlice = createSlice({
     builder.addCase(getReceivedThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.error = ''
-      state.received = action.payload
+      state.received = [...action.payload]
     })
     builder.addCase(getReceivedThunk.rejected, (state, action) => {
       state.isLoading = false
@@ -82,7 +82,7 @@ const friendsSlice = createSlice({
     builder.addCase(getSendedThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.error = ''
-      state.sended = action.payload
+      state.sended = [...action.payload]
     })
     builder.addCase(getSendedThunk.rejected, (state, action) => {
       state.isLoading = false

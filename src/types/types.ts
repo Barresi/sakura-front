@@ -3,8 +3,6 @@ export interface IUser {
   firstName: string
   lastName: string
   email: string
-  friends: IFriendsRequestResponse[]
-  friended: IFriendsRequestResponse[]
 }
 
 export interface IFriendsRequestResponse {

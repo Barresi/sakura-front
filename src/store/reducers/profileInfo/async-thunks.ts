@@ -61,7 +61,7 @@ export const protectedInfoThunk = createAsyncThunk<IProtectedInfoResponse>(
   'profileInfo/protectedInfo',
   async (_, { rejectWithValue }) => {
     try {
-      await getUserInfo()
+      return await getUserInfo()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)

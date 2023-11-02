@@ -23,10 +23,7 @@ const initialState: IInitialState = {
     id: '',
     email: '',
     firstName: '',
-    lastName: '',
-    friends: [],
-    friended: []
-
+    lastName: ''
   }
 }
 
