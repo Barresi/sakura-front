@@ -5,7 +5,6 @@ import { type FC, useEffect } from 'react'
 import { Outlet } from 'react-router'
 import { useWindowSize } from '@src/hooks/useWindowSize'
 import { getReceivedThunk } from '@src/store/reducers/friends/async-thunks'
-import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import { useAppDispatch } from '@src/hooks/store-hooks'
 
 const MainPage: FC = () => {
@@ -13,7 +12,6 @@ const MainPage: FC = () => {
   const isMobile = useWindowSize(1024)
 
   useEffect(() => {
-    dispatch(userInfoThunk())
     dispatch(getReceivedThunk())
   }, [dispatch])
 
