@@ -1,6 +1,7 @@
 import { type FC } from 'react'
-import Button, { type Icon } from '../../ui/button/button'
+import Button from '../../ui/button/button'
 import { useWindowSize } from '@src/hooks/useWindowSize'
+import { type Icon } from '@src/components/ui/button/button-icons/button-icons'
 
 export type Tab = 'friends' | 'sended' | 'all' | 'requests'
 

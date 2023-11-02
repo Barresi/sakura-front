@@ -8,6 +8,10 @@ export interface ILoginResponse {
 export interface IRegistrationResponse {
   id: number
 }
-export interface IProtectedInfoResponse {
+export interface IUserInfoResponse {
   user: IUser
+}
+export interface IRefreshResponse {
+  accessToken: string
+  refreshToken: string
 }
