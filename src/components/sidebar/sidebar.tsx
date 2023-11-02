@@ -10,14 +10,7 @@ import { selectReceived } from '@src/store/reducers/friends/selectors'
 const Sidebar: FC = () => {
   const dispatch = useAppDispatch()
   const received = useAppSelector(selectReceived)
-  const { setTheme, theme } = useTheme()
-  const toggleTheme = (): void => {
-    if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('dark')
-    }
-  }
+  const { toggleTheme } = useTheme()
   const logoutHandler = async (): Promise<void> => {
     await dispatch(logoutThunk())
   }

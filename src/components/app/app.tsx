@@ -7,43 +7,48 @@ import MainPage from '@src/pages/main/main'
 import NotFoundPage from '@src/pages/not-found-page/not-found-page'
 import FriendsPage from '@src/pages/friends/friends'
 import FriendsTabContent from '../friends/tab-content/tab-content'
+import { useTheme } from '@src/hooks/useTheme'
 
 const App: FC = () => {
+  const { theme } = useTheme()
+
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRouteElement protectedPageType="auth" element={<LoginPage />} />
-        }
-      />
-      <Route
-        path="/registration"
-        element={
-          <ProtectedRouteElement
-            protectedPageType="auth"
-            element={<RegistrationPage />}
-          />
-        }
-      />
+    <div className={theme}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRouteElement protectedPageType="auth" element={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <ProtectedRouteElement
+              protectedPageType="auth"
+              element={<RegistrationPage />}
+            />
+          }
+        />
 
-      <Route
-        path="/main"
-        element={
-          <ProtectedRouteElement protectedPageType="main" element={<MainPage />} />
-        }
-      >
-        <Route path="friends" element={<FriendsPage />}>
-          <Route index element={<FriendsTabContent type="friends" />} />
-          <Route path="all" element={<FriendsTabContent type="all" />} />
-          <Route path="requests" element={<FriendsTabContent type="requests" />} />
-          <Route path="sended" element={<FriendsTabContent type="sended" />} />
+        <Route
+          path="/main"
+          element={
+            <ProtectedRouteElement protectedPageType="main" element={<MainPage />} />
+          }
+        >
+          <Route path="friends" element={<FriendsPage />}>
+            <Route index element={<FriendsTabContent type="friends" />} />
+            <Route path="all" element={<FriendsTabContent type="all" />} />
+            <Route path="requests" element={<FriendsTabContent type="requests" />} />
+            <Route path="sended" element={<FriendsTabContent type="sended" />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage type="inside" />} />
         </Route>
-        <Route path="*" element={<NotFoundPage type="inside" />} />
-      </Route>
 
-      <Route path="*" element={<NotFoundPage type="outside" />} />
-    </Routes>
+        <Route path="*" element={<NotFoundPage type="outside" />} />
+      </Routes>
+    </div>
   )
 }
 
