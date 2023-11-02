@@ -37,7 +37,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   const isLoading = useAppSelector(selectFriendsIsLoading)
 
   useEffect(() => {
-    const filter = (item: IFriendsRequestResponse) =>
+    const filter = (item: IFriendsRequestResponse): boolean =>
       filterRequests(users, Number(currentId), item, search)
 
     switch (type) {
@@ -71,11 +71,12 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
         <Search onChange={handleChange} />
       </div>
 
-      {isLoading ? (
+      {isLoading
+        ? (
         <div style={{ textAlign: 'center' }}>
           <h2>Loading...</h2>
-        </div>
-      ) : (
+        </div>)
+        : (
         <>
           <div className="flex flex-col gap-[20px]">
             {data
@@ -90,9 +91,9 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
                 // при type == 'all' у нас прилетает список пользователей
                 // user: {id: id пользователя, ...data}
                 // и проверка нужна, чтобы правильно определять id пользователя для отображения
-                if (type != 'all' && 'fromId' in friend && 'toId' in friend) {
+                if (type !== 'all' && 'fromId' in friend && 'toId' in friend) {
                   dataId =
-                    Number(currentId) == friend.fromId ? friend.toId : friend.fromId
+                    Number(currentId) === friend.fromId ? friend.toId : friend.fromId
                 }
 
                 return (
@@ -100,18 +101,17 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
                     key={index}
                     type={type}
                     id={Number(dataId)}
-                    isMine={Number(dataId) == Number(currentId)}
+                    isMine={Number(dataId) === Number(currentId)}
                   />
                 )
               })}
           </div>
           {data?.length < 1
             ? (
-            <span className="text-lg flex justify-center">Здесь пока ничего нет</span>
-              )
+            <span className="text-lg flex justify-center">Здесь пока ничего нет</span>)
             : null}
         </>
-      )}
+          )}
     </>
   )
 }
