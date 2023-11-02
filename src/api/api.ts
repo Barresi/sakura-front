@@ -1,7 +1,7 @@
 import axios, { type AxiosError } from 'axios'
 import { refreshRequest } from './auth/auth'
 
-export const URL = 'http://localhost:5000/api/v1'
+export const URL = 'http://192.168.0.23:5000/api/v1'
 axios.defaults.baseURL = URL
 
 export const errorHandler = (err: AxiosError): never => {
