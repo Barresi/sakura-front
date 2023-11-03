@@ -1,5 +1,6 @@
 import { type RootState } from '@src/store/store'
-import { type AuthStatus, type IUser } from '@src/types/types'
+import { type AuthStatus } from '@src/types/api'
+import { type IUser } from '@src/types/types'
 
 export const selectUser: (store: RootState) => IUser = (store) => store.profileInfo.user
 

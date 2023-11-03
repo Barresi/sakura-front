@@ -1,4 +1,5 @@
-import { type IFriendsRequestResponse, type IUser } from '@src/types/types'
+import { type IFriend } from '@src/types/api'
+import { type IUser } from '@src/types/types'
 
 export const filterUsers = (item: IUser, search: string): boolean => {
   if (!search) return true
@@ -12,7 +13,7 @@ export const filterUsers = (item: IUser, search: string): boolean => {
 export const filterRequests = (
   users: IUser[],
   currentId: number,
-  item: IFriendsRequestResponse,
+  item: IFriend,
   search: string
 ): boolean => {
   if (!search) return true

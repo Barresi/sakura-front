@@ -2,7 +2,7 @@ import axios from 'axios'
 import { errorHandler, requestWithRefreshToken } from '../api'
 import { type ILoginForm, type IRegistrationForm } from '@src/types/forms'
 import { getCookie, setCookie } from '@src/utils/cookie'
-import { type IRegistrationResponse, type ILoginResponse, type IRefreshResponse, type IUserInfoResponse } from '@src/types/api'
+import { type IRegistrationResponse, type ILoginResponse, type IRefreshResponse, type IUserInfoResponse, type ILogoutResponse } from '@src/types/api'
 
 export const loginRequest = async (form: ILoginForm): Promise<ILoginResponse> => {
   const res = await axios.post('/auth/login', form).catch(errorHandler)
@@ -14,7 +14,7 @@ export const registrationRequest = async (form: IRegistrationForm): Promise<IReg
   return res.data
 }
 
-export const logoutRequest = async (): Promise<void> => {
+export const logoutRequest = async (): Promise<ILogoutResponse> => {
   const res = await axios
     .post('auth/logout', { refreshToken: localStorage.getItem('refreshToken') })
     .catch(errorHandler)

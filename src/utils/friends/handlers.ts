@@ -8,7 +8,7 @@ import {
   getReceivedThunk
 } from '@src/store/reducers/friends/async-thunks'
 import { type RootState } from '@src/store/store'
-import { type IFriendsRequestResponse } from '@src/types/types'
+import { type IFriend } from '@src/types/api'
 
 export const addFriendHandler = async (
   id: number,
@@ -30,7 +30,7 @@ export const deleteFriendHandler = async (
 
 export const acceptRequestHandler = async (
   id: number,
-  received: IFriendsRequestResponse[],
+  received: IFriend[],
   currentId: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
@@ -44,7 +44,7 @@ export const acceptRequestHandler = async (
 
 export const rejectRequestHandler = async (
   id: number,
-  received: IFriendsRequestResponse[],
+  received: IFriend[],
   currentId: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
@@ -57,7 +57,7 @@ export const rejectRequestHandler = async (
 
 export const cancelRequestHandler = async (
   id: number,
-  sended: IFriendsRequestResponse[],
+  sended: IFriend[],
   currentId: number,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {

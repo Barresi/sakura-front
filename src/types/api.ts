@@ -1,4 +1,16 @@
-import { type FriendsRequestStatus, type IUser } from './types'
+import { type IUser } from './types'
+
+export interface INoContentResponse {
+  msg: string
+}
+
+// Auth api
+
+export enum AuthStatus {
+  pending = 'pending',
+  authorized = 'authorized',
+  notAuthorized = 'not authorized',
+}
 
 export interface ILoginResponse {
   accessToken: string
@@ -8,6 +20,7 @@ export interface ILoginResponse {
 export interface IRegistrationResponse {
   id: number
 }
+export interface ILogoutResponse extends INoContentResponse {}
 export interface IUserInfoResponse {
   user: IUser
 }
@@ -18,7 +31,13 @@ export interface IRefreshResponse {
 
 // Friends api
 
-export interface IFriendsRequestResponse {
+export enum FriendsRequestStatus {
+  pending = 'PENDING',
+  accepted = 'ACCEPTED',
+  rejected = 'REJECTED',
+}
+
+export interface IFriend {
   id: number
   fromId: number
   toId: number
@@ -26,37 +45,15 @@ export interface IFriendsRequestResponse {
   createdAt: string
 }
 
-export interface IAllUsersResponse {
-  users: IUser[]
-}
-
-export interface IAddFriendResponse {
-  msg: string
-}
-
-export interface IFriendsResponse {
-  friends: IFriendsRequestResponse[]
-}
-export interface IDeleteResponse {
-  msg: string
-}
+export interface IAllUsersResponse extends Array<IUser> {}
+export interface IAddFriendResponse extends INoContentResponse {}
+export interface IFriendsResponse extends Array<IFriend> {}
+export interface IDeleteResponse extends INoContentResponse {}
 
 // Requests api
 
-export interface IReceivedResponse {
-  received: IFriendsRequestResponse[]
-}
-export interface ISendedResponse {
-  sended: IFriendsRequestResponse[]
-}
-export interface IAcceptResponse {
-  msg: string
-
-}
-export interface IRejectResponse {
-  msg: string
-
-}
-export interface ICancelResponse {
-  msg: string
-}
+export interface IReceivedResponse extends Array<IFriend> {}
+export interface ISendedResponse extends Array<IFriend> {}
+export interface IAcceptResponse extends INoContentResponse {}
+export interface IRejectResponse extends INoContentResponse {}
+export interface ICancelResponse extends INoContentResponse {}

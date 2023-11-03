@@ -13,7 +13,7 @@ import {
 } from '@src/store/reducers/friends/selectors'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 import { type FriendTabs } from '@src/types/other'
-import { type IFriendsRequestResponse } from '@src/types/api'
+import { type IFriend } from '@src/types/api'
 
 const text = {
   friends: 'Мои друзья',
@@ -28,7 +28,7 @@ interface IFriendsTabContentProps {
 
 const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   const [search, setSearch] = useState('')
-  const [data, setData] = useState<IUser[] | IFriendsRequestResponse[]>([])
+  const [data, setData] = useState<IUser[] | IFriend[]>([])
 
   const { id: currentId } = useAppSelector(selectUser)
   const users = useAppSelector(selectAllUsers)
@@ -39,7 +39,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
   const isLoading = useAppSelector(selectFriendsIsLoading)
 
   useEffect(() => {
-    const filter = (item: IFriendsRequestResponse): boolean =>
+    const filter = (item: IFriend): boolean =>
       filterRequests(users, Number(currentId), item, search)
 
     switch (type) {

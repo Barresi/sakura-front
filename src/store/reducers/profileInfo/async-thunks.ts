@@ -6,8 +6,10 @@ import {
   registrationRequest
 } from '@src/api/auth/auth'
 import {
+  type IUserInfoResponse,
   type ILoginResponse,
-  type IRegistrationResponse
+  type IRegistrationResponse,
+  type ILogoutResponse
 } from '@src/types/api'
 import { type ILoginForm, type IRegistrationForm } from '@src/types/forms'
 
@@ -41,11 +43,11 @@ IRegistrationForm
   }
 })
 
-export const logoutThunk = createAsyncThunk(
+export const logoutThunk = createAsyncThunk<ILogoutResponse>(
   'profileInfo/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await logoutRequest()
+      return await logoutRequest()
     } catch (err) {
       if (err instanceof Error) {
         return rejectWithValue(err.message)
@@ -56,7 +58,7 @@ export const logoutThunk = createAsyncThunk(
   }
 )
 
-export const userInfoThunk = createAsyncThunk(
+export const userInfoThunk = createAsyncThunk<IUserInfoResponse>(
   'profileInfo/userInfo',
   async (_, { rejectWithValue }) => {
     try {

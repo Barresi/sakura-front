@@ -6,7 +6,8 @@ import {
   registrationThunk
 } from './async-thunks'
 import { deleteCookie, setCookie } from '@src/utils/cookie'
-import { AuthStatus, type IUser } from '@src/types/types'
+import { type IUser } from '@src/types/types'
+import { AuthStatus } from '@src/types/api'
 
 interface IInitialState {
   isLoading: boolean

@@ -1,7 +1,7 @@
-import { type IFriendsRequestResponse } from '@src/types/types'
+import { type IFriend } from '@src/types/api'
 
 export const checkStates = (
-  data: IFriendsRequestResponse[],
+  data: IFriend[],
   currentId: number,
   userId: number
 ): boolean => {

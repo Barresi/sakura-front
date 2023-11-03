@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getFriends } from '@src/api/friends/friends'
 import { getReceived, getSended } from '@src/api/friends/requests'
 import { getAllUsers } from '@src/api/friends/users'
-import { type IFriendsRequestResponse, type IUser } from '@src/types/types'
+import { type IAllUsersResponse, type IFriendsResponse, type IReceivedResponse, type ISendedResponse } from '@src/types/api'
 
-export const getAllUsersThunk = createAsyncThunk<IUser[]>(
+export const getAllUsersThunk = createAsyncThunk<IAllUsersResponse>(
   'users/getAll',
   async (_, { rejectWithValue }) => {
     try {
@@ -19,7 +19,7 @@ export const getAllUsersThunk = createAsyncThunk<IUser[]>(
   }
 )
 
-export const getFriendsThunk = createAsyncThunk<IFriendsRequestResponse[]>(
+export const getFriendsThunk = createAsyncThunk<IFriendsResponse>(
   'profileInfo/getFriends',
   async (_, { rejectWithValue }) => {
     try {
@@ -34,7 +34,7 @@ export const getFriendsThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   }
 )
 
-export const getReceivedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
+export const getReceivedThunk = createAsyncThunk<IReceivedResponse>(
   'profileInfo/getReceived',
   async (_, { rejectWithValue }) => {
     try {
@@ -49,7 +49,7 @@ export const getReceivedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
   }
 )
 
-export const getSendedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
+export const getSendedThunk = createAsyncThunk<ISendedResponse>(
   'profileInfo/getSended',
   async (_, { rejectWithValue }) => {
     try {

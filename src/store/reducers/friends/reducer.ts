@@ -5,15 +5,16 @@ import {
   getReceivedThunk,
   getSendedThunk
 } from './async-thunks'
-import { type IFriendsRequestResponse, type IUser } from '@src/types/types'
+import { type IUser } from '@src/types/types'
+import { type IFriend } from '@src/types/api'
 
 interface IInitialState {
   isLoading: boolean
   error: string
-  friends: IFriendsRequestResponse[]
+  friends: IFriend[]
   allUsers: IUser[]
-  sended: IFriendsRequestResponse[]
-  received: IFriendsRequestResponse[]
+  sended: IFriend[]
+  received: IFriend[]
 }
 
 const initialState: IInitialState = {
