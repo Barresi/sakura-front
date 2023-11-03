@@ -50,7 +50,7 @@ module.exports = {
         trailingComma: 'none',
         bracketSpacing: true,
         bracketSameLine: false,
-        endOfLine: 'crlf',
+        endOfLine: 'lf',
         arrowParens: 'always'
       }
     ]

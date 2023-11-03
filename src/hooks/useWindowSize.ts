@@ -17,4 +17,3 @@ export function useWindowSize(maxWidth: string | number): boolean {
 
   return width < Number(maxWidth)
 }
-
