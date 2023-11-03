@@ -1,50 +1,50 @@
-import { FC } from "react";
-import Input, { InputProps } from "../input/input";
+import { type FC } from 'react'
+import Input, { type IInputProps } from '../input/input'
 
-import media from "@assets/ui/paperclip.svg";
-import smile from "@assets/ui/Smile.svg";
-import send from "@assets/ui/send.svg";
-import { cn } from "@src/utils/utils";
+import media from '@assets/ui/paperclip.svg'
+import smile from '@assets/ui/Smile.svg'
+import send from '@assets/ui/send.svg'
+import { cn } from '@src/utils/utils'
 
-interface IProps extends InputProps {}
+interface IMessageInputProps extends IInputProps {}
 
-const MessageInput: FC<IProps> = ({ ...props }) => {
+const MessageInput: FC<IMessageInputProps> = ({ ...props }) => {
   return (
-    <div className="w-full relative">
+    <div className='w-full relative'>
       <Input
-        placeholder="Написать сообщение..."
+        placeholder='Написать сообщение...'
         {...props}
-        className={cn(props.className, "pr-[120px]")}
+        className={cn(props.className, 'pr-[120px]')}
       />
 
-      <div className="absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]">
+      <div className='absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]'>
         <img
-          className="cursor-pointer active:scale-[.95]"
+          className='cursor-pointer active:scale-[.95]'
           src={media}
-          alt=""
+          alt=''
           onClick={() => {
-            alert("Будет реализовано в будущем!");
+            alert('Будет реализовано в будущем!')
           }}
         />
         <img
-          className="cursor-pointer active:scale-[.95]"
+          className='cursor-pointer active:scale-[.95]'
           src={smile}
-          alt=""
+          alt=''
           onClick={() => {
-            alert("Будет реализовано в будущем!");
+            alert('Будет реализовано в будущем!')
           }}
         />
         <img
-          className="cursor-pointer active:scale-[.95]"
+          className='cursor-pointer active:scale-[.95]'
           src={send}
-          alt=""
+          alt=''
           onClick={() => {
-            alert("Будет реализовано в будущем!");
+            alert('Будет реализовано в будущем!')
           }}
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MessageInput;
+export default MessageInput

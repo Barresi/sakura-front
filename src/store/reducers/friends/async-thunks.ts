@@ -1,65 +1,70 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getFriends } from "@src/api/friends/friends";
-import { getReceived, getSended } from "@src/api/friends/requests";
-import { getAllUsers } from "@src/api/friends/users";
-import { IFriendsRequestResponse, IUser } from "@src/types/types";
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { getFriends } from '@src/api/friends/friends'
+import { getReceived, getSended } from '@src/api/friends/requests'
+import { getAllUsers } from '@src/api/friends/users'
+import {
+  type IAllUsersResponse,
+  type IFriendsResponse,
+  type IReceivedResponse,
+  type ISendedResponse
+} from '@src/types/api'
 
-export const getAllUsersThunk = createAsyncThunk<IUser[]>(
-  "users/getAll",
+export const getAllUsersThunk = createAsyncThunk<IAllUsersResponse>(
+  'users/getAll',
   async (_, { rejectWithValue }) => {
     try {
-      return getAllUsers();
+      return await getAllUsers()
     } catch (err) {
       if (err instanceof Error) {
-        return rejectWithValue(err.message);
+        return rejectWithValue(err.message)
       } else {
-        return rejectWithValue("Упс, что-то пошло не так");
+        return rejectWithValue('Упс, что-то пошло не так')
       }
     }
-  },
-);
+  }
+)
 
-export const getFriendsThunk = createAsyncThunk<IFriendsRequestResponse[]>(
-  "profileInfo/getFriends",
+export const getFriendsThunk = createAsyncThunk<IFriendsResponse>(
+  'profileInfo/getFriends',
   async (_, { rejectWithValue }) => {
     try {
-      return await getFriends();
+      return await getFriends()
     } catch (err) {
       if (err instanceof Error) {
-        return rejectWithValue(err.message);
+        return rejectWithValue(err.message)
       } else {
-        return rejectWithValue("Упс, что-то пошло не так");
+        return rejectWithValue('Упс, что-то пошло не так')
       }
     }
-  },
-);
+  }
+)
 
-export const getReceivedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
-  "profileInfo/getReceived",
+export const getReceivedThunk = createAsyncThunk<IReceivedResponse>(
+  'profileInfo/getReceived',
   async (_, { rejectWithValue }) => {
     try {
-      return await getReceived();
+      return await getReceived()
     } catch (err) {
       if (err instanceof Error) {
-        return rejectWithValue(err.message);
+        return rejectWithValue(err.message)
       } else {
-        return rejectWithValue("Упс, что-то пошло не так");
+        return rejectWithValue('Упс, что-то пошло не так')
       }
     }
-  },
-);
+  }
+)
 
-export const getSendedThunk = createAsyncThunk<IFriendsRequestResponse[]>(
-  "profileInfo/getSended",
+export const getSendedThunk = createAsyncThunk<ISendedResponse>(
+  'profileInfo/getSended',
   async (_, { rejectWithValue }) => {
     try {
-      return await getSended();
+      return await getSended()
     } catch (err) {
       if (err instanceof Error) {
-        return rejectWithValue(err.message);
+        return rejectWithValue(err.message)
       } else {
-        return rejectWithValue("Упс, что-то пошло не так");
+        return rejectWithValue('Упс, что-то пошло не так')
       }
     }
-  },
-);
+  }
+)

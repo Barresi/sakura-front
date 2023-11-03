@@ -1,25 +1,25 @@
-import { IFriendsRequestResponse, IUser } from "@src/types/types";
+import { type IFriend } from '@src/types/api'
+import { type IUser } from '@src/types/types'
 
-export const filterUsers = (item: IUser, search: string) => {
-  if (!search) return true;
+export const filterUsers = (item: IUser, search: string): boolean => {
+  if (!search) return true
 
   return (
-    item?.username?.toLowerCase().includes(search.toLowerCase()) ||
-    item?.firstName?.toLowerCase().includes(search.toLowerCase()) ||
-    item?.lastName?.toLowerCase().includes(search.toLowerCase())
-  );
-};
+    item.firstName.toLowerCase().includes(search.toLowerCase()) ||
+    item.lastName.toLowerCase().includes(search.toLowerCase())
+  )
+}
 
 export const filterRequests = (
   users: IUser[],
   currentId: number,
-  item: IFriendsRequestResponse,
-  search: string,
-) => {
-  if (!search) return true;
+  item: IFriend,
+  search: string
+): boolean => {
+  if (!search) return true
 
-  const id = currentId == item.fromId ? item.toId : item.fromId;
-  const user = users.filter((item) => Number(item.id) === id)[0];
+  const id = currentId === item.fromId ? item.toId : item.fromId
+  const user = users.filter((item) => Number(item.id) === id)[0]
 
-  return filterUsers(user, search);
-};
+  return filterUsers(user, search)
+}

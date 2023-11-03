@@ -1,19 +1,64 @@
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier",
-  ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
-  rules: {
-    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-    "@typescript-eslint/no-unused-vars": ["warn"],
-    "@typescript-eslint/no-explicit-any": ["warn"],
-    "@typescript-eslint/ban-ts-comment": "off",
+  env: {
+    browser: true,
+    es2021: true
   },
-};
+  extends: [
+    'standard-with-typescript',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended'
+  ],
+  overrides: [
+    {
+      env: {
+        node: true
+      },
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script'
+      }
+    }
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
+  plugins: ['react'],
+  rules: {
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false
+      }
+    ],
+    'react/react-in-jsx-scope': 'off',
+    indent: ['error', 2, { SwitchCase: 1 }],
+    'prettier/prettier': [
+      'warn',
+      {
+        printWidth: 90,
+        tabWidth: 2,
+        semi: false,
+        singleQuote: true,
+        jsxSingleQuote: true,
+        trailingComma: 'none',
+        bracketSpacing: true,
+        bracketSameLine: false,
+        endOfLine: 'lf',
+        arrowParens: 'always'
+      }
+    ]
+  },
+  ignorePatterns: [
+    '.eslintrc.cjs',
+    'vite.config.ts',
+    'tailwind.config.js',
+    'postcss.config.js'
+  ]
+}

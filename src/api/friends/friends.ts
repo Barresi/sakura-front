@@ -1,31 +1,32 @@
-import axios from "axios";
-import { errorHandler, requestWithRefreshToken } from "../api";
-import { getCookie } from "@src/utils/cookie";
+import axios from 'axios'
+import { errorHandler, requestWithRefreshToken } from '../api'
+import { getCookie } from '@src/utils/cookie'
+import { type IDeleteResponse, type IFriendsResponse } from '@src/types/api'
 
-export const getFriends = async () => {
-  const getFriendsRequest = async () => {
+export const getFriends = async (): Promise<IFriendsResponse> => {
+  const getFriendsRequest = async (): Promise<IFriendsResponse> => {
     const res = await axios
-      .get("/friends", {
-        headers: { Authorization: `Bearer ${getCookie("accessToken")}` },
+      .get('/friends', {
+        headers: { Authorization: `Bearer ${getCookie('accessToken')}` }
       })
-      .catch(errorHandler);
+      .catch(errorHandler)
 
-    return res.data;
-  };
+    return res.data
+  }
 
-  return requestWithRefreshToken(getFriendsRequest);
-};
+  return await requestWithRefreshToken(getFriendsRequest)
+}
 
-export const deleteFriend = async (id: number) => {
-  const deleteFriendRequest = async () => {
+export const deleteFriend = async (id: number): Promise<IDeleteResponse> => {
+  const deleteFriendRequest = async (): Promise<IDeleteResponse> => {
     const res = await axios
       .delete(`/friends/${id}`, {
-        headers: { Authorization: `Bearer ${getCookie("accessToken")}` },
+        headers: { Authorization: `Bearer ${getCookie('accessToken')}` }
       })
-      .catch(errorHandler);
+      .catch(errorHandler)
 
-    return res.data;
-  };
+    return res.data
+  }
 
-  return requestWithRefreshToken(deleteFriendRequest);
-};
+  return await requestWithRefreshToken(deleteFriendRequest)
+}

@@ -1,32 +1,32 @@
-import { useTheme } from "@src/hooks/useTheme";
-import { cn } from "@utils/utils";
-import { FC, ReactNode } from "react";
+import { type FC, type ReactNode } from 'react'
+import { useTheme } from '@src/hooks/useTheme'
+import { cn } from '@utils/utils'
 
-interface IProps {
-  children: ReactNode;
-  className?: string;
+interface ICardProps {
+  children: ReactNode
+  className?: string
 }
 
-const Card: FC<IProps> = ({ children, className }) => {
-  const { theme } = useTheme();
+const Card: FC<ICardProps> = ({ children, className }) => {
+  const { theme } = useTheme()
 
   const hover = {
-    light: "hover:border",
-    dark: "",
-    system: "",
-  };
+    light: 'hover:border',
+    dark: '',
+    system: ''
+  }
 
   return (
     <div
       className={cn(
-        "w-full bg-message  rounded-tl-[10px] border border-background border-b-message-border px-[15px] lg:px-[30px] py-[20px]",
+        'w-full bg-message  rounded-tl-[10px] border border-background border-b-message-border px-[15px] lg:px-[30px] py-[20px]',
         hover[theme],
-        className,
+        className
       )}
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

@@ -1,31 +1,32 @@
-import axios from "axios";
-import { errorHandler, requestWithRefreshToken } from "../api";
-import { getCookie } from "@src/utils/cookie";
+import axios from 'axios'
+import { errorHandler, requestWithRefreshToken } from '../api'
+import { getCookie } from '@src/utils/cookie'
+import { type IAddFriendResponse, type IAllUsersResponse } from '@src/types/api'
 
-export const getAllUsers = async () => {
-  const getAllUsersRequest = async () => {
+export const getAllUsers = async (): Promise<IAllUsersResponse> => {
+  const getAllUsersRequest = async (): Promise<IAllUsersResponse> => {
     const res = await axios
-      .get("/users", { headers: { Authorization: `Bearer ${getCookie("accessToken")}` } })
-      .catch(errorHandler);
+      .get('/users', { headers: { Authorization: `Bearer ${getCookie('accessToken')}` } })
+      .catch(errorHandler)
 
-    return res.data;
-  };
+    return res.data
+  }
 
-  return requestWithRefreshToken(getAllUsersRequest);
-};
+  return await requestWithRefreshToken(getAllUsersRequest)
+}
 
-export const addFriend = async (id: number) => {
-  const addFriendRequest = async () => {
+export const addFriend = async (id: number): Promise<IAddFriendResponse> => {
+  const addFriendRequest = async (): Promise<IAddFriendResponse> => {
     const res = await axios
       .post(
         `/users/${id}`,
         {},
-        { headers: { Authorization: `Bearer ${getCookie("accessToken")}` } },
+        { headers: { Authorization: `Bearer ${getCookie('accessToken')}` } }
       )
-      .catch(errorHandler);
+      .catch(errorHandler)
 
-    return res.data;
-  };
+    return res.data
+  }
 
-  return requestWithRefreshToken(addFriendRequest);
-};
+  return await requestWithRefreshToken(addFriendRequest)
+}
