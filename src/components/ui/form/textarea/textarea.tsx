@@ -1,12 +1,11 @@
-import * as React from 'react'
-
+import { forwardRef } from 'react'
 import { cn } from '@utils/utils'
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface ITextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
   ({ className, error, ...props }, ref) => {
     const baseClass =
       'flex min-h-[100px] outline-none bg-input-background text-input-foreground w-full rounded-md border border-input p-5 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 focus:border-input-hoverBorder'

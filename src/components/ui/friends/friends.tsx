@@ -1,11 +1,12 @@
-import { cn, useWindowSize } from '@utils/utils'
+import { useWindowSize } from '@src/hooks/useWindowSize'
+import { cn } from '@utils/utils'
 import { type FC } from 'react'
 
-interface FriendsProps {
+interface IFriendsProps {
   avatars: string[]
 }
 
-const Friends: FC<FriendsProps> = ({ avatars }) => {
+const Friends: FC<IFriendsProps> = ({ avatars }) => {
   const isMobile = useWindowSize(1024)
 
   const maxCount = isMobile ? 3 : 5

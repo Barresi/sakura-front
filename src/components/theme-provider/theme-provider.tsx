@@ -1,7 +1,7 @@
 import { useState, useEffect, type FC } from 'react'
 import { ThemeProviderContext, Theme, LOCAL_STORAGE_THEME_KEY } from './theme-context'
 
-interface ThemeProviderProps {
+interface IThemeProviderProps {
   children: React.ReactNode
   defaultTheme?: Theme
   storageKey?: string
@@ -9,7 +9,7 @@ interface ThemeProviderProps {
 
 const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
 
-const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+const ThemeProvider: FC<IThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
   useEffect(() => {
     const root = window.document.documentElement

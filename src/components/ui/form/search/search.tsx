@@ -1,12 +1,12 @@
 import { type FC } from 'react'
-import Input, { type InputProps } from '../input/input'
+import Input, { type IInputProps } from '../input/input'
 
 import icon from '@assets/ui/Search.svg'
 import { cn } from '@utils/utils'
 
-interface IProps extends Omit<InputProps, 'type'> {}
+interface ISearchProps extends Omit<IInputProps, 'type'> {}
 
-const Search: FC<IProps> = ({ className, ...props }) => {
+const Search: FC<ISearchProps> = ({ className, ...props }) => {
   return (
     <div className="flex items-center relative">
       <Input

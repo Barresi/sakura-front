@@ -1,18 +1,18 @@
-import { cn } from '@utils/utils'
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
+import { cn } from '@utils/utils'
 import SettingButton from '../button/setting-button/setting-button'
 import Logo from '../logo/logo'
 import { useTheme } from '@src/hooks/useTheme'
 import UserAvatar from '../avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
 
-interface HeaderProps
+interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
   className?: string
   avatar?: string
 }
 
-const Header: FC<HeaderProps> = ({ className, avatar, ...props }) => {
+const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
   const { toggleTheme } = useTheme()
   const isMobile = useWindowSize(1024)
 

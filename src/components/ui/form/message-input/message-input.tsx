@@ -1,14 +1,14 @@
 import { type FC } from 'react'
-import Input, { type InputProps } from '../input/input'
+import Input, { type IInputProps } from '../input/input'
 
 import media from '@assets/ui/paperclip.svg'
 import smile from '@assets/ui/Smile.svg'
 import send from '@assets/ui/send.svg'
 import { cn } from '@src/utils/utils'
 
-interface IProps extends InputProps {}
+interface IMessageInputProps extends IInputProps {}
 
-const MessageInput: FC<IProps> = ({ ...props }) => {
+const MessageInput: FC<IMessageInputProps> = ({ ...props }) => {
   return (
     <div className="w-full relative">
       <Input

@@ -1,15 +1,15 @@
 import { type FC } from 'react'
 import { cn } from '@utils/utils'
-import Input, { type InputProps } from '../input/input'
+import Input, { type IInputProps } from '../input/input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
 
 import smile from '@assets/ui/Smile.svg'
 
-interface IProps extends InputProps {
+interface INewInputProps extends IInputProps {
   avatar?: string
 }
 
-const NewInput: FC<IProps> = ({ avatar, className, ...props }) => {
+const NewInput: FC<INewInputProps> = ({ avatar, className, ...props }) => {
   const withAvatar = avatar ? 'pl-[80px]' : ''
 
   return (

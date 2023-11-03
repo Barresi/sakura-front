@@ -1,22 +1,22 @@
-import * as React from 'react'
-import * as AvatarPrimitive from '@radix-ui/react-avatar'
+import { type FC, forwardRef } from 'react'
+import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 
 import { cn } from '@utils/utils'
 
 import avatarLight from '@assets/default avatar light.svg'
 import { type IPropsForwardRefsUI } from '@src/types/other'
 
-interface AvatarProps
-  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+interface IAvatarProps
+  extends React.ComponentPropsWithoutRef<typeof Root> {
   text?: string
 }
 
-const Avatar = React.forwardRef<
-React.ElementRef<typeof AvatarPrimitive.Root>,
-AvatarProps
+const Avatar = forwardRef<
+React.ElementRef<typeof Root>,
+IAvatarProps
 >(({ className, children, text, ...props }, ref) => (
   <div className="flex flex-col gap-2 items-center">
-    <AvatarPrimitive.Root
+    <Root
       ref={ref}
       className={cn(
         'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
@@ -25,30 +25,30 @@ AvatarProps
       {...props}
     >
       {children}
-    </AvatarPrimitive.Root>
+    </Root>
     <span className="text-avatar-foreground">{text}</span>
   </div>
 ))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+Avatar.displayName = Root.displayName
 
-const AvatarImage = React.forwardRef<
-React.ElementRef<typeof AvatarPrimitive.Image>,
-React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & IPropsForwardRefsUI
+const AvatarImage = forwardRef<
+React.ElementRef<typeof Image>,
+React.ComponentPropsWithoutRef<typeof Image> & IPropsForwardRefsUI
 >(({ className, src, ...props }, ref) => (
-  <AvatarPrimitive.Image
+  <Image
     ref={ref}
     className={cn('object-cover aspect-square h-full w-full', '', className)}
     src={src}
     {...props}
   />
 ))
-AvatarImage.displayName = AvatarPrimitive.Image.displayName
+AvatarImage.displayName = Image.displayName
 
-const AvatarFallback = React.forwardRef<
-React.ElementRef<typeof AvatarPrimitive.Fallback>,
-React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & IPropsForwardRefsUI
+const AvatarFallback = forwardRef<
+React.ElementRef<typeof Fallback>,
+React.ComponentPropsWithoutRef<typeof Fallback> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
+  <Fallback
     ref={ref}
     className={cn(
       'flex h-full w-full text-center items-center justify-center rounded-full bg-muted border border-gray-700',
@@ -57,9 +57,14 @@ React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & IPropsForwardR
     {...props}
   />
 ))
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+AvatarFallback.displayName = Fallback.displayName
 
-const UserAvatar: React.FC<{ src?: string, className?: string }> = ({
+interface IUserAvatarProps {
+  src?: string
+  className?: string
+}
+
+const UserAvatar: FC<IUserAvatarProps> = ({
   src,
   className
 }) => {

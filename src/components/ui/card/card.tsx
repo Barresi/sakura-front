@@ -1,13 +1,13 @@
+import { type FC, type ReactNode } from 'react'
 import { useTheme } from '@src/hooks/useTheme'
 import { cn } from '@utils/utils'
-import { type FC, type ReactNode } from 'react'
 
-interface IProps {
+interface ICardProps {
   children: ReactNode
   className?: string
 }
 
-const Card: FC<IProps> = ({ children, className }) => {
+const Card: FC<ICardProps> = ({ children, className }) => {
   const { theme } = useTheme()
 
   const hover = {

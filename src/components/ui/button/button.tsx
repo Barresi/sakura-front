@@ -1,12 +1,12 @@
-import { forwardRef } from 'react'
+import { type ButtonHTMLAttributes, forwardRef } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { type VariantProps } from 'class-variance-authority'
 import { cn } from '@utils/utils'
 import { buttonVariants } from '../variants/variants'
 import { icons, type Icon } from './button-icons/button-icons'
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+export interface IButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
   VariantProps<typeof buttonVariants> {
   asChild?: boolean
   icon?: Icon
@@ -23,7 +23,7 @@ const renderIcon = <T, P>(icon?: T, icons?: P): JSX.Element | undefined => {
   }
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {
       className,

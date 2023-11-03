@@ -1,15 +1,15 @@
 import { type FC } from 'react'
 import { cn } from '@utils/utils'
-import Button, { type ButtonProps } from '../button'
+import Button, { type IButtonProps } from '../button'
 
 import { Badge } from '@src/components/ui/badge/badge'
 import { useTheme } from '@src/hooks/useTheme'
 
-interface SettingButtonProps extends ButtonProps {
+interface ISettingButtonProps extends IButtonProps {
   badge?: number
 }
 
-const SettingButton: FC<SettingButtonProps> = ({
+const SettingButton: FC<ISettingButtonProps> = ({
   className,
   icon,
   badge = 0,

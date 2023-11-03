@@ -1,11 +1,11 @@
 import { type FC, useState } from 'react'
 import { cn } from '@utils/utils'
-import Button, { type ButtonProps } from '../button'
+import Button, { type IButtonProps } from '../button'
 import { useTheme } from '@src/hooks/useTheme'
 
-interface IProps extends ButtonProps {}
+interface IActionButtonProps extends IButtonProps {}
 
-const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props }) => {
+const ActionButton: FC<IActionButtonProps> = ({ children, icon, className, onClick, ...props }) => {
   const [active, setActive] = useState(true)
 
   const { theme } = useTheme()

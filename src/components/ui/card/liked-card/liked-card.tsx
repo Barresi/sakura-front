@@ -2,16 +2,16 @@ import { type FC } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@utils/utils'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type MessageCardProps } from '../message-card/message-card'
+import { type IMessageCardProps } from '../message-card/message-card'
 import Card from '../card'
 
-export interface LikedCardProps
-  extends Pick<MessageCardProps['data'], 'img' | 'imgFallback' | 'name' | 'date'> {
+export interface ILikedCardProps
+  extends Pick<IMessageCardProps['data'], 'img' | 'imgFallback' | 'name' | 'date'> {
   link?: string
   className?: string
 }
 
-const LikedCard: FC<LikedCardProps> = ({ className, img, name, date, link }) => {
+const LikedCard: FC<ILikedCardProps> = ({ className, img, name, date, link }) => {
   return (
     <Card className={cn('', className)}>
       <div className="flex gap-[15px] items-start lg:items-center">

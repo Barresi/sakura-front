@@ -1,17 +1,18 @@
-import { Badge } from '@components/ui/badge/badge'
 import { type FC, type ReactNode } from 'react'
+import { Badge } from '@components/ui/badge/badge'
 import { NavLink, type NavLinkProps } from 'react-router-dom'
-import Button, { type Icon } from '../button'
+import Button from '../button'
 import { cn } from '@src/utils/utils'
+import { type Icon } from '../button-icons/button-icons'
 
-interface IProps extends NavLinkProps {
+interface INavButtonProps extends NavLinkProps {
   badge?: number
   icon?: Icon
   linkClassName?: string
   className?: string
 }
 
-const NavButton: FC<IProps> = ({
+const NavButton: FC<INavButtonProps> = ({
   children,
   icon,
   className,

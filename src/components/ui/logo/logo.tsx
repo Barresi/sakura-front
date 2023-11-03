@@ -7,11 +7,11 @@ import logoDark from '@assets/ui/logo-dark.svg'
 import logoMobileLight from '@assets/ui/logo-mobile-light.svg'
 import logoMobileDark from '@assets/ui/logo-mobile-dark.svg'
 
-interface LogoProps {
+interface ILogoProps {
   isAdaptive?: boolean
 }
 
-const Logo: FC<LogoProps> = ({ isAdaptive = false }) => {
+const Logo: FC<ILogoProps> = ({ isAdaptive = false }) => {
   const { theme } = useTheme()
   const isMobile = useWindowSize(768)
 

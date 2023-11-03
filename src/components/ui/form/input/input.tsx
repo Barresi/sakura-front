@@ -1,17 +1,17 @@
-import * as React from 'react'
+import { forwardRef, useState } from 'react'
 
 import { cn } from '@utils/utils'
 
 import eye from '@assets/ui/Eye.svg'
 import eyeOff from '@assets/ui/Eye Off.svg'
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, IInputProps>(
   ({ className, type, error, ...props }, ref) => {
-    const [inputType, setType] = React.useState(type)
+    const [inputType, setType] = useState(type)
 
     const toggleType = (): void => { setType((type) => (type === 'text' ? 'password' : 'text')) }
 
