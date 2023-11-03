@@ -5,7 +5,13 @@ import { useTheme } from '@src/hooks/useTheme'
 
 interface IActionButtonProps extends IButtonProps {}
 
-const ActionButton: FC<IActionButtonProps> = ({ children, icon, className, onClick, ...props }) => {
+const ActionButton: FC<IActionButtonProps> = ({
+  children,
+  icon,
+  className,
+  onClick,
+  ...props
+}) => {
   const [active, setActive] = useState(true)
 
   const { theme } = useTheme()
@@ -14,15 +20,11 @@ const ActionButton: FC<IActionButtonProps> = ({ children, icon, className, onCli
     setActive((active) => !active)
   }
 
-  const whichLike = active
-    ? theme === 'dark'
-      ? 'likeActiveDark'
-      : 'likeActive'
-    : 'like'
+  const whichLike = active ? (theme === 'dark' ? 'likeActiveDark' : 'likeActive') : 'like'
 
   return (
     <Button
-      variant="text"
+      variant='text'
       className={cn(
         'px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border border-background  hover:bg-background lg:hover:bg-text',
         theme === 'light' ? 'lg:border-text' : '',
@@ -32,7 +34,7 @@ const ActionButton: FC<IActionButtonProps> = ({ children, icon, className, onCli
       icon={icon === 'like' ? whichLike : icon}
       {...props}
     >
-      <span className="text-lg font-bold text-[#55677D] leading-[23px]">{children}</span>
+      <span className='text-lg font-bold text-[#55677D] leading-[23px]'>{children}</span>
     </Button>
   )
 }

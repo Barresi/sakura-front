@@ -32,13 +32,15 @@ const NavButton: FC<INavButtonProps> = ({
       <Button
         className={cn(className, 'relative')}
         icon={icon}
-        iconPos="left"
-        variant="text"
+        iconPos='left'
+        variant='text'
       >
         {children as ReactNode}
         {badge! > 0 && (
           <Badge
-            className={'absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4'}
+            className={
+              'absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4'
+            }
           >
             {badge}
           </Badge>

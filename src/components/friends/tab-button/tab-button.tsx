@@ -20,7 +20,7 @@ const TabButton: FC<ITabButtonProps> = ({ children, to, badge }) => {
         className={
           'w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]'
         }
-        variant="text"
+        variant='text'
       >
         {children}
         {badge ? <Badge>{badge}</Badge> : null}

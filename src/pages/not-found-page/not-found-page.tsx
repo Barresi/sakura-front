@@ -12,8 +12,8 @@ const NotFoundPage: FC<{ type: 'inside' | 'outside' }> = ({ type }) => {
     <div className={type === 'inside' ? insideClass : outsideClass}>
       <img
         src={theme === 'dark' ? notFoundDark : notFoundLight}
-        alt="not found"
-        className="max-w-[321px]"
+        alt='not found'
+        className='max-w-[321px]'
       />
     </div>
   )

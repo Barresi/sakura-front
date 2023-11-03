@@ -16,9 +16,9 @@ const MainPage: FC = () => {
   }, [dispatch])
 
   return (
-    <div className="p-0  lg:px-5 lg:pt-5 flex max-w-[1920px] mx-auto relative">
+    <div className='p-0  lg:px-5 lg:pt-5 flex max-w-[1920px] mx-auto relative'>
       {!isMobile && <Sidebar />}
-      <div className=" flex-auto lg:ml-[310px] flex flex-col">
+      <div className=' flex-auto lg:ml-[310px] flex flex-col'>
         <Header />
         <Outlet />
       </div>

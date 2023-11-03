@@ -20,22 +20,23 @@ const LoginPage: FC = () => {
     formState: { errors }
   } = useForm<ILoginForm>({ mode: 'onSubmit' })
 
-  const onSubmit: SubmitHandler<ILoginForm> = async (data) => await dispatch(loginThunk(data))
+  const onSubmit: SubmitHandler<ILoginForm> = async (data) =>
+    await dispatch(loginThunk(data))
 
   return (
-    <div className="flex justify-center items-center py-5 px-5 min-h-[100vh]">
+    <div className='flex justify-center items-center py-5 px-5 min-h-[100vh]'>
       <SettingButton
-        icon="theme"
-        className=" absolute top-5 left-5"
+        icon='theme'
+        className=' absolute top-5 left-5'
         onClick={toggleTheme}
       />
-      <div className="max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%] mt-[64px] md:mt-auto">
+      <div className='max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%] mt-[64px] md:mt-auto'>
         <div>
           <Logo />
-          <div className=" text-2xl text-center mt-5">Авторизация</div>
+          <div className=' text-2xl text-center mt-5'>Авторизация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=" w-[100%] flex flex-col gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
           <Input
             {...register('email', {
               required: 'Обязательное поле',
@@ -45,7 +46,7 @@ const LoginPage: FC = () => {
               }
             })}
             error={errors.email && (errors.email.message || 'Неправильный логин')}
-            placeholder="E-mail"
+            placeholder='E-mail'
           />
 
           <Input
@@ -65,16 +66,22 @@ const LoginPage: FC = () => {
               }
             })}
             error={errors.password && (errors.password.message || 'Неправильный пароль')}
-            placeholder="Password"
-            type="password"
+            placeholder='Password'
+            type='password'
           />
 
-          <div className=" mt-12 flex flex-col gap-2">
-            <Button variant="default" type="submit">
+          <div className=' mt-12 flex flex-col gap-2'>
+            <Button variant='default' type='submit'>
               Войти
             </Button>
-            <p className=" text-center">или</p>
-            <Button variant="link" type="button" onClick={() => { navigate('registration') }}>
+            <p className=' text-center'>или</p>
+            <Button
+              variant='link'
+              type='button'
+              onClick={() => {
+                navigate('registration')
+              }}
+            >
               Регистрация
             </Button>
           </div>

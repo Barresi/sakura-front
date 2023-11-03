@@ -1,5 +1,7 @@
 import { type FC } from 'react'
-import FriendButton, { type Tab } from '@src/components/friends/friend-button/friend-button'
+import FriendButton, {
+  type Tab
+} from '@src/components/friends/friend-button/friend-button'
 import Card from '../../ui/card/card'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
@@ -54,36 +56,52 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   const date = ''
 
   const avatar = (
-    <UserAvatar src={img} className="w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]" />
+    <UserAvatar src={img} className='w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]' />
   )
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
-      <h3 className="font-bold leading-6 text-friendCard-foreground text-lg">
+      <h3 className='font-bold leading-6 text-friendCard-foreground text-lg'>
         {firstName} {lastName} {isMine ? '(Вы)' : null}
       </h3>
       {type === 'requests' && (
-        <span className="text-[#55677D]">подал вам заявку в друзья</span>
+        <span className='text-[#55677D]'>подал вам заявку в друзья</span>
       )}
       {type === 'requests' && date && (
-        <span className="text-liked-dateForeground">{date}</span>
+        <span className='text-liked-dateForeground'>{date}</span>
       )}
       {type === 'sended' && (
-        <span className="text-[#55677D]">вы отправили заявку в друзья</span>
+        <span className='text-[#55677D]'>вы отправили заявку в друзья</span>
       )}
     </div>
   )
 
   const clickHandlers = {
-    friends: [() => { }, async () => { await deleteFriendHandler(id, dispatch) }],
-    all: [() => { }, async () => { await addFriendHandler(id, dispatch) }],
+    friends: [
+      () => {},
+      async () => {
+        await deleteFriendHandler(id, dispatch)
+      }
+    ],
+    all: [
+      () => {},
+      async () => {
+        await addFriendHandler(id, dispatch)
+      }
+    ],
     requests: [
-      async () => { await acceptRequestHandler(id, received, Number(currentId), dispatch) },
-      async () => { await rejectRequestHandler(id, received, Number(currentId), dispatch) }
+      async () => {
+        await acceptRequestHandler(id, received, Number(currentId), dispatch)
+      },
+      async () => {
+        await rejectRequestHandler(id, received, Number(currentId), dispatch)
+      }
     ],
     sended: [
-      () => { },
-      async () => { await cancelRequestHandler(id, sended, Number(currentId), dispatch) }
+      () => {},
+      async () => {
+        await cancelRequestHandler(id, sended, Number(currentId), dispatch)
+      }
     ]
   }
 
@@ -95,12 +113,12 @@ const FriendsCard: FC<IFriendsCardProps> = ({
           className
         )}
       >
-        <div className="flex items-start lg:items-center gap-[15px]">
+        <div className='flex items-start lg:items-center gap-[15px]'>
           {avatar}
 
           {info}
         </div>
-        <div className="mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
+        <div className='mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
           {isMine || (
             <FriendButton
               isFriend={isFriend}
@@ -119,13 +137,13 @@ const FriendsCard: FC<IFriendsCardProps> = ({
     <Card
       className={cn('block hover:border-b-message-border hover:bg-background', className)}
     >
-      <div className="flex items-start lg:items-center gap-[15px]">
+      <div className='flex items-start lg:items-center gap-[15px]'>
         {avatar}
 
-        <div className="w-full">
+        <div className='w-full'>
           {info}
 
-          <div className="mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]">
+          <div className='mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
             {isMine || (
               <FriendButton
                 isFriend={isFriend}

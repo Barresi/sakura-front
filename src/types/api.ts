@@ -9,7 +9,7 @@ export interface INoContentResponse {
 export enum AuthStatus {
   pending = 'pending',
   authorized = 'authorized',
-  notAuthorized = 'not authorized',
+  notAuthorized = 'not authorized'
 }
 
 export interface ILoginResponse {
@@ -34,7 +34,7 @@ export interface IRefreshResponse {
 export enum FriendsRequestStatus {
   pending = 'PENDING',
   accepted = 'ACCEPTED',
-  rejected = 'REJECTED',
+  rejected = 'REJECTED'
 }
 
 export interface IFriend {

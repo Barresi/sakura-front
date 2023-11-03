@@ -6,8 +6,8 @@ import { type IPropsForwardRefsUI } from '@src/types/other'
 const Tabs = Root
 
 const TabsList = forwardRef<
-React.ElementRef<typeof List>,
-React.ComponentPropsWithoutRef<typeof List> & IPropsForwardRefsUI
+  React.ElementRef<typeof List>,
+  React.ComponentPropsWithoutRef<typeof List> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
   <List
     ref={ref}
@@ -21,8 +21,8 @@ React.ComponentPropsWithoutRef<typeof List> & IPropsForwardRefsUI
 TabsList.displayName = List.displayName
 
 const TabsTrigger = forwardRef<
-React.ElementRef<typeof Trigger>,
-React.ComponentPropsWithoutRef<typeof Trigger> & IPropsForwardRefsUI
+  React.ElementRef<typeof Trigger>,
+  React.ComponentPropsWithoutRef<typeof Trigger> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
   <Trigger
     ref={ref}
@@ -36,8 +36,8 @@ React.ComponentPropsWithoutRef<typeof Trigger> & IPropsForwardRefsUI
 TabsTrigger.displayName = Trigger.displayName
 
 const TabsContent = forwardRef<
-React.ElementRef<typeof Content>,
-React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
   <Content
     ref={ref}

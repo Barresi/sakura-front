@@ -28,20 +28,20 @@ const MessageCard: FC<IMessageCardProps> = ({
         className
       )}
     >
-      <div className="flex items-center gap-[15px]">
-        <UserAvatar src={img} className="w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]" />
+      <div className='flex items-center gap-[15px]'>
+        <UserAvatar src={img} className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
 
         <div>
-          <h3 className="font-bold leading-6">{name}</h3>
-          <span className="w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis">
+          <h3 className='font-bold leading-6'>{name}</h3>
+          <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
             {message}
           </span>
         </div>
       </div>
 
-      <div className="flex flex-col">
-        <span className="text-[#55677D]">{date}</span>
-        <Badge className="self-end">{badge}</Badge>
+      <div className='flex flex-col'>
+        <span className='text-[#55677D]'>{date}</span>
+        <Badge className='self-end'>{badge}</Badge>
       </div>
     </Card>
   )

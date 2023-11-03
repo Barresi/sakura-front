@@ -1,7 +1,13 @@
 import axios from 'axios'
 import { errorHandler, requestWithRefreshToken } from '../api'
 import { getCookie } from '@src/utils/cookie'
-import { type ISendedResponse, type IReceivedResponse, type IAcceptResponse, type IRejectResponse, type ICancelResponse } from '@src/types/api'
+import {
+  type ISendedResponse,
+  type IReceivedResponse,
+  type IAcceptResponse,
+  type IRejectResponse,
+  type ICancelResponse
+} from '@src/types/api'
 
 export const getReceived = async (): Promise<IReceivedResponse> => {
   const getReceivedRequest = async (): Promise<IReceivedResponse> => {

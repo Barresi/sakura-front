@@ -13,7 +13,9 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
   ({ className, type, error, ...props }, ref) => {
     const [inputType, setType] = useState(type)
 
-    const toggleType = (): void => { setType((type) => (type === 'text' ? 'password' : 'text')) }
+    const toggleType = (): void => {
+      setType((type) => (type === 'text' ? 'password' : 'text'))
+    }
 
     const baseClass =
       'flex w-full outline-none rounded-md bg-input-background text-input-foreground border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50'
@@ -25,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       : ''
 
     const input = (
-      <div className="w-full relative pb-6">
+      <div className='w-full relative pb-6'>
         <input
           type={inputType}
           className={cn(baseClass, errorClass, className)}
@@ -39,13 +41,15 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
 
     if (type === 'password') {
       return (
-        <div className="w-full relative">
+        <div className='w-full relative'>
           {input}
           <img
-            className={'cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]'}
+            className={
+              'cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]'
+            }
             onClick={toggleType}
             src={inputType === 'text' ? eye : eyeOff}
-            alt=""
+            alt=''
           />
         </div>
       )

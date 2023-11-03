@@ -1,40 +1,64 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
-  extends: ["standard-with-typescript", "plugin:react/recommended"],
+  extends: [
+    'standard-with-typescript',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended'
+  ],
   overrides: [
     {
       env: {
-        node: true,
+        node: true
       },
-      files: [".eslintrc.{js,cjs}"],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        sourceType: "script",
-      },
-    },
+        sourceType: 'script'
+      }
+    }
   ],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {
-    "@typescript-eslint/prefer-nullish-coalescing": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/consistent-type-assertions": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-misused-promises": [
-      "error",
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
       {
-        "checksVoidReturn": false
+        checksVoidReturn: false
       }
     ],
-    "react/react-in-jsx-scope": "off",
-    "indent": ["error", 2, { "SwitchCase": 1 }]
+    'react/react-in-jsx-scope': 'off',
+    indent: ['error', 2, { SwitchCase: 1 }],
+    'prettier/prettier': [
+      'warn',
+      {
+        printWidth: 90,
+        tabWidth: 2,
+        semi: false,
+        singleQuote: true,
+        jsxSingleQuote: true,
+        trailingComma: 'none',
+        bracketSpacing: true,
+        bracketSameLine: false,
+        endOfLine: 'crlf',
+        arrowParens: 'always'
+      }
+    ]
   },
-  ignorePatterns: [".eslintrc.cjs", "vite.config.ts", "tailwind.config.js", "postcss.config.js"],
-};
+  ignorePatterns: [
+    '.eslintrc.cjs',
+    'vite.config.ts',
+    'tailwind.config.js',
+    'postcss.config.js'
+  ]
+}

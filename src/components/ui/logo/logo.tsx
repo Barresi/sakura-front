@@ -19,10 +19,10 @@ const Logo: FC<ILogoProps> = ({ isAdaptive = false }) => {
   const mobile = theme === 'dark' ? logoMobileDark : logoMobileLight
 
   if (!isAdaptive) {
-    return <img src={desk} alt="Sakura logo" />
+    return <img src={desk} alt='Sakura logo' />
   }
 
-  return <img src={isMobile ? mobile : desk} alt="Sakura logo" />
+  return <img src={isMobile ? mobile : desk} alt='Sakura logo' />
 }
 
 export default Logo

@@ -13,11 +13,11 @@ const NewInput: FC<INewInputProps> = ({ avatar, className, ...props }) => {
   const withAvatar = avatar ? 'pl-[80px]' : ''
 
   return (
-    <div className="w-full relative flex">
+    <div className='w-full relative flex'>
       {avatar && (
         <UserAvatar
           src={avatar}
-          className="absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]"
+          className='absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]'
         />
       )}
       <Input
@@ -26,13 +26,13 @@ const NewInput: FC<INewInputProps> = ({ avatar, className, ...props }) => {
           withAvatar,
           className
         )}
-        placeholder="Что у вас нового?"
+        placeholder='Что у вас нового?'
         {...props}
       />
       <img
-        className="cursor-pointer absolute top-[50%] right-[20px] translate-y-[-90%] active:scale-[.95]"
+        className='cursor-pointer absolute top-[50%] right-[20px] translate-y-[-90%] active:scale-[.95]'
         src={smile}
-        alt=""
+        alt=''
         onClick={() => {
           alert('Будет реализовано в будущем!')
         }}

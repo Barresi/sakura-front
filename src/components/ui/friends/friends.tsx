@@ -26,17 +26,17 @@ const Friends: FC<IFriendsProps> = ({ avatars }) => {
           key={i}
           className={cn('w-[50px] h-[50px]', avatars.length > 1 && imgClasses[i])}
           src={avatar}
-          alt=""
+          alt=''
         />
       )
     })
   }
 
   return (
-    <div className="my-[20px] px-[20px] py-[10px] rounded-[10px] border border-[#f2f2f2] flex items-center justify-between">
+    <div className='my-[20px] px-[20px] py-[10px] rounded-[10px] border border-[#f2f2f2] flex items-center justify-between'>
       <span>{avatars.length} друзей</span>
 
-      <div className="flex items-center mr-[20px] lg:mr-0">
+      <div className='flex items-center mr-[20px] lg:mr-0'>
         {renderImg(
           avatars.slice(0, avatars.length > maxCount ? maxCount : avatars.length)
         )}

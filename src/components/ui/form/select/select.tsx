@@ -1,8 +1,26 @@
 import { Check, ChevronDown } from 'lucide-react'
 
 import { forwardRef } from 'react'
-import { Content, Group, Icon, Item, ItemIndicator, ItemText, Label, Portal, Root as SelectRoot, Separator, Trigger, Value } from '@radix-ui/react-select'
-import { Root as ScrollRoot, Scrollbar, Thumb, Viewport } from '@radix-ui/react-scroll-area'
+import {
+  Content,
+  Group,
+  Icon,
+  Item,
+  ItemIndicator,
+  ItemText,
+  Label,
+  Portal,
+  Root as SelectRoot,
+  Separator,
+  Trigger,
+  Value
+} from '@radix-ui/react-select'
+import {
+  Root as ScrollRoot,
+  Scrollbar,
+  Thumb,
+  Viewport
+} from '@radix-ui/react-scroll-area'
 import { cn } from '@utils/utils'
 import { type IPropsForwardRefsUI } from '@src/types/other'
 
@@ -13,8 +31,8 @@ const SelectGroup = Group
 const SelectValue = Value
 
 const SelectTrigger = forwardRef<
-React.ElementRef<typeof Trigger>,
-React.ComponentPropsWithoutRef<typeof Trigger> & IPropsForwardRefsUI
+  React.ElementRef<typeof Trigger>,
+  React.ComponentPropsWithoutRef<typeof Trigger> & IPropsForwardRefsUI
 >(({ className, children, ...props }, ref) => (
   <Trigger
     ref={ref}
@@ -26,15 +44,15 @@ React.ComponentPropsWithoutRef<typeof Trigger> & IPropsForwardRefsUI
   >
     {children}
     <Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50" />
+      <ChevronDown className='h-4 w-4 opacity-50' />
     </Icon>
   </Trigger>
 ))
 SelectTrigger.displayName = Trigger.displayName
 
 const SelectContent = forwardRef<
-React.ElementRef<typeof Content>,
-React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
 >(({ className, children, position = 'popper', ...props }, ref) => (
   <Portal>
     <Content
@@ -48,10 +66,7 @@ React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
       position={position}
       {...props}
     >
-      <ScrollRoot
-        className="w-full overflow-hidden bg-[rgba(34,34,46,1)]"
-        type="auto"
-      >
+      <ScrollRoot className='w-full overflow-hidden bg-[rgba(34,34,46,1)]' type='auto'>
         <Viewport
           className={cn(
             'bg-select',
@@ -60,13 +75,11 @@ React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
           )}
           asChild
         >
-          <Viewport className="w-full h-full rounded-inherit">
-            {children}
-          </Viewport>
+          <Viewport className='w-full h-full rounded-inherit'>{children}</Viewport>
         </Viewport>
 
-        <Scrollbar className="flex p-[2px] data-[orientation=vertical]:w-[10px] data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-[10px]">
-          <Thumb className="flex-[1] bg-[rgba(210,40,40,1)] rounded-[50px] relative" />
+        <Scrollbar className='flex p-[2px] data-[orientation=vertical]:w-[10px] data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-[10px]'>
+          <Thumb className='flex-[1] bg-[rgba(210,40,40,1)] rounded-[50px] relative' />
         </Scrollbar>
       </ScrollRoot>
     </Content>
@@ -75,8 +88,8 @@ React.ComponentPropsWithoutRef<typeof Content> & IPropsForwardRefsUI
 SelectContent.displayName = Content.displayName
 
 const SelectLabel = forwardRef<
-React.ElementRef<typeof Label>,
-React.ComponentPropsWithoutRef<typeof Label> & IPropsForwardRefsUI
+  React.ElementRef<typeof Label>,
+  React.ComponentPropsWithoutRef<typeof Label> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
   <Label
     ref={ref}
@@ -87,8 +100,8 @@ React.ComponentPropsWithoutRef<typeof Label> & IPropsForwardRefsUI
 SelectLabel.displayName = Label.displayName
 
 const SelectItem = forwardRef<
-React.ElementRef<typeof Item>,
-React.ComponentPropsWithoutRef<typeof Item> & IPropsForwardRefsUI
+  React.ElementRef<typeof Item>,
+  React.ComponentPropsWithoutRef<typeof Item> & IPropsForwardRefsUI
 >(({ className, children, ...props }, ref) => (
   <Item
     ref={ref}
@@ -98,9 +111,9 @@ React.ComponentPropsWithoutRef<typeof Item> & IPropsForwardRefsUI
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
       <ItemIndicator>
-        <Check className="h-4 w-4" />
+        <Check className='h-4 w-4' />
       </ItemIndicator>
     </span>
 
@@ -110,14 +123,10 @@ React.ComponentPropsWithoutRef<typeof Item> & IPropsForwardRefsUI
 SelectItem.displayName = Item.displayName
 
 const SelectSeparator = forwardRef<
-React.ElementRef<typeof Separator>,
-React.ComponentPropsWithoutRef<typeof Separator> & IPropsForwardRefsUI
+  React.ElementRef<typeof Separator>,
+  React.ComponentPropsWithoutRef<typeof Separator> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
-  <Separator
-    ref={ref}
-    className={cn('-mx-1 my-1 h-px bg-muted', className)}
-    {...props}
-  />
+  <Separator ref={ref} className={cn('-mx-1 my-1 h-px bg-muted', className)} {...props} />
 ))
 SelectSeparator.displayName = Separator.displayName
 

@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 export enum Theme {
   DARK = 'dark',
-  LIGHT = 'light',
+  LIGHT = 'light'
 }
 interface ThemeProviderState {
   theme?: Theme

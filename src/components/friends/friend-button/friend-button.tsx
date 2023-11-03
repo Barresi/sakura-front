@@ -86,10 +86,22 @@ const FriendButton: FC<IFriendButtonProps> = ({
   }
 
   const secondaryHandler = (): void => {
-    if (type === 'requests') { clickHandlers[type as keyof typeof clickHandlers][1](); return }
-    if (isFriend) { clickHandlers.friends[1](); return }
-    if (isSended) { clickHandlers.sended[1](); return }
-    if (isReceived) { clickHandlers.requests[0](); return }
+    if (type === 'requests') {
+      clickHandlers[type as keyof typeof clickHandlers][1]()
+      return
+    }
+    if (isFriend) {
+      clickHandlers.friends[1]()
+      return
+    }
+    if (isSended) {
+      clickHandlers.sended[1]()
+      return
+    }
+    if (isReceived) {
+      clickHandlers.requests[0]()
+      return
+    }
 
     clickHandlers[type as keyof typeof clickHandlers][1]()
   }
@@ -108,15 +120,17 @@ const FriendButton: FC<IFriendButtonProps> = ({
       <>
         <Button
           icon={data.primary.icon as Icon}
-          variant="default"
+          variant='default'
           className={primaryClassName}
           onClick={primaryHandler}
         />
         <Button
           icon={secondaryIcon()}
-          variant="secondary"
-          className="w-[49%] whitespace-nowrap hover:bg-secondary-hover"
-          onClick={() => { secondaryHandler() }}
+          variant='secondary'
+          className='w-[49%] whitespace-nowrap hover:bg-secondary-hover'
+          onClick={() => {
+            secondaryHandler()
+          }}
         />
       </>
     )
@@ -124,11 +138,11 @@ const FriendButton: FC<IFriendButtonProps> = ({
 
   return (
     <>
-      <Button variant="default" className={primaryClassName} onClick={primaryHandler}>
+      <Button variant='default' className={primaryClassName} onClick={primaryHandler}>
         {data.primary.text}
       </Button>
       <Button
-        variant="secondary"
+        variant='secondary'
         className={secondaryClassName}
         onClick={secondaryHandler}
       >

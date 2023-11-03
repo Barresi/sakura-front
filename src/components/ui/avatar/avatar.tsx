@@ -6,34 +6,32 @@ import { cn } from '@utils/utils'
 import avatarLight from '@assets/default avatar light.svg'
 import { type IPropsForwardRefsUI } from '@src/types/other'
 
-interface IAvatarProps
-  extends React.ComponentPropsWithoutRef<typeof Root> {
+interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
   text?: string
 }
 
-const Avatar = forwardRef<
-React.ElementRef<typeof Root>,
-IAvatarProps
->(({ className, children, text, ...props }, ref) => (
-  <div className="flex flex-col gap-2 items-center">
-    <Root
-      ref={ref}
-      className={cn(
-        'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </Root>
-    <span className="text-avatar-foreground">{text}</span>
-  </div>
-))
+const Avatar = forwardRef<React.ElementRef<typeof Root>, IAvatarProps>(
+  ({ className, children, text, ...props }, ref) => (
+    <div className='flex flex-col gap-2 items-center'>
+      <Root
+        ref={ref}
+        className={cn(
+          'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </Root>
+      <span className='text-avatar-foreground'>{text}</span>
+    </div>
+  )
+)
 Avatar.displayName = Root.displayName
 
 const AvatarImage = forwardRef<
-React.ElementRef<typeof Image>,
-React.ComponentPropsWithoutRef<typeof Image> & IPropsForwardRefsUI
+  React.ElementRef<typeof Image>,
+  React.ComponentPropsWithoutRef<typeof Image> & IPropsForwardRefsUI
 >(({ className, src, ...props }, ref) => (
   <Image
     ref={ref}
@@ -45,8 +43,8 @@ React.ComponentPropsWithoutRef<typeof Image> & IPropsForwardRefsUI
 AvatarImage.displayName = Image.displayName
 
 const AvatarFallback = forwardRef<
-React.ElementRef<typeof Fallback>,
-React.ComponentPropsWithoutRef<typeof Fallback> & IPropsForwardRefsUI
+  React.ElementRef<typeof Fallback>,
+  React.ComponentPropsWithoutRef<typeof Fallback> & IPropsForwardRefsUI
 >(({ className, ...props }, ref) => (
   <Fallback
     ref={ref}
@@ -64,10 +62,7 @@ interface IUserAvatarProps {
   className?: string
 }
 
-const UserAvatar: FC<IUserAvatarProps> = ({
-  src,
-  className
-}) => {
+const UserAvatar: FC<IUserAvatarProps> = ({ src, className }) => {
   const img = src || avatarLight
   return (
     <Avatar className={className}>

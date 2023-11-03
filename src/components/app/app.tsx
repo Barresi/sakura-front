@@ -18,39 +18,38 @@ const App: FC = () => {
   return (
     <Routes>
       <Route
-        path="/"
+        path='/'
         element={
-          <ProtectedRouteElement protectedPageType="auth" element={<LoginPage />} />
+          <ProtectedRouteElement protectedPageType='auth' element={<LoginPage />} />
         }
       />
       <Route
-        path="/registration"
+        path='/registration'
         element={
           <ProtectedRouteElement
-            protectedPageType="auth"
+            protectedPageType='auth'
             element={<RegistrationPage />}
           />
         }
       />
 
       <Route
-        path="/main"
+        path='/main'
         element={
-          <ProtectedRouteElement protectedPageType="main" element={<MainPage />} />
+          <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
         }
       >
-        <Route path="friends" element={<FriendsPage />}>
-          <Route index element={<FriendsTabContent type="friends" />} />
-          <Route path="all" element={<FriendsTabContent type="all" />} />
-          <Route path="requests" element={<FriendsTabContent type="requests" />} />
-          <Route path="sended" element={<FriendsTabContent type="sended" />} />
+        <Route path='friends' element={<FriendsPage />}>
+          <Route index element={<FriendsTabContent type='friends' />} />
+          <Route path='all' element={<FriendsTabContent type='all' />} />
+          <Route path='requests' element={<FriendsTabContent type='requests' />} />
+          <Route path='sended' element={<FriendsTabContent type='sended' />} />
         </Route>
-        <Route path="*" element={<NotFoundPage type="inside" />} />
+        <Route path='*' element={<NotFoundPage type='inside' />} />
       </Route>
 
-      <Route path="*" element={<NotFoundPage type="outside" />} />
+      <Route path='*' element={<NotFoundPage type='outside' />} />
     </Routes>
-
   )
 }
 

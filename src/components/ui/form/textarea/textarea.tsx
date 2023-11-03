@@ -1,7 +1,8 @@
 import { forwardRef } from 'react'
 import { cn } from '@utils/utils'
 
-export interface ITextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface ITextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string
 }
 
@@ -16,7 +17,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
       ? 'absolute bottom-[-1rem] left-5 text-input-errorBorder'
       : ''
     return (
-      <div className="w-full relative pb-6">
+      <div className='w-full relative pb-6'>
         <textarea className={cn(baseClass, errorClass, className)} ref={ref} {...props} />
         <span className={errorSpanClass}>{error}</span>
       </div>

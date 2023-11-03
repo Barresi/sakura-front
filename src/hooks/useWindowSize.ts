@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export function useWindowSize (maxWidth: string | number): boolean {
+export function useWindowSize(maxWidth: string | number): boolean {
   const [width, setWidth] = useState(window.innerWidth)
 
   const handleResize = (event: Event): void => {

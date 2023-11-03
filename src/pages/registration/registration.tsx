@@ -22,25 +22,25 @@ const RegistrationPage: FC = () => {
   } = useForm<IRegistrationForm>({ mode: 'onSubmit' })
 
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
-    await dispatch(registrationThunk(data)).then(
-      (data) => { (data.payload as { id: number }).id && navigate('/') }
-    )
+    await dispatch(registrationThunk(data)).then((data) => {
+      ;(data.payload as { id: number }).id && navigate('/')
+    })
   }
 
   return (
-    <div className="flex justify-center items-center px-5 py-5 min-h-[100vh]">
+    <div className='flex justify-center items-center px-5 py-5 min-h-[100vh]'>
       <SettingButton
-        icon="theme"
-        className=" absolute top-5 left-5"
+        icon='theme'
+        className=' absolute top-5 left-5'
         onClick={toggleTheme}
       />
-      <div className="max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%] mt-[64px] md:mt-auto ">
+      <div className='max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-background w-[100%] mt-[64px] md:mt-auto '>
         <div>
           <Logo />
-          <div className=" text-2xl text-center mt-5">Регистрация</div>
+          <div className=' text-2xl text-center mt-5'>Регистрация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=" w-[100%] flex flex-col gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
           <Input
             {...register('firstName', {
               required: 'Обязательное поле',
@@ -54,7 +54,7 @@ const RegistrationPage: FC = () => {
               }
             })}
             error={errors.firstName && (errors.firstName.message || 'Неправильный логин')}
-            placeholder="Имя"
+            placeholder='Имя'
           />
 
           <Input
@@ -70,7 +70,7 @@ const RegistrationPage: FC = () => {
               }
             })}
             error={errors.lastName && (errors.lastName.message || 'Неправильный логин')}
-            placeholder="Фамилия"
+            placeholder='Фамилия'
           />
 
           <Input
@@ -82,7 +82,7 @@ const RegistrationPage: FC = () => {
               }
             })}
             error={errors.email && (errors.email.message || 'Неправильный email')}
-            placeholder="E-mail"
+            placeholder='E-mail'
           />
 
           <Input
@@ -102,8 +102,8 @@ const RegistrationPage: FC = () => {
               }
             })}
             error={errors.password && (errors.password.message || 'login is required')}
-            placeholder="Password"
-            type="password"
+            placeholder='Password'
+            type='password'
           />
 
           <Input
@@ -119,16 +119,22 @@ const RegistrationPage: FC = () => {
               errors.confirmPassword &&
               (errors.confirmPassword.message || 'login is required')
             }
-            placeholder="Confirm password"
-            type="password"
+            placeholder='Confirm password'
+            type='password'
           />
 
-          <div className=" mt-12 flex flex-col gap-2">
-            <Button variant="default" type="submit">
+          <div className=' mt-12 flex flex-col gap-2'>
+            <Button variant='default' type='submit'>
               Зарегистрироваться
             </Button>
-            <p className=" text-center">или</p>
-            <Button variant="link" type="button" onClick={() => { navigate('/') }}>
+            <p className=' text-center'>или</p>
+            <Button
+              variant='link'
+              type='button'
+              onClick={() => {
+                navigate('/')
+              }}
+            >
               Войти
             </Button>
           </div>

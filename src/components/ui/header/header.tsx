@@ -27,15 +27,11 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
       {/* пустой div нужен для того, чтобы иконки не уехали в левый край, а остались в правом */}
       {isMobile ? <Logo isAdaptive /> : <div></div>}
 
-      <div className="flex items-center justify-center gap-[15px]">
-        <SettingButton
-          icon="theme"
-          onClick={toggleTheme}
-          className="flex lg:hidden"
-        />
-        <SettingButton icon="notification" />
+      <div className='flex items-center justify-center gap-[15px]'>
+        <SettingButton icon='theme' onClick={toggleTheme} className='flex lg:hidden' />
+        <SettingButton icon='notification' />
 
-        <UserAvatar src={avatar} className="w-[44px] h-[44px] mt-2" />
+        <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
       </div>
     </header>
   )

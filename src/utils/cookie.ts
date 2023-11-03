@@ -1,11 +1,11 @@
-export function getCookie (name: string): string | undefined {
+export function getCookie(name: string): string | undefined {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
   )
   return matches ? decodeURIComponent(matches[1]) : undefined
 }
 
-export function setCookie (
+export function setCookie(
   name: string,
   value: string,
   props: Record<string, string | number | Date | boolean> = {}
@@ -36,6 +36,6 @@ export function setCookie (
   document.cookie = updatedCookie
 }
 
-export function deleteCookie (name: string): void {
+export function deleteCookie(name: string): void {
   setCookie(name, '', { expires: -1 })
 }

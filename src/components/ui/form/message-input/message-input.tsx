@@ -10,34 +10,34 @@ interface IMessageInputProps extends IInputProps {}
 
 const MessageInput: FC<IMessageInputProps> = ({ ...props }) => {
   return (
-    <div className="w-full relative">
+    <div className='w-full relative'>
       <Input
-        placeholder="Написать сообщение..."
+        placeholder='Написать сообщение...'
         {...props}
         className={cn(props.className, 'pr-[120px]')}
       />
 
-      <div className="absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]">
+      <div className='absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]'>
         <img
-          className="cursor-pointer active:scale-[.95]"
+          className='cursor-pointer active:scale-[.95]'
           src={media}
-          alt=""
+          alt=''
           onClick={() => {
             alert('Будет реализовано в будущем!')
           }}
         />
         <img
-          className="cursor-pointer active:scale-[.95]"
+          className='cursor-pointer active:scale-[.95]'
           src={smile}
-          alt=""
+          alt=''
           onClick={() => {
             alert('Будет реализовано в будущем!')
           }}
         />
         <img
-          className="cursor-pointer active:scale-[.95]"
+          className='cursor-pointer active:scale-[.95]'
           src={send}
-          alt=""
+          alt=''
           onClick={() => {
             alert('Будет реализовано в будущем!')
           }}

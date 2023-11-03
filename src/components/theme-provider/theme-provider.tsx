@@ -7,7 +7,8 @@ interface IThemeProviderProps {
   storageKey?: string
 }
 
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
+const defaultTheme =
+  (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
 
 const ThemeProvider: FC<IThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme)

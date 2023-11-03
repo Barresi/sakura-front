@@ -29,8 +29,8 @@ export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
 )
 
 export const registrationThunk = createAsyncThunk<
-IRegistrationResponse,
-IRegistrationForm
+  IRegistrationResponse,
+  IRegistrationForm
 >('profileInfo/regist', async (form, { rejectWithValue }) => {
   try {
     return await registrationRequest(form)
