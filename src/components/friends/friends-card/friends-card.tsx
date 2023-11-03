@@ -75,14 +75,14 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   )
 
   const clickHandlers = {
-    friends: [() => {}, async () => { await deleteFriendHandler(id, dispatch) }],
-    all: [() => {}, async () => { await addFriendHandler(id, dispatch) }],
+    friends: [() => { }, async () => { await deleteFriendHandler(id, dispatch) }],
+    all: [() => { }, async () => { await addFriendHandler(id, dispatch) }],
     requests: [
       async () => { await acceptRequestHandler(id, received, Number(currentId), dispatch) },
       async () => { await rejectRequestHandler(id, received, Number(currentId), dispatch) }
     ],
     sended: [
-      () => {},
+      () => { },
       async () => { await cancelRequestHandler(id, sended, Number(currentId), dispatch) }
     ]
   }

@@ -3,13 +3,13 @@ import Button from '@ui/button/button'
 import { Badge } from '@ui/badge/badge'
 import { NavLink } from 'react-router-dom'
 
-interface TabButtonProps {
+interface ITabButtonProps {
   children: ReactNode
   to: string
   badge?: number
 }
 
-const TabButton: FC<TabButtonProps> = ({ children, to, badge }) => {
+const TabButton: FC<ITabButtonProps> = ({ children, to, badge }) => {
   return (
     <NavLink
       to={to}

@@ -3,7 +3,7 @@ import Search from '@src/components/ui/form/search/search'
 import FriendsCard from '@src/components/friends/friends-card/friends-card'
 import { useAppSelector } from '@src/hooks/store-hooks'
 import { filterUsers, filterRequests } from '@src/utils/friends/filters'
-import { type IFriendsRequestResponse, type IUser } from '@src/types/types'
+import { type IUser } from '@src/types/types'
 import {
   selectFriends,
   selectReceived,
@@ -12,6 +12,8 @@ import {
   selectFriendsIsLoading
 } from '@src/store/reducers/friends/selectors'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import { type FriendTabs } from '@src/types/other'
+import { type IFriendsRequestResponse } from '@src/types/api'
 
 const text = {
   friends: 'Мои друзья',
@@ -21,7 +23,7 @@ const text = {
 }
 
 interface IFriendsTabContentProps {
-  type: 'all' | 'requests' | 'sended' | 'friends'
+  type: FriendTabs
 }
 
 const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
@@ -80,7 +82,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
           <>
             <div className="flex flex-col gap-[20px]">
               {data
-              // .filter((item) => filterFriendsData(item, search))
+                // .filter((item) => filterFriendsData(item, search))
                 ?.map((friend, index) => {
                   let dataId = friend.id
 
@@ -93,7 +95,7 @@ const FriendsTabContent: FC<IFriendsTabContentProps> = ({ type }) => {
                   // и проверка нужна, чтобы правильно определять id пользователя для отображения
                   if (type !== 'all' && 'fromId' in friend && 'toId' in friend) {
                     dataId =
-                    Number(currentId) === friend.fromId ? friend.toId : friend.fromId
+                      Number(currentId) === friend.fromId ? friend.toId : friend.fromId
                   }
 
                   return (
