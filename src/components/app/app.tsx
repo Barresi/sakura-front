@@ -6,12 +6,9 @@ import ProtectedRouteElement from '../protected-route-element/protected-route-el
 import MainPage from '@src/pages/main/main'
 import NotFoundPage from '@src/pages/not-found-page/not-found-page'
 import FriendsPage from '@src/pages/friends/friends'
+import DefaultTab from '../friends/tabs/default-tab'
 import { useAppDispatch } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
-import AllUsersTab from '../friends/tabs/all-users-tab'
-import FriendsTab from '../friends/tabs/friends-tab'
-import ReceivedTab from '../friends/tabs/received-tab'
-import SendedTab from '../friends/tabs/sended-tab'
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -43,10 +40,10 @@ const App: FC = () => {
         }
       >
         <Route path='friends' element={<FriendsPage />}>
-          <Route index element={<FriendsTab />} />
-          <Route path='all' element={<AllUsersTab />} />
-          <Route path='requests' element={<ReceivedTab />} />
-          <Route path='sended' element={<SendedTab />} />
+          <Route index element={<DefaultTab type='friends' />} />
+          <Route path='all' element={<DefaultTab type='all' />} />
+          <Route path='requests' element={<DefaultTab type='requests' />} />
+          <Route path='sended' element={<DefaultTab type='sended' />} />
         </Route>
         <Route path='*' element={<NotFoundPage type='inside' />} />
       </Route>

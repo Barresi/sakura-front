@@ -1,18 +1,48 @@
 import { useEffect, type FC } from 'react'
-import DefaultTab from './default-tab'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
-import { selectSended } from '@src/store/reducers/friends/selectors'
+import { selectAllUsers, selectSended } from '@src/store/reducers/friends/selectors'
 import { getSendedThunk } from '@src/store/reducers/friends/async-thunks'
+import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import FriendsCard from '../friends-card/friends-card'
+import { type IBaseTabProps } from '@src/types/props'
+import { filterRequests } from '@src/utils/friends/filters'
 
-const SendedTab: FC = () => {
+interface ISendedTabProps extends IBaseTabProps {}
+
+const SendedTab: FC<ISendedTabProps> = ({ search }) => {
   const dispatch = useAppDispatch()
   const sended = useAppSelector(selectSended)
+  const users = useAppSelector(selectAllUsers)
+  const { id: currentId } = useAppSelector(selectUser)
 
   useEffect(() => {
     dispatch(getSendedThunk())
   }, [])
 
-  return <DefaultTab data={sended} type='sended' />
+  return (
+    <>
+      <div className='flex flex-col gap-[20px]'>
+        {sended
+          .filter((item) => filterRequests(users, Number(currentId), item, search))
+          .map((friend, index) => {
+            const dataId =
+              Number(currentId) === friend.fromId ? friend.toId : friend.fromId
+
+            return (
+              <FriendsCard
+                key={index}
+                type={'all'}
+                id={Number(dataId)}
+                isMine={Number(dataId) === Number(currentId)}
+              />
+            )
+          })}
+      </div>
+      {sended?.length < 1 ? (
+        <span className='text-lg flex justify-center'>Здесь пока ничего нет</span>
+      ) : null}
+    </>
+  )
 }
 
 export default SendedTab
