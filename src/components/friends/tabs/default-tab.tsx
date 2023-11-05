@@ -9,7 +9,7 @@ import { useEffect, type FC, type ChangeEventHandler, useState } from 'react'
 import Search from '@src/components/ui/form/search/search'
 import { type FriendTabs } from '@src/types/other'
 import FriendsCard from '../friends-card/friends-card'
-import { filterRequests, filterUsers } from '@src/utils/friends/filters'
+import { filterData } from '@src/utils/friends/filters'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 
 interface IDefaultTabProps {
@@ -25,7 +25,7 @@ const text = {
 }
 
 const DefaultTab: FC<IDefaultTabProps> = ({ data, type }) => {
-  const [dataToRender, setData] = useState<IUser[] | IFriend[]>(data)
+  const [filteredData, setData] = useState<IUser[] | IFriend[]>(data)
   const users = useAppSelector(selectAllUsers)
   const { id: currentId } = useAppSelector(selectUser)
 
@@ -33,23 +33,14 @@ const DefaultTab: FC<IDefaultTabProps> = ({ data, type }) => {
 
   const [search, setSearch] = useState('')
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleSearchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearch(e.target.value)
   }
 
   useEffect(() => {
     if (data.length < 1) return
 
-    if ('email' in data[0]) {
-      setData((data as IUser[]).filter((item) => filterUsers(item, search)))
-    }
-    if ('fromId' in data[0]) {
-      setData(
-        (data as IFriend[]).filter((item) =>
-          filterRequests(users, Number(currentId), item, search)
-        )
-      )
-    }
+    setData(filterData(data, search, users, Number(currentId)))
   }, [data, search])
 
   return (
@@ -59,7 +50,7 @@ const DefaultTab: FC<IDefaultTabProps> = ({ data, type }) => {
       </h2>
 
       <div className='mt-[20px]'>
-        <Search onChange={handleChange} />
+        <Search onChange={handleSearchChange} />
       </div>
 
       {isLoading ? (
@@ -69,7 +60,7 @@ const DefaultTab: FC<IDefaultTabProps> = ({ data, type }) => {
       ) : (
         <>
           <div className='flex flex-col gap-[20px]'>
-            {dataToRender.map((friend, index) => {
+            {filteredData.map((friend, index) => {
               let dataId = friend.id
 
               // Объясняю, зачем код ниже: user1 может отправить запрос user2, в итоге у нас будет

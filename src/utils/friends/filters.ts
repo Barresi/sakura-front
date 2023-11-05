@@ -23,3 +23,21 @@ export const filterRequests = (
 
   return filterUsers(user, search)
 }
+
+export const filterData = (
+  data: IUser[] | IFriend[],
+  search: string,
+  users: IUser[],
+  currentId: number
+): IUser[] | IFriend[] => {
+  if ('email' in data[0]) {
+    return (data as IUser[]).filter((item) => filterUsers(item, search))
+  }
+  if ('fromId' in data[0]) {
+    return (data as IFriend[]).filter((item) =>
+      filterRequests(users, Number(currentId), item, search)
+    )
+  }
+
+  return []
+}
