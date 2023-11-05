@@ -38,6 +38,8 @@ const DefaultTab: FC<IDefaultTabProps> = ({ data, type }) => {
   }
 
   useEffect(() => {
+    if (data.length < 1) return
+
     if ('email' in data[0]) {
       setData((data as IUser[]).filter((item) => filterUsers(item, search)))
     }
