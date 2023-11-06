@@ -1,4 +1,4 @@
-import { useEffect, type FC } from 'react'
+import { type FC } from 'react'
 import FriendButton from '@src/components/friends/friend-button/friend-button'
 import Card from '../../ui/card/card'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
@@ -57,10 +57,6 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   const avatar = (
     <UserAvatar src={img} className='w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]' />
   )
-
-  useEffect(() => {
-    console.log(type)
-  }, [type])
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
