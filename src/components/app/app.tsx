@@ -6,7 +6,6 @@ import ProtectedRouteElement from '../protected-route-element/protected-route-el
 import MainPage from '@src/pages/main/main'
 import NotFoundPage from '@src/pages/not-found-page/not-found-page'
 import FriendsPage from '@src/pages/friends/friends'
-import DefaultTab from '../friends/tabs/default-tab'
 import { useAppDispatch } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 
@@ -39,12 +38,7 @@ const App: FC = () => {
           <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
         }
       >
-        <Route path='friends' element={<FriendsPage />}>
-          <Route index element={<DefaultTab type='friends' />} />
-          <Route path='all' element={<DefaultTab type='all' />} />
-          <Route path='requests' element={<DefaultTab type='requests' />} />
-          <Route path='sended' element={<DefaultTab type='sended' />} />
-        </Route>
+        <Route path='friends' element={<FriendsPage />} />
         <Route path='*' element={<NotFoundPage type='inside' />} />
       </Route>
 
