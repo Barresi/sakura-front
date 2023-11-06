@@ -31,7 +31,7 @@ const SendedTab: FC<ISendedTabProps> = ({ search }) => {
             return (
               <FriendsCard
                 key={index}
-                type='all'
+                type='sended'
                 id={Number(dataId)}
                 isMine={Number(dataId) === Number(currentId)}
               />
