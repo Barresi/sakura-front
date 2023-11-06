@@ -1,7 +1,5 @@
-import { type FC } from 'react'
-import FriendButton, {
-  type Tab
-} from '@src/components/friends/friend-button/friend-button'
+import { useEffect, type FC } from 'react'
+import FriendButton from '@src/components/friends/friend-button/friend-button'
 import Card from '../../ui/card/card'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
@@ -22,11 +20,12 @@ import { cn } from '@src/utils/utils'
 import { checkStates } from '@src/utils/friends/other'
 import UserAvatar from '@src/components/ui/avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
+import { type FriendTabs } from '@src/types/other'
 
 interface IFriendsCardProps {
   className?: string
   id: number
-  type?: Tab
+  type?: FriendTabs
   isMine?: boolean
 }
 
@@ -58,6 +57,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   const avatar = (
     <UserAvatar src={img} className='w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]' />
   )
+
+  useEffect(() => {
+    console.log(type)
+  }, [type])
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>

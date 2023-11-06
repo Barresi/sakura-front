@@ -22,7 +22,7 @@ import {
   Viewport
 } from '@radix-ui/react-scroll-area'
 import { cn } from '@utils/utils'
-import { type IPropsForwardRefsUI } from '@src/types/other'
+import { type IPropsForwardRefsUI } from '@src/types/props'
 
 const Select = SelectRoot
 

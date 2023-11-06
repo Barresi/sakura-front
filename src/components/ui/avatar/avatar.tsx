@@ -4,7 +4,7 @@ import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 import { cn } from '@utils/utils'
 
 import avatarLight from '@assets/default avatar light.svg'
-import { type IPropsForwardRefsUI } from '@src/types/other'
+import { type IPropsForwardRefsUI } from '@src/types/props'
 
 interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
   text?: string
