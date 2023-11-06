@@ -6,13 +6,10 @@ import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 import FriendsCard from '../friends-card/friends-card'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterRequests } from '@src/utils/friends/filters'
-import { type FriendTabs } from '@src/types/other'
-import { useSearchParams } from 'react-router-dom'
 
 interface ISendedTabProps extends IBaseTabProps {}
 
 const SendedTab: FC<ISendedTabProps> = ({ search }) => {
-  const [searchParams] = useSearchParams()
   const dispatch = useAppDispatch()
   const sended = useAppSelector(selectSended)
   const users = useAppSelector(selectAllUsers)
@@ -34,7 +31,7 @@ const SendedTab: FC<ISendedTabProps> = ({ search }) => {
             return (
               <FriendsCard
                 key={index}
-                type={searchParams.get('usertype') as FriendTabs}
+                type='all'
                 id={Number(dataId)}
                 isMine={Number(dataId) === Number(currentId)}
               />
