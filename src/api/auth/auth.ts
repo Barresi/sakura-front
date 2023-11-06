@@ -29,10 +29,17 @@ export const logoutRequest = async (): Promise<ILogoutResponse> => {
   return res.data
 }
 
-export const refreshRequest = async (): Promise<IRefreshResponse> => {
+let isRefreshing = false
+
+export const refreshRequest = async (): Promise<IRefreshResponse | undefined> => {
+  if (isRefreshing) return
+
+  isRefreshing = true
+
   const res = await axios
     .post('auth/token', { refreshToken: localStorage.getItem('refreshToken') })
     .catch(errorHandler)
+    .finally(() => (isRefreshing = false))
 
   setCookie('accessToken', res.data.accessToken)
   localStorage.setItem('refreshToken', res.data.refreshToken)
