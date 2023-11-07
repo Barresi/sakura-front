@@ -1,8 +1,13 @@
 import axios, { type AxiosError } from 'axios'
 import { refreshRequest } from './auth/auth'
+import { type IRefreshResponse } from '@src/types/api'
+import { setCookie } from '@src/utils/cookie'
 
 export const URL = 'http://localhost:5000/api/v1'
-axios.defaults.baseURL = URL
+
+export const api = axios.create({
+  baseURL: URL
+})
 
 export const errorHandler = (err: AxiosError): never => {
   if (err.response) {
@@ -37,3 +42,33 @@ export const requestWithRefreshToken = async <T>(func: () => Promise<T>): Promis
     }
   }
 }
+
+let refreshPromise: Promise<any> | null = null
+
+api.interceptors.response.use(
+  (config) => {
+    return config
+  },
+  async (error) => {
+    const originalRequest = error.config
+
+    if (error.response.status === 403 && error.config && !error.config._isRetry) {
+      originalRequest._isRetry = true
+
+      try {
+        if (!refreshPromise) {
+          refreshPromise = refreshRequest()
+        }
+
+        await refreshPromise
+
+        refreshPromise = null
+
+        return await api.request(originalRequest)
+      } catch (e) {
+        console.log('НЕ АВТОРИЗОВАН')
+      }
+    }
+    throw error
+  }
+)
