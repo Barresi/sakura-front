@@ -2,10 +2,11 @@ import { useEffect, type FC } from 'react'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers, selectSended } from '@src/store/reducers/friends/selectors'
 import { getSendedThunk } from '@src/store/reducers/friends/async-thunks'
-import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import { selectUser, selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import FriendsCard from '../friends-card/friends-card'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterRequests } from '@src/utils/friends/filters'
+import { AuthStatus } from '@src/types/api'
 
 interface ISendedTabProps extends IBaseTabProps {}
 
@@ -13,11 +14,12 @@ const SendedTab: FC<ISendedTabProps> = ({ search }) => {
   const dispatch = useAppDispatch()
   const sended = useAppSelector(selectSended)
   const users = useAppSelector(selectAllUsers)
+  const status = useAppSelector(selectUserStatus)
   const { id: currentId } = useAppSelector(selectUser)
 
   useEffect(() => {
-    dispatch(getSendedThunk())
-  }, [])
+    if (status === AuthStatus.authorized) dispatch(getSendedThunk())
+  }, [status])
 
   return (
     <>

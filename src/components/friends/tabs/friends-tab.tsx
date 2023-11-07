@@ -3,9 +3,10 @@ import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers, selectFriends } from '@src/store/reducers/friends/selectors'
 import { getFriendsThunk } from '@src/store/reducers/friends/async-thunks'
 import FriendsCard from '../friends-card/friends-card'
-import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import { selectUser, selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterRequests } from '@src/utils/friends/filters'
+import { AuthStatus } from '@src/types/api'
 
 interface IFriendsTabProps extends IBaseTabProps {}
 
@@ -13,11 +14,12 @@ const FriendsTab: FC<IFriendsTabProps> = ({ search }) => {
   const dispatch = useAppDispatch()
   const friends = useAppSelector(selectFriends)
   const users = useAppSelector(selectAllUsers)
+  const status = useAppSelector(selectUserStatus)
   const { id: currentId } = useAppSelector(selectUser)
 
   useEffect(() => {
-    dispatch(getFriendsThunk())
-  }, [])
+    if (status === AuthStatus.authorized) dispatch(getFriendsThunk())
+  }, [status])
 
   return (
     <>
