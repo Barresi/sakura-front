@@ -3,7 +3,7 @@ import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
-import FriendsCard from '../friends-card/friends-card'
+import FriendsCard from '../../friends-card/friends-card'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterUsers } from '@src/utils/friends/filters'
 
