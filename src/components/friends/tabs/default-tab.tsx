@@ -5,7 +5,12 @@ import FriendsTab from './friends-tab/friends-tab'
 import ReceivedTab from './received-tab/received-tab'
 import SendedTab from './sended-tab/sended-tab'
 import AllUsersTab from './all-users-tab/all-users-tab'
-import { getAllUsersThunk } from '@src/store/reducers/friends/async-thunks'
+import {
+  getAllUsersThunk,
+  getFriendsThunk,
+  getReceivedThunk,
+  getSendedThunk
+} from '@src/store/reducers/friends/async-thunks'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import { AuthStatus } from '@src/types/api'
@@ -31,7 +36,12 @@ const DefaultTab: FC<IDefaultTabProps> = ({ type }) => {
   }
 
   useEffect(() => {
-    if (status === AuthStatus.authorized) dispatch(getAllUsersThunk())
+    if (status === AuthStatus.authorized) {
+      dispatch(getAllUsersThunk())
+      dispatch(getFriendsThunk())
+      dispatch(getReceivedThunk())
+      dispatch(getSendedThunk())
+    }
   }, [status])
 
   const tabs = {
