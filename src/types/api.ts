@@ -1,8 +1,10 @@
+import { type AxiosError } from 'axios'
 import { type IUser } from './types'
 
 export interface INoContentResponse {
   msg: string
 }
+export interface IAxiosError extends AxiosError<{ msg?: string }> {}
 
 // Auth api
 
