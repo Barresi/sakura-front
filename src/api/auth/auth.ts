@@ -10,7 +10,7 @@ import {
 } from '@src/types/api'
 
 export const loginRequest = async (form: ILoginForm): Promise<ILoginResponse> => {
-  const res = await api.post('/auth/login', form)
+  const res = await api.post<ILoginResponse>('/auth/login', form)
 
   return res.data
 }
@@ -18,13 +18,13 @@ export const loginRequest = async (form: ILoginForm): Promise<ILoginResponse> =>
 export const registrationRequest = async (
   form: IRegistrationForm
 ): Promise<IRegistrationResponse> => {
-  const res = await api.post('/auth/signup', form)
+  const res = await api.post<IRegistrationResponse>('/auth/signup', form)
 
   return res.data
 }
 
 export const logoutRequest = async (): Promise<ILogoutResponse> => {
-  const res = await api.post('auth/logout', {
+  const res = await api.post<ILogoutResponse>('auth/logout', {
     refreshToken: localStorage.getItem('refreshToken')
   })
 
@@ -32,7 +32,7 @@ export const logoutRequest = async (): Promise<ILogoutResponse> => {
 }
 
 export const refreshRequest = async (): Promise<IRefreshResponse> => {
-  const res = await api.post('auth/token', {
+  const res = await api.post<IRefreshResponse>('auth/token', {
     refreshToken: localStorage.getItem('refreshToken')
   })
 
@@ -43,7 +43,7 @@ export const refreshRequest = async (): Promise<IRefreshResponse> => {
 }
 
 export const getUserInfo = async (): Promise<IUserInfoResponse> => {
-  const res = await apiWithAuth.get('auth/userInfo')
+  const res = await apiWithAuth.get<IUserInfoResponse>('auth/userInfo')
 
   return res.data
 }
