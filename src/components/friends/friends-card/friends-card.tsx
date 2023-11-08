@@ -29,12 +29,7 @@ interface IFriendsCardProps {
   isMine?: boolean
 }
 
-const FriendsCard: FC<IFriendsCardProps> = ({
-  className,
-  id,
-  type = 'friends',
-  isMine
-}) => {
+const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => {
   const isMobile = useWindowSize(1024)
   const dispatch = useAppDispatch()
 
@@ -50,13 +45,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({
   const isRequestSended = checkStates(sended, Number(currentId), Number(user?.id))
   const isRequestReceived = checkStates(received, Number(currentId), Number(user?.id))
 
-  // mock
-  const img = ''
-  const date = ''
-
-  const avatar = (
-    <UserAvatar src={img} className='w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]' />
-  )
+  const avatar = <UserAvatar className='w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]' />
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
@@ -65,9 +54,6 @@ const FriendsCard: FC<IFriendsCardProps> = ({
       </h3>
       {type === 'requests' && (
         <span className='text-[#55677D]'>подал вам заявку в друзья</span>
-      )}
-      {type === 'requests' && date && (
-        <span className='text-liked-dateForeground'>{date}</span>
       )}
       {type === 'sended' && (
         <span className='text-[#55677D]'>вы отправили заявку в друзья</span>
