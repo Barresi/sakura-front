@@ -1,7 +1,6 @@
-import axios from 'axios'
-import { errorHandler, requestWithRefreshToken } from '../api'
+import { api, apiWithAuth } from '../api'
 import { type ILoginForm, type IRegistrationForm } from '@src/types/forms'
-import { getCookie, setCookie } from '@src/utils/cookie'
+import { setCookie } from '@src/utils/cookie'
 import {
   type IRegistrationResponse,
   type ILoginResponse,
@@ -11,28 +10,31 @@ import {
 } from '@src/types/api'
 
 export const loginRequest = async (form: ILoginForm): Promise<ILoginResponse> => {
-  const res = await axios.post('/auth/login', form).catch(errorHandler)
+  const res = await api.post<ILoginResponse>('/auth/login', form)
+
   return res.data
 }
 
 export const registrationRequest = async (
   form: IRegistrationForm
 ): Promise<IRegistrationResponse> => {
-  const res = await axios.post('/auth/signup', form).catch(errorHandler)
+  const res = await api.post<IRegistrationResponse>('/auth/signup', form)
+
   return res.data
 }
 
 export const logoutRequest = async (): Promise<ILogoutResponse> => {
-  const res = await axios
-    .post('auth/logout', { refreshToken: localStorage.getItem('refreshToken') })
-    .catch(errorHandler)
+  const res = await api.post<ILogoutResponse>('auth/logout', {
+    refreshToken: localStorage.getItem('refreshToken')
+  })
+
   return res.data
 }
 
 export const refreshRequest = async (): Promise<IRefreshResponse> => {
-  const res = await axios
-    .post('auth/token', { refreshToken: localStorage.getItem('refreshToken') })
-    .catch(errorHandler)
+  const res = await api.post<IRefreshResponse>('auth/token', {
+    refreshToken: localStorage.getItem('refreshToken')
+  })
 
   setCookie('accessToken', res.data.accessToken)
   localStorage.setItem('refreshToken', res.data.refreshToken)
@@ -41,14 +43,7 @@ export const refreshRequest = async (): Promise<IRefreshResponse> => {
 }
 
 export const getUserInfo = async (): Promise<IUserInfoResponse> => {
-  const userInfoRequest = async (): Promise<IUserInfoResponse> => {
-    const res = await axios
-      .get('auth/userInfo', {
-        headers: { Authorization: `Bearer ${getCookie('accessToken')}` }
-      })
-      .catch(errorHandler)
-    return res.data
-  }
+  const res = await apiWithAuth.get<IUserInfoResponse>('auth/userInfo')
 
-  return await requestWithRefreshToken(userInfoRequest)
+  return res.data
 }

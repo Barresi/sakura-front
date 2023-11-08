@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { Content, List, Root, Trigger } from '@radix-ui/react-tabs'
 import { cn } from '@utils/utils'
-import { type IPropsForwardRefsUI } from '@src/types/other'
+import { type IPropsForwardRefsUI } from '@src/types/props'
 
 const Tabs = Root
 

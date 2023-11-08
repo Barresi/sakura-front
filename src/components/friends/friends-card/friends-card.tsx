@@ -1,7 +1,5 @@
 import { type FC } from 'react'
-import FriendButton, {
-  type Tab
-} from '@src/components/friends/friend-button/friend-button'
+import FriendButton from '@src/components/friends/friend-button/friend-button'
 import Card from '../../ui/card/card'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
@@ -22,11 +20,12 @@ import { cn } from '@src/utils/utils'
 import { checkStates } from '@src/utils/friends/other'
 import UserAvatar from '@src/components/ui/avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
+import { type FriendTabs } from '@src/types/other'
 
 interface IFriendsCardProps {
   className?: string
   id: number
-  type?: Tab
+  type?: FriendTabs
   isMine?: boolean
 }
 

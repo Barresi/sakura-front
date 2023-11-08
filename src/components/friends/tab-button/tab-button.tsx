@@ -1,31 +1,28 @@
 import { type FC, type ReactNode } from 'react'
 import Button from '@ui/button/button'
 import { Badge } from '@ui/badge/badge'
-import { NavLink } from 'react-router-dom'
 
 interface ITabButtonProps {
   children: ReactNode
-  to: string
   badge?: number
+  isActive: boolean
+  onClick: () => void
 }
 
-const TabButton: FC<ITabButtonProps> = ({ children, to, badge }) => {
+const TabButton: FC<ITabButtonProps> = ({ children, badge, isActive, onClick }) => {
   return (
-    <NavLink
-      to={to}
-      className={({ isActive }) => (isActive ? 'bg-text rounded-md' : 'rounded-md')}
-      end
-    >
+    <div className={isActive ? 'bg-text rounded-md' : 'rounded-md'}>
       <Button
         className={
           'w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]'
         }
         variant='text'
+        onClick={onClick}
       >
         {children}
         {badge ? <Badge>{badge}</Badge> : null}
       </Button>
-    </NavLink>
+    </div>
   )
 }
 
