@@ -39,7 +39,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
   const received = useAppSelector(selectReceived)
 
   const user = useAppSelector(selectAllUsers).filter((user) => Number(user.id) === id)[0]
-  const { firstName, lastName } = user || {}
+  const { firstName, lastName } = user
 
   const isFriend = checkStates(friends, Number(currentId), Number(user?.id))
   const isRequestSended = checkStates(sended, Number(currentId), Number(user?.id))
