@@ -2,10 +2,11 @@ import { useEffect, type FC } from 'react'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers, selectReceived } from '@src/store/reducers/friends/selectors'
 import { getReceivedThunk } from '@src/store/reducers/friends/async-thunks'
-import { selectUser } from '@src/store/reducers/profileInfo/selectors'
-import FriendsCard from '../friends-card/friends-card'
+import { selectUser, selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
+import FriendsCard from '../../friends-card/friends-card'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterRequests } from '@src/utils/friends/filters'
+import { AuthStatus } from '@src/types/api'
 
 interface IReceivedTabProps extends IBaseTabProps {}
 
@@ -13,11 +14,12 @@ const ReceivedTab: FC<IReceivedTabProps> = ({ search }) => {
   const dispatch = useAppDispatch()
   const received = useAppSelector(selectReceived)
   const users = useAppSelector(selectAllUsers)
+  const status = useAppSelector(selectUserStatus)
   const { id: currentId } = useAppSelector(selectUser)
 
   useEffect(() => {
-    dispatch(getReceivedThunk())
-  }, [])
+    if (status === AuthStatus.authorized) dispatch(getReceivedThunk())
+  }, [status])
 
   return (
     <>

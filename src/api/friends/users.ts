@@ -1,32 +1,14 @@
-import axios from 'axios'
-import { errorHandler, requestWithRefreshToken } from '../api'
-import { getCookie } from '@src/utils/cookie'
+import { apiWithAuth } from '../api'
 import { type IAddFriendResponse, type IAllUsersResponse } from '@src/types/api'
 
 export const getAllUsers = async (): Promise<IAllUsersResponse> => {
-  const getAllUsersRequest = async (): Promise<IAllUsersResponse> => {
-    const res = await axios
-      .get('/users', { headers: { Authorization: `Bearer ${getCookie('accessToken')}` } })
-      .catch(errorHandler)
+  const res = await apiWithAuth.get<IAllUsersResponse>('/users')
 
-    return res.data
-  }
-
-  return await requestWithRefreshToken(getAllUsersRequest)
+  return res.data
 }
 
 export const addFriend = async (id: number): Promise<IAddFriendResponse> => {
-  const addFriendRequest = async (): Promise<IAddFriendResponse> => {
-    const res = await axios
-      .post(
-        `/users/${id}`,
-        {},
-        { headers: { Authorization: `Bearer ${getCookie('accessToken')}` } }
-      )
-      .catch(errorHandler)
+  const res = await apiWithAuth.post<IAddFriendResponse>(`/users/${id}`)
 
-    return res.data
-  }
-
-  return await requestWithRefreshToken(addFriendRequest)
+  return res.data
 }

@@ -1,28 +1,30 @@
 import { useEffect, type FC } from 'react'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
-import { selectAllUsers, selectSended } from '@src/store/reducers/friends/selectors'
-import { getSendedThunk } from '@src/store/reducers/friends/async-thunks'
-import { selectUser } from '@src/store/reducers/profileInfo/selectors'
-import FriendsCard from '../friends-card/friends-card'
+import { selectAllUsers, selectFriends } from '@src/store/reducers/friends/selectors'
+import { getFriendsThunk } from '@src/store/reducers/friends/async-thunks'
+import FriendsCard from '../../friends-card/friends-card'
+import { selectUser, selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterRequests } from '@src/utils/friends/filters'
+import { AuthStatus } from '@src/types/api'
 
-interface ISendedTabProps extends IBaseTabProps {}
+interface IFriendsTabProps extends IBaseTabProps {}
 
-const SendedTab: FC<ISendedTabProps> = ({ search }) => {
+const FriendsTab: FC<IFriendsTabProps> = ({ search }) => {
   const dispatch = useAppDispatch()
-  const sended = useAppSelector(selectSended)
+  const friends = useAppSelector(selectFriends)
   const users = useAppSelector(selectAllUsers)
+  const status = useAppSelector(selectUserStatus)
   const { id: currentId } = useAppSelector(selectUser)
 
   useEffect(() => {
-    dispatch(getSendedThunk())
-  }, [])
+    if (status === AuthStatus.authorized) dispatch(getFriendsThunk())
+  }, [status])
 
   return (
     <>
       <div className='flex flex-col gap-[20px]'>
-        {sended
+        {friends
           .filter((item) => filterRequests(users, Number(currentId), item, search))
           .map((friend, index) => {
             const dataId =
@@ -31,18 +33,18 @@ const SendedTab: FC<ISendedTabProps> = ({ search }) => {
             return (
               <FriendsCard
                 key={index}
-                type='sended'
+                type='friends'
                 id={Number(dataId)}
                 isMine={Number(dataId) === Number(currentId)}
               />
             )
           })}
       </div>
-      {sended?.length < 1 ? (
+      {friends?.length < 1 ? (
         <span className='text-lg flex justify-center'>Здесь пока ничего нет</span>
       ) : null}
     </>
   )
 }
 
-export default SendedTab
+export default FriendsTab

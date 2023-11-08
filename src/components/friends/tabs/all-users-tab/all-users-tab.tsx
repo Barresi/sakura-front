@@ -1,22 +1,17 @@
-import { useEffect, type FC } from 'react'
-import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
+import { type FC } from 'react'
+import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
-import { getAllUsersThunk } from '@src/store/reducers/friends/async-thunks'
+
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
-import FriendsCard from '../friends-card/friends-card'
+import FriendsCard from '../../friends-card/friends-card'
 import { type IBaseTabProps } from '@src/types/props'
 import { filterUsers } from '@src/utils/friends/filters'
 
 interface IAllUsersTabProps extends IBaseTabProps {}
 
 const AllUsersTab: FC<IAllUsersTabProps> = ({ search }) => {
-  const dispatch = useAppDispatch()
   const users = useAppSelector(selectAllUsers)
   const { id: currentId } = useAppSelector(selectUser)
-
-  useEffect(() => {
-    dispatch(getAllUsersThunk())
-  }, [])
 
   return (
     <>
