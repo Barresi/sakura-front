@@ -21,9 +21,11 @@ apiWithAuth.interceptors.response.use(
     return config
   },
   async (error) => {
+    const originalRequest = error.config
     if (error.response) {
       // Запрос был сделан, и сервер ответил кодом состояния, который выходит за пределы 2xx
-      if (error.response.status === 403) {
+      if (error.response.status === 403 && error.config && !error.config._isRetry) {
+        originalRequest._isRetry = true
         try {
           await refreshRequest()
 
