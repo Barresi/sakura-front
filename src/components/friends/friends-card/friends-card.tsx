@@ -30,7 +30,7 @@ interface IFriendsCardProps {
 }
 
 const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => {
-  const isMobile = useWindowSize(1024)
+  const isMobile = useWindowSize(500)
   const dispatch = useAppDispatch()
 
   const { id: currentId } = useAppSelector(selectUser)
@@ -45,7 +45,9 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
   const isRequestSended = checkStates(sended, Number(currentId), Number(user?.id))
   const isRequestReceived = checkStates(received, Number(currentId), Number(user?.id))
 
-  const avatar = <UserAvatar className='w-[50px] h-[50px] lg:w-[100px] lg:h-[100px]' />
+  const avatar = (
+    <UserAvatar className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]' />
+  )
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
