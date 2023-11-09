@@ -14,7 +14,7 @@ const TabButton: FC<ITabButtonProps> = ({ children, badge, isActive, onClick }) 
     <div className={isActive ? 'bg-text rounded-md' : 'rounded-md'}>
       <Button
         className={
-          'w-full flex justify-between sm:justify-center xl:justify-between text-left sm:text-center active:scale-[0.97]'
+          'w-full flex justify-between sm:justify-center whitespace-nowrap xl:justify-between text-left sm:text-center active:scale-[0.97]'
         }
         variant='text'
         onClick={onClick}
