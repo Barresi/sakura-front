@@ -67,7 +67,7 @@ const FriendButton: FC<IFriendButtonProps> = ({
   isReceived,
   clickHandlers
 }) => {
-  const isMobile = useWindowSize(1024)
+  const isMobile = useWindowSize(768)
   const data = types[type as keyof typeof types]
 
   const primaryClassName = 'w-[49%]'
