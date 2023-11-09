@@ -37,10 +37,11 @@ const DefaultTab: FC<IDefaultTabProps> = ({ type }) => {
 
   useEffect(() => {
     if (status === AuthStatus.authorized) {
-      dispatch(getAllUsersThunk())
-      dispatch(getFriendsThunk())
-      dispatch(getReceivedThunk())
-      dispatch(getSendedThunk())
+      dispatch(getAllUsersThunk()).then(() => {
+        dispatch(getFriendsThunk())
+        dispatch(getReceivedThunk())
+        dispatch(getSendedThunk())
+      })
     }
   }, [status])
 
