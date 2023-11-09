@@ -1,40 +1,42 @@
-import { FC, useState } from "react";
-import { cn } from "@utils/utils";
-import Button, { ButtonProps } from "../button";
-import { useTheme } from "@src/hooks/useTheme";
+import { type FC, useState } from 'react'
+import { cn } from '@utils/utils'
+import Button, { type IButtonProps } from '../button'
+import { useTheme } from '@src/hooks/useTheme'
 
-interface IProps extends ButtonProps {}
+interface IActionButtonProps extends IButtonProps {}
 
-const ActionButton: FC<IProps> = ({ children, icon, className, onClick, ...props }) => {
-  const [active, setActive] = useState(true);
+const ActionButton: FC<IActionButtonProps> = ({
+  children,
+  icon,
+  className,
+  onClick,
+  ...props
+}) => {
+  const [active, setActive] = useState(true)
 
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
-  const toggleActive = () => {
-    setActive((active) => !active);
-  };
+  const toggleActive = (): void => {
+    setActive((active) => !active)
+  }
 
-  const whichLike = active
-    ? theme === "dark"
-      ? "likeActiveDark"
-      : "likeActive"
-    : "like";
+  const whichLike = active ? (theme === 'dark' ? 'likeActiveDark' : 'likeActive') : 'like'
 
   return (
     <Button
-      variant="text"
+      variant='text'
       className={cn(
-        "px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border border-background  hover:bg-background lg:hover:bg-text",
-        theme === "light" ? "lg:border-text" : "",
-        className,
+        'px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border border-background  hover:bg-background lg:hover:bg-text',
+        theme === 'light' ? 'lg:border-text' : '',
+        className
       )}
       onClick={onClick || toggleActive}
-      icon={icon == "like" ? whichLike : icon}
+      icon={icon === 'like' ? whichLike : icon}
       {...props}
     >
-      <span className="text-lg font-bold text-[#55677D] leading-[23px]">{children}</span>
+      <span className='text-lg font-bold text-[#55677D] leading-[23px]'>{children}</span>
     </Button>
-  );
-};
+  )
+}
 
-export default ActionButton;
+export default ActionButton

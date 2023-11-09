@@ -1,11 +1,22 @@
-import { ThemeProviderContext } from "@src/components/theme-provider/theme-provider";
-import { useContext } from "react";
+import {
+  Theme,
+  ThemeProviderContext,
+  LOCAL_STORAGE_THEME_KEY
+} from '@src/components/theme-provider/theme-context'
+import { useContext } from 'react'
 
-export const useTheme = () => {
-  const context = useContext(ThemeProviderContext);
+export interface useThemeResult {
+  toggleTheme: () => void
+  theme: Theme
+}
 
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider");
+export const useTheme = (): useThemeResult => {
+  const { theme, setTheme } = useContext(ThemeProviderContext)
 
-  return context;
-};
+  const toggleTheme = (): void => {
+    const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme)
+    if (setTheme) setTheme(newTheme)
+  }
+  return { theme, toggleTheme } as useThemeResult
+}

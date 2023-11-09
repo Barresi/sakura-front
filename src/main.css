@@ -50,6 +50,11 @@
     --input-hoverBorder: hsl(216, 100%, 64%);
     --input-errorBorder: hsl(0, 68%, 49%);
 
+    /* search input */
+
+    --search: hsl(0, 0%, 95%);
+    --search-border: hsl(0, 0%, 95%);
+
     /* avatar */
 
     --avatar-foreground: hsl(0, 0%, 16%);
@@ -83,7 +88,6 @@
     --liked-dateForeground: hsl(0, 0%, 16%);
 
     /* card (request) */
-
     --request-foreground: hsl(0, 0%, 16%);
 
     /* card (friend) */
@@ -114,6 +118,13 @@
 
     /* buttons */
 
+    /* primary button bg color */
+    --primary: hsl(0, 68%, 49%);
+    /* primary button bg on hover color */
+    --primary-hover: hsl(0, 70%, 45%);
+    /* primary button text color */
+    --primary-foreground: hsl(0, 0%, 100%);
+
     --secondary: hsl(240, 11%, 14%);
     --secondary-hover: hsl(240, 15%, 16%);
     --secondary-foreground: hsl(0, 0%, 95%);
@@ -140,6 +151,11 @@
     --input-background: hsl(240, 15%, 16%);
     --input-hoverBorder: hsl(197, 86%, 53%);
     --input-errorBorder: hsl(0, 68%, 49%);
+
+    /* search input */
+
+    --search: hsl(240, 15%, 16%);
+    --search-border: hsl(213, 19%, 41%);
 
     /* avatar */
     --avatar-foreground: hsl(0, 0%, 95%);
@@ -206,6 +222,7 @@
 
 body {
   background-color: var(--body);
+  overflow-x: hidden;
 }
 
 /* Scroll bar */

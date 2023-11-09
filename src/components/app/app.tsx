@@ -1,48 +1,50 @@
-import LoginPage from "@src/pages/login/login";
-import RegistrationPage from "@src/pages/registration/registration";
-import { FC, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
-import ProtectedRouteElement from "../protected-route-element/protected-route-element";
-import MainPage from "@src/pages/main/main";
-import { useAppDispatch } from "@src/hooks/store-hooks";
-import { protectedInfoThunk } from "@src/store/reducers/profileInfo/async-thunks";
-import NotFoundPage from "@src/pages/not-found-page/not-found-page";
+import LoginPage from '@src/pages/login/login'
+import RegistrationPage from '@src/pages/registration/registration'
+import { type FC, useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ProtectedRouteElement from '../protected-route-element/protected-route-element'
+import MainPage from '@src/pages/main/main'
+import NotFoundPage from '@src/pages/not-found-page/not-found-page'
+import FriendsPage from '@src/pages/friends/friends'
+import { useAppDispatch } from '@src/hooks/store-hooks'
+import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 
 const App: FC = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(protectedInfoThunk());
-  }, [dispatch]);
+    dispatch(userInfoThunk())
+  }, [dispatch])
   return (
     <Routes>
       <Route
-        path="/"
+        path='/'
         element={
-          <ProtectedRouteElement protectedPageType="auth" element={<LoginPage />} />
+          <ProtectedRouteElement protectedPageType='auth' element={<LoginPage />} />
         }
       />
       <Route
-        path="/registration"
+        path='/registration'
         element={
           <ProtectedRouteElement
-            protectedPageType="auth"
+            protectedPageType='auth'
             element={<RegistrationPage />}
           />
         }
       />
 
       <Route
-        path="/main"
+        path='/main'
         element={
-          <ProtectedRouteElement protectedPageType="main" element={<MainPage />} />
+          <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
         }
       >
-        <Route path="*" element={<NotFoundPage type="inside" />} />
+        <Route path='friends' element={<FriendsPage />} />
+        <Route path='*' element={<NotFoundPage type='inside' />} />
       </Route>
 
-      <Route path="*" element={<NotFoundPage type="outside" />} />
+      <Route path='*' element={<NotFoundPage type='outside' />} />
     </Routes>
-  );
-};
+  )
+}
 
-export default App;
+export default App

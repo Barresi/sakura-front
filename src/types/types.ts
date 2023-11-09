@@ -1,10 +1,6 @@
-// User
 export interface IUser {
-  id: string;
-  email: string;
-}
-export enum AuthStatus {
-  pending = "pending",
-  authorized = "authorized",
-  notAuthorized = "not authorized",
+  id: string
+  firstName: string
+  lastName: string
+  email: string
 }
