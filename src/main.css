@@ -222,6 +222,7 @@
 
 body {
   background-color: var(--body);
+  overflow-x: hidden;
 }
 
 /* Scroll bar */
