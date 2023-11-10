@@ -11,14 +11,14 @@ import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <SocketProvider>
-      <ThemeProvider>
-        <Provider store={store}>
+    <Provider store={store}>
+      <SocketProvider>
+        <ThemeProvider>
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        </Provider>
-      </ThemeProvider>
-    </SocketProvider>
+        </ThemeProvider>
+      </SocketProvider>
+    </Provider>
   </React.StrictMode>
 )
