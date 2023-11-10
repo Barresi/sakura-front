@@ -8,6 +8,8 @@ import NotFoundPage from '@src/pages/not-found-page/not-found-page'
 import FriendsPage from '@src/pages/friends/friends'
 import { useAppDispatch } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
+import MessengerPage from '@src/pages/messenger/messenger'
+import Chat from '../chat/chat'
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -38,6 +40,9 @@ const App: FC = () => {
           <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
         }
       >
+        <Route path='messenger' element={<MessengerPage />}>
+          <Route path=':id' element={<Chat />} />
+        </Route>
         <Route path='friends' element={<FriendsPage />} />
         <Route path='*' element={<NotFoundPage type='inside' />} />
       </Route>
