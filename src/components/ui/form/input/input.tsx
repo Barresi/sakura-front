@@ -1,17 +1,17 @@
-import { forwardRef, useState } from 'react'
+import * as React from 'react'
 
 import { cn } from '@utils/utils'
 
 import eye from '@assets/ui/Eye.svg'
 import eyeOff from '@assets/ui/Eye Off.svg'
 
-export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
 }
 
-const Input = forwardRef<HTMLInputElement, IInputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, error, ...props }, ref) => {
-    const [inputType, setType] = useState(type)
+    const [inputType, setType] = React.useState(type)
 
     const toggleType = (): void => {
       setType((type) => (type === 'text' ? 'password' : 'text'))
@@ -23,7 +23,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       ? 'border-input-errorBorder focus:border-input-errorBorder'
       : 'border-input focus:border-input-hoverBorder'
     const errorSpanClass = error
-      ? 'absolute top-[3.55rem] left-5 text-input-errorBorder'
+      ? `absolute top-[3.55rem] left-5 text-input-errorBorder`
       : ''
 
     const input = (
@@ -44,9 +44,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
         <div className='w-full relative'>
           {input}
           <img
-            className={
-              'cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]'
-            }
+            className={`cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}
             onClick={toggleType}
             src={inputType === 'text' ? eye : eyeOff}
             alt=''
