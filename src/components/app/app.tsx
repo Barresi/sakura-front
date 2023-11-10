@@ -9,7 +9,7 @@ import FriendsPage from '@src/pages/friends/friends'
 import { useAppDispatch } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import MessengerPage from '@src/pages/messenger/messenger'
-import Chat from '../chat/chat'
+import Chat from '../messenger/chat/chat'
 
 const App: FC = () => {
   const dispatch = useAppDispatch()

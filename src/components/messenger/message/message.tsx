@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import UserAvatar from '../avatar/avatar'
+import UserAvatar from '../../ui/avatar/avatar'
 
 interface IMessage {
   text: string

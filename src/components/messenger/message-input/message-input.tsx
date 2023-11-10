@@ -1,5 +1,5 @@
 import { type FC, useState } from 'react'
-import Input, { type InputProps } from '../input/input'
+import Input, { type InputProps } from '../../ui/form/input/input'
 
 import media from '@assets/ui/paperclip.svg'
 import smile from '@assets/ui/Smile.svg'

@@ -2,8 +2,8 @@ import { type FC } from 'react'
 import { Badge } from '@src/components/ui/badge/badge'
 import { cn } from '@utils/utils'
 
-import Card from '../card'
-import UserAvatar from '../../avatar/avatar'
+import Card from '../../ui/card/card'
+import UserAvatar from '../../ui/avatar/avatar'
 
 export interface MessageCardProps {
   className?: string
