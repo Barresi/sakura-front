@@ -1,7 +1,7 @@
 import { type FC, useState } from 'react'
 import { cn } from '@utils/utils'
 import Button, { type IButtonProps } from '../button'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 interface IActionButtonProps extends IButtonProps {}
 

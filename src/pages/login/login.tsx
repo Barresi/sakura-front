@@ -8,7 +8,7 @@ import SettingButton from '@src/components/ui/button/setting-button/setting-butt
 import Logo from '@src/components/ui/logo/logo'
 import Button from '@src/components/ui/button/button'
 import Input from '@src/components/ui/form/input/input'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 const LoginPage: FC = () => {
   const dispatch = useAppDispatch()

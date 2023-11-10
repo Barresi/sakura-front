@@ -4,7 +4,7 @@ import NavButton from '../ui/button/nav-button/nav-button'
 import SettingButton from '@src/components/ui/button/setting-button/setting-button'
 import { useAppDispatch } from '@src/hooks/store-hooks'
 import { logoutThunk } from '@src/store/reducers/profileInfo/async-thunks'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 const Sidebar: FC = () => {
   const dispatch = useAppDispatch()

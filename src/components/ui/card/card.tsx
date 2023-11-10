@@ -1,5 +1,5 @@
 import { type FC, type ReactNode } from 'react'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 import { cn } from '@utils/utils'
 
 interface ICardProps {

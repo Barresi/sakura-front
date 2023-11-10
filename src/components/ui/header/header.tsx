@@ -2,7 +2,7 @@ import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
 import { cn } from '@utils/utils'
 import SettingButton from '../button/setting-button/setting-button'
 import Logo from '../logo/logo'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 import UserAvatar from '../avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
 

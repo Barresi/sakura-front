@@ -3,7 +3,7 @@ import { cn } from '@utils/utils'
 import Button, { type IButtonProps } from '../button'
 
 import { Badge } from '@src/components/ui/badge/badge'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 interface ISettingButtonProps extends IButtonProps {
   badge?: number

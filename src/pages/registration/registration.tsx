@@ -8,7 +8,7 @@ import Logo from '@src/components/ui/logo/logo'
 import SettingButton from '@src/components/ui/button/setting-button/setting-button'
 import Input from '@src/components/ui/form/input/input'
 import Button from '@src/components/ui/button/button'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 const RegistrationPage: FC = () => {
   const dispatch = useAppDispatch()
