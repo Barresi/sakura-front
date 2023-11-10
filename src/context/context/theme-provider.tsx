@@ -1,5 +1,9 @@
 import { useState, useEffect, type FC } from 'react'
-import { ThemeProviderContext, Theme, LOCAL_STORAGE_THEME_KEY } from './theme-context'
+import {
+  ThemeProviderContext,
+  Theme,
+  LOCAL_STORAGE_THEME_KEY
+} from '../theme-context/theme-context'
 
 interface IThemeProviderProps {
   children: React.ReactNode
