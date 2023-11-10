@@ -54,7 +54,7 @@ const MessengerPage: FC = () => {
     <div
       className={`${
         pathname.includes('/main/messenger/') && pathname.length > 16
-          ? 'h-[calc(100vh-80px)] md:h-[calc(110vh-200px)] lg:h-[calc(100vh-144px)]'
+          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-220px)] lg:h-[calc(100vh-144px)]'
           : 'h-[calc(100vh-150px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-144px)]'
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
