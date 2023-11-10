@@ -11,7 +11,7 @@ const MainPage: FC = () => {
   return (
     <div className='p-0  lg:px-5 lg:pt-5 flex max-w-[1920px] mx-auto relative'>
       {!isMobile && <Sidebar />}
-      <div className=' flex-auto lg:ml-[310px] flex flex-col'>
+      <div className=' flex-auto lg:ml-[310px] flex flex-col gap-[20px]'>
         <Header />
         <Outlet />
       </div>

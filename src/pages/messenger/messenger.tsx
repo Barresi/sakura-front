@@ -46,7 +46,7 @@ const MessengerPage: FC = () => {
     return (
       <div className='flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-background rounded-[10px] mx-5 lg:mx-0'>
         <img src={notActiveChats} alt='not active chat' />
-        <p className='text-lg'>У вас нет активных чатов</p>
+        <p className='text-lg text-center'>У вас нет активных чатов</p>
       </div>
     )
 
@@ -59,7 +59,7 @@ const MessengerPage: FC = () => {
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!isMobile || pathname === '/main/messenger' ? (
-        <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-background border-r-message-border 3xl:border-r 3xl:rounded-l-[10px] 3xl:rounded-r-[0px]'>
+        <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-background border-r-message-border xxl:border-r xxl:rounded-l-[10px] xxl:rounded-r-[0px]'>
           {chats.map((item, ind) => (
             <NavLink
               to={item.chatId}
@@ -87,7 +87,7 @@ const MessengerPage: FC = () => {
         !isMobile && (
           <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-background justify-center items-center rounded-r-[10px]'>
             <img src={chooseChat} alt='choose chat' />
-            <p className='text-lg'>Выберите Чат</p>
+            <p className='text-lg text-center'>Выберите Чат</p>
           </div>
         )
       )}
