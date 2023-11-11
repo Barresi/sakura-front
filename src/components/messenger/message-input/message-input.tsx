@@ -1,16 +1,16 @@
 import { type FC, useState } from 'react'
-import Input, { type InputProps } from '../../ui/form/input/input'
+import Input, { type IInputProps } from '../../ui/form/input/input'
 
 import media from '@assets/ui/paperclip.svg'
 import smile from '@assets/ui/Smile.svg'
 import send from '@assets/ui/send.svg'
 import { cn } from '@src/utils/utils'
 
-interface IProps extends InputProps {
+interface IMessageInputProps extends IInputProps {
   sendMessage: (message: string) => void
 }
 
-const MessageInput: FC<IProps> = ({ sendMessage, ...props }) => {
+const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
   const [message, setMessage] = useState('')
   return (
     <form

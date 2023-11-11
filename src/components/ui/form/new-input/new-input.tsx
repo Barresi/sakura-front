@@ -5,11 +5,11 @@ import UserAvatar from '@src/components/ui/avatar/avatar'
 
 import smile from '@assets/ui/Smile.svg'
 
-interface INewInputProps extends IInputProps {
+interface INewsInputProps extends IInputProps {
   avatar?: string
 }
 
-const NewInput: FC<INewInputProps> = ({ avatar, className, ...props }) => {
+const NewsInput: FC<INewsInputProps> = ({ avatar, className, ...props }) => {
   const withAvatar = avatar ? 'pl-[80px]' : ''
 
   return (
@@ -41,4 +41,4 @@ const NewInput: FC<INewInputProps> = ({ avatar, className, ...props }) => {
   )
 }
 
-export default NewInput
+export default NewsInput

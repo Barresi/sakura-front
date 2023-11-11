@@ -4,9 +4,9 @@ import Input, { type IInputProps } from '../input/input'
 import icon from '@assets/ui/Search.svg'
 import { cn } from '@utils/utils'
 
-interface ISearchProps extends Omit<IInputProps, 'type'> {}
+interface ISearchInputProps extends Omit<IInputProps, 'type'> {}
 
-const Search: FC<ISearchProps> = ({ className, ...props }) => {
+const SearchInput: FC<ISearchInputProps> = ({ className, ...props }) => {
   return (
     <div className='flex items-center relative'>
       <Input
@@ -21,4 +21,4 @@ const Search: FC<ISearchProps> = ({ className, ...props }) => {
   )
 }
 
-export default Search
+export default SearchInput
