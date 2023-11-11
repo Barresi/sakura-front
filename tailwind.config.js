@@ -22,6 +22,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        body: 'var(--body)',
         border: 'var(--border)',
         ring: 'var(--ring)',
         background: 'var(--background)',

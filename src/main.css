@@ -2,105 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bodyColor: #eeeff1;
+  --white: #fff;
+  --ghostlyWhite: #f8fafc;
+  --smokyWhite: #f1f5f9;
+  --cadet: #55677c;
+  --cadetBlue: #adb5bd;
+  --twitter: #20b4ee;
+  --blue: #4791ff;
+  --red: #d22828;
+  --redHover: #c32222;
+  --lightGray: #d6d6d60c;
+  --signalBlack: #292929;
+  --brownBlack: #202028;
+  --black: #000;
+
+  --bodyDark: #191924;
+  --grayBlue: #23232f;
+}
+
 @layer base {
   :root {
+    /* Global */
+
     /* body background color */
-    --body: hsl(220, 9%, 94%);
+    --body: var(--bodyColor);
 
     /* components background */
-    --background: hsl(0, 0%, 100%);
+    --background: var(--white);
+
     /* text color */
-    --foreground: hsl(222, 0.2, 84%, 4.9%);
+    --foreground: var(--lightGray);
 
-    /* buttons */
+    /* End Global */
 
-    /* primary button bg color */
-    --primary: hsl(0, 68%, 49%);
-    /* primary button bg on hover color */
-    --primary-hover: hsl(0, 70%, 45%);
-    /* primary button text color */
-    --primary-foreground: hsl(0, 0%, 100%);
+    /* Buttons */
 
-    /* TODO: comment all colors */
+    /* primary */
+    --primary: var(--red);
+    --primary-hover: var(--redHover);
+    --primary-foreground: var(--white);
 
-    --secondary: hsl(210, 40%, 96.1%);
-    --secondary-foreground: hsl(213, 19%, 41%);
-    --secondary-border: hsl(210, 40%, 96.1%);
-    --secondary-borderHover: hsl(213, 19%, 41%);
+    /* secondary */
+    --secondary: var(--smokyWhite);
+    --secondary-foreground: var(--cadet);
+    --secondary-border: var(--smokyWhite);
+    --secondary-borderHover: var(--cadet);
 
-    /* nav button mobile */
+    /* outline */
+    --outline-foreground: var(--cadet);
+    --outline-border: var(--cadet);
+    --outline-hover: var(--cadetBlue);
 
-    --nav: hsl(0, 0%, 100%);
-    --nav-foreground: hsl(0, 0%, 16%);
-
-    /* --outline: ; */
-    --outline-foreground: hsl(213, 19%, 41%);
-    --outline-border: hsl(213, 19%, 41%);
-    --outline-hover: hsl(210, 11%, 71%);
-
-    /* --link: #fff; */
-    --link-foreground: hsl(213, 19%, 41%);
-    --link-hover: hsl(197, 86%, 53%);
-
-    /* inputs & textarea */
-
-    --input: hsl(0, 0%, 95%);
-    --input-foreground: hsl(0, 0%, 16%);
-    --input-background: hsl(0, 0%, 100%);
-    --input-hoverBorder: hsl(216, 100%, 64%);
-    --input-errorBorder: hsl(0, 68%, 49%);
-
-    /* search input */
-
-    --search: hsl(0, 0%, 95%);
-    --search-border: hsl(0, 0%, 95%);
-
-    /* avatar */
-
-    --avatar-foreground: hsl(0, 0%, 16%);
+    /* link */
+    --link-foreground: var(--cadet);
+    --link-hover: var(--twitter);
 
     /* text */
-
-    --text: hsl(0, 0%, 95%);
-    --text-foreground: hsl(0, 0%, 16%);
-
-    /* select */
-
-    --select: hsl(0, 0%, 100%);
-    --select-itemHover: hsl(0, 0%, 95%);
+    --text: var(--smokyWhite);
+    --text-foreground: var(--signalBlack);
 
     /* action button */
+    --action-activeBorder: var(--red);
+    --action-imgColor: var(--cadet);
+    --action-imgActiveColor: var(--red);
 
-    --action-activeBorder: hsl(0, 68%, 49%);
-    --action-imgColor: hsl(213, 19%, 41%);
-    --action-imgActiveColor: hsl(0, 68%, 49%);
-
-    /* card (message) */
-
-    --message: hsl(0, 0%, 100%);
-    --message-hover: hsl(0, 0%, 100%);
-    --message-border: hsl(0, 0%, 95%);
-    --message-hoverBorder: hsl(0, 68%, 49%);
-
-    /* card (liked) */
-
-    --liked-foreground: hsl(0, 0%, 16%);
-    --liked-dateForeground: hsl(0, 0%, 16%);
-
-    /* card (request) */
-    --request-foreground: hsl(0, 0%, 16%);
-
-    /* card (friend) */
-
-    --friendCard-foreground: hsl(0, 0%, 16%);
+    /* nav button mobile */
+    --nav: var(--white);
+    --nav-foreground: var(--signalBlack);
 
     /* setting button */
+    --setting: var(--white);
+    --setting-active: var(--smokyWhite);
+    --setting-border: var(--smokyWhite);
+    --setting-foreground: var(--signalBlack);
+    --setting-activeForeground: var(--signalBlack);
 
-    --setting: hsl(0, 0%, 100%);
-    --setting-active: hsl(0, 0%, 95%);
-    --setting-border: hsl(0, 0%, 95%);
-    --setting-foreground: hsl(0, 0%, 16%);
-    --setting-activeForeground: hsl(0, 0%, 16%);
+    /* End Buttons */
+
+    /* Inputs & textarea */
+
+    --input: var(--smokyWhite);
+    --input-foreground: var(--signalBlack);
+    --input-background: var(--white);
+    --input-hoverBorder: var(--blue);
+    --input-errorBorder: var(--red);
+
+    /* search input */
+    --search: var(--smokyWhite);
+    --search-border: var(--smokyWhite);
+
+    /* select */
+    --select: var(--white);
+    --select-itemHover: var(--smokyWhite);
+
+    /* EndInputs & textarea */
+
+    /* Avatar */
+
+    --avatar-foreground: var(--signalBlack);
+
+    /* End Avatar */
+
+    /* Cards */
+
+    /* card (message) */
+    --message: var(--white);
+    --message-hover: var(--white);
+    --message-border: var(--smokyWhite);
+    --message-hoverBorder: var(--red);
+
+    /* card (liked) */
+    --liked-foreground: var(--signalBlack);
+    --liked-dateForeground: var(--signalBlack);
+
+    /* card (request) */
+    --request-foreground: var(--signalBlack);
+
+    /* card (friend) */
+    --friendCard-foreground: var(--signalBlack);
+
+    /* End Cards */
 
     /* others */
 
@@ -111,103 +134,110 @@
   }
 
   .dark {
-    --body: hsl(240, 19%, 12%);
+    /* Global */
 
-    --background: hsl(240, 15%, 16%);
-    --foreground: hsl(210, 40%, 98%);
+    /* body background color */
+    --body: var(--bodyDark);
 
-    /* buttons */
+    /* components background */
+    --background: var(--grayBlue);
 
-    /* primary button bg color */
-    --primary: hsl(0, 68%, 49%);
-    /* primary button bg on hover color */
-    --primary-hover: hsl(0, 70%, 45%);
-    /* primary button text color */
-    --primary-foreground: hsl(0, 0%, 100%);
+    /* text color */
+    --foreground: var(--ghostlyWhite);
 
-    --secondary: hsl(240, 11%, 14%);
-    --secondary-hover: hsl(240, 15%, 16%);
-    --secondary-foreground: hsl(0, 0%, 95%);
-    --secondary-hover: hsl(240, 15%, 16%);
-    --secondary-border: hsl(240, 11%, 14%);
-    --secondary-border-hover: hsl(240, 15%, 16%);
+    /* Buttons */
 
-    --outline-foreground: hsl(210, 11%, 71%);
-    --outline-border: hsl(210, 11%, 71%);
-    --outline-hover: hsl(213, 19%, 41%);
+    /* primary */
+    --primary: var(--red);
+    --primary-hover: var(--redHover);
+    --primary-foreground: var(--white);
 
-    /* nav button mobile */
+    /* secondary */
+    --secondary: var(--brownBlack);
+    --secondary-hover: var(--grayBlue);
+    --secondary-foreground: var(--smokyWhite);
+    --secondary-hover: var(--grayBlue);
+    --secondary-border: var(--brownBlack);
+    --secondary-border-hover: var(--grayBlue);
 
-    --nav: hsl(240, 15%, 16%);
-    --nav-foreground: hsl(0, 0%, 95%);
+    /* outline */
+    --outline-foreground: var(--cadetBlue);
+    --outline-border: var(--cadetBlue);
+    --outline-hover: var(--cadet);
 
-    /* --link: ; */
-    --link-foreground: hsl(0, 0%, 95%);
-
-    /* inputs */
-
-    --input: hsl(213, 19%, 41%);
-    --input-foreground: hsl(0, 0%, 95%);
-    --input-background: hsl(240, 15%, 16%);
-    --input-hoverBorder: hsl(197, 86%, 53%);
-    --input-errorBorder: hsl(0, 68%, 49%);
-
-    /* search input */
-
-    --search: hsl(240, 15%, 16%);
-    --search-border: hsl(213, 19%, 41%);
-
-    /* avatar */
-    --avatar-foreground: hsl(0, 0%, 95%);
+    /* link */
+    --link-foreground: var(--smokyWhite);
 
     /* text */
-
-    --text: hsl(240, 11%, 14%);
-    --text-foreground: hsl(0, 0%, 95%);
-
-    /* select */
-
-    --select: hsl(240, 15%, 16%);
-    --select-itemHover: hsl(240, 11%, 14%);
+    --text: var(--brownBlack);
+    --text-foreground: var(--smokyWhite);
 
     /* action button */
+    --action-activeBorder: var(--red);
+    --action-imgColor: var(--cadet);
+    --action-imgActiveColor: var(--grayBlue);
 
-    --action-activeBorder: hsl(0, 68%, 49%);
-    --action-imgColor: hsl(213, 19%, 41%);
-    --action-imgActiveColor: hsl(240, 15%, 16%);
-
-    /* card (message) */
-
-    --message: hsl(240, 15%, 16%);
-    --message-hover: hsl(240, 11%, 14%);
-    --message-border: hsl(213, 19%, 41%);
-    --message-hoverBorder: hsl(213, 19%, 41%);
-
-    /* card (liked) */
-
-    --liked-foreground: hsl(213, 19%, 41%);
-    --liked-dateForeground: #55677d;
-
-    /* card (request) */
-
-    --request-foreground: hsl(0, 0%, 95%);
-
-    /* card (friend) */
-
-    --friendCard-foreground: hsl(0, 0%, 95%);
+    /* nav button mobile */
+    --nav: var(--grayBlue);
+    --nav-foreground: var(--smokyWhite);
 
     /* setting button */
+    --setting: var(--grayBlue);
+    --setting-active: var(--brownBlack);
+    --setting-border: var(--cadet);
+    --setting-foreground: var(--cadet);
+    --setting-activeForeground: var(--smokyWhite);
 
-    --setting: hsl(240, 15%, 16%);
-    --setting-active: hsl(240, 11%, 14%);
-    --setting-border: hsl(213, 19%, 41%);
-    --setting-foreground: hsl(213, 19%, 41%);
-    --setting-activeForeground: hsl(0, 0%, 95%);
+    /* End Buttons */
+
+    /* Inputs & textarea */
+
+    --input: var(--cadet);
+    --input-foreground: var(--smokyWhite);
+    --input-background: var(--grayBlue);
+    --input-hoverBorder: var(--twitter);
+    --input-errorBorder: var(--red);
+
+    /* search input */
+    --search: var(--grayBlue);
+    --search-border: var(--cadet);
+
+    /* select */
+    --select: var(--grayBlue);
+    --select-itemHover: var(--brownBlack);
+
+    /* EndInputs & textarea */
+
+    /* Avatar */
+
+    --avatar-foreground: var(--smokyWhite);
+
+    /* End Avatar */
+
+    /* Card */
+
+    /* card (message) */
+    --message: var(--grayBlue);
+    --message-hover: var(--brownBlack);
+    --message-border: var(--cadet);
+    --message-hoverBorder: var(--cadet);
+
+    /* card (liked) */
+    --liked-foreground: var(--cadet);
+    --liked-dateForeground: var(--cadetBlue);
+
+    /* card (request) */
+    --request-foreground: var(--smokyWhite);
+
+    /* card (friend) */
+    --friendCard-foreground: var(--smokyWhite);
 
     /* others */
 
     --border: hsl(217, 0.2, 32) 6% 17.5%;
     --ring: hsl(212, 0.7, 26) 8% 83.9%;
+
+    --radius: 0.5rem;
   }
 }
 
@@ -216,12 +246,15 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-body text-foreground;
   }
 }
 
+html {
+  min-height: 100vh;
+}
+
 body {
-  background-color: var(--body);
   overflow-x: hidden;
 }
 
@@ -254,8 +287,4 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
   -webkit-text-fill-color: var(--foreground);
-}
-
-html {
-  min-height: 100vh;
 }
