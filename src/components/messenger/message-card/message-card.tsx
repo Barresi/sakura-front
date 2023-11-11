@@ -5,7 +5,7 @@ import { cn } from '@utils/utils'
 import Card from '../../ui/card/card'
 import UserAvatar from '../../ui/avatar/avatar'
 
-export interface MessageCardProps {
+export interface IMessageCardProps {
   className?: string
   data: {
     img: string
@@ -16,7 +16,7 @@ export interface MessageCardProps {
   }
 }
 
-const MessageCard: FC<MessageCardProps> = ({
+const MessageCard: FC<IMessageCardProps> = ({
   className,
   data: { img, name, message, date, badge }
 }) => {
