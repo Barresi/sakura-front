@@ -10,7 +10,7 @@ import {
 } from '@src/types/api'
 
 export const getAllUsersThunk = createAsyncThunk<IAllUsersResponse>(
-  'users/getAll',
+  'friends/getAll',
   async (_, { rejectWithValue }) => {
     try {
       return await getAllUsers()
@@ -25,7 +25,7 @@ export const getAllUsersThunk = createAsyncThunk<IAllUsersResponse>(
 )
 
 export const getFriendsThunk = createAsyncThunk<IFriendsResponse>(
-  'profileInfo/getFriends',
+  'friends/getFriends',
   async (_, { rejectWithValue }) => {
     try {
       return await getFriends()
@@ -40,7 +40,7 @@ export const getFriendsThunk = createAsyncThunk<IFriendsResponse>(
 )
 
 export const getReceivedThunk = createAsyncThunk<IReceivedResponse>(
-  'profileInfo/getReceived',
+  'friends/getReceived',
   async (_, { rejectWithValue }) => {
     try {
       return await getReceived()
@@ -55,7 +55,7 @@ export const getReceivedThunk = createAsyncThunk<IReceivedResponse>(
 )
 
 export const getSendedThunk = createAsyncThunk<ISendedResponse>(
-  'profileInfo/getSended',
+  'friends/getSended',
   async (_, { rejectWithValue }) => {
     try {
       return await getSended()

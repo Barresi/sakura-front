@@ -1,25 +1,24 @@
 import MessageCard from '@src/components/messenger/message-card/message-card'
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import notActiveChats from '@assets/messenger/not active chats.svg'
 import chooseChat from '@assets/messenger/choose chat.svg'
 import { useWindowSize } from '@src/hooks/useWindowSize'
-import { type IChat } from '@src/types/api'
-import { getUserChatsRequest } from '@src/api/messenger/messenger'
+import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
+import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
+import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 
 const MessengerPage: FC = () => {
+  const chats = useAppSelector(selectMessengerUserChats)
+  const dispatch = useAppDispatch()
   const { pathname } = useLocation()
   const isMobile = useWindowSize(1440)
 
-  const [chats, setChats] = useState<IChat[]>([])
-
   useEffect(() => {
-    getUserChatsRequest().then((data) => {
-      setChats(data)
-    })
+    dispatch(getUserChatsThunk())
   }, [])
 
-  if (!chats.length)
+  if (!chats.length && pathname.length <= 16)
     return (
       <div className='flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-background rounded-[10px] mx-5 lg:mx-0'>
         <img src={notActiveChats} alt='not active chat' />
