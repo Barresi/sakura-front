@@ -25,7 +25,7 @@ const LikedCard: FC<ILikedCardProps> = ({ className, img, name, date, link }) =>
               фотографию
             </Link>
           </h3>
-          <span className='leading-6 text-liked-dateForeground'>{date}</span>
+          <span className='leading-6 text-signalBlack dark:text-cadet'>{date}</span>
         </div>
         {link && <UserAvatar src={link} className='w-[67px] h-[67px] rounded-none' />}
       </div>

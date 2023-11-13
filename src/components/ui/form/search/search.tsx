@@ -10,7 +10,10 @@ const SearchInput: FC<ISearchInputProps> = ({ className, ...props }) => {
   return (
     <div className='flex items-center relative'>
       <Input
-        className={cn('bg-search py-[10px] rounded-[10px] pr-[60px]', className)}
+        className={cn(
+          'bg-smokyWhite dark:bg-grayBlue py-[10px] rounded-[10px] pr-[60px]',
+          className
+        )}
         placeholder='Поиск'
         type='text'
         {...props}
