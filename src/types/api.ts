@@ -82,4 +82,6 @@ export interface ICreateChatResponse {
   chatId: string
 }
 
-export interface IGetUserChatsResponse extends Array<IChat> {}
+export interface IGetUserChatsResponse {
+  userChats: IChat[]
+}

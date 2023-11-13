@@ -25,7 +25,7 @@ const messengerSlice = createSlice({
     })
     builder.addCase(getUserChatsThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.userChats = [...action.payload]
+      state.userChats = [...action.payload.userChats]
     })
     builder.addCase(getUserChatsThunk.rejected, (state, action) => {
       state.isLoading = false
