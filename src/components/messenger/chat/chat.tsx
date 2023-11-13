@@ -17,14 +17,13 @@ const SEND_MESSAGE_EVENT = 'sendMessage'
 const GET_MESSAGES_EVENT = 'getMessages'
 
 const Chat: FC = () => {
+  // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
   const { id } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const userChats = useAppSelector(selectMessengerUserChats)
   const currentChat = userChats.find((item) => item.chatId === chatId.id)
-
   const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
-
   const friend = allUsers.find((item) => item.id === friendId)
 
   const [messages, setMessages] = useState<IMessage[]>([])

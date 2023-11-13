@@ -13,6 +13,7 @@ export interface IMessageCardProps extends IChat {
 }
 
 const MessageCard: FC<IMessageCardProps> = ({ className, chatId, participants }) => {
+  // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const { id } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const friendId = participants.find((item) => item.id !== id)?.id
