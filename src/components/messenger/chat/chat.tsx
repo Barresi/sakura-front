@@ -8,6 +8,8 @@ import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 import { useSocket } from '@src/context/socket-context/useSocket'
 import Message from '../message/message'
 import { type IMessage } from '@src/types/api'
+import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
+import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 
 const JOIN_CHAT_EVENT = 'joinChat'
 const LEAVE_CHAT_EVENT = 'leaveChat'
@@ -16,14 +18,23 @@ const GET_MESSAGES_EVENT = 'getMessages'
 
 const Chat: FC = () => {
   const chatId = useParams()
-  const [messages, setMessages] = useState<IMessage[]>([])
   const { id } = useAppSelector(selectUser)
+  const allUsers = useAppSelector(selectAllUsers)
+  const userChats = useAppSelector(selectMessengerUserChats)
+  const currentChat = userChats.find((item) => item.chatId === chatId.id)
+
+  const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
+
+  const friend = allUsers.find((item) => item.id === friendId)
+
+  const [messages, setMessages] = useState<IMessage[]>([])
+
   const { socket } = useSocket()
 
   const sendMessage = (message: string): void => {
     if (!socket) return
     socket.emit(SEND_MESSAGE_EVENT, {
-      id,
+      userId: id,
       message,
       chatId: chatId.id,
       socketId: socket.id
@@ -35,9 +46,9 @@ const Chat: FC = () => {
 
   useEffect(() => {
     if (!socket) return
-    socket.emit(JOIN_CHAT_EVENT, chatId.id)
+    socket.emit(JOIN_CHAT_EVENT, { chatId: chatId.id, userId: id })
     return () => {
-      socket.emit(LEAVE_CHAT_EVENT, chatId.id)
+      socket.emit(LEAVE_CHAT_EVENT, { chatId: chatId.id, userId: id })
     }
   }, [chatId, socket])
 
@@ -60,7 +71,7 @@ const Chat: FC = () => {
             <img src={arrow} alt='arrow' className='w-[20px] h-[20px]' />
           </Link>
           <div className='flex flex-col md:flex-row md:gap-[10px]'>
-            <span className='font-bold text-xl'>Имя - хардкод</span>
+            <span className='font-bold text-xl'>{`${friend?.firstName} ${friend?.lastName}`}</span>
           </div>
         </div>
 
