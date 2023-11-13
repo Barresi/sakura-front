@@ -7,7 +7,7 @@ export const getAllUsers = async (): Promise<IAllUsersResponse> => {
   return res.data
 }
 
-export const addFriend = async (id: number): Promise<IAddFriendResponse> => {
+export const addFriend = async (id: string): Promise<IAddFriendResponse> => {
   const res = await apiWithAuth.post<IAddFriendResponse>(`/users/${id}`)
 
   return res.data

@@ -19,19 +19,19 @@ export const getSended = async (): Promise<ISendedResponse> => {
   return res.data
 }
 
-export const acceptFriend = async (id: number): Promise<IAcceptResponse> => {
+export const acceptFriend = async (id: string): Promise<IAcceptResponse> => {
   const res = await apiWithAuth.post<IAcceptResponse>(`/friend-requests/${id}/accept`)
 
   return res.data
 }
 
-export const rejectFriend = async (id: number): Promise<IRejectResponse> => {
+export const rejectFriend = async (id: string): Promise<IRejectResponse> => {
   const res = await apiWithAuth.delete<IRejectResponse>(`/friend-requests/${id}/reject`)
 
   return res.data
 }
 
-export const cancelFriend = async (id: number): Promise<ICancelResponse> => {
+export const cancelFriend = async (id: string): Promise<ICancelResponse> => {
   const res = await apiWithAuth.delete<ICancelResponse>(`/friend-requests/${id}/cancel`)
 
   return res.data

@@ -4,9 +4,3 @@ export interface IUser {
   lastName: string
   email: string
 }
-
-export interface IMessage {
-  text: string
-  date: string
-  userId: string
-}

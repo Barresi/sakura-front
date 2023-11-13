@@ -7,7 +7,7 @@ import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 import { useSocket } from '@src/context/socket-context/useSocket'
 import Message from '../message/message'
-import { type IMessage } from '@src/types/types'
+import { type IMessage } from '@src/types/api'
 
 const JOIN_CHAT_EVENT = 'joinChat'
 const LEAVE_CHAT_EVENT = 'leaveChat'
@@ -68,7 +68,12 @@ const Chat: FC = () => {
       </div>
       <div className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'>
         {messages.map((item, ind) => (
-          <Message text={item.text} date={item.date} my={item.userId === id} key={ind} />
+          <Message
+            text={item.text}
+            date={item.createdAt}
+            my={item.senderId === id}
+            key={ind}
+          />
         ))}
       </div>
       <div className='absolute bottom-0 right-5 left-5'>

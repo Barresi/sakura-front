@@ -20,7 +20,7 @@ export interface ILoginResponse {
   userWithoutPassword: IUser
 }
 export interface IRegistrationResponse {
-  id: number
+  id: string
 }
 export interface ILogoutResponse extends INoContentResponse {}
 export interface IUserInfoResponse {
@@ -40,9 +40,9 @@ export enum FriendsRequestStatus {
 }
 
 export interface IFriend {
-  id: number
-  fromId: number
-  toId: number
+  id: string
+  fromId: string
+  toId: string
   status: FriendsRequestStatus
   createdAt: string
 }
@@ -59,3 +59,27 @@ export interface ISendedResponse extends Array<IFriend> {}
 export interface IAcceptResponse extends INoContentResponse {}
 export interface IRejectResponse extends INoContentResponse {}
 export interface ICancelResponse extends INoContentResponse {}
+
+// Messenger api
+
+export interface IMessage {
+  createdAt: Date
+  chatId: string
+  senderId: string
+  text: string
+}
+
+export interface IChat {
+  messages: IMessage[]
+  participants: Array<{ id: string }>
+  id: string
+  chatId: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface ICreateChatResponse {
+  chatId: string
+}
+
+export interface IGetUserChatsResponse extends Array<IChat> {}

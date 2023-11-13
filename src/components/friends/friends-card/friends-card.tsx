@@ -13,6 +13,7 @@ import {
   acceptRequestHandler,
   addFriendHandler,
   cancelRequestHandler,
+  createChatRequestHandler,
   deleteFriendHandler,
   rejectRequestHandler
 } from '@src/utils/friends/handlers'
@@ -21,10 +22,11 @@ import { checkStates } from '@src/utils/friends/other'
 import UserAvatar from '@src/components/ui/avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
 import { type FriendTabs } from '@src/types/other'
+import { useNavigate } from 'react-router-dom'
 
 interface IFriendsCardProps {
   className?: string
-  id: number
+  id: string
   type?: FriendTabs
   isMine?: boolean
 }
@@ -32,13 +34,14 @@ interface IFriendsCardProps {
 const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => {
   const isMobile = useWindowSize(500)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const { id: currentId } = useAppSelector(selectUser)
   const friends = useAppSelector(selectFriends)
   const sended = useAppSelector(selectSended)
   const received = useAppSelector(selectReceived)
 
-  const user = useAppSelector(selectAllUsers).filter((user) => Number(user.id) === id)[0]
+  const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
   const { firstName, lastName } = user
 
   const isFriend = checkStates(friends, Number(currentId), Number(user?.id))
@@ -65,13 +68,17 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
   const clickHandlers = {
     friends: [
-      () => {},
+      async () => {
+        await createChatRequestHandler(currentId, id, navigate)
+      },
       async () => {
         await deleteFriendHandler(id, dispatch)
       }
     ],
     all: [
-      () => {},
+      async () => {
+        await createChatRequestHandler(currentId, id, navigate)
+      },
       async () => {
         await addFriendHandler(id, dispatch)
       }
@@ -85,7 +92,9 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
       }
     ],
     sended: [
-      () => {},
+      async () => {
+        await createChatRequestHandler(currentId, id, navigate)
+      },
       async () => {
         await cancelRequestHandler(id, sended, Number(currentId), dispatch)
       }

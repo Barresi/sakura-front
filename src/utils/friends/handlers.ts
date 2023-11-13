@@ -2,6 +2,7 @@ import { type AnyAction, type ThunkDispatch } from '@reduxjs/toolkit'
 import { deleteFriend } from '@src/api/friends/friends'
 import { acceptFriend, cancelFriend, rejectFriend } from '@src/api/friends/requests'
 import { addFriend } from '@src/api/friends/users'
+import { createChatRequest } from '@src/api/messenger/messenger'
 import {
   getSendedThunk,
   getFriendsThunk,
@@ -9,9 +10,10 @@ import {
 } from '@src/store/reducers/friends/async-thunks'
 import { type RootState } from '@src/store/store'
 import { type IFriend } from '@src/types/api'
+import { type NavigateFunction } from 'react-router-dom'
 
 export const addFriendHandler = async (
-  id: number,
+  id: string,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
   await addFriend(id)
@@ -20,7 +22,7 @@ export const addFriendHandler = async (
 }
 
 export const deleteFriendHandler = async (
-  id: number,
+  id: string,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
   await deleteFriend(id)
@@ -29,9 +31,9 @@ export const deleteFriendHandler = async (
 }
 
 export const acceptRequestHandler = async (
-  id: number,
+  id: string,
   received: IFriend[],
-  currentId: number,
+  currentId: string,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
   await acceptFriend(
@@ -43,9 +45,9 @@ export const acceptRequestHandler = async (
 }
 
 export const rejectRequestHandler = async (
-  id: number,
+  id: string,
   received: IFriend[],
-  currentId: number,
+  currentId: string,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
   await rejectFriend(
@@ -56,9 +58,9 @@ export const rejectRequestHandler = async (
 }
 
 export const cancelRequestHandler = async (
-  id: number,
+  id: string,
   sended: IFriend[],
-  currentId: number,
+  currentId: string,
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>
 ): Promise<void> => {
   await cancelFriend(
@@ -66,4 +68,14 @@ export const cancelRequestHandler = async (
   )
 
   dispatch(getSendedThunk())
+}
+
+export const createChatRequestHandler = async (
+  userId: string,
+  friendId: string,
+  navigate: NavigateFunction
+): Promise<void> => {
+  const res = await createChatRequest(userId, friendId)
+
+  if (res.chatId) navigate('/main/messenger/' + res.chatId)
 }

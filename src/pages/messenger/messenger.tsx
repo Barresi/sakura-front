@@ -1,17 +1,11 @@
 import MessageCard from '@src/components/messenger/message-card/message-card'
 import { type FC, useEffect, useState } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import notActiveChats from '@assets/messenger/not active chats.svg'
 import chooseChat from '@assets/messenger/choose chat.svg'
-import { type IMessage } from '@src/types/types'
 import { useWindowSize } from '@src/hooks/useWindowSize'
-
-export interface IChat {
-  name: string
-  chatId: string
-  unreadMessages: IMessage[]
-  lastMessage: IMessage
-}
+import { type IChat } from '@src/types/api'
+import { getUserChatsRequest } from '@src/api/messenger/messenger'
 
 const MessengerPage: FC = () => {
   const { pathname } = useLocation()
@@ -20,26 +14,9 @@ const MessengerPage: FC = () => {
   const [chats, setChats] = useState<IChat[]>([])
 
   useEffect(() => {
-    setChats([
-      {
-        name: 'Андрей Филяев',
-        chatId: 'sss',
-        unreadMessages: [
-          { text: 'Как самочувствие?', date: '18 авг', userId: '2' },
-          { text: 'Ты сегодня был на работе?', date: '19 авг', userId: '2' }
-        ],
-        lastMessage: { text: 'Ты сегодня был на работе?', date: '19 авг', userId: '2' }
-      },
-      {
-        name: 'Андрей Филяев',
-        chatId: 'ddd',
-        unreadMessages: [
-          { text: 'Как самочувствие?', date: '18 авг', userId: '2' },
-          { text: 'Ты сегодня был на работе?', date: '19 авг', userId: '2' }
-        ],
-        lastMessage: { text: 'Ты сегодня был на работе?', date: '19 авг', userId: '2' }
-      }
-    ])
+    getUserChatsRequest().then((data) => {
+      setChats(data)
+    })
   }, [])
 
   if (!chats.length)
@@ -61,22 +38,7 @@ const MessengerPage: FC = () => {
       {!isMobile || pathname === '/main/messenger' ? (
         <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-background border-r-message-border xxl:border-r xxl:rounded-l-[10px] xxl:rounded-r-[0px]'>
           {chats.map((item, ind) => (
-            <NavLink
-              to={item.chatId}
-              key={ind}
-              className={({ isActive }) => (isActive ? '[&>div]:bg-message-hover' : '')}
-            >
-              <MessageCard
-                className='rounded-none'
-                data={{
-                  name: item.name,
-                  message: item.lastMessage.text,
-                  badge: item.unreadMessages.length,
-                  img: '',
-                  date: item.lastMessage.date
-                }}
-              />
-            </NavLink>
+            <MessageCard key={ind} className='rounded-none' {...item} />
           ))}
         </ul>
       ) : null}
