@@ -44,9 +44,9 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
   const { firstName, lastName } = user
 
-  const isFriend = checkStates(friends, Number(currentId), Number(user?.id))
-  const isRequestSended = checkStates(sended, Number(currentId), Number(user?.id))
-  const isRequestReceived = checkStates(received, Number(currentId), Number(user?.id))
+  const isFriend = checkStates(friends, currentId, user?.id)
+  const isRequestSended = checkStates(sended, currentId, user?.id)
+  const isRequestReceived = checkStates(received, currentId, user?.id)
 
   const avatar = (
     <UserAvatar className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]' />
@@ -85,10 +85,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
     ],
     requests: [
       async () => {
-        await acceptRequestHandler(id, received, Number(currentId), dispatch)
+        await acceptRequestHandler(id, received, currentId, dispatch)
       },
       async () => {
-        await rejectRequestHandler(id, received, Number(currentId), dispatch)
+        await rejectRequestHandler(id, received, currentId, dispatch)
       }
     ],
     sended: [
@@ -96,7 +96,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
         await createChatRequestHandler(currentId, id, navigate)
       },
       async () => {
-        await cancelRequestHandler(id, sended, Number(currentId), dispatch)
+        await cancelRequestHandler(id, sended, currentId, dispatch)
       }
     ]
   }

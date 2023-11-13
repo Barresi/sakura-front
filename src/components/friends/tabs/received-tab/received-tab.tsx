@@ -18,17 +18,16 @@ const ReceivedTab: FC<IReceivedTabProps> = ({ search }) => {
     <>
       <div className='flex flex-col gap-[20px]'>
         {received
-          .filter((item) => filterRequests(users, Number(currentId), item, search))
+          .filter((item) => filterRequests(users, currentId, item, search))
           .map((friend, index) => {
-            const dataId =
-              Number(currentId) === friend.fromId ? friend.toId : friend.fromId
+            const dataId = currentId === friend.fromId ? friend.toId : friend.fromId
 
             return (
               <FriendsCard
                 key={index}
                 type='requests'
-                id={Number(dataId)}
-                isMine={Number(dataId) === Number(currentId)}
+                id={dataId}
+                isMine={dataId === currentId}
               />
             )
           })}
