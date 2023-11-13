@@ -11,7 +11,9 @@ interface ITabButtonProps {
 
 const TabButton: FC<ITabButtonProps> = ({ children, badge, isActive, onClick }) => {
   return (
-    <div className={isActive ? 'bg-text rounded-md' : 'rounded-md'}>
+    <div
+      className={isActive ? 'bg-smokyWhite dark:bg-brownBlack rounded-md' : 'rounded-md'}
+    >
       <Button
         className={
           'w-full flex justify-between sm:justify-center whitespace-nowrap xl:justify-between text-left sm:text-center active:scale-[0.97]'
