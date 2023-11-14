@@ -12,15 +12,15 @@ export interface IMessageCardProps extends IChat {
   className?: string
 }
 
-const MessageCard: FC<IMessageCardProps> = ({ className, chatId, participants }) => {
+const MessageCard: FC<IMessageCardProps> = ({ className, id, participants }) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
-  const { id } = useAppSelector(selectUser)
+  const { id: userId } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
-  const friendId = participants.find((item) => item.id !== id)?.id
+  const friendId = participants.find((item) => item.id !== userId)?.id
   const friend = allUsers.find((item) => item.id === friendId)
   return (
     <NavLink
-      to={chatId}
+      to={id}
       className={({ isActive }) => (isActive ? '[&>div]:bg-message-hover' : '')}
     >
       <Card className={cn('flex items-center justify-between cursor-pointer', className)}>

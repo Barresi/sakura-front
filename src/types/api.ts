@@ -72,7 +72,7 @@ export interface IMessage {
 export interface IChat {
   messages: IMessage[]
   participants: Array<{ id: string }>
-  chatId: string
+  id: string
   createdAt: Date
   updatedAt: Date
 }

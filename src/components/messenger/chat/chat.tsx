@@ -22,7 +22,7 @@ const Chat: FC = () => {
   const { id } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const userChats = useAppSelector(selectMessengerUserChats)
-  const currentChat = userChats.find((item) => item.chatId === chatId.id)
+  const currentChat = userChats.find((item) => item.id === chatId.id)
   const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
 
