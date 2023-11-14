@@ -40,24 +40,7 @@ const MessengerPage: FC = () => {
       {!isMobile || pathname === '/main/messenger' ? (
         <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-white dark:bg-grayBlue border-r-smokyWhite dark:border-r-cadet xxl:border-r xxl:rounded-l-[10px] xxl:rounded-r-[0px]'>
           {chats.map((item, ind) => (
-            <NavLink
-              to={item.chatId}
-              key={ind}
-              className={({ isActive }) =>
-                isActive ? '[&>div]:bg-white dark:[&>div]:bg-brownBlack' : ''
-              }
-            >
-              <MessageCard
-                className='rounded-none'
-                data={{
-                  name: item.name,
-                  message: item.lastMessage.text,
-                  badge: item.unreadMessages.length,
-                  img: '',
-                  date: item.lastMessage.date
-                }}
-              />
-            </NavLink>
+            <MessageCard className='rounded-none' key={ind} {...item} />
           ))}
         </ul>
       ) : null}
