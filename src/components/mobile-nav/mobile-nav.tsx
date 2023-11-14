@@ -8,7 +8,7 @@ const MobileNav: FC = () => {
     <div
       className={`${
         pathname.includes('/main/messenger/') && pathname.length > 16 ? 'hidden' : 'flex'
-      } w-full fixed bottom-0 left-0 flex items-center justify-between gap-[5px] lg:gap-[10px] bg-navButton text-navButton-foreground py-[10px] px-[10px] lg:px-[20px] rounded-tl-[10px] rounded-tr-[10px] z-[10000] bg-background border-t-message-border border-t`}
+      } w-full fixed bottom-0 left-0 flex items-center justify-between gap-[5px] lg:gap-[10px] bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite py-[10px] px-[10px] lg:px-[20px] rounded-tl-[10px] rounded-tr-[10px] z-[10000] border-t border-t-smokyWhite dark:border-t-cadet`}
     >
       <NavButton
         className='w-full flex-col justify-center items-center text-center px-[5px] first-letter:lg:px-[15px] py-[30px] gap-[5px] text-[12px] md:text-[14px]'

@@ -60,9 +60,9 @@ const Chat: FC = () => {
   }, [socket])
 
   return (
-    <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-background rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
-      <div className=' absolute left-0 right-0 top-0 h-[80px] border-b border-message-border px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-background rounded-t-[10px]'>
-        <div className=' text-foreground text-[20px] flex gap-[10px]'>
+    <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
+      <div className=' absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
+        <div className='text-lightGray dark:text-ghostlyWhite text-[20px] flex gap-[10px]'>
           <Link
             to='/main/messenger'
             className='flex justify-center items-center px-[10px]'

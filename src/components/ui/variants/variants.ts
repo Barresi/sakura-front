@@ -5,10 +5,11 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-primary text-primary-foreground',
-        secondary: 'border-transparent bg-secondary text-secondary-foreground',
-        destructive: 'border-transparent bg-destructive text-destructive-foreground',
-        outline: 'text-foreground'
+        default: 'border-transparent bg-red text-white',
+        secondary:
+          'border-transparent bg-smokyWhite dark:bg-brownBlack text-cadet dark:text-smokyWhite',
+        destructive: 'border-transparent',
+        outline: 'text-signalBlack dark:text-ghostlyWhite'
       }
     },
     defaultVariants: {
@@ -22,13 +23,13 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary-hover border-none',
+        default: 'bg-red text-white dark:text-white hover:bg-redHover border-none',
         secondary:
-          'bg-secondary text-secondary-foreground border border-secondary-border hover:border-secondary-borderHover hover:bg-secondary-hover',
+          'bg-smokyWhite dark:bg-brownBlack text-cadet dark:text-smokyWhite border border-smokyWhite dark:border-brownBlack hover:border-cadet dark:hover:border-grayBlue dark:hover:bg-grayBlue',
         outline:
-          'text-outline-border border border-outline-border bg-background hover:border-outline-hover hover:text-outline-hover',
-        link: 'text-link-foreground underline-offset-4 hover:text-link-hover',
-        text: 'text-text-foreground hover:bg-text'
+          'text-cadet dark:text-cadetBlue border border-cadet dark:border-darkGray bg-white dark:bg-grayBlue hover:border-cadetBlue dark:hover:border-cadet hover:text-cadetBlue dark:hover:text-cadet',
+        link: 'text-cadet dark:text-darkWhite underline-offset-4 hover:text-twitter dark:hover:text-twitter',
+        text: 'text-signalBlack dark:text-smokyWhite hover:bg-smokyWhite dark:hover:bg-brownBlack'
       },
       size: {
         default: 'h-10 px-[0.95rem] py-[0.625rem]',

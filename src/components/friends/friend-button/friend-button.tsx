@@ -73,7 +73,7 @@ const FriendButton: FC<IFriendButtonProps> = ({
   const primaryClassName = 'w-[49%]'
   const primaryHandler = clickHandlers[type as keyof typeof clickHandlers][0]
 
-  const secondaryClassName = 'w-[49%] whitespace-nowrap hover:bg-secondary-hover'
+  const secondaryClassName = 'w-[49%] whitespace-nowrap'
 
   const secondaryIcon = (): Icon => {
     if (type === 'requests') return data.secondary.icon as Icon

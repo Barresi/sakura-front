@@ -37,7 +37,7 @@ const SelectTrigger = forwardRef<
   <Trigger
     ref={ref}
     className={cn(
-      'flex w-full items-center justify-between rounded-[1px] border border-input bg-background p-4 text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+      'flex w-full items-center justify-between rounded-[1px] border border-smokyWhite dark:border-cadet bg-white dark:bg-grayBlue p-4 text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}

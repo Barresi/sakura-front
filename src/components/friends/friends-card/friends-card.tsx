@@ -54,7 +54,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
-      <h3 className='font-bold leading-6 text-friendCard-foreground text-lg'>
+      <h3 className='font-bold leading-6 text-signalBlack dark:text-smokyWhite text-lg'>
         {firstName} {lastName} {isMine ? '(Вы)' : null}
       </h3>
       {type === 'requests' && (
@@ -105,7 +105,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
     return (
       <Card
         className={cn(
-          'block hover:border-b-message-border hover:bg-background',
+          'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
           className
         )}
       >
@@ -131,7 +131,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
   return (
     <Card
-      className={cn('block hover:border-b-message-border hover:bg-background', className)}
+      className={cn(
+        'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
+        className
+      )}
     >
       <div className='flex items-start lg:items-center gap-[15px]'>
         {avatar}

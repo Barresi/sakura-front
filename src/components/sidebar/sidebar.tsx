@@ -13,7 +13,7 @@ const Sidebar: FC = () => {
     await dispatch(logoutThunk())
   }
   return (
-    <div className='rounded-[10px] px-5 py-[30px] flex flex-col justify-between items-start w-[280px] bg-background fixed top-5 bottom-5'>
+    <div className='rounded-[10px] px-5 py-[30px] flex flex-col justify-between items-start w-[280px] bg-white dark:bg-grayBlue fixed top-5 bottom-5'>
       <div>
         <Logo />
 

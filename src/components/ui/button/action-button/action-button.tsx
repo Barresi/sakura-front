@@ -26,7 +26,7 @@ const ActionButton: FC<IActionButtonProps> = ({
     <Button
       variant='text'
       className={cn(
-        'px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border border-background  hover:bg-background lg:hover:bg-text',
+        'px-[15px] py-[10px] rounded-[20px] items-center gap-[10px] border border-white dark:border-grayBlue  hover:bg-white dark:hover:bg-grayBlue lg:hover:bg-text',
         theme === 'light' ? 'lg:border-text' : '',
         className
       )}

@@ -22,124 +22,33 @@ module.exports = {
     },
     extend: {
       colors: {
-        body: 'var(--body)',
-        border: 'var(--border)',
-        ring: 'var(--ring)',
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        white: '#fff',
+        darkWhite: '#f2f2f2',
+        ghostlyWhite: '#f8fafc',
+        smokyWhite: ' #f1f5f9',
+        cadet: '#55677c',
+        cadetBlue: '#adb5bd',
+        lightGray: '#d6d6d6',
+        darkLightGray: '#929292',
+        twitter: '#20b4ee',
+        blue: '#4791ff',
+        red: '#d22828',
+        redHover: '#c32222',
+        darkGray: '#adb5bd',
+        signalBlack: '#292929',
+        brownBlack: '#202028',
+        black: '#000',
+        grayBlue: '#23232f',
 
-        // buttons
-        primary: {
-          DEFAULT: 'var(--primary)',
-          hover: 'var(--primary-hover)',
-          foreground: 'var(--primary-foreground)'
-        },
-        secondary: {
-          DEFAULT: 'var(--secondary)',
-          hover: 'var(--secondary-hover)',
-          border: 'var(--secondary-border)',
-          borderHover: 'var(--secondary-border-hover)',
-          foreground: 'var(--secondary-foreground)'
-        },
-        outline: {
-          hover: 'var(--outline-hover)',
-          border: 'var(--outline-border)',
-          foreground: 'var(--outline-foreground)'
-        },
-        link: {
-          hover: 'var(--link-hover)',
-          foreground: 'var(--link-foreground)'
-        },
-        text: {
-          DEFAULT: 'var(--text)',
-          foreground: 'var(--text-foreground)'
-        },
-
-        // nav button mobile
-
-        nav: {
-          DEFAULT: 'var(--navButton)',
-          foreground: 'var(--navButton-foreground)'
-        },
-
-        // inputs
-        input: {
-          DEFAULT: 'var(--input)',
-          foreground: 'var(--input-foreground)',
-          background: 'var(--input-background)',
-          hoverBorder: 'var(--input-hoverBorder)',
-          errorBorder: 'var(--input-errorBorder)'
-        },
-
-        // search
-
-        search: {
-          DEFAULT: 'var(--search)',
-          border: 'var(--search-border)'
-        },
-
-        // avatar
-        avatar: {
-          foreground: 'var(--avatar-foreground)'
-        },
-
-        // select
-        select: {
-          DEFAULT: 'var(--select)',
-          itemHover: 'var(--select-itemHover)'
-        },
-
-        // action buttons
-        action: {
-          activeBorder: 'var(--action-activeBorder)',
-          imgColor: 'var(--action-imgColor)',
-          imgActiveColor: 'var(--action-imgActiveColor)'
-        },
-
-        // cards
-        message: {
-          DEFAULT: 'var(--message)',
-          hover: 'var(--message-hover)',
-          border: 'var(--message-border)',
-          hoverBorder: 'var(--message-hoverBorder)'
-        },
-
-        liked: {
-          foreground: 'var(--liked-foreground)',
-          dateForeground: 'var(--liked-dateForeground)'
-        },
-
-        request: {
-          foreground: 'var(--request-foreground)'
-        },
-
-        // setting button
-        setting: {
-          DEFAULT: 'var(--setting)',
-          active: 'var(--setting-active)',
-          border: 'var(--setting-border)',
-          foreground: 'var(--setting-foreground)',
-          activeForeground: 'var(--setting-activeForeground)'
-        }
+        body: '#eeeff1',
+        bodyDark: '#191924',
+        border: 'hsl(214.3, 31.8%, 91.4%)',
+        borderDark: 'hsl(217, 0.2, 32)'
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: 0 },
-          to: { height: 'var(--radix-accordion-content-height)' }
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 }
-        }
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        lg: '0.5rem',
+        md: 'calc(0.5rem - 2px)',
+        sm: 'calc(0.5rem - 4px)'
       }
     }
   },

@@ -7,246 +7,29 @@
   --white: #fff;
   --ghostlyWhite: #f8fafc;
   --smokyWhite: #f1f5f9;
+  --darkWhite: #adb5bd;
   --cadet: #55677c;
   --cadetBlue: #adb5bd;
+  --lightGray: #dbdbdb;
+  --darkLightGray: #929292;
   --twitter: #20b4ee;
   --blue: #4791ff;
   --red: #d22828;
   --redHover: #c32222;
-  --lightGray: #d6d6d60c;
+  --darkGray: #55677d;
   --signalBlack: #292929;
   --brownBlack: #202028;
   --black: #000;
-
   --bodyDark: #191924;
   --grayBlue: #23232f;
 }
 
 @layer base {
-  :root {
-    /* Global */
-
-    /* body background color */
-    --body: var(--bodyColor);
-
-    /* components background */
-    --background: var(--white);
-
-    /* text color */
-    --foreground: var(--lightGray);
-
-    /* End Global */
-
-    /* Buttons */
-
-    /* primary */
-    --primary: var(--red);
-    --primary-hover: var(--redHover);
-    --primary-foreground: var(--white);
-
-    /* secondary */
-    --secondary: var(--smokyWhite);
-    --secondary-foreground: var(--cadet);
-    --secondary-border: var(--smokyWhite);
-    --secondary-borderHover: var(--cadet);
-
-    /* outline */
-    --outline-foreground: var(--cadet);
-    --outline-border: var(--cadet);
-    --outline-hover: var(--cadetBlue);
-
-    /* link */
-    --link-foreground: var(--cadet);
-    --link-hover: var(--twitter);
-
-    /* text */
-    --text: var(--smokyWhite);
-    --text-foreground: var(--signalBlack);
-
-    /* action button */
-    --action-activeBorder: var(--red);
-    --action-imgColor: var(--cadet);
-    --action-imgActiveColor: var(--red);
-
-    /* nav button mobile */
-    --nav: var(--white);
-    --nav-foreground: var(--signalBlack);
-
-    /* setting button */
-    --setting: var(--white);
-    --setting-active: var(--smokyWhite);
-    --setting-border: var(--smokyWhite);
-    --setting-foreground: var(--signalBlack);
-    --setting-activeForeground: var(--signalBlack);
-
-    /* End Buttons */
-
-    /* Inputs & textarea */
-
-    --input: var(--smokyWhite);
-    --input-foreground: var(--signalBlack);
-    --input-background: var(--white);
-    --input-hoverBorder: var(--blue);
-    --input-errorBorder: var(--red);
-
-    /* search input */
-    --search: var(--smokyWhite);
-    --search-border: var(--smokyWhite);
-
-    /* select */
-    --select: var(--white);
-    --select-itemHover: var(--smokyWhite);
-
-    /* EndInputs & textarea */
-
-    /* Avatar */
-
-    --avatar-foreground: var(--signalBlack);
-
-    /* End Avatar */
-
-    /* Cards */
-
-    /* card (message) */
-    --message: var(--white);
-    --message-hover: var(--white);
-    --message-border: var(--smokyWhite);
-    --message-hoverBorder: var(--red);
-
-    /* card (liked) */
-    --liked-foreground: var(--signalBlack);
-    --liked-dateForeground: var(--signalBlack);
-
-    /* card (request) */
-    --request-foreground: var(--signalBlack);
-
-    /* card (friend) */
-    --friendCard-foreground: var(--signalBlack);
-
-    /* End Cards */
-
-    /* others */
-
-    --border: hsl(214.3, 31.8%, 91.4%);
-    --ring: hsl(222.2, 84%, 4.9%);
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    /* Global */
-
-    /* body background color */
-    --body: var(--bodyDark);
-
-    /* components background */
-    --background: var(--grayBlue);
-
-    /* text color */
-    --foreground: var(--ghostlyWhite);
-
-    /* Buttons */
-
-    /* primary */
-    --primary: var(--red);
-    --primary-hover: var(--redHover);
-    --primary-foreground: var(--white);
-
-    /* secondary */
-    --secondary: var(--brownBlack);
-    --secondary-hover: var(--grayBlue);
-    --secondary-foreground: var(--smokyWhite);
-    --secondary-hover: var(--grayBlue);
-    --secondary-border: var(--brownBlack);
-    --secondary-border-hover: var(--grayBlue);
-
-    /* outline */
-    --outline-foreground: var(--cadetBlue);
-    --outline-border: var(--cadetBlue);
-    --outline-hover: var(--cadet);
-
-    /* link */
-    --link-foreground: var(--smokyWhite);
-
-    /* text */
-    --text: var(--brownBlack);
-    --text-foreground: var(--smokyWhite);
-
-    /* action button */
-    --action-activeBorder: var(--red);
-    --action-imgColor: var(--cadet);
-    --action-imgActiveColor: var(--grayBlue);
-
-    /* nav button mobile */
-    --nav: var(--grayBlue);
-    --nav-foreground: var(--smokyWhite);
-
-    /* setting button */
-    --setting: var(--grayBlue);
-    --setting-active: var(--brownBlack);
-    --setting-border: var(--cadet);
-    --setting-foreground: var(--cadet);
-    --setting-activeForeground: var(--smokyWhite);
-
-    /* End Buttons */
-
-    /* Inputs & textarea */
-
-    --input: var(--cadet);
-    --input-foreground: var(--smokyWhite);
-    --input-background: var(--grayBlue);
-    --input-hoverBorder: var(--twitter);
-    --input-errorBorder: var(--red);
-
-    /* search input */
-    --search: var(--grayBlue);
-    --search-border: var(--cadet);
-
-    /* select */
-    --select: var(--grayBlue);
-    --select-itemHover: var(--brownBlack);
-
-    /* EndInputs & textarea */
-
-    /* Avatar */
-
-    --avatar-foreground: var(--smokyWhite);
-
-    /* End Avatar */
-
-    /* Card */
-
-    /* card (message) */
-    --message: var(--grayBlue);
-    --message-hover: var(--brownBlack);
-    --message-border: var(--cadet);
-    --message-hoverBorder: var(--cadet);
-
-    /* card (liked) */
-    --liked-foreground: var(--cadet);
-    --liked-dateForeground: var(--cadetBlue);
-
-    /* card (request) */
-    --request-foreground: var(--smokyWhite);
-
-    /* card (friend) */
-    --friendCard-foreground: var(--smokyWhite);
-
-    /* others */
-
-    --border: hsl(217, 0.2, 32) 6% 17.5%;
-    --ring: hsl(212, 0.7, 26) 8% 83.9%;
-
-    --radius: 0.5rem;
-  }
-}
-
-@layer base {
   * {
-    @apply border-border;
+    @apply border-border dark:border-borderDark;
   }
   body {
-    @apply bg-body text-foreground;
+    @apply bg-body dark:bg-bodyDark text-signalBlack dark:text-ghostlyWhite;
   }
 }
 
@@ -281,10 +64,16 @@ body {
 }
 
 /* Отключает изменение цвета background и color у input при автозаполнении*/
-input:-webkit-autofill,
+html.light input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
-  -webkit-text-fill-color: var(--foreground);
+  -webkit-box-shadow: 0 0 0 30px var(--white) inset !important;
+}
+html.dark input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--grayBlue) inset !important;
+  -webkit-text-fill-color: var(--white);
 }
