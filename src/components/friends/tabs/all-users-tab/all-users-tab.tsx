@@ -24,7 +24,7 @@ const AllUsersTab: FC<IAllUsersTabProps> = ({ search }) => {
                 key={index}
                 type='all'
                 id={friend.id}
-                isMine={Number(friend.id) === Number(currentId)}
+                isMine={friend.id === currentId}
               />
             )
           })}
