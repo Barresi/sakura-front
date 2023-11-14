@@ -10,13 +10,12 @@ import { useAppDispatch } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import MessengerPage from '@src/pages/messenger/messenger'
 import Chat from '../messenger/chat/chat'
-import { getAllUsersThunk } from '@src/store/reducers/friends/async-thunks'
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(userInfoThunk()).then(async () => await dispatch(getAllUsersThunk()))
-  }, [dispatch])
+    dispatch(userInfoThunk())
+  }, [])
   return (
     <Routes>
       <Route
