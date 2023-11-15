@@ -2,28 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bodyColor: #eeeff1;
-  --white: #fff;
-  --ghostlyWhite: #f8fafc;
-  --smokyWhite: #f1f5f9;
-  --darkWhite: #adb5bd;
-  --cadet: #55677c;
-  --cadetBlue: #adb5bd;
-  --lightGray: #dbdbdb;
-  --darkLightGray: #929292;
-  --twitter: #20b4ee;
-  --blue: #4791ff;
-  --red: #d22828;
-  --redHover: #c32222;
-  --darkGray: #55677d;
-  --signalBlack: #292929;
-  --brownBlack: #202028;
-  --black: #000;
-  --bodyDark: #191924;
-  --grayBlue: #23232f;
-}
-
 @layer base {
   * {
     @apply border-border dark:border-borderDark;
@@ -68,12 +46,12 @@ html.light input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px var(--white) inset !important;
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
 }
 html.dark input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px var(--grayBlue) inset !important;
-  -webkit-text-fill-color: var(--white);
+  -webkit-box-shadow: 0 0 0 30px #23232f inset !important;
+  -webkit-text-fill-color: #fff;
 }
