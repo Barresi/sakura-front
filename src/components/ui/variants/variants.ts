@@ -29,7 +29,7 @@ export const buttonVariants = cva(
         outline:
           'text-cadet dark:text-cadetBlue border border-cadet dark:border-darkGray bg-white dark:bg-grayBlue hover:border-cadetBlue dark:hover:border-cadet hover:text-cadetBlue dark:hover:text-cadet',
         link: 'text-cadet dark:text-darkWhite underline-offset-4 hover:text-twitter dark:hover:text-twitter',
-        text: 'text-signalBlack dark:text-smokyWhite hover:bg-smokyWhite dark:hover:bg-brownBlack'
+        text: 'text-signalBlack dark:text-smokyWhite'
       },
       size: {
         default: 'h-10 px-[0.95rem] py-[0.625rem]',

@@ -28,7 +28,7 @@ const NavButton: FC<INavButtonProps> = ({
       {...props}
     >
       <Button
-        className={cn(className, 'relative')}
+        className={cn(className, 'relative', 'hover:!text-red')}
         icon={icon}
         iconPos='left'
         variant='text'

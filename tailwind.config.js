@@ -30,7 +30,6 @@ module.exports = {
       lightGray: '#d6d6d6',
       darkLightGray: '#929292',
       twitter: '#20b4ee',
-      red: '#4791ff',
       red: '#d22828',
       redHover: '#c32222',
       darkGray: '#adb5bd',
