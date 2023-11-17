@@ -9,7 +9,7 @@ export interface ITextareaProps
 const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
   ({ className, error, ...props }, ref) => {
     const baseClass =
-      'flex min-h-[100px] outline-none bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite w-full rounded-md border border-smokyWhite dark:border-cadet p-5 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 focus:border-myBlue dark:focus:border-twitter'
+      'flex min-h-[100px] outline-none bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite w-full rounded-md border border-smokyWhite dark:border-cadet p-5 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue dark:focus:border-twitter'
     const errorClass = error
       ? 'border-input-errorBorder focus:border-input-errorBorder'
       : 'border-input focus:border-input-hoverBorder'

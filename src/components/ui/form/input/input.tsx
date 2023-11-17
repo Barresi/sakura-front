@@ -20,9 +20,9 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
     const baseClass =
       'flex w-full outline-none rounded-md bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50'
     const errorClass = error
-      ? 'border-myRed focus:border-myRed'
-      : 'border-smokyWhite dark:border-cadet focus:border-myBlue dark:focus:border-twitter'
-    const errorSpanClass = error ? `absolute top-[3.55rem] left-5 text-myRed` : ''
+      ? 'border-red focus:border-red'
+      : 'border-smokyWhite dark:border-cadet focus:border-blue dark:focus:border-twitter'
+    const errorSpanClass = error ? `absolute top-[3.55rem] left-5 text-red` : ''
 
     const input = (
       <div className='w-full relative pb-6'>

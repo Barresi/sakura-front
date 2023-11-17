@@ -5,7 +5,7 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-myRed text-white',
+        default: 'border-transparent bg-red text-white',
         secondary:
           'border-transparent bg-smokyWhite dark:bg-brownBlack text-cadet dark:text-smokyWhite',
         destructive: 'border-transparent',
@@ -23,7 +23,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-myRed text-white dark:text-white hover:bg-redHover border-none',
+        default: 'bg-red text-white dark:text-white hover:bg-redHover border-none',
         secondary:
           'bg-smokyWhite dark:bg-brownBlack text-cadet dark:text-smokyWhite border border-smokyWhite dark:border-brownBlack hover:border-cadet dark:hover:border-grayBlue dark:hover:bg-grayBlue',
         outline:
