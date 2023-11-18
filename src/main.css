@@ -9,6 +9,28 @@
   body {
     @apply bg-body dark:bg-bodyDark text-signalBlack dark:text-ghostlyWhite;
   }
+
+  /* Scroll bar */
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply: bg-body dark:bg-bodyDark;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d22828;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a01d1d;
+  }
 }
 
 html {
@@ -17,28 +39,7 @@ html {
 
 body {
   overflow-x: hidden;
-}
-
-/* Scroll bar */
-
-/* width */
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #d22828;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #a01d1d;
+  overflow-y: scroll;
 }
 
 /* Отключает изменение цвета background и color у input при автозаполнении*/
