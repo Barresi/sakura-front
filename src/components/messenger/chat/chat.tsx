@@ -45,9 +45,9 @@ const Chat: FC = () => {
 
   useEffect(() => {
     if (!socket) return
-    socket.emit(JOIN_CHAT_EVENT, { chatId: chatId.id, userId: id })
+    socket.emit(JOIN_CHAT_EVENT, chatId.id)
     return () => {
-      socket.emit(LEAVE_CHAT_EVENT, { chatId: chatId.id, userId: id })
+      socket.emit(LEAVE_CHAT_EVENT, chatId.id)
     }
   }, [chatId, socket])
 
