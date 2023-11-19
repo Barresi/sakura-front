@@ -14,7 +14,8 @@ import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 const JOIN_CHAT_EVENT = 'joinChat'
 const LEAVE_CHAT_EVENT = 'leaveChat'
 const SEND_MESSAGE_EVENT = 'sendMessage'
-const GET_MESSAGES_EVENT = 'getMessages'
+const GET_MESSAGE_EVENT = 'getMessage'
+const GET_HISTORY_EVENT = 'getHistory'
 
 const Chat: FC = () => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
@@ -39,8 +40,11 @@ const Chat: FC = () => {
       socketId: socket.id
     })
   }
-  const getMessage = (messages: IMessage[]): void => {
-    setMessages(messages)
+  const getMessage = (message: IMessage): void => {
+    setMessages([...messages, message])
+  }
+  const getHistory = (messages: IMessage[]): void => {
+    setMessages([...messages])
   }
 
   useEffect(() => {
@@ -53,9 +57,11 @@ const Chat: FC = () => {
 
   useEffect(() => {
     if (!socket) return
-    socket.on(GET_MESSAGES_EVENT, getMessage)
+    socket.on(GET_MESSAGE_EVENT, getMessage)
+    socket.on(GET_HISTORY_EVENT, getHistory)
     return () => {
-      socket.off(GET_MESSAGES_EVENT, getMessage)
+      socket.off(GET_HISTORY_EVENT, getHistory)
+      socket.off(GET_MESSAGE_EVENT, getMessage)
     }
   }, [socket])
 
