@@ -1,6 +1,6 @@
 import MessageInput from '@src/components/messenger/message-input/message-input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useEffect, useState, useRef } from 'react'
 import arrow from '@assets/ui/arrow.svg'
 import { Link, useParams } from 'react-router-dom'
 import { useAppSelector } from '@src/hooks/store-hooks'
@@ -18,6 +18,8 @@ const GET_MESSAGE_EVENT = 'getMessage'
 const GET_HISTORY_EVENT = 'getHistory'
 
 const Chat: FC = () => {
+  const container = useRef<HTMLDivElement>(null)
+
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
   const { id } = useAppSelector(selectUser)
@@ -65,6 +67,10 @@ const Chat: FC = () => {
     }
   }, [socket])
 
+  useEffect(() => {
+    if (container.current) container.current.scrollTop = container.current.scrollHeight
+  }, [chatMessages])
+
   return (
     <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
       <div className=' absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
@@ -82,7 +88,10 @@ const Chat: FC = () => {
 
         <UserAvatar />
       </div>
-      <div className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'>
+      <div
+        ref={container}
+        className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
+      >
         {chatMessages.map((item, ind) => (
           <Message
             text={item.text}
