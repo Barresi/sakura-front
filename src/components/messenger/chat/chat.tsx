@@ -27,7 +27,7 @@ const Chat: FC = () => {
   const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
 
-  const [messages, setMessages] = useState<IMessage[]>([])
+  const [chatMessages, setChatMessages] = useState<IMessage[]>([])
 
   const { socket } = useSocket()
 
@@ -41,10 +41,10 @@ const Chat: FC = () => {
     })
   }
   const getMessage = (message: IMessage): void => {
-    setMessages([...messages, message])
+    setChatMessages((prev) => [...prev, message])
   }
   const getHistory = (history: IMessage[]): void => {
-    setMessages([...history])
+    setChatMessages(history)
   }
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const Chat: FC = () => {
         <UserAvatar />
       </div>
       <div className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'>
-        {messages.map((item, ind) => (
+        {chatMessages.map((item, ind) => (
           <Message
             text={item.text}
             date={item.createdAt}
