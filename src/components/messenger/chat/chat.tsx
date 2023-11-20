@@ -43,8 +43,8 @@ const Chat: FC = () => {
   const getMessage = (message: IMessage): void => {
     setMessages([...messages, message])
   }
-  const getHistory = (messages: IMessage[]): void => {
-    setMessages([...messages])
+  const getHistory = (history: IMessage[]): void => {
+    setMessages([...history])
   }
 
   useEffect(() => {
