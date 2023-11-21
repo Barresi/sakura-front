@@ -3,13 +3,14 @@ import UserAvatar from '@src/components/ui/avatar/avatar'
 import { type FC, useEffect, useState, useRef } from 'react'
 import arrow from '@assets/ui/arrow.svg'
 import { Link, useParams } from 'react-router-dom'
-import { useAppSelector } from '@src/hooks/store-hooks'
+import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 import { useSocket } from '@src/context/socket-context/useSocket'
 import Message from '../message/message'
 import { type IMessage } from '@src/types/api'
 import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
+import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 
 const JOIN_CHAT_EVENT = 'joinChat'
 const LEAVE_CHAT_EVENT = 'leaveChat'
@@ -19,10 +20,10 @@ const GET_HISTORY_EVENT = 'getHistory'
 
 const Chat: FC = () => {
   const container = useRef<HTMLDivElement>(null)
-
+  const dispatch = useAppDispatch()
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
-  const { id } = useAppSelector(selectUser)
+  const { id, firstName, lastName } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const userChats = useAppSelector(selectMessengerUserChats)
   const currentChat = userChats.find((item) => item.id === chatId.id)
@@ -44,6 +45,8 @@ const Chat: FC = () => {
   }
   const getMessage = (message: IMessage): void => {
     setChatMessages((prev) => [...prev, message])
+    // Нужен для обновления последнего сообщения в user chats
+    dispatch(getUserChatsThunk())
   }
   const getHistory = (history: IMessage[]): void => {
     setChatMessages(history)
@@ -92,14 +95,21 @@ const Chat: FC = () => {
         ref={container}
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
-        {chatMessages.map((item, ind) => (
-          <Message
-            text={item.text}
-            date={item.createdAt}
-            my={item.senderId === id}
-            key={ind}
-          />
-        ))}
+        {chatMessages.map((item, ind) => {
+          const { createdAt, senderId, text } = item
+          const isMyMessage = senderId === id
+
+          return (
+            <Message
+              text={text}
+              date={createdAt}
+              my={isMyMessage}
+              key={ind}
+              firstName={isMyMessage ? firstName : friend?.firstName}
+              lastName={isMyMessage ? lastName : friend?.lastName}
+            />
+          )
+        })}
       </div>
       <div className='absolute bottom-0 right-5 left-5'>
         <MessageInput sendMessage={sendMessage} />

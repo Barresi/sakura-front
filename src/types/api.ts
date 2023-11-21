@@ -63,7 +63,7 @@ export interface ICancelResponse extends INoContentResponse {}
 // Messenger api
 
 export interface IMessage {
-  createdAt: Date
+  createdAt: string
   chatId: string
   senderId: string
   text: string
@@ -73,8 +73,8 @@ export interface IChat {
   messages: IMessage[]
   participants: Array<{ id: string }>
   id: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
 }
 
 export interface ICreateChatResponse {

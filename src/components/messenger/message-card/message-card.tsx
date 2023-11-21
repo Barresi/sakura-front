@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import { cn } from '@utils/utils'
+import { cn, parseDateToMonth } from '@utils/utils'
 import Card from '../../ui/card/card'
 import UserAvatar from '../../ui/avatar/avatar'
 import { type IChat } from '@src/types/api'
@@ -12,7 +12,12 @@ export interface IMessageCardProps extends IChat {
   className?: string
 }
 
-const MessageCard: FC<IMessageCardProps> = ({ className, id, participants }) => {
+const MessageCard: FC<IMessageCardProps> = ({
+  className,
+  id,
+  participants,
+  messages
+}) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const { id: userId } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
@@ -29,13 +34,15 @@ const MessageCard: FC<IMessageCardProps> = ({ className, id, participants }) => 
           <div>
             <h3 className='font-bold leading-6'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
             <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
-              {'Пока хардкод текст'}
+              {messages[0].text}
             </span>
           </div>
         </div>
 
         <div className='flex flex-col  self-start gap-[5px]'>
-          <span className='text-[#55677D]'>{'хардкод'}</span>
+          <span className='text-[#55677D]'>
+            {parseDateToMonth(messages[0].createdAt)}
+          </span>
         </div>
       </Card>
     </NavLink>
