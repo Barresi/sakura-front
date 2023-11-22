@@ -23,7 +23,7 @@ const Message: FC<IMessageProps> = ({ text, my, firstName, lastName, date }) => 
       </div>
       <div
         className={`p-[15px] rounded-[5px] self-start ${
-          my ? ' bg-blockMessage-my ' : ' bg-blockMessage-other'
+          my ? 'bg-water dark:bg-nickel' : 'bg-darkWhite dark:bg-brownBlack'
         }`}
       >
         {text}
