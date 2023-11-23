@@ -16,7 +16,8 @@ const MessageCard: FC<IMessageCardProps> = ({
   className,
   id,
   participants,
-  messages
+  messages,
+  updatedAt
 }) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const { id: userId } = useAppSelector(selectUser)
@@ -36,14 +37,14 @@ const MessageCard: FC<IMessageCardProps> = ({
           <div>
             <h3 className='font-bold leading-6'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
             <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
-              {messages[0].text}
+              {messages[0]?.text}
             </span>
           </div>
         </div>
 
         <div className='flex flex-col  self-start gap-[5px]'>
           <span className='text-[#55677D]'>
-            {parseDateToMonth(messages[0].createdAt)}
+            {parseDateToMonth(messages[0]?.createdAt || updatedAt)}
           </span>
         </div>
       </Card>
