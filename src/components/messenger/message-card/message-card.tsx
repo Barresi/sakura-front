@@ -26,7 +26,9 @@ const MessageCard: FC<IMessageCardProps> = ({
   return (
     <NavLink
       to={id}
-      className={({ isActive }) => (isActive ? '[&>div]:bg-message-hover' : '')}
+      className={({ isActive }) =>
+        isActive ? '[&>div]:bg-ghostlyWhite [&>div]:dark:bg-brownBlack' : ''
+      }
     >
       <Card className={cn('flex items-center justify-between cursor-pointer', className)}>
         <div className='flex items-center gap-[15px]'>
