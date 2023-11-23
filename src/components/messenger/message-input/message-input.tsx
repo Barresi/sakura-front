@@ -17,8 +17,10 @@ const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
       className='w-full relative'
       onSubmit={(e) => {
         e.preventDefault()
-        sendMessage(message)
-        setMessage('')
+        if (message) {
+          sendMessage(message)
+          setMessage('')
+        }
       }}
     >
       <Input
@@ -32,7 +34,7 @@ const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
       />
 
       <div className='absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]'>
-        <button>
+        <button type='button'>
           <img
             className='cursor-pointer active:scale-[.95]'
             src={media}
@@ -42,7 +44,7 @@ const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
             }}
           />
         </button>
-        <button>
+        <button type='button'>
           <img
             className='cursor-pointer active:scale-[.95]'
             src={smile}
