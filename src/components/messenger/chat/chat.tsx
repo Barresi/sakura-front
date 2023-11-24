@@ -11,6 +11,8 @@ import { type IMessage } from '@src/types/api'
 import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
+import { groupChatMessagesByDate, parseDateToMonth } from '@src/utils/utils'
+import { type IFormattedMessages } from '@src/types/types'
 
 const JOIN_CHAT_EVENT = 'joinChat'
 const LEAVE_CHAT_EVENT = 'leaveChat'
@@ -31,6 +33,7 @@ const Chat: FC = () => {
   const friend = allUsers.find((item) => item.id === friendId)
 
   const [chatMessages, setChatMessages] = useState<IMessage[]>([])
+  const [formattedMessages, setFormattedMessages] = useState<IFormattedMessages[]>([])
 
   const { socket } = useSocket()
 
@@ -72,6 +75,8 @@ const Chat: FC = () => {
 
   useEffect(() => {
     if (container.current) container.current.scrollTop = container.current.scrollHeight
+
+    setFormattedMessages(groupChatMessagesByDate(chatMessages))
   }, [chatMessages])
 
   return (
@@ -95,19 +100,27 @@ const Chat: FC = () => {
         ref={container}
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
-        {chatMessages.map((item, ind) => {
-          const { createdAt, senderId, text } = item
-          const isMyMessage = senderId === id
-
+        {formattedMessages.map(({ date, chats }) => {
           return (
-            <Message
-              text={text}
-              date={createdAt}
-              my={isMyMessage}
-              key={ind}
-              firstName={isMyMessage ? firstName : friend?.firstName}
-              lastName={isMyMessage ? lastName : friend?.lastName}
-            />
+            <>
+              <span className='text-center my-4 text-darkGray'>
+                {parseDateToMonth(date)}
+              </span>
+              {chats.map((item, ind) => {
+                const { createdAt, senderId, text } = item
+                const isMyMessage = senderId === id
+                return (
+                  <Message
+                    text={text}
+                    date={createdAt}
+                    my={isMyMessage}
+                    key={ind}
+                    firstName={isMyMessage ? firstName : friend?.firstName}
+                    lastName={isMyMessage ? lastName : friend?.lastName}
+                  />
+                )
+              })}
+            </>
           )
         })}
       </div>
