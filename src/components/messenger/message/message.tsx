@@ -10,7 +10,7 @@ interface IMessageProps {
   lastName: string | undefined
 }
 
-const Message: FC<IMessageProps> = ({ text, my, firstName, lastName, date }) => {
+const Message: FC<IMessageProps> = ({ text, my, date }) => {
   return (
     <div
       className={`p-[15px] flex items-center w-[60%] min-w-[250px] gap-[10px] ${
