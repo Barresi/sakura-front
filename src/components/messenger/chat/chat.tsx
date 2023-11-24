@@ -11,8 +11,11 @@ import { type IMessage } from '@src/types/api'
 import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
-import { groupChatMessagesByDate, parseDateToMonth } from '@src/utils/utils'
-import { type IFormattedMessages } from '@src/types/types'
+import { parseDateToMonth } from '@src/utils/utils'
+import {
+  type IFormattedMessages,
+  groupChatMessagesByDate
+} from '@src/utils/messenger/other'
 
 const JOIN_CHAT_EVENT = 'joinChat'
 const LEAVE_CHAT_EVENT = 'leaveChat'
@@ -103,7 +106,7 @@ const Chat: FC = () => {
         {formattedMessages.map(({ date, chats }) => {
           return (
             <Fragment key={date}>
-              <span className='text-center my-4 text-darkGray'>
+              <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
                 {parseDateToMonth(date)}
               </span>
               {chats.map((item, ind) => {
