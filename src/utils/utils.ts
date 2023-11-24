@@ -23,6 +23,7 @@ export function parseDateToMonth(date: string): string {
   const parseDate = new Date(date)
   const day = parseDate.getDate()
   const month = parseDate.getMonth()
+
   return `${day} ${months[month]}`
 }
 export function parseDateToTime(date: string): string {

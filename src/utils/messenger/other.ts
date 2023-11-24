@@ -7,8 +7,7 @@ export interface IFormattedMessages {
 
 export function groupChatMessagesByDate(chatMessages: IMessage[]): IFormattedMessages[] {
   const result = chatMessages.reduce((acc: Record<string, IMessage[]>, chat) => {
-    const date = new Date(chat.createdAt).toISOString().slice(0, 10)
-
+    const date = new Date(chat.createdAt).toDateString()
     if (!acc[date]) {
       acc[date] = []
     }
