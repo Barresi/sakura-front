@@ -77,11 +77,12 @@ const Chat: FC = () => {
   }, [socket])
 
   useEffect(() => {
-    if (container.current) container.current.scrollTop = container.current.scrollHeight
-
     setFormattedMessages(groupChatMessagesByDate(chatMessages))
   }, [chatMessages])
 
+  useEffect(() => {
+    if (container.current) container.current.scrollTop = container.current.scrollHeight
+  }, [formattedMessages])
   return (
     <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
       <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
