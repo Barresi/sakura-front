@@ -1,6 +1,6 @@
 import MessageInput from '@src/components/messenger/message-input/message-input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type FC, useEffect, useState, useRef } from 'react'
+import { type FC, useEffect, useState, useRef, Fragment } from 'react'
 import arrow from '@assets/ui/arrow.svg'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
@@ -102,7 +102,7 @@ const Chat: FC = () => {
       >
         {formattedMessages.map(({ date, chats }) => {
           return (
-            <>
+            <Fragment key={date}>
               <span className='text-center my-4 text-darkGray'>
                 {parseDateToMonth(date)}
               </span>
@@ -120,7 +120,7 @@ const Chat: FC = () => {
                   />
                 )
               })}
-            </>
+            </Fragment>
           )
         })}
       </div>

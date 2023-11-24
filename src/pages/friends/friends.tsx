@@ -12,7 +12,7 @@ const FriendsPage: FC = () => {
   }
   return (
     <div className='w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] mb-[60px] lg:mb-[20px] px-[20px] lg:px-0'>
-      <div className='w-full xl:w-1/3 h-[230px] flex flex-col bg-white dark:bg-grayBlue rounded-[10px] p-[20px] [&>div]:w-[100%]  sm:flex-row md:gap-[1rem] xl:gap-0 xl:p-[30px] xl:flex-col'>
+      <div className='w-full xl:w-1/3 xl:h-[230px] flex flex-col bg-white dark:bg-grayBlue rounded-[10px] p-[20px] [&>div]:w-[100%]  sm:flex-row md:gap-[1rem] xl:gap-0 xl:p-[30px] xl:flex-col'>
         <TabButton
           isActive={type === 'friends'}
           onClick={() => {
