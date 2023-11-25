@@ -12,6 +12,7 @@ import { AuthStatus } from '@src/types/api'
 
 const MessengerPage: FC = () => {
   const chats = useAppSelector(selectMessengerUserChats)
+
   const status = useAppSelector(selectUserStatus)
   const dispatch = useAppDispatch()
   const { pathname } = useLocation()
