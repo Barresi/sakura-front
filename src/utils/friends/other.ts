@@ -2,8 +2,8 @@ import { type IFriend } from '@src/types/api'
 
 export const checkStates = (
   data: IFriend[],
-  currentId: number,
-  userId: number
+  currentId: string,
+  userId: string
 ): boolean => {
   return (
     data.filter((item) => {

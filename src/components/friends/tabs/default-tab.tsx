@@ -6,7 +6,6 @@ import ReceivedTab from './received-tab/received-tab'
 import SendedTab from './sended-tab/sended-tab'
 import AllUsersTab from './all-users-tab/all-users-tab'
 import {
-  getAllUsersThunk,
   getFriendsThunk,
   getReceivedThunk,
   getSendedThunk
@@ -37,8 +36,7 @@ const DefaultTab: FC<IDefaultTabProps> = ({ type }) => {
 
   useEffect(() => {
     if (status === AuthStatus.authorized) {
-      dispatch(getAllUsersThunk()).then(() => {
-        dispatch(getFriendsThunk())
+      dispatch(getFriendsThunk()).then(() => {
         dispatch(getReceivedThunk())
         dispatch(getSendedThunk())
       })

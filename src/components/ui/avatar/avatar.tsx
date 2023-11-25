@@ -3,7 +3,7 @@ import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 
 import { cn } from '@utils/utils'
 
-import avatarLight from '@assets/default avatar light.svg'
+import avatarLight from '@assets/avatar/default avatar light.svg'
 import { type IPropsForwardRefsUI } from '@src/types/props'
 
 interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
@@ -49,7 +49,7 @@ const AvatarFallback = forwardRef<
   <Fallback
     ref={ref}
     className={cn(
-      'flex h-full w-full text-center items-center justify-center rounded-full bg-muted border border-gray-700',
+      'flex h-full w-full text-center items-center justify-center rounded-full border border-gray-700',
       className
     )}
     {...props}

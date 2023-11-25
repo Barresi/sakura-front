@@ -13,6 +13,7 @@ import {
   acceptRequestHandler,
   addFriendHandler,
   cancelRequestHandler,
+  createChatRequestHandler,
   deleteFriendHandler,
   rejectRequestHandler
 } from '@src/utils/friends/handlers'
@@ -21,10 +22,11 @@ import { checkStates } from '@src/utils/friends/other'
 import UserAvatar from '@src/components/ui/avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
 import { type FriendTabs } from '@src/types/other'
+import { useNavigate } from 'react-router-dom'
 
 interface IFriendsCardProps {
   className?: string
-  id: number
+  id: string
   type?: FriendTabs
   isMine?: boolean
 }
@@ -32,18 +34,19 @@ interface IFriendsCardProps {
 const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => {
   const isMobile = useWindowSize(500)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const { id: currentId } = useAppSelector(selectUser)
   const friends = useAppSelector(selectFriends)
   const sended = useAppSelector(selectSended)
   const received = useAppSelector(selectReceived)
 
-  const user = useAppSelector(selectAllUsers).filter((user) => Number(user.id) === id)[0]
+  const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
   const { firstName, lastName } = user
 
-  const isFriend = checkStates(friends, Number(currentId), Number(user?.id))
-  const isRequestSended = checkStates(sended, Number(currentId), Number(user?.id))
-  const isRequestReceived = checkStates(received, Number(currentId), Number(user?.id))
+  const isFriend = checkStates(friends, currentId, user?.id)
+  const isRequestSended = checkStates(sended, currentId, user?.id)
+  const isRequestReceived = checkStates(received, currentId, user?.id)
 
   const avatar = (
     <UserAvatar className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]' />
@@ -51,7 +54,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
   const info = (
     <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
-      <h3 className='font-bold leading-6 text-friendCard-foreground text-lg'>
+      <h3 className='font-bold leading-6 text-signalBlack dark:text-smokyWhite text-lg'>
         {firstName} {lastName} {isMine ? '(Вы)' : null}
       </h3>
       {type === 'requests' && (
@@ -65,29 +68,35 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
   const clickHandlers = {
     friends: [
-      () => {},
+      async () => {
+        await createChatRequestHandler(currentId, id, navigate)
+      },
       async () => {
         await deleteFriendHandler(id, dispatch)
       }
     ],
     all: [
-      () => {},
+      async () => {
+        await createChatRequestHandler(currentId, id, navigate)
+      },
       async () => {
         await addFriendHandler(id, dispatch)
       }
     ],
     requests: [
       async () => {
-        await acceptRequestHandler(id, received, Number(currentId), dispatch)
+        await acceptRequestHandler(id, received, currentId, dispatch)
       },
       async () => {
-        await rejectRequestHandler(id, received, Number(currentId), dispatch)
+        await rejectRequestHandler(id, received, currentId, dispatch)
       }
     ],
     sended: [
-      () => {},
       async () => {
-        await cancelRequestHandler(id, sended, Number(currentId), dispatch)
+        await createChatRequestHandler(currentId, id, navigate)
+      },
+      async () => {
+        await cancelRequestHandler(id, sended, currentId, dispatch)
       }
     ]
   }
@@ -96,7 +105,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
     return (
       <Card
         className={cn(
-          'block hover:border-b-message-border hover:bg-background',
+          'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
           className
         )}
       >
@@ -122,7 +131,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
   return (
     <Card
-      className={cn('block hover:border-b-message-border hover:bg-background', className)}
+      className={cn(
+        'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
+        className
+      )}
     >
       <div className='flex items-start lg:items-center gap-[15px]'>
         {avatar}

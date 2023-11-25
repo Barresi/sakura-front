@@ -1,7 +1,7 @@
 import { type FC } from 'react'
-import notFoundDark from '@assets/404 dark.svg'
-import notFoundLight from '@assets/404 light.svg'
-import { useTheme } from '@src/hooks/useTheme'
+import notFoundDark from '@assets/404/404 dark.svg'
+import notFoundLight from '@assets/404/404 light.svg'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 const NotFoundPage: FC<{ type: 'inside' | 'outside' }> = ({ type }) => {
   const { theme } = useTheme()

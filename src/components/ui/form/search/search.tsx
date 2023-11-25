@@ -4,13 +4,16 @@ import Input, { type IInputProps } from '../input/input'
 import icon from '@assets/ui/Search.svg'
 import { cn } from '@utils/utils'
 
-interface ISearchProps extends Omit<IInputProps, 'type'> {}
+interface ISearchInputProps extends Omit<IInputProps, 'type'> {}
 
-const Search: FC<ISearchProps> = ({ className, ...props }) => {
+const SearchInput: FC<ISearchInputProps> = ({ className, ...props }) => {
   return (
     <div className='flex items-center relative'>
       <Input
-        className={cn('bg-search py-[10px] rounded-[10px] pr-[60px]', className)}
+        className={cn(
+          'bg-smokyWhite dark:bg-grayBlue py-[10px] rounded-[10px] pr-[60px]',
+          className
+        )}
         placeholder='Поиск'
         type='text'
         {...props}
@@ -21,4 +24,4 @@ const Search: FC<ISearchProps> = ({ className, ...props }) => {
   )
 }
 
-export default Search
+export default SearchInput

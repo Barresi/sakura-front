@@ -2,11 +2,12 @@ import { type FC } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@utils/utils'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type IMessageCardProps } from '../message-card/message-card'
 import Card from '../card'
 
-export interface ILikedCardProps
-  extends Pick<IMessageCardProps['data'], 'img' | 'imgFallback' | 'name' | 'date'> {
+export interface ILikedCardProps {
+  img: string
+  name: string
+  date?: string
   link?: string
   className?: string
 }
@@ -24,7 +25,7 @@ const LikedCard: FC<ILikedCardProps> = ({ className, img, name, date, link }) =>
               фотографию
             </Link>
           </h3>
-          <span className='leading-6 text-liked-dateForeground'>{date}</span>
+          <span className='leading-6 text-signalBlack dark:text-cadet'>{date}</span>
         </div>
         {link && <UserAvatar src={link} className='w-[67px] h-[67px] rounded-none' />}
       </div>

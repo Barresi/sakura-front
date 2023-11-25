@@ -23,9 +23,7 @@ const NavButton: FC<INavButtonProps> = ({
   return (
     <NavLink
       className={({ isActive }) =>
-        isActive
-          ? `${linkClassName} [&>*]:text-red-600 w-[20%]`
-          : `${linkClassName} w-[20%]`
+        isActive ? `${linkClassName} [&>*]:!text-red w-[20%]` : `${linkClassName} w-[20%]`
       }
       {...props}
     >

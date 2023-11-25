@@ -3,7 +3,7 @@ import { cn } from '@utils/utils'
 import Button, { type IButtonProps } from '../button'
 
 import { Badge } from '@src/components/ui/badge/badge'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 
 interface ISettingButtonProps extends IButtonProps {
   badge?: number
@@ -20,7 +20,7 @@ const SettingButton: FC<ISettingButtonProps> = ({
   return (
     <Button
       className={cn(
-        'w-[45px] p-[10px] rounded-[10px] relative text-setting-foreground bg-setting border-setting-border hover:text-setting-activeForeground hover:bg-setting-active hover:border-setting-border',
+        'w-[45px] p-[10px] rounded-[10px] relative text-signalBlack dark:text-cadet bg-white dark:bg-grayBlue border-smokyWhite dark:border-cadet hover:text-signalBlack dark:hover:text-smokyWhite hover:bg-smokyWhite dark:hover:bg-brownBlack hover:border-smokyWHite dark:hover:border-cadet',
         className
       )}
       variant='secondary'

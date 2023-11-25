@@ -2,7 +2,7 @@ import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
 import { cn } from '@utils/utils'
 import SettingButton from '../button/setting-button/setting-button'
 import Logo from '../logo/logo'
-import { useTheme } from '@src/hooks/useTheme'
+import { useTheme } from '@src/context/theme-context/useTheme'
 import UserAvatar from '../avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
 
@@ -19,7 +19,7 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
   return (
     <header
       className={cn(
-        'max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-background lg:rounded-[10px] z-[100]',
+        'max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-white dark:bg-grayBlue lg:rounded-[10px] z-[100]',
         className
       )}
       {...props}

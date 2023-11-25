@@ -10,7 +10,7 @@ interface IThemeProviderProps {
 const defaultTheme =
   (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
 
-const ThemeProvider: FC<IThemeProviderProps> = ({ children }) => {
+export const ThemeProvider: FC<IThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
   useEffect(() => {
     const root = window.document.documentElement
@@ -24,5 +24,3 @@ const ThemeProvider: FC<IThemeProviderProps> = ({ children }) => {
     </ThemeProviderContext.Provider>
   )
 }
-
-export default ThemeProvider

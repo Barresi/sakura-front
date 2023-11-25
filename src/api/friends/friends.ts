@@ -7,7 +7,7 @@ export const getFriends = async (): Promise<IFriendsResponse> => {
   return res.data
 }
 
-export const deleteFriend = async (id: number): Promise<IDeleteResponse> => {
+export const deleteFriend = async (id: string): Promise<IDeleteResponse> => {
   const res = await apiWithAuth.delete<IDeleteResponse>(`/friends/${id}`)
 
   return res.data
