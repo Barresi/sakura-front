@@ -22,7 +22,7 @@ const Message: FC<IMessageProps> = ({ text, my, date }) => {
         <span>{parseDateToTime(date)}</span>
       </div>
       <div
-        className={`p-[15px] rounded-[5px] self-start ${
+        className={`p-[15px] rounded-[5px] self-start break-all ${
           my ? 'bg-water dark:bg-nickel' : 'bg-darkWhite dark:bg-brownBlack'
         }`}
       >
