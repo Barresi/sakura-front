@@ -17,7 +17,7 @@ const Message: FC<IMessageProps> = ({ text, my, date }) => {
         my ? ' self-end  flex-row-reverse' : ' self-start'
       }`}
     >
-      <div className='flex flex-col items-center gap-2 self-start'>
+      <div className='flex flex-col items-center self-start'>
         <UserAvatar />
         <span>{parseDateToTime(date)}</span>
       </div>
