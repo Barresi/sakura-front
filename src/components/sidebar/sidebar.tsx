@@ -2,12 +2,14 @@ import { type FC } from 'react'
 import Logo from '../ui/logo/logo'
 import NavButton from '../ui/button/nav-button/nav-button'
 import SettingButton from '@src/components/ui/button/setting-button/setting-button'
-import { useAppDispatch } from '@src/hooks/store-hooks'
+import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { logoutThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import { useTheme } from '@src/context/theme-context/useTheme'
 import { useToast } from '../ui/toast/use-toast'
+import { selectReceived } from '@src/store/reducers/friends/selectors'
 
 const Sidebar: FC = () => {
+  const received = useAppSelector(selectReceived)
   const dispatch = useAppDispatch()
   const { toggleTheme } = useTheme()
   const logoutHandler = async (): Promise<void> => {
@@ -40,6 +42,7 @@ const Sidebar: FC = () => {
             className='w-full justify-start gap-[10px]'
             icon='friends'
             to='friends'
+            badge={received.length}
           >
             Друзья
           </NavButton>

@@ -1,9 +1,12 @@
 import { type FC } from 'react'
 import NavButton from '../ui/button/nav-button/nav-button'
 import { useLocation } from 'react-router-dom'
+import { selectReceived } from '@src/store/reducers/friends/selectors'
+import { useAppSelector } from '@src/hooks/store-hooks'
 
 const MobileNav: FC = () => {
   const { pathname } = useLocation()
+  const received = useAppSelector(selectReceived)
   return (
     <div
       className={`${
@@ -38,6 +41,7 @@ const MobileNav: FC = () => {
         className='w-full flex-col justify-center items-center text-center px-[5px] first-letter:lg:px-[15px] py-[30px] gap-[5px] text-[12px] md:text-[14px]'
         icon='friends'
         to='friends'
+        badge={received.length}
       >
         Друзья
       </NavButton>

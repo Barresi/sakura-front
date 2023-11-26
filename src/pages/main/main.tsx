@@ -4,7 +4,12 @@ import Header from '@src/components/ui/header/header'
 import { useEffect, type FC } from 'react'
 import { Outlet } from 'react-router'
 import { useWindowSize } from '@src/hooks/useWindowSize'
-import { getAllUsersThunk } from '@src/store/reducers/friends/async-thunks'
+import {
+  getAllUsersThunk,
+  getFriendsThunk,
+  getReceivedThunk,
+  getSendedThunk
+} from '@src/store/reducers/friends/async-thunks'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import { AuthStatus } from '@src/types/api'
@@ -14,7 +19,13 @@ const MainPage: FC = () => {
   const dispatch = useAppDispatch()
   const status = useAppSelector(selectUserStatus)
   useEffect(() => {
-    if (status === AuthStatus.authorized) dispatch(getAllUsersThunk())
+    if (status === AuthStatus.authorized) {
+      dispatch(getAllUsersThunk()).then(() => {
+        dispatch(getReceivedThunk())
+        dispatch(getSendedThunk())
+        dispatch(getFriendsThunk())
+      })
+    }
   }, [status])
   return (
     <div className='p-0  lg:px-5 lg:pt-5 flex max-w-[1920px] mx-auto relative'>

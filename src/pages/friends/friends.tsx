@@ -3,8 +3,12 @@ import TabButton from '@src/components/friends/tab-button/tab-button'
 import { useSearchParams } from 'react-router-dom'
 import DefaultTab from '@src/components/friends/tabs/default-tab'
 import { type FriendTabs } from '@src/types/other'
+import { useAppSelector } from '@src/hooks/store-hooks'
+import { selectReceived } from '@src/store/reducers/friends/selectors'
 
 const FriendsPage: FC = () => {
+  const received = useAppSelector(selectReceived)
+
   const [searchParams, setSearchParams] = useSearchParams({ usertype: 'friends' })
   const type = searchParams.get('usertype') as FriendTabs
   const handleChangeType = (usertype: FriendTabs): void => {
@@ -34,6 +38,7 @@ const FriendsPage: FC = () => {
           onClick={() => {
             handleChangeType('requests')
           }}
+          badge={received.length}
         >
           Заявки в друзья
         </TabButton>

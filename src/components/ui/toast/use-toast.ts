@@ -174,7 +174,6 @@ interface IReturnTypeUseToastFN {
 }
 export function useToast(): IReturnTypeUseToastFN {
   const [state, setState] = React.useState<State>(memoryState)
-  console.log(state)
   React.useEffect(() => {
     listeners.push(setState)
     return () => {
