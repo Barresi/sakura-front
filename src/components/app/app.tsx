@@ -11,12 +11,67 @@ import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import MessengerPage from '@src/pages/messenger/messenger'
 import Chat from '../messenger/chat/chat'
 import Toaster from '../ui/toast/toaster'
+import { useSocket } from '@src/context/socket-context/useSocket'
+import { useToast } from '../ui/toast/use-toast'
+import {
+  getFriendsThunk,
+  getReceivedThunk,
+  getSendedThunk
+} from '@src/store/reducers/friends/async-thunks'
+import {
+  NTF_GET_MESSAGE_EVENT,
+  NTF_USER_ACCEPT_FRIEND_REQUEST,
+  NTF_USER_REJECT_FRIEND_REQUEST,
+  NTF_USER_SEND_FRIEND_REQUEST
+} from '@src/context/socket-context/socket-context'
+
+interface payloadNtfFnc {
+  friendId: string
+  notificationId: string
+}
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
+  const { socket } = useSocket()
+  const { toast } = useToast()
+  const getNtfSendFriend = (payload: payloadNtfFnc): void => {
+    const { friendId } = payload
+    toast({ description: `${friendId} отправил вам заявку в друзья` })
+    dispatch(getReceivedThunk())
+  }
+  const getNtfAcceptFriend = (payload: payloadNtfFnc): void => {
+    const { friendId } = payload
+    toast({ description: `${friendId} принял вашу заявку в друзья` })
+    dispatch(getFriendsThunk())
+    dispatch(getSendedThunk())
+  }
+  const getNtfRejectFriend = (payload: payloadNtfFnc): void => {
+    const { friendId } = payload
+    toast({ description: `${friendId} отклонил вашу заявку в друзья` })
+    dispatch(getSendedThunk())
+  }
+  const getNtfGetMessage = (payload: payloadNtfFnc): void => {
+    const { friendId } = payload
+    toast({ description: `${friendId} написал вам личное сообщение` })
+    dispatch(getSendedThunk())
+  }
+
   useEffect(() => {
     dispatch(userInfoThunk())
   }, [])
+  useEffect(() => {
+    if (!socket) return
+    socket.on(NTF_USER_SEND_FRIEND_REQUEST, getNtfSendFriend)
+    socket.on(NTF_USER_ACCEPT_FRIEND_REQUEST, getNtfAcceptFriend)
+    socket.on(NTF_USER_REJECT_FRIEND_REQUEST, getNtfRejectFriend)
+    socket.on(NTF_GET_MESSAGE_EVENT, getNtfGetMessage)
+    return () => {
+      socket.off(NTF_USER_SEND_FRIEND_REQUEST, getNtfSendFriend)
+      socket.off(NTF_USER_ACCEPT_FRIEND_REQUEST, getNtfAcceptFriend)
+      socket.off(NTF_USER_REJECT_FRIEND_REQUEST, getNtfRejectFriend)
+      socket.off(NTF_GET_MESSAGE_EVENT, getNtfGetMessage)
+    }
+  }, [socket])
   return (
     <>
       <Toaster />

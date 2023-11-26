@@ -16,12 +16,13 @@ import {
   type IFormattedMessages,
   groupChatMessagesByDate
 } from '@src/utils/messenger/other'
-
-const JOIN_CHAT_EVENT = 'joinChat'
-const LEAVE_CHAT_EVENT = 'leaveChat'
-const SEND_MESSAGE_EVENT = 'sendMessage'
-const GET_MESSAGE_EVENT = 'getMessage'
-const GET_HISTORY_EVENT = 'getHistory'
+import {
+  GET_HISTORY_EVENT,
+  GET_MESSAGE_EVENT,
+  JOIN_CHAT_EVENT,
+  LEAVE_CHAT_EVENT,
+  SEND_MESSAGE_EVENT
+} from '@src/context/socket-context/socket-context'
 
 const Chat: FC = () => {
   const container = useRef<HTMLDivElement>(null)
