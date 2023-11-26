@@ -70,9 +70,17 @@ export interface IMessage {
 }
 
 export interface IChat {
-  messages: IMessage[]
+  newMessage: {
+    senderId: 'string'
+    text: 'string'
+    chatId: 'string'
+    read: true
+    createdAt: 'string'
+    updatedAt: 'string'
+  }
   participants: Array<{ id: string }>
-  id: string
+  chatId: string
+  unread: number
   createdAt: string
   updatedAt: string
 }

@@ -24,6 +24,7 @@ import {
   NTF_USER_REJECT_FRIEND_REQUEST,
   NTF_USER_SEND_FRIEND_REQUEST
 } from '@src/context/socket-context/socket-context'
+import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 
 interface payloadNtfFnc {
   friendId: string
@@ -53,7 +54,7 @@ const App: FC = () => {
   const getNtfGetMessage = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
     toast({ description: `${friendId} написал вам личное сообщение` })
-    dispatch(getSendedThunk())
+    dispatch(getUserChatsThunk())
   }
 
   useEffect(() => {

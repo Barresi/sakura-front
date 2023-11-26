@@ -32,7 +32,7 @@ const Chat: FC = () => {
   const { id, firstName, lastName } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const userChats = useAppSelector(selectMessengerUserChats)
-  const currentChat = userChats.find((item) => item.id === chatId.id)
+  const currentChat = userChats.find((item) => item.chatId === chatId.id)
   const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
 
@@ -57,6 +57,8 @@ const Chat: FC = () => {
   }
   const getHistory = (history: IMessage[]): void => {
     setChatMessages(history)
+    // Нужен для обновления счетчика прочитанных сообщений в user chats
+    dispatch(getUserChatsThunk())
   }
 
   useEffect(() => {
