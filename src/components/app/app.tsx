@@ -30,6 +30,13 @@ interface payloadNtfFnc {
   friendId: string
   notificationId: string
 }
+interface payloadNtfFncGetMessage {
+  chatId: string
+  senderId: string
+  text: string
+  createdAt: string
+  updatedAt: string
+}
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -51,9 +58,9 @@ const App: FC = () => {
     toast({ description: `${friendId} отклонил вашу заявку в друзья` })
     dispatch(getSendedThunk())
   }
-  const getNtfGetMessage = (payload: payloadNtfFnc): void => {
-    const { friendId } = payload
-    toast({ description: `${friendId} написал вам личное сообщение` })
+  const getNtfGetMessage = (payload: payloadNtfFncGetMessage): void => {
+    const { senderId } = payload
+    toast({ description: `${senderId} написал вам личное сообщение` })
     dispatch(getUserChatsThunk())
   }
 
