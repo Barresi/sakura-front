@@ -5,6 +5,7 @@ import SettingButton from '@src/components/ui/button/setting-button/setting-butt
 import { useAppDispatch } from '@src/hooks/store-hooks'
 import { logoutThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import { useTheme } from '@src/context/theme-context/useTheme'
+import { useToast } from '../ui/toast/use-toast'
 
 const Sidebar: FC = () => {
   const dispatch = useAppDispatch()
@@ -12,6 +13,7 @@ const Sidebar: FC = () => {
   const logoutHandler = async (): Promise<void> => {
     await dispatch(logoutThunk())
   }
+  const { toast } = useToast()
   return (
     <div className='rounded-[10px] px-5 py-[30px] flex flex-col justify-between items-start w-[280px] bg-white dark:bg-grayBlue fixed top-5 bottom-5'>
       <div>
@@ -54,7 +56,14 @@ const Sidebar: FC = () => {
 
       <div className='flex justify-between w-[100%]'>
         <SettingButton icon='exit' onClick={logoutHandler} />
-        <SettingButton icon='info' />
+        <SettingButton
+          icon='info'
+          onClick={() =>
+            toast({
+              description: 'Friday, February 10, 2023 at 5:57 PM'
+            })
+          }
+        />
         <SettingButton icon='theme' onClick={toggleTheme} />
         <SettingButton icon='setting' />
       </div>
