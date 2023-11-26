@@ -48,7 +48,8 @@ module.exports = {
     borderRadius: {
       lg: '0.5rem',
       md: 'calc(0.5rem - 2px)',
-      sm: 'calc(0.5rem - 4px)'
+      sm: 'calc(0.5rem - 4px)',
+      full: '9999px'
     }
   },
   plugins: [require('tailwindcss-animate')]
