@@ -92,3 +92,17 @@ export interface ICreateChatResponse {
 export interface IGetUserChatsResponse {
   userChats: IChat[]
 }
+
+// Notification api
+
+export interface INotification {
+  id: 'string'
+  type: 'string'
+  content: 'string'
+  read: false
+  createdAt: 'string'
+  updatedAt: 'string'
+}
+export interface IGetUserNotificationsResponse {
+  notifications: INotification[]
+}
