@@ -37,6 +37,7 @@ module.exports = {
         checksVoidReturn: false
       }
     ],
+    'no-console': 'warn',
     'react/react-in-jsx-scope': 'off',
     indent: ['error', 2, { SwitchCase: 1 }],
     'prettier/prettier': [
