@@ -10,6 +10,7 @@ import { useAppDispatch } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import MessengerPage from '@src/pages/messenger/messenger'
 import Chat from '../messenger/chat/chat'
+import Toaster from '../ui/toast/toaster'
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -17,38 +18,41 @@ const App: FC = () => {
     dispatch(userInfoThunk())
   }, [])
   return (
-    <Routes>
-      <Route
-        path='/'
-        element={
-          <ProtectedRouteElement protectedPageType='auth' element={<LoginPage />} />
-        }
-      />
-      <Route
-        path='/registration'
-        element={
-          <ProtectedRouteElement
-            protectedPageType='auth'
-            element={<RegistrationPage />}
-          />
-        }
-      />
+    <>
+      <Toaster />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <ProtectedRouteElement protectedPageType='auth' element={<LoginPage />} />
+          }
+        />
+        <Route
+          path='/registration'
+          element={
+            <ProtectedRouteElement
+              protectedPageType='auth'
+              element={<RegistrationPage />}
+            />
+          }
+        />
 
-      <Route
-        path='/main'
-        element={
-          <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
-        }
-      >
-        <Route path='messenger' element={<MessengerPage />}>
-          <Route path=':id' element={<Chat />} />
+        <Route
+          path='/main'
+          element={
+            <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
+          }
+        >
+          <Route path='messenger' element={<MessengerPage />}>
+            <Route path=':id' element={<Chat />} />
+          </Route>
+          <Route path='friends' element={<FriendsPage />} />
+          <Route path='*' element={<NotFoundPage type='inside' />} />
         </Route>
-        <Route path='friends' element={<FriendsPage />} />
-        <Route path='*' element={<NotFoundPage type='inside' />} />
-      </Route>
 
-      <Route path='*' element={<NotFoundPage type='outside' />} />
-    </Routes>
+        <Route path='*' element={<NotFoundPage type='outside' />} />
+      </Routes>
+    </>
   )
 }
 
