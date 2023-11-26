@@ -20,9 +20,9 @@ import {
 } from '@src/store/reducers/friends/async-thunks'
 import {
   NTF_GET_MESSAGE_EVENT,
-  NTF_USER_ACCEPT_FRIEND_REQUEST,
-  NTF_USER_REJECT_FRIEND_REQUEST,
-  NTF_USER_SEND_FRIEND_REQUEST
+  NTF_USER_ACCEPT_FRIEND_EVENT,
+  NTF_USER_REJECT_FRIEND_EVENT,
+  NTF_USER_SEND_FRIEND_EVENT
 } from '@src/context/socket-context/socket-context'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 
@@ -69,14 +69,14 @@ const App: FC = () => {
   }, [])
   useEffect(() => {
     if (!socket) return
-    socket.on(NTF_USER_SEND_FRIEND_REQUEST, getNtfSendFriend)
-    socket.on(NTF_USER_ACCEPT_FRIEND_REQUEST, getNtfAcceptFriend)
-    socket.on(NTF_USER_REJECT_FRIEND_REQUEST, getNtfRejectFriend)
+    socket.on(NTF_USER_SEND_FRIEND_EVENT, getNtfSendFriend)
+    socket.on(NTF_USER_ACCEPT_FRIEND_EVENT, getNtfAcceptFriend)
+    socket.on(NTF_USER_REJECT_FRIEND_EVENT, getNtfRejectFriend)
     socket.on(NTF_GET_MESSAGE_EVENT, getNtfGetMessage)
     return () => {
-      socket.off(NTF_USER_SEND_FRIEND_REQUEST, getNtfSendFriend)
-      socket.off(NTF_USER_ACCEPT_FRIEND_REQUEST, getNtfAcceptFriend)
-      socket.off(NTF_USER_REJECT_FRIEND_REQUEST, getNtfRejectFriend)
+      socket.off(NTF_USER_SEND_FRIEND_EVENT, getNtfSendFriend)
+      socket.off(NTF_USER_ACCEPT_FRIEND_EVENT, getNtfAcceptFriend)
+      socket.off(NTF_USER_REJECT_FRIEND_EVENT, getNtfRejectFriend)
       socket.off(NTF_GET_MESSAGE_EVENT, getNtfGetMessage)
     }
   }, [socket])
