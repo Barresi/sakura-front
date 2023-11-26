@@ -95,9 +95,14 @@ export interface IGetUserChatsResponse {
 
 // Notification api
 
+export type NotificationType =
+  | 'sendFriendRequest'
+  | 'acceptFriendRequest'
+  | 'rejectFriendRequest'
+
 export interface INotification {
   id: 'string'
-  type: 'string'
+  type: NotificationType
   content: 'string'
   read: false
   createdAt: 'string'

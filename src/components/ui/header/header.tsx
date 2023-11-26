@@ -1,5 +1,5 @@
-import { useEffect, type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import { cn, parseDateToMonth } from '@utils/utils'
+import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
+import { cn, parseDateToMonth, parseDateToTime } from '@utils/utils'
 import SettingButton from '../button/setting-button/setting-button'
 import Logo from '../logo/logo'
 import { useTheme } from '@src/context/theme-context/useTheme'
@@ -13,8 +13,8 @@ import {
   SheetTitle
 } from '@src/components/ui/sheet/sheet'
 import { selectNotifications } from '@src/store/reducers/notifications/selectors'
-import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
-import { getUserNotificationsThunk } from '@src/store/reducers/notifications/async-thunks'
+import { useAppSelector } from '@src/hooks/store-hooks'
+import NotificationCard from '../card/notification-card/notification-card'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
@@ -23,13 +23,8 @@ interface IHeaderProps
 
 const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
   const { toggleTheme } = useTheme()
-  const dispatch = useAppDispatch()
   const isMobile = useWindowSize(1024)
   const notifications = useAppSelector(selectNotifications)
-
-  useEffect(() => {
-    dispatch(getUserNotificationsThunk())
-  }, [])
 
   return (
     <header
@@ -52,14 +47,14 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
           <SheetContent className='w-full md:max-w-[60%] lg:max-w-[40%] xxl:max-w-[600px]'>
             <SheetHeader>
               <SheetTitle>Уведомления</SheetTitle>
-              {notifications.map((item) => {
-                console.log(item)
+              {notifications.map(({ id, content, type, createdAt }) => {
                 return (
-                  <div key={item.id}>
-                    {item.content}
-                    <br />
-                    {parseDateToMonth(item.createdAt)}
-                  </div>
+                  <NotificationCard
+                    key={id}
+                    name={content.split(' ')[0]}
+                    type={type}
+                    date={`${parseDateToMonth(createdAt)} ${parseDateToTime(createdAt)}`}
+                  />
                 )
               })}
             </SheetHeader>

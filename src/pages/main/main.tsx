@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import { AuthStatus } from '@src/types/api'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
+import { getUserNotificationsThunk } from '@src/store/reducers/notifications/async-thunks'
 
 const MainPage: FC = () => {
   const isMobile = useWindowSize(1024)
@@ -26,6 +27,7 @@ const MainPage: FC = () => {
         dispatch(getSendedThunk())
         dispatch(getFriendsThunk())
         dispatch(getAllUsersThunk())
+        dispatch(getUserNotificationsThunk())
       })
     }
   }, [status])

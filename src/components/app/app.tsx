@@ -25,6 +25,7 @@ import {
   NTF_USER_SEND_FRIEND_EVENT
 } from '@src/context/socket-context/socket-context'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
+import { getUserNotificationsThunk } from '@src/store/reducers/notifications/async-thunks'
 
 interface payloadNtfFnc {
   friendId: string
@@ -46,17 +47,20 @@ const App: FC = () => {
     const { friendId } = payload
     toast({ description: `${friendId} отправил вам заявку в друзья` })
     dispatch(getReceivedThunk())
+    dispatch(getUserNotificationsThunk())
   }
   const getNtfAcceptFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
     toast({ description: `${friendId} принял вашу заявку в друзья` })
     dispatch(getFriendsThunk())
     dispatch(getSendedThunk())
+    dispatch(getUserNotificationsThunk())
   }
   const getNtfRejectFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
     toast({ description: `${friendId} отклонил вашу заявку в друзья` })
     dispatch(getSendedThunk())
+    dispatch(getUserNotificationsThunk())
   }
   const getNtfGetMessage = (payload: payloadNtfFncGetMessage): void => {
     const { senderId } = payload
