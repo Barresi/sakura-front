@@ -13,6 +13,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
 import { AuthStatus } from '@src/types/api'
+import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 
 const MainPage: FC = () => {
   const isMobile = useWindowSize(1024)
@@ -20,10 +21,11 @@ const MainPage: FC = () => {
   const status = useAppSelector(selectUserStatus)
   useEffect(() => {
     if (status === AuthStatus.authorized) {
-      dispatch(getAllUsersThunk()).then(() => {
+      dispatch(getUserChatsThunk()).then(() => {
         dispatch(getReceivedThunk())
         dispatch(getSendedThunk())
         dispatch(getFriendsThunk())
+        dispatch(getAllUsersThunk())
       })
     }
   }, [status])
