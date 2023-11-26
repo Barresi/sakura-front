@@ -3,10 +3,13 @@ import NavButton from '../ui/button/nav-button/nav-button'
 import { useLocation } from 'react-router-dom'
 import { selectReceived } from '@src/store/reducers/friends/selectors'
 import { useAppSelector } from '@src/hooks/store-hooks'
+import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
 
 const MobileNav: FC = () => {
   const { pathname } = useLocation()
   const received = useAppSelector(selectReceived)
+  const userChats = useAppSelector(selectMessengerUserChats)
+  const totalUnreadMessages = userChats.reduce((acc, cur) => acc + cur.unread, 0)
   return (
     <div
       className={`${
@@ -33,6 +36,7 @@ const MobileNav: FC = () => {
         className='w-full flex-col justify-center items-center text-center px-[5px] first-letter:lg:px-[15px] py-[30px] gap-[5px] text-[12px] md:text-[14px]'
         icon='message'
         to='messenger'
+        badge={totalUnreadMessages}
       >
         Мессенджер
       </NavButton>
