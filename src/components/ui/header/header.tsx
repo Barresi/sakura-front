@@ -5,10 +5,17 @@ import Logo from '../logo/logo'
 import { useTheme } from '@src/context/theme-context/useTheme'
 import UserAvatar from '../avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription
+} from '@src/components/ui/sheet/sheet'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-  className?: string
   avatar?: string
 }
 
@@ -29,7 +36,18 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
 
       <div className='flex items-center justify-center gap-[15px]'>
         <SettingButton icon='theme' onClick={toggleTheme} className='flex lg:hidden' />
-        <SettingButton icon='notification' />
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <SettingButton icon='notification' />
+          </SheetTrigger>
+          <SheetContent className='w-[400px] sm:w-[540px]'>
+            <SheetHeader>
+              <SheetTitle>Уведомления</SheetTitle>
+              <SheetDescription>Здесь будут отображаться уведомления</SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
 
         <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
       </div>
