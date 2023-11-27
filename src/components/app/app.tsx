@@ -48,19 +48,21 @@ const App: FC = () => {
 
   const getNtfSendFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
-    const friend = users.filter((user) => user.id === friendId)[0]
+    const friend = users.find((user) => user.id === friendId)
     toast({
-      description: `${friend.firstName} ${friend.lastName} отправил вам заявку в друзья`
+      title: 'Новое уведомление',
+      description: `${friend?.firstName} ${friend?.lastName} отправил вам заявку в друзья`
     })
     dispatch(getReceivedThunk())
     dispatch(getUserNotificationsThunk())
   }
   const getNtfAcceptFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
-    const friend = users.filter((user) => user.id === friendId)[0]
+    const friend = users.find((user) => user.id === friendId)
 
     toast({
-      description: `${friend.firstName} ${friend.lastName} принял вашу заявку в друзья`
+      title: 'Новое уведомление',
+      description: `${friend?.firstName} ${friend?.lastName} принял вашу заявку в друзья`
     })
     dispatch(getFriendsThunk())
     dispatch(getSendedThunk())
@@ -68,20 +70,22 @@ const App: FC = () => {
   }
   const getNtfRejectFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
-    const friend = users.filter((user) => user.id === friendId)[0]
+    const friend = users.find((user) => user.id === friendId)
 
     toast({
-      description: `${friend.firstName} ${friend.lastName} отклонил вашу заявку в друзья`
+      title: 'Новое уведомление',
+      description: `${friend?.firstName} ${friend?.lastName} отклонил вашу заявку в друзья`
     })
     dispatch(getSendedThunk())
     dispatch(getUserNotificationsThunk())
   }
   const getNtfGetMessage = (payload: payloadNtfFncGetMessage): void => {
     const { senderId } = payload
-    const friend = users.filter((user) => user.id === senderId)[0]
+    const friend = users.find((user) => user.id === senderId)
 
     toast({
-      description: `${friend.firstName} ${friend.lastName} написал вам личное сообщение`
+      title: 'Новое уведомление',
+      description: `${friend?.firstName} ${friend?.lastName} написал вам личное сообщение`
     })
     dispatch(getUserChatsThunk())
   }
