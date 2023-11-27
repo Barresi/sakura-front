@@ -6,7 +6,7 @@ import ProtectedRouteElement from '../protected-route-element/protected-route-el
 import MainPage from '@src/pages/main/main'
 import NotFoundPage from '@src/pages/not-found-page/not-found-page'
 import FriendsPage from '@src/pages/friends/friends'
-import { useAppDispatch } from '@src/hooks/store-hooks'
+import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { userInfoThunk } from '@src/store/reducers/profileInfo/async-thunks'
 import MessengerPage from '@src/pages/messenger/messenger'
 import Chat from '../messenger/chat/chat'
@@ -26,6 +26,7 @@ import {
 } from '@src/context/socket-context/socket-context'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 import { getUserNotificationsThunk } from '@src/store/reducers/notifications/async-thunks'
+import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 
 interface payloadNtfFnc {
   friendId: string
@@ -43,28 +44,45 @@ const App: FC = () => {
   const dispatch = useAppDispatch()
   const { socket } = useSocket()
   const { toast } = useToast()
+  const users = useAppSelector(selectAllUsers)
+
   const getNtfSendFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
-    toast({ description: `${friendId} отправил вам заявку в друзья` })
+    const friend = users.filter((user) => user.id === friendId)[0]
+    toast({
+      description: `${friend.firstName} ${friend.lastName} отправил вам заявку в друзья`
+    })
     dispatch(getReceivedThunk())
     dispatch(getUserNotificationsThunk())
   }
   const getNtfAcceptFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
-    toast({ description: `${friendId} принял вашу заявку в друзья` })
+    const friend = users.filter((user) => user.id === friendId)[0]
+
+    toast({
+      description: `${friend.firstName} ${friend.lastName} принял вашу заявку в друзья`
+    })
     dispatch(getFriendsThunk())
     dispatch(getSendedThunk())
     dispatch(getUserNotificationsThunk())
   }
   const getNtfRejectFriend = (payload: payloadNtfFnc): void => {
     const { friendId } = payload
-    toast({ description: `${friendId} отклонил вашу заявку в друзья` })
+    const friend = users.filter((user) => user.id === friendId)[0]
+
+    toast({
+      description: `${friend.firstName} ${friend.lastName} отклонил вашу заявку в друзья`
+    })
     dispatch(getSendedThunk())
     dispatch(getUserNotificationsThunk())
   }
   const getNtfGetMessage = (payload: payloadNtfFncGetMessage): void => {
     const { senderId } = payload
-    toast({ description: `${senderId} написал вам личное сообщение` })
+    const friend = users.filter((user) => user.id === senderId)[0]
+
+    toast({
+      description: `${friend.firstName} ${friend.lastName} написал вам личное сообщение`
+    })
     dispatch(getUserChatsThunk())
   }
 
