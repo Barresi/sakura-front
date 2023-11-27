@@ -1,8 +1,6 @@
 import { type FC } from 'react'
 import Card from '../card'
-import Button from '@ui/button/button'
 import UserAvatar from '@ui/avatar/avatar'
-import FriendButton from '@src/components/friends/friend-button/friend-button'
 import { cn } from '@utils/utils'
 import { type NotificationType } from '@src/types/api'
 import { useAppSelector } from '@src/hooks/store-hooks'
@@ -40,14 +38,6 @@ const NotificationCard: FC<RequestCardProps> = ({ className, date, name, type })
           <span className='leading-6 text-liked-dateForeground'>{date}</span>
         </div>
       </div>
-      {/* <div className='mt-[10px] flex justify-between gap-[10px] w-full flex-col lg:flex-row'>
-        <Button variant='default' className='lg:w-[49%]'>
-          Добавить в друзья
-        </Button>
-        <Button variant='secondary' className='lg:w-[49%]'>
-          Отклонить
-        </Button>
-      </div> */}
     </Card>
   )
 }
