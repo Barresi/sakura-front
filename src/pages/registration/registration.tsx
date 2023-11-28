@@ -9,8 +9,10 @@ import SettingButton from '@src/components/ui/button/setting-button/setting-butt
 import Input from '@src/components/ui/form/input/input'
 import Button from '@src/components/ui/button/button'
 import { useTheme } from '@src/context/theme-context/useTheme'
+import { useToast } from '@src/components/ui/toast/use-toast'
 
 const RegistrationPage: FC = () => {
+  const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { toggleTheme } = useTheme()
@@ -23,7 +25,12 @@ const RegistrationPage: FC = () => {
 
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
     await dispatch(registrationThunk(data)).then((data) => {
-      ;(data.payload as { id: number }).id && navigate('/')
+      if (data.meta.requestStatus === 'fulfilled') {
+        navigate('/')
+        toast({ description: 'Вы успешно зарегистрировались' as string })
+      } else {
+        toast({ description: data.payload as string })
+      }
     })
   }
 

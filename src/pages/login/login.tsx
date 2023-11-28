@@ -9,8 +9,10 @@ import Logo from '@src/components/ui/logo/logo'
 import Button from '@src/components/ui/button/button'
 import Input from '@src/components/ui/form/input/input'
 import { useTheme } from '@src/context/theme-context/useTheme'
+import { useToast } from '@src/components/ui/toast/use-toast'
 
 const LoginPage: FC = () => {
+  const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { toggleTheme } = useTheme()
@@ -20,8 +22,15 @@ const LoginPage: FC = () => {
     formState: { errors }
   } = useForm<ILoginForm>({ mode: 'onSubmit' })
 
-  const onSubmit: SubmitHandler<ILoginForm> = async (data) =>
-    await dispatch(loginThunk(data))
+  const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
+    await dispatch(loginThunk(data)).then((data) => {
+      if (data.meta.requestStatus === 'fulfilled') {
+        toast({ description: 'Вы успешно зашли в свой аккаунт' as string })
+      } else {
+        toast({ description: data.payload as string })
+      }
+    })
+  }
 
   return (
     <div className='flex justify-center items-center py-5 px-5 min-h-[100vh]'>
