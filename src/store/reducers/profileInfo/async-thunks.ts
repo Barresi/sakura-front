@@ -12,6 +12,7 @@ import {
   type ILogoutResponse
 } from '@src/types/api'
 import { type ILoginForm, type IRegistrationForm } from '@src/types/forms'
+import { AxiosError } from 'axios'
 
 export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
   'profileInfo/login',
@@ -19,8 +20,8 @@ export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
     try {
       return await loginRequest(form)
     } catch (err) {
-      if (err instanceof Error) {
-        return rejectWithValue(err.message)
+      if (err instanceof AxiosError && err.response?.data.msg) {
+        return rejectWithValue(err.response.data.msg)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
@@ -35,8 +36,8 @@ export const registrationThunk = createAsyncThunk<
   try {
     return await registrationRequest(form)
   } catch (err) {
-    if (err instanceof Error) {
-      return rejectWithValue(err.message)
+    if (err instanceof AxiosError && err.response?.data.msg) {
+      return rejectWithValue(err.response.data.msg)
     } else {
       return rejectWithValue('Упс, что-то пошло не так')
     }
@@ -49,8 +50,8 @@ export const logoutThunk = createAsyncThunk<ILogoutResponse>(
     try {
       return await logoutRequest()
     } catch (err) {
-      if (err instanceof Error) {
-        return rejectWithValue(err.message)
+      if (err instanceof AxiosError && err.response?.data.msg) {
+        return rejectWithValue(err.response.data.msg)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
@@ -64,8 +65,8 @@ export const userInfoThunk = createAsyncThunk<IUserInfoResponse>(
     try {
       return await getUserInfo()
     } catch (err) {
-      if (err instanceof Error) {
-        return rejectWithValue(err.message)
+      if (err instanceof AxiosError && err.response?.data.msg) {
+        return rejectWithValue(err.response.data.msg)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
