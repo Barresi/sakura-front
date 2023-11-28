@@ -15,7 +15,16 @@ const Sidebar: FC = () => {
   const dispatch = useAppDispatch()
   const { toggleTheme } = useTheme()
   const logoutHandler = async (): Promise<void> => {
-    await dispatch(logoutThunk())
+    await dispatch(logoutThunk()).then((data) => {
+      if (data.meta.requestStatus === 'fulfilled') {
+        toast({
+          title: 'Системное уведомление',
+          description: 'Вы успешно вышли из своего аккаунта' as string
+        })
+      } else {
+        toast({ title: 'Системное уведомление', description: data.payload as string })
+      }
+    })
   }
   const { toast } = useToast()
   const totalUnreadMessages = userChats.reduce((acc, cur) => acc + cur.unread, 0)
@@ -63,14 +72,7 @@ const Sidebar: FC = () => {
 
       <div className='flex justify-between w-[100%]'>
         <SettingButton icon='exit' onClick={logoutHandler} />
-        <SettingButton
-          icon='info'
-          onClick={() =>
-            toast({
-              description: 'Friday, February 10, 2023 at 5:57 PM'
-            })
-          }
-        />
+        <SettingButton icon='info' />
         <SettingButton icon='theme' onClick={toggleTheme} />
         <SettingButton icon='setting' />
       </div>

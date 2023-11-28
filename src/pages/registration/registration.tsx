@@ -27,9 +27,12 @@ const RegistrationPage: FC = () => {
     await dispatch(registrationThunk(data)).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {
         navigate('/')
-        toast({ description: 'Вы успешно зарегистрировались' as string })
+        toast({
+          title: 'Системное уведомление',
+          description: 'Вы успешно зарегистрировались' as string
+        })
       } else {
-        toast({ description: data.payload as string })
+        toast({ title: 'Системное уведомление', description: data.payload as string })
       }
     })
   }

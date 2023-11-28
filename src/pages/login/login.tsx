@@ -25,9 +25,12 @@ const LoginPage: FC = () => {
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
     await dispatch(loginThunk(data)).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {
-        toast({ description: 'Вы успешно зашли в свой аккаунт' as string })
+        toast({
+          title: 'Системное уведомление',
+          description: 'Вы успешно зашли в свой аккаунт' as string
+        })
       } else {
-        toast({ description: data.payload as string })
+        toast({ title: 'Системное уведомление', description: data.payload as string })
       }
     })
   }
