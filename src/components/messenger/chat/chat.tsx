@@ -108,12 +108,37 @@ const Chat: FC = () => {
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
         {formattedMessages.map(({ date, chats }) => {
+          const readMessagesChats = chats.filter(
+            (item) => item.read || item.senderId === id
+          )
+          const unreadMessagesChats = chats.filter(
+            (item) => !item.read && item.senderId !== id
+          )
           return (
             <Fragment key={date}>
               <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
                 {parseDateToMonth(date)}
               </span>
-              {chats.map((item, ind) => {
+              {readMessagesChats.map((item, ind) => {
+                const { createdAt, senderId, text } = item
+                const isMyMessage = senderId === id
+                return (
+                  <Message
+                    text={text}
+                    date={createdAt}
+                    my={isMyMessage}
+                    key={ind}
+                    firstName={isMyMessage ? firstName : friend?.firstName}
+                    lastName={isMyMessage ? lastName : friend?.lastName}
+                  />
+                )
+              })}
+              {!!unreadMessagesChats.length && (
+                <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
+                  Новые сообщения
+                </span>
+              )}
+              {unreadMessagesChats.map((item, ind) => {
                 const { createdAt, senderId, text } = item
                 const isMyMessage = senderId === id
                 return (

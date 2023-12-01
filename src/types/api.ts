@@ -63,10 +63,12 @@ export interface ICancelResponse extends INoContentResponse {}
 // Messenger api
 
 export interface IMessage {
+  updatedAt: string
   createdAt: string
   chatId: string
   senderId: string
   text: string
+  read: boolean
 }
 
 export interface IChat {
