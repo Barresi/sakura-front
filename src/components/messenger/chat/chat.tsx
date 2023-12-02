@@ -1,6 +1,6 @@
 import MessageInput from '@src/components/messenger/message-input/message-input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type FC, useEffect, useState, useRef, Fragment } from 'react'
+import { type FC, useEffect, useState, useRef, Fragment, type ReactNode } from 'react'
 import arrow from '@assets/ui/arrow.svg'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
@@ -86,6 +86,21 @@ const Chat: FC = () => {
   useEffect(() => {
     if (container.current) container.current.scrollTop = container.current.scrollHeight
   }, [formattedMessages])
+
+  const renderMessages = (value: IMessage, ind: number): ReactNode => {
+    const { text, senderId, createdAt } = value
+    const isMyMessage = senderId === id
+    return (
+      <Message
+        text={text}
+        date={createdAt}
+        my={isMyMessage}
+        key={ind}
+        firstName={isMyMessage ? firstName : friend?.firstName}
+        lastName={isMyMessage ? lastName : friend?.lastName}
+      />
+    )
+  }
   return (
     <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
       <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
@@ -119,39 +134,16 @@ const Chat: FC = () => {
               <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
                 {parseDateToMonth(date)}
               </span>
-              {readMessagesChats.map((item, ind) => {
-                const { createdAt, senderId, text } = item
-                const isMyMessage = senderId === id
-                return (
-                  <Message
-                    text={text}
-                    date={createdAt}
-                    my={isMyMessage}
-                    key={ind}
-                    firstName={isMyMessage ? firstName : friend?.firstName}
-                    lastName={isMyMessage ? lastName : friend?.lastName}
-                  />
-                )
-              })}
+
+              {readMessagesChats.map(renderMessages)}
+
               {!!unreadMessagesChats.length && (
                 <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
                   Новые сообщения
                 </span>
               )}
-              {unreadMessagesChats.map((item, ind) => {
-                const { createdAt, senderId, text } = item
-                const isMyMessage = senderId === id
-                return (
-                  <Message
-                    text={text}
-                    date={createdAt}
-                    my={isMyMessage}
-                    key={ind}
-                    firstName={isMyMessage ? firstName : friend?.firstName}
-                    lastName={isMyMessage ? lastName : friend?.lastName}
-                  />
-                )
-              })}
+
+              {unreadMessagesChats.map(renderMessages)}
             </Fragment>
           )
         })}
