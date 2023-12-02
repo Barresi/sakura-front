@@ -2,7 +2,7 @@ import { type IMessage } from '@src/types/api'
 
 export interface IFormattedMessages {
   date: string
-  chats: IMessage[]
+  messages: IMessage[]
 }
 
 export function groupChatMessagesByDate(chatMessages: IMessage[]): IFormattedMessages[] {
@@ -17,8 +17,8 @@ export function groupChatMessagesByDate(chatMessages: IMessage[]): IFormattedMes
     return acc
   }, {})
 
-  const finalResult = Object.entries(result).map(([date, chats]) => {
-    return { date, chats }
+  const finalResult = Object.entries(result).map(([date, messages]) => {
+    return { date, messages }
   })
 
   return finalResult

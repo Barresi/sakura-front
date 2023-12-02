@@ -107,11 +107,11 @@ const Chat: FC = () => {
         ref={container}
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
-        {formattedMessages.map(({ date, chats }) => {
-          const readMessagesChats = chats.filter(
+        {formattedMessages.map(({ date, messages }) => {
+          const readMessagesChats = messages.filter(
             (item) => item.read || item.senderId === id
           )
-          const unreadMessagesChats = chats.filter(
+          const unreadMessagesChats = messages.filter(
             (item) => !item.read && item.senderId !== id
           )
           return (
