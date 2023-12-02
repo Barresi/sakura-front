@@ -6,10 +6,10 @@ import { type INotification } from '@src/types/api'
 // было в документации в варнинге
 // https://redux.js.org/usage/deriving-data-selectors#optimizing-selectors-with-memoization
 
-const userChatsSelector = ({ notifications }: RootState): INotification[] =>
+const notificationsSelector = ({ notifications }: RootState): INotification[] =>
   notifications.notifications
 export const selectNotifications: (store: RootState) => INotification[] = createSelector(
-  [userChatsSelector],
+  [notificationsSelector],
   (notifications) =>
     [...notifications].sort((a, b) => {
       const aDate = new Date(a?.createdAt || a.updatedAt)
