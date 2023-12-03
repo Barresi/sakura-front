@@ -8,20 +8,21 @@ import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 
 export interface RequestCardProps {
   img?: string
-  name?: string
+  id?: string
   date?: string
   type?: NotificationType
   className?: string
 }
 
-const text = {
+export const textForNotificationType = {
   sendFriendRequest: 'подал заявку в друзья',
   acceptFriendRequest: 'принял Вашу заявку в друзья',
-  rejectFriendRequest: 'отклонил Вашу заявку в друзья'
+  rejectFriendRequest: 'отклонил Вашу заявку в друзья',
+  getMessage: 'написал вам личное сообщение'
 }
 
-const NotificationCard: FC<RequestCardProps> = ({ className, date, name, type }) => {
-  const user = useAppSelector(selectAllUsers).filter((user) => user.id === name)[0]
+const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) => {
+  const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
 
   return (
     <Card className={cn('block', className)}>
@@ -34,10 +35,12 @@ const NotificationCard: FC<RequestCardProps> = ({ className, date, name, type })
               {user?.firstName} {user?.lastName}
             </span>
             <span className='text-darkElectricBlue'>
-              {text[type as keyof typeof text]}
+              {textForNotificationType[type as keyof typeof textForNotificationType]}
             </span>
           </h3>
-          <span className='leading-6 text-signalBlack dark:text-darkWhite'>{date}</span>
+          {date ? (
+            <span className='leading-6 text-signalBlack dark:text-darkWhite'>{date}</span>
+          ) : null}
         </div>
       </div>
     </Card>

@@ -28,6 +28,7 @@ module.exports = {
       smokyWhite: ' #f1f5f9',
       cadet: '#55677c',
       cadetBlue: '#adb5bd',
+
       lightGray: '#d6d6d6',
       nickel: '#6c767a',
       darkLightGray: '#929292',

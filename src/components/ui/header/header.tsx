@@ -54,7 +54,7 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
                 return (
                   <NotificationCard
                     key={id}
-                    name={content.split(' ')[0]}
+                    id={content.split(' ')[0]}
                     type={type}
                     date={`${parseDateToMonth(createdAt)} ${parseDateToTime(createdAt)}`}
                   />

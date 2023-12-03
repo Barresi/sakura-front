@@ -16,13 +16,15 @@ const Toaster: FC = () => {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
-          <Toast key={id} {...props}>
-            <div className='grid gap-1'>
-              {title && <ToastTitle>{title}</ToastTitle>}
+          <Toast className='' key={id} {...props}>
+            <div className='w-full grid gap-1'>
+              <div className='flex items-center justify-between mb-[5px]'>
+                {title ? <ToastTitle className=''>{title}</ToastTitle> : <div></div>}
+                <ToastClose />
+              </div>
               {description && <ToastDescription>{description}</ToastDescription>}
             </div>
             {action}
-            <ToastClose />
           </Toast>
         )
       })}

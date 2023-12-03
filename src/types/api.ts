@@ -101,6 +101,7 @@ export type NotificationType =
   | 'sendFriendRequest'
   | 'acceptFriendRequest'
   | 'rejectFriendRequest'
+  | 'getMessage'
 
 export interface INotification {
   id: 'string'
