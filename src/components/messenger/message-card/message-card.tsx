@@ -45,7 +45,7 @@ const MessageCard: FC<IMessageCardProps> = ({
         </div>
 
         <div className='flex flex-col self-start items-end gap-[5px]'>
-          <span className='text-[#55677D]'>
+          <span className='text-darkElectricBlue'>
             {parseDateToMonth(newMessage?.createdAt || updatedAt)}
           </span>
           {unread ? <Badge>{unread}</Badge> : null}

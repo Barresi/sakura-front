@@ -44,7 +44,10 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
           <SheetTrigger asChild>
             <SettingButton icon='notification' />
           </SheetTrigger>
-          <SheetContent className='w-full md:max-w-[60%] lg:max-w-[40%] xxl:max-w-[600px]'>
+          <SheetContent
+            side='top'
+            className='w-[97%] lg:max-w-[600px] max-h-[80vh] top-[60px] md:top-[100px] lg:top-[120px] right-[1%] shadow-xl dark:bg-grayBlue'
+          >
             <SheetHeader>
               <SheetTitle>Уведомления</SheetTitle>
               {notifications.map(({ id, content, type, createdAt }) => {

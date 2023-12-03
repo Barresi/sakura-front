@@ -58,10 +58,10 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
         {firstName} {lastName} {isMine ? '(Вы)' : null}
       </h3>
       {type === 'requests' && (
-        <span className='text-[#55677D]'>подал вам заявку в друзья</span>
+        <span className='text-darkElectricBlue'>подал вам заявку в друзья</span>
       )}
       {type === 'sended' && (
-        <span className='text-[#55677D]'>вы отправили заявку в друзья</span>
+        <span className='text-darkElectricBlue'>вы отправили заявку в друзья</span>
       )}
     </div>
   )

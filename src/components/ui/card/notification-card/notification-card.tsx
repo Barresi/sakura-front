@@ -15,9 +15,9 @@ export interface RequestCardProps {
 }
 
 const text = {
-  sendFriendRequest: 'Подал заявку в друзья',
-  acceptFriendRequest: 'Принял Вашу заявку в друзья',
-  rejectFriendRequest: 'Отклонил Вашу заявку в друзья'
+  sendFriendRequest: 'подал заявку в друзья',
+  acceptFriendRequest: 'принял Вашу заявку в друзья',
+  rejectFriendRequest: 'отклонил Вашу заявку в друзья'
 }
 
 const NotificationCard: FC<RequestCardProps> = ({ className, date, name, type }) => {
@@ -28,14 +28,16 @@ const NotificationCard: FC<RequestCardProps> = ({ className, date, name, type })
       <div className='flex items-center gap-[15px]'>
         <UserAvatar className='w-[60px] h-[60px]' />
 
-        <div>
-          <h3 className='leading-6 text-[#55677D]'>
-            <span className='font-bold text-liked-foreground flex flex-col lg:flex-row'>
+        <div className='flex flex-col gap-[5px]'>
+          <h3 className='flex flex-col lg:flex-row lg:items-center gap-[5px] leading-6 '>
+            <span className='font-bold text-signalBlack dark:text-darkWhite'>
               {user?.firstName} {user?.lastName}
-            </span>{' '}
-            {text[type as keyof typeof text]}
+            </span>
+            <span className='text-darkElectricBlue'>
+              {text[type as keyof typeof text]}
+            </span>
           </h3>
-          <span className='leading-6 text-liked-dateForeground'>{date}</span>
+          <span className='leading-6 text-signalBlack dark:text-darkWhite'>{date}</span>
         </div>
       </div>
     </Card>

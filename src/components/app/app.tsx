@@ -107,7 +107,8 @@ const App: FC = () => {
     }
   }, [socket])
   return (
-    <>
+    // relative нужен для компонента Sheet
+    <div className='relative'>
       <Toaster />
       <Routes>
         <Route
@@ -141,7 +142,7 @@ const App: FC = () => {
 
         <Route path='*' element={<NotFoundPage type='outside' />} />
       </Routes>
-    </>
+    </div>
   )
 }
 

@@ -14,7 +14,8 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      xxl: '1440px'
+      xxl: '1440px',
+      xxl2: '1940px'
     },
     container: {
       center: true,
@@ -34,6 +35,7 @@ module.exports = {
       water: '#cbeefc',
       red: '#d22828',
       redHover: '#c32222',
+      darkElectricBlue: '#55677D',
       darkGray: '#adb5bd',
       signalBlack: '#292929',
       brownBlack: '#202028',
