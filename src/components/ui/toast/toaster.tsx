@@ -24,8 +24,16 @@ const Toaster: FC = () => {
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, action, notificationType, userId }) {
+      {toasts.map(function ({
+        id,
+        title,
+        action,
+        notificationType,
+        userId,
+        description
+      }) {
         const user = users.filter((user) => user.id === userId)[0]
+
         return (
           <Toast className='' key={id}>
             <div className='w-full grid gap-1'>
@@ -34,13 +42,21 @@ const Toaster: FC = () => {
                 <ToastClose />
               </div>
               <div className='flex items-center gap-[15px]'>
-                <UserAvatar />
-                <div className='flex flex-col gap-[5px]'>
-                  <span className='font-bold text-twitter'>
-                    {user?.firstName} {user?.lastName}
-                  </span>
-                  <span>{renderType[notificationType as keyof typeof renderType]}</span>
-                </div>
+                {notificationType ? (
+                  <>
+                    <UserAvatar />
+                    <div className='flex flex-col gap-[5px]'>
+                      <span className='font-bold text-twitter'>
+                        {user?.firstName} {user?.lastName}
+                      </span>
+                      <span>
+                        {renderType[notificationType as keyof typeof renderType]}
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <span>{description}</span>
+                )}
               </div>
             </div>
             {action}
