@@ -97,15 +97,16 @@ export interface IGetUserChatsResponse {
 
 // Notification api
 
-export type NotificationType =
-  | 'sendFriendRequest'
-  | 'acceptFriendRequest'
-  | 'rejectFriendRequest'
-  | 'getMessage'
+export enum NotificationTypeEnum {
+  sendFriend = 'sendFriend',
+  acceptFriend = 'acceptFriend',
+  rejectFriend = 'rejectFriend',
+  getMessage = 'getMessage'
+}
 
 export interface INotification {
   id: 'string'
-  type: NotificationType
+  type: NotificationTypeEnum
   content: 'string'
   read: false
   createdAt: 'string'

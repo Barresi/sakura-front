@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Card from '../card'
 import UserAvatar from '@ui/avatar/avatar'
 import { cn } from '@utils/utils'
-import { type NotificationType } from '@src/types/api'
+import { type NotificationTypeEnum } from '@src/types/api'
 import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 
@@ -10,15 +10,8 @@ export interface RequestCardProps {
   img?: string
   id?: string
   date?: string
-  type?: NotificationType
+  type?: NotificationTypeEnum
   className?: string
-}
-
-export const textForNotificationType = {
-  sendFriendRequest: 'подал заявку в друзья',
-  acceptFriendRequest: 'принял Вашу заявку в друзья',
-  rejectFriendRequest: 'отклонил Вашу заявку в друзья',
-  getMessage: 'написал вам личное сообщение'
 }
 
 const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) => {
@@ -34,9 +27,7 @@ const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) =
             <span className='font-bold text-signalBlack dark:text-darkWhite'>
               {user?.firstName} {user?.lastName}
             </span>
-            <span className='text-darkElectricBlue'>
-              {textForNotificationType[type as keyof typeof textForNotificationType]}
-            </span>
+            <span className='text-darkElectricBlue'>{type}</span>
           </h3>
           {date ? (
             <span className='leading-6 text-signalBlack dark:text-darkWhite'>{date}</span>

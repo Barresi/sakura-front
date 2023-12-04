@@ -2,6 +2,7 @@
 import * as React from 'react'
 
 import type { ToastActionElement, ToastProps } from '@src/components/ui/toast/toast'
+import { type NotificationTypeEnum } from '@src/types/api'
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 10
@@ -10,6 +11,8 @@ type ToasterToast = ToastProps & {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
+  userId?: string
+  notificationType?: NotificationTypeEnum
   action?: ToastActionElement
 }
 

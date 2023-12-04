@@ -26,7 +26,7 @@ import {
 } from '@src/context/socket-context/socket-context'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
 import { getUserNotificationsThunk } from '@src/store/reducers/notifications/async-thunks'
-import SimpleNotificationCard from '../ui/card/simple-notification-card/simple-notification-card'
+import { NotificationTypeEnum } from '@src/types/api'
 
 interface payloadNtfFnc {
   friendId: string
@@ -50,7 +50,8 @@ const App: FC = () => {
 
     toast({
       title: 'Новое уведомление',
-      description: <SimpleNotificationCard id={friendId} type='sendFriendRequest' />
+      notificationType: NotificationTypeEnum.sendFriend,
+      userId: friendId
     })
     dispatch(getReceivedThunk())
     dispatch(getUserNotificationsThunk())
@@ -60,7 +61,8 @@ const App: FC = () => {
 
     toast({
       title: 'Новое уведомление',
-      description: <SimpleNotificationCard id={friendId} type='acceptFriendRequest' />
+      notificationType: NotificationTypeEnum.acceptFriend,
+      userId: friendId
     })
     dispatch(getFriendsThunk())
     dispatch(getSendedThunk())
@@ -71,7 +73,8 @@ const App: FC = () => {
 
     toast({
       title: 'Новое уведомление',
-      description: <SimpleNotificationCard id={friendId} type='rejectFriendRequest' />
+      notificationType: NotificationTypeEnum.rejectFriend,
+      userId: friendId
     })
     dispatch(getSendedThunk())
     dispatch(getUserNotificationsThunk())
@@ -81,7 +84,8 @@ const App: FC = () => {
 
     toast({
       title: 'Новое уведомление',
-      description: <SimpleNotificationCard id={senderId} type='getMessage' />
+      notificationType: NotificationTypeEnum.getMessage,
+      userId: senderId
     })
     dispatch(getUserChatsThunk())
   }

@@ -36,7 +36,9 @@ const MainPage: FC = () => {
       {!isMobile && <Sidebar />}
       <div className=' flex-auto lg:ml-[310px] flex flex-col gap-[20px]'>
         <Header />
-        <Outlet />
+        <div className='pb-10 md:pb-14 lg:pb-0'>
+          <Outlet />
+        </div>
       </div>
       {isMobile && <MobileNav />}
     </div>
