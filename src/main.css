@@ -46,6 +46,12 @@ body {
   overflow-y: scroll;
 }
 
+@media (max-width: 1024px) {
+  body {
+    overflow-y: auto;
+  }
+}
+
 /* Отключает изменение цвета background и color у input при автозаполнении*/
 html.light input:-webkit-autofill,
 input:-webkit-autofill:hover,
