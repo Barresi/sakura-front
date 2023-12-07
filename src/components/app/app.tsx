@@ -50,7 +50,7 @@ const App: FC = () => {
 
     toast({
       title: 'Новое уведомление',
-      notificationType: NotificationTypeEnum.sendFriend,
+      notificationType: NotificationTypeEnum.sendFriendRequest,
       userId: friendId
     })
     dispatch(getReceivedThunk())
@@ -61,7 +61,7 @@ const App: FC = () => {
 
     toast({
       title: 'Новое уведомление',
-      notificationType: NotificationTypeEnum.acceptFriend,
+      notificationType: NotificationTypeEnum.acceptFriendRequest,
       userId: friendId
     })
     dispatch(getFriendsThunk())

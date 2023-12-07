@@ -5,6 +5,7 @@ import { cn } from '@utils/utils'
 import { type NotificationTypeEnum } from '@src/types/api'
 import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
+import { renderType } from '../../toast/toaster'
 
 export interface RequestCardProps {
   img?: string
@@ -27,7 +28,9 @@ const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) =
             <span className='font-bold text-signalBlack dark:text-darkWhite'>
               {user?.firstName} {user?.lastName}
             </span>
-            <span className='text-darkElectricBlue'>{type}</span>
+            <span className='text-darkElectricBlue'>
+              {renderType[type as keyof typeof renderType]}
+            </span>
           </h3>
           {date ? (
             <span className='leading-6 text-signalBlack dark:text-darkWhite'>{date}</span>

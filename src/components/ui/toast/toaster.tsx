@@ -12,9 +12,9 @@ import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 import UserAvatar from '../avatar/avatar'
 
 export const renderType = {
-  sendFriend: 'подал заявку в друзья',
-  acceptFriend: 'принял Вашу заявку в друзья',
-  rejectFriend: 'отклонил Вашу заявку в друзья',
+  sendFriendRequest: 'подал заявку в друзья',
+  acceptFriendRequest: 'принял Вашу заявку в друзья',
+  rejectFriendRequest: 'отклонил Вашу заявку в друзья',
   getMessage: 'написал вам личное сообщение'
 }
 
@@ -33,6 +33,8 @@ const Toaster: FC = () => {
         description
       }) {
         const user = users.filter((user) => user.id === userId)[0]
+
+        console.log(renderType[notificationType as keyof typeof renderType])
 
         return (
           <Toast className='' key={id}>

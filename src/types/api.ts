@@ -98,8 +98,8 @@ export interface IGetUserChatsResponse {
 // Notification api
 
 export enum NotificationTypeEnum {
-  sendFriend = 'sendFriend',
-  acceptFriend = 'acceptFriend',
+  sendFriendRequest = 'sendFriend',
+  acceptFriendRequest = 'acceptFriend',
   rejectFriend = 'rejectFriend',
   getMessage = 'getMessage'
 }
