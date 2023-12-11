@@ -3,7 +3,8 @@ import { refreshRequest } from './auth/auth'
 import { getCookie } from '@src/utils/cookie'
 import { type IAxiosError } from '@src/types/api'
 
-export const URL = 'http://localhost:5000/api/v1'
+export const URL =
+  'https://sakura-back-git-deployment-barresis-projects.vercel.app/api/v1'
 
 export const apiWithAuth = axios.create({ baseURL: URL })
 export const api = axios.create({ baseURL: URL })
