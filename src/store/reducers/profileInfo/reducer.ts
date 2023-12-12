@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { loginThunk, logoutThunk, userInfoThunk, registrationThunk } from './async-thunks'
-import { deleteCookie, getCookie, setCookie } from '@src/utils/cookie'
+import { deleteCookie, setCookie } from '@src/utils/cookie'
 import { type IUser } from '@src/types/types'
 import { AuthStatus } from '@src/types/api'
 
@@ -14,7 +14,7 @@ interface IInitialState {
 const initialState: IInitialState = {
   isLoading: false,
   error: '',
-  status: getCookie('accessToken') ? AuthStatus.authorized : AuthStatus.notAuthorized,
+  status: AuthStatus.notAuthorized,
   user: {
     id: '',
     email: '',
