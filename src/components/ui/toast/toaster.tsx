@@ -34,8 +34,6 @@ const Toaster: FC = () => {
       }) {
         const user = users.filter((user) => user.id === userId)[0]
 
-        console.log(renderType[notificationType as keyof typeof renderType])
-
         return (
           <Toast className='' key={id}>
             <div className='w-full grid gap-1'>
