@@ -37,15 +37,15 @@ const MessageCard: FC<IMessageCardProps> = ({
         <div className='flex items-center gap-[15px]'>
           <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
           <div>
-            <h3 className='font-bold leading-6'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
+            <h3 className='font-bold leading-6 whitespace-nowrap'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
             <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
               {newMessage?.text}
             </span>
           </div>
         </div>
 
-        <div className='flex flex-col self-start items-end gap-[5px]'>
-          <span className='text-darkElectricBlue'>
+        <div className='flex flex-col self-start items-center gap-[5px] mt-[10px]'>
+          <span className='text-darkElectricBlue whitespace-nowrap'>
             {parseDateToMonth(newMessage?.createdAt || updatedAt)}
           </span>
           {unread ? <Badge>{unread}</Badge> : null}
