@@ -1,21 +1,6 @@
+import arrow from '@assets/ui/arrow.svg'
 import MessageInput from '@src/components/messenger/message-input/message-input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type FC, useEffect, useState, useRef, Fragment, type ReactNode } from 'react'
-import arrow from '@assets/ui/arrow.svg'
-import { Link, useParams } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
-import { selectUser } from '@src/store/reducers/profileInfo/selectors'
-import { useSocket } from '@src/context/socket-context/useSocket'
-import Message from '../message/message'
-import { type IMessage } from '@src/types/api'
-import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
-import { selectAllUsers } from '@src/store/reducers/friends/selectors'
-import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
-import { parseDateToMonth } from '@src/utils/utils'
-import {
-  type IFormattedMessages,
-  groupChatMessagesByDate
-} from '@src/utils/messenger/other'
 import {
   GET_HISTORY_EVENT,
   GET_MESSAGE_EVENT,
@@ -23,10 +8,29 @@ import {
   LEAVE_CHAT_EVENT,
   SEND_MESSAGE_EVENT
 } from '@src/context/socket-context/socket-context'
+import { useSocket } from '@src/context/socket-context/useSocket'
+import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
+import { selectAllUsers } from '@src/store/reducers/friends/selectors'
+import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
+import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
+import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import { type IMessage } from '@src/types/api'
+import {
+  groupChatMessagesByDate,
+  type IFormattedMessages
+} from '@src/utils/messenger/other'
+import { parseDateToMonth } from '@src/utils/utils'
+import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import Message from '../message/message'
 
 const Chat: FC = () => {
   const container = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
+
+  // Флаг для отрисовки только одного блока новых сообщений
+  let isRendered = false
+
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
   const { id, firstName, lastName } = useAppSelector(selectUser)
@@ -87,6 +91,7 @@ const Chat: FC = () => {
     if (container.current) container.current.scrollTop = container.current.scrollHeight
   }, [formattedMessages])
 
+  // Может стоит вынести эти функции в отдельный файл, к примеру, renders?
   const renderMessages = (value: IMessage, ind: number): ReactNode => {
     const { text, senderId, createdAt } = value
     const isMyMessage = senderId === id
@@ -101,6 +106,19 @@ const Chat: FC = () => {
       />
     )
   }
+
+  const renderNewMessagesBlock = (): ReactNode => {
+    if (!isRendered) {
+      isRendered = true
+
+      return (
+        <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
+          Новые сообщения
+        </span>
+      )
+    }
+  }
+
   return (
     <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
       <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
@@ -129,6 +147,7 @@ const Chat: FC = () => {
           const unreadMessagesChats = messages.filter(
             (item) => !item.read && item.senderId !== id
           )
+
           return (
             <Fragment key={date}>
               <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
@@ -137,11 +156,7 @@ const Chat: FC = () => {
 
               {readMessagesChats.map(renderMessages)}
 
-              {!!unreadMessagesChats.length && (
-                <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
-                  Новые сообщения
-                </span>
-              )}
+              {!!unreadMessagesChats.length && renderNewMessagesBlock()}
 
               {unreadMessagesChats.map(renderMessages)}
             </Fragment>
