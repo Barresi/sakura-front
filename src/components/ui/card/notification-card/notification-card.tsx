@@ -1,11 +1,11 @@
-import { type FC } from 'react'
-import Card from '../card'
-import UserAvatar from '@ui/avatar/avatar'
-import { cn } from '@utils/utils'
-import { type NotificationTypeEnum } from '@src/types/api'
 import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
+import { type NotificationTypeEnum } from '@src/types/api'
+import UserAvatar from '@ui/avatar/avatar'
+import { cn } from '@utils/utils'
+import { type FC } from 'react'
 import { renderType } from '../../toast/toaster'
+import Card from '../card'
 
 export interface RequestCardProps {
   img?: string
@@ -17,7 +17,7 @@ export interface RequestCardProps {
 
 const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) => {
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
-  console.log(type)
+
   return (
     <Card className={cn('block', className)}>
       <div className='flex items-center gap-[15px]'>

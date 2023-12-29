@@ -1,10 +1,10 @@
-import * as React from 'react'
 import * as ToastPrimitives from '@radix-ui/react-toast'
 import { type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
+import * as React from 'react'
 
-import { cn } from '@utils/utils'
 import { type IPropsForwardRefsUI } from '@src/types/props'
+import { cn } from '@utils/utils'
 import { toastVariants } from '../variants/variants'
 
 const ToastProvider = ToastPrimitives.Provider
@@ -16,7 +16,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      'fixed top-[50px] z-[1000] flex max-h-screen w-full flex-col-reverse p-4 lg:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]',
+      'fixed top-0 z-[1000] flex max-h-screen w-full flex-col-reverse p-4 sm:right-0 sm:flex-col lg:top-auto md:max-w-[420px] lg:bottom-0',
       className
     )}
     {...props}
