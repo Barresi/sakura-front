@@ -10,12 +10,13 @@ import { type FC } from 'react'
 import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 import UserAvatar from '../avatar/avatar'
+import { NotificationTypeEnum } from '@src/types/api'
 
 export const renderType = {
-  sendFriendRequest: 'подал заявку в друзья',
-  acceptFriendRequest: 'принял Вашу заявку в друзья',
-  rejectFriendRequest: 'отклонил Вашу заявку в друзья',
-  getMessage: 'написал вам личное сообщение'
+  [NotificationTypeEnum.sendFriendRequest]: 'Подал Вам заявку в друзья',
+  [NotificationTypeEnum.acceptFriendRequest]: 'Принял Вашу заявку в друзья',
+  [NotificationTypeEnum.rejectFriend]: 'Отклонил Вашу заявку в друзья',
+  [NotificationTypeEnum.getMessage]: 'Написал Вам личное сообщение'
 }
 
 const Toaster: FC = () => {
