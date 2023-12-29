@@ -17,7 +17,7 @@ export interface RequestCardProps {
 
 const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) => {
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
-
+  console.log(type)
   return (
     <Card className={cn('block', className)}>
       <div className='flex items-center gap-[15px]'>
