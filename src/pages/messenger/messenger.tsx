@@ -1,26 +1,17 @@
 import MessageCard from '@src/components/messenger/message-card/message-card'
-import { type FC, useEffect } from 'react'
+import { type FC } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import notActiveChats from '@assets/messenger/not active chats.svg'
 import chooseChat from '@assets/messenger/choose chat.svg'
 import { useWindowSize } from '@src/hooks/useWindowSize'
-import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
+import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
-import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
-import { selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
-import { AuthStatus } from '@src/types/api'
 
 const MessengerPage: FC = () => {
   const chats = useAppSelector(selectMessengerUserChats)
 
-  const status = useAppSelector(selectUserStatus)
-  const dispatch = useAppDispatch()
   const { pathname } = useLocation()
   const isMobile = useWindowSize(1440)
-
-  useEffect(() => {
-    if (status === AuthStatus.authorized) dispatch(getUserChatsThunk())
-  }, [status])
 
   if (!chats.length && pathname.length <= 16)
     return (

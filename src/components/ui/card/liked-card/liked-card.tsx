@@ -18,7 +18,7 @@ const LikedCard: FC<ILikedCardProps> = ({ className, img, name, date, link }) =>
       <div className='flex gap-[15px] items-start lg:items-center'>
         <UserAvatar src={img} className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
         <div>
-          <h3 className='leading-6 text-[#55677D] flex flex-col lg:flex-row'>
+          <h3 className='leading-6 text-darkElectricBlue flex flex-col lg:flex-row'>
             <span className='font-bold text-liked-foreground mr-1'>{name}</span>
             <span className='mr-1 text-normal'>оценил вашу</span>
             <Link className='text-[#4791FF] hover:underline' to='/'>

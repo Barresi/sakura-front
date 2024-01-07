@@ -9,8 +9,10 @@ import Logo from '@src/components/ui/logo/logo'
 import Button from '@src/components/ui/button/button'
 import Input from '@src/components/ui/form/input/input'
 import { useTheme } from '@src/context/theme-context/useTheme'
+import { useToast } from '@src/components/ui/toast/use-toast'
 
 const LoginPage: FC = () => {
+  const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { toggleTheme } = useTheme()
@@ -20,8 +22,18 @@ const LoginPage: FC = () => {
     formState: { errors }
   } = useForm<ILoginForm>({ mode: 'onSubmit' })
 
-  const onSubmit: SubmitHandler<ILoginForm> = async (data) =>
-    await dispatch(loginThunk(data))
+  const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
+    await dispatch(loginThunk(data)).then((data) => {
+      if (data.meta.requestStatus === 'fulfilled') {
+        toast({
+          title: 'Системное уведомление',
+          description: 'Вы успешно зашли в свой аккаунт' as string
+        })
+      } else {
+        toast({ title: 'Системное уведомление', description: data.payload as string })
+      }
+    })
+  }
 
   return (
     <div className='flex justify-center items-center py-5 px-5 min-h-[100vh]'>
@@ -30,7 +42,7 @@ const LoginPage: FC = () => {
         className=' absolute top-5 left-5'
         onClick={toggleTheme}
       />
-      <div className='max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-white dark:bg-grayBlue w-[100%] mt-[64px] md:mt-auto'>
+      <div className='max-w-xl rounded-[10px] m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-white dark:bg-grayBlue w-[100%] mt-[64px] md:mt-auto'>
         <div>
           <Logo />
           <div className=' text-2xl text-center mt-5'>Авторизация</div>

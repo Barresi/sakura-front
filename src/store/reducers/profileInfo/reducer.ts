@@ -14,7 +14,7 @@ interface IInitialState {
 const initialState: IInitialState = {
   isLoading: false,
   error: '',
-  status: AuthStatus.notAuthorized,
+  status: AuthStatus.pending,
   user: {
     id: '',
     email: '',

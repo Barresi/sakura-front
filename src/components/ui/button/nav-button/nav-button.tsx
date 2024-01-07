@@ -15,8 +15,8 @@ interface INavButtonProps extends NavLinkProps {
 const NavButton: FC<INavButtonProps> = ({
   children,
   icon,
-  className,
-  linkClassName,
+  className = '',
+  linkClassName = '',
   badge,
   ...props
 }) => {

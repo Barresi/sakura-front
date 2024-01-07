@@ -9,8 +9,10 @@ import SettingButton from '@src/components/ui/button/setting-button/setting-butt
 import Input from '@src/components/ui/form/input/input'
 import Button from '@src/components/ui/button/button'
 import { useTheme } from '@src/context/theme-context/useTheme'
+import { useToast } from '@src/components/ui/toast/use-toast'
 
 const RegistrationPage: FC = () => {
+  const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { toggleTheme } = useTheme()
@@ -23,7 +25,15 @@ const RegistrationPage: FC = () => {
 
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
     await dispatch(registrationThunk(data)).then((data) => {
-      ;(data.payload as { id: number }).id && navigate('/')
+      if (data.meta.requestStatus === 'fulfilled') {
+        navigate('/')
+        toast({
+          title: 'Системное уведомление',
+          description: 'Вы успешно зарегистрировались' as string
+        })
+      } else {
+        toast({ title: 'Системное уведомление', description: data.payload as string })
+      }
     })
   }
 
@@ -34,7 +44,7 @@ const RegistrationPage: FC = () => {
         className='absolute top-5 left-5'
         onClick={toggleTheme}
       />
-      <div className='max-w-xl m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-white dark:bg-grayBlue w-[100%] mt-[64px] md:mt-auto '>
+      <div className='max-w-xl rounded-[10px] m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-white dark:bg-grayBlue w-[100%] mt-[64px] md:mt-auto '>
         <div>
           <Logo />
           <div className=' text-2xl text-center mt-5'>Регистрация</div>

@@ -14,7 +14,8 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      xxl: '1440px'
+      xxl: '1440px',
+      xxl2: '1940px'
     },
     container: {
       center: true,
@@ -27,6 +28,7 @@ module.exports = {
       smokyWhite: ' #f1f5f9',
       cadet: '#55677c',
       cadetBlue: '#adb5bd',
+
       lightGray: '#d6d6d6',
       nickel: '#6c767a',
       darkLightGray: '#929292',
@@ -34,6 +36,7 @@ module.exports = {
       water: '#cbeefc',
       red: '#d22828',
       redHover: '#c32222',
+      darkElectricBlue: '#55677D',
       darkGray: '#adb5bd',
       signalBlack: '#292929',
       brownBlack: '#202028',
@@ -48,7 +51,8 @@ module.exports = {
     borderRadius: {
       lg: '0.5rem',
       md: 'calc(0.5rem - 2px)',
-      sm: 'calc(0.5rem - 4px)'
+      sm: 'calc(0.5rem - 4px)',
+      full: '9999px'
     }
   },
   plugins: [require('tailwindcss-animate')]

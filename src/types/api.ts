@@ -63,16 +63,26 @@ export interface ICancelResponse extends INoContentResponse {}
 // Messenger api
 
 export interface IMessage {
+  updatedAt: string
   createdAt: string
   chatId: string
   senderId: string
   text: string
+  read: boolean
 }
 
 export interface IChat {
-  messages: IMessage[]
+  newMessage: {
+    senderId: 'string'
+    text: 'string'
+    chatId: 'string'
+    read: true
+    createdAt: 'string'
+    updatedAt: 'string'
+  }
   participants: Array<{ id: string }>
-  id: string
+  chatId: string
+  unread: number
   createdAt: string
   updatedAt: string
 }
@@ -83,4 +93,25 @@ export interface ICreateChatResponse {
 
 export interface IGetUserChatsResponse {
   userChats: IChat[]
+}
+
+// Notification api
+
+export enum NotificationTypeEnum {
+  sendFriendRequest = 'sendFriendRequest',
+  acceptFriendRequest = 'acceptFriendRequest',
+  rejectFriend = 'rejectFriendRequest',
+  getMessage = 'getMessageRequest'
+}
+
+export interface INotification {
+  id: 'string'
+  type: NotificationTypeEnum
+  content: 'string'
+  read: false
+  createdAt: 'string'
+  updatedAt: 'string'
+}
+export interface IGetUserNotificationsResponse {
+  notifications: INotification[]
 }

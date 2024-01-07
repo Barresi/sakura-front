@@ -34,7 +34,9 @@ const ActionButton: FC<IActionButtonProps> = ({
       icon={icon === 'like' ? whichLike : icon}
       {...props}
     >
-      <span className='text-lg font-bold text-[#55677D] leading-[23px]'>{children}</span>
+      <span className='text-lg font-bold text-darkElectricBlue leading-[23px]'>
+        {children}
+      </span>
     </Button>
   )
 }

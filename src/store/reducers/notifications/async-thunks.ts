@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getUserChatsRequest } from '@src/api/messenger/messenger'
-import { type IGetUserChatsResponse } from '@src/types/api'
+import { getUserNotifications } from '@src/api/notifications/notifications'
+import { type IGetUserNotificationsResponse } from '@src/types/api'
 import { AxiosError } from 'axios'
 
-export const getUserChatsThunk = createAsyncThunk<IGetUserChatsResponse>(
-  'messenger/getUserChats',
+export const getUserNotificationsThunk = createAsyncThunk<IGetUserNotificationsResponse>(
+  'notifications/getNotifications',
   async (_, { rejectWithValue }) => {
     try {
-      return await getUserChatsRequest()
+      return await getUserNotifications()
     } catch (err) {
       if (err instanceof AxiosError && err.response?.data.msg) {
         return rejectWithValue(err.response.data.msg)

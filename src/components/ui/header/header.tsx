@@ -1,20 +1,30 @@
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import { cn } from '@utils/utils'
+import { cn, parseDateToMonth, parseDateToTime } from '@utils/utils'
 import SettingButton from '../button/setting-button/setting-button'
 import Logo from '../logo/logo'
 import { useTheme } from '@src/context/theme-context/useTheme'
 import UserAvatar from '../avatar/avatar'
 import { useWindowSize } from '@src/hooks/useWindowSize'
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle
+} from '@src/components/ui/sheet/sheet'
+import { selectNotifications } from '@src/store/reducers/notifications/selectors'
+import { useAppSelector } from '@src/hooks/store-hooks'
+import NotificationCard from '../card/notification-card/notification-card'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-  className?: string
   avatar?: string
 }
 
 const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
   const { toggleTheme } = useTheme()
   const isMobile = useWindowSize(1024)
+  const notifications = useAppSelector(selectNotifications)
 
   return (
     <header
@@ -29,7 +39,30 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
 
       <div className='flex items-center justify-center gap-[15px]'>
         <SettingButton icon='theme' onClick={toggleTheme} className='flex lg:hidden' />
-        <SettingButton icon='notification' />
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <SettingButton icon='notification' />
+          </SheetTrigger>
+          <SheetContent
+            side='top'
+            className='w-[97%] lg:max-w-[600px] max-h-[80vh] top-[60px] md:top-[100px] lg:top-[120px] right-[1%] shadow-xl dark:bg-grayBlue'
+          >
+            <SheetHeader>
+              <SheetTitle>Уведомления</SheetTitle>
+              {notifications.map(({ id, content, type, createdAt }) => {
+                return (
+                  <NotificationCard
+                    key={id}
+                    id={content.split(' ')[0]}
+                    type={type}
+                    date={`${parseDateToMonth(createdAt)} ${parseDateToTime(createdAt)}`}
+                  />
+                )
+              })}
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
 
         <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
       </div>

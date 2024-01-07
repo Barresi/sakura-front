@@ -37,6 +37,7 @@ module.exports = {
         checksVoidReturn: false
       }
     ],
+    'no-console': 'warn',
     'react/react-in-jsx-scope': 'off',
     indent: ['error', 2, { SwitchCase: 1 }],
     'prettier/prettier': [
@@ -53,7 +54,11 @@ module.exports = {
         endOfLine: 'lf',
         arrowParens: 'always'
       }
-    ]
+    ],
+
+    // В компоненте Sheet подчеркивался className, мол, он неопределен в пропсах
+    // Нашел такое решение в обсуждениях этой проблемы
+    'react/prop-types': [2, { ignore: ['className'] }]
   },
   ignorePatterns: [
     '.eslintrc.cjs',

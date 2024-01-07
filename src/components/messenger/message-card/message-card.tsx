@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '@src/hooks/store-hooks'
 import { selectUser } from '@src/store/reducers/profileInfo/selectors'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
+import { Badge } from '@src/components/ui/badge/badge'
 
 export interface IMessageCardProps extends IChat {
   className?: string
@@ -14,9 +15,10 @@ export interface IMessageCardProps extends IChat {
 
 const MessageCard: FC<IMessageCardProps> = ({
   className,
-  id,
   participants,
-  messages,
+  chatId,
+  newMessage,
+  unread,
   updatedAt
 }) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
@@ -26,7 +28,7 @@ const MessageCard: FC<IMessageCardProps> = ({
   const friend = allUsers.find((item) => item.id === friendId)
   return (
     <NavLink
-      to={id}
+      to={chatId}
       className={({ isActive }) =>
         isActive ? '[&>div]:bg-ghostlyWhite [&>div]:dark:bg-brownBlack' : ''
       }
@@ -35,17 +37,18 @@ const MessageCard: FC<IMessageCardProps> = ({
         <div className='flex items-center gap-[15px]'>
           <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
           <div>
-            <h3 className='font-bold leading-6'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
+            <h3 className='font-bold leading-6 whitespace-nowrap'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
             <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
-              {messages[0]?.text}
+              {newMessage?.text}
             </span>
           </div>
         </div>
 
-        <div className='flex flex-col  self-start gap-[5px]'>
-          <span className='text-[#55677D]'>
-            {parseDateToMonth(messages[0]?.createdAt || updatedAt)}
+        <div className='flex flex-col self-start items-center gap-[5px] mt-[10px]'>
+          <span className='text-darkElectricBlue whitespace-nowrap'>
+            {parseDateToMonth(newMessage?.createdAt || updatedAt)}
           </span>
+          {unread ? <Badge>{unread}</Badge> : null}
         </div>
       </Card>
     </NavLink>

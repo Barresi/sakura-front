@@ -1,37 +1,42 @@
+import arrow from '@assets/ui/arrow.svg'
 import MessageInput from '@src/components/messenger/message-input/message-input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
-import { type FC, useEffect, useState, useRef, Fragment } from 'react'
-import arrow from '@assets/ui/arrow.svg'
-import { Link, useParams } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
-import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import {
+  GET_HISTORY_EVENT,
+  GET_MESSAGE_EVENT,
+  JOIN_CHAT_EVENT,
+  LEAVE_CHAT_EVENT,
+  SEND_MESSAGE_EVENT
+} from '@src/context/socket-context/socket-context'
 import { useSocket } from '@src/context/socket-context/useSocket'
-import Message from '../message/message'
-import { type IMessage } from '@src/types/api'
-import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
+import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
 import { selectAllUsers } from '@src/store/reducers/friends/selectors'
 import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
-import { parseDateToMonth } from '@src/utils/utils'
+import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
+import { selectUser } from '@src/store/reducers/profileInfo/selectors'
+import { type IMessage } from '@src/types/api'
 import {
-  type IFormattedMessages,
-  groupChatMessagesByDate
+  groupChatMessagesByDate,
+  type IFormattedMessages
 } from '@src/utils/messenger/other'
-
-const JOIN_CHAT_EVENT = 'joinChat'
-const LEAVE_CHAT_EVENT = 'leaveChat'
-const SEND_MESSAGE_EVENT = 'sendMessage'
-const GET_MESSAGE_EVENT = 'getMessage'
-const GET_HISTORY_EVENT = 'getHistory'
+import { parseDateToMonth } from '@src/utils/utils'
+import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import Message from '../message/message'
 
 const Chat: FC = () => {
   const container = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
+
+  // Флаг для отрисовки только одного блока новых сообщений
+  let isRendered = false
+
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
   const { id, firstName, lastName } = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const userChats = useAppSelector(selectMessengerUserChats)
-  const currentChat = userChats.find((item) => item.id === chatId.id)
+  const currentChat = userChats.find((item) => item.chatId === chatId.id)
   const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
 
@@ -56,6 +61,8 @@ const Chat: FC = () => {
   }
   const getHistory = (history: IMessage[]): void => {
     setChatMessages(history)
+    // Нужен для обновления счетчика прочитанных сообщений в user chats
+    dispatch(getUserChatsThunk())
   }
 
   useEffect(() => {
@@ -83,6 +90,35 @@ const Chat: FC = () => {
   useEffect(() => {
     if (container.current) container.current.scrollTop = container.current.scrollHeight
   }, [formattedMessages])
+
+  // Может стоит вынести эти функции в отдельный файл, к примеру, renders?
+  const renderMessages = (value: IMessage, ind: number): ReactNode => {
+    const { text, senderId, createdAt } = value
+    const isMyMessage = senderId === id
+    return (
+      <Message
+        text={text}
+        date={createdAt}
+        my={isMyMessage}
+        key={ind}
+        firstName={isMyMessage ? firstName : friend?.firstName}
+        lastName={isMyMessage ? lastName : friend?.lastName}
+      />
+    )
+  }
+
+  const renderNewMessagesBlock = (): ReactNode => {
+    if (!isRendered) {
+      isRendered = true
+
+      return (
+        <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
+          Новые сообщения
+        </span>
+      )
+    }
+  }
+
   return (
     <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
       <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
@@ -104,26 +140,25 @@ const Chat: FC = () => {
         ref={container}
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
-        {formattedMessages.map(({ date, chats }) => {
+        {formattedMessages.map(({ date, messages }) => {
+          const readMessagesChats = messages.filter(
+            (item) => item.read || item.senderId === id
+          )
+          const unreadMessagesChats = messages.filter(
+            (item) => !item.read && item.senderId !== id
+          )
+
           return (
             <Fragment key={date}>
               <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
                 {parseDateToMonth(date)}
               </span>
-              {chats.map((item, ind) => {
-                const { createdAt, senderId, text } = item
-                const isMyMessage = senderId === id
-                return (
-                  <Message
-                    text={text}
-                    date={createdAt}
-                    my={isMyMessage}
-                    key={ind}
-                    firstName={isMyMessage ? firstName : friend?.firstName}
-                    lastName={isMyMessage ? lastName : friend?.lastName}
-                  />
-                )
-              })}
+
+              {readMessagesChats.map(renderMessages)}
+
+              {!!unreadMessagesChats.length && renderNewMessagesBlock()}
+
+              {unreadMessagesChats.map(renderMessages)}
             </Fragment>
           )
         })}
