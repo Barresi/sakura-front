@@ -1,20 +1,20 @@
-import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import { cn, parseDateToMonth, parseDateToTime } from '@utils/utils'
-import SettingButton from '../button/setting-button/setting-button'
-import Logo from '../logo/logo'
-import { useTheme } from '@src/context/theme-context/useTheme'
-import UserAvatar from '../avatar/avatar'
-import { useWindowSize } from '@src/hooks/useWindowSize'
 import {
   Sheet,
-  SheetTrigger,
   SheetContent,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
+  SheetTrigger
 } from '@src/components/ui/sheet/sheet'
-import { selectNotifications } from '@src/store/reducers/notifications/selectors'
+import { useTheme } from '@src/context/theme-context/useTheme'
 import { useAppSelector } from '@src/hooks/store-hooks'
+import { useWindowSize } from '@src/hooks/useWindowSize'
+import { selectNotifications } from '@src/store/reducers/notifications/selectors'
+import { cn, parseDateToMonth, parseDateToTime } from '@utils/utils'
+import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
+import UserAvatar from '../avatar/avatar'
+import SettingButton from '../button/setting-button/setting-button'
 import NotificationCard from '../card/notification-card/notification-card'
+import Logo from '../logo/logo'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
@@ -60,6 +60,12 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
                   />
                 )
               })}
+
+              {notifications.length <= 0 ? (
+                <span className='bg-white dark:bg-grayBlue rounded-tl-[10px] border border-white dark:border-grayBlue border-b-smokyWhite dark:border-b-cadet py-[20px] text-center text-cadet'>
+                  Уведомлений пока что нет
+                </span>
+              ) : null}
             </SheetHeader>
           </SheetContent>
         </Sheet>

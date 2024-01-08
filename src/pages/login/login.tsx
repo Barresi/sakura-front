@@ -1,15 +1,15 @@
-import { type FC } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm, type SubmitHandler } from 'react-hook-form'
-import { type ILoginForm } from '../../types/forms'
-import { loginThunk } from '@src/store/reducers/profileInfo/async-thunks'
-import { useAppDispatch } from '@src/hooks/store-hooks'
-import SettingButton from '@src/components/ui/button/setting-button/setting-button'
-import Logo from '@src/components/ui/logo/logo'
 import Button from '@src/components/ui/button/button'
+import SettingButton from '@src/components/ui/button/setting-button/setting-button'
 import Input from '@src/components/ui/form/input/input'
-import { useTheme } from '@src/context/theme-context/useTheme'
+import Logo from '@src/components/ui/logo/logo'
 import { useToast } from '@src/components/ui/toast/use-toast'
+import { useTheme } from '@src/context/theme-context/useTheme'
+import { useAppDispatch } from '@src/hooks/store-hooks'
+import { loginThunk } from '@src/store/reducers/profileInfo/async-thunks'
+import { type FC } from 'react'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { type ILoginForm } from '../../types/forms'
 
 const LoginPage: FC = () => {
   const { toast } = useToast()
@@ -48,7 +48,7 @@ const LoginPage: FC = () => {
           <div className=' text-2xl text-center mt-5'>Авторизация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-4'>
           <Input
             {...register('email', {
               required: 'Обязательное поле',

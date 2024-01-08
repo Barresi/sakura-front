@@ -1,15 +1,15 @@
-import { type FC } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm, type SubmitHandler } from 'react-hook-form'
-import { type IRegistrationForm } from '../../types/forms'
-import { registrationThunk } from '@src/store/reducers/profileInfo/async-thunks'
-import { useAppDispatch } from '@src/hooks/store-hooks'
-import Logo from '@src/components/ui/logo/logo'
+import Button from '@src/components/ui/button/button'
 import SettingButton from '@src/components/ui/button/setting-button/setting-button'
 import Input from '@src/components/ui/form/input/input'
-import Button from '@src/components/ui/button/button'
-import { useTheme } from '@src/context/theme-context/useTheme'
+import Logo from '@src/components/ui/logo/logo'
 import { useToast } from '@src/components/ui/toast/use-toast'
+import { useTheme } from '@src/context/theme-context/useTheme'
+import { useAppDispatch } from '@src/hooks/store-hooks'
+import { registrationThunk } from '@src/store/reducers/profileInfo/async-thunks'
+import { type FC } from 'react'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { type IRegistrationForm } from '../../types/forms'
 
 const RegistrationPage: FC = () => {
   const { toast } = useToast()
@@ -50,7 +50,7 @@ const RegistrationPage: FC = () => {
           <div className=' text-2xl text-center mt-5'>Регистрация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-4'>
           <Input
             {...register('firstName', {
               required: 'Обязательное поле',
@@ -108,7 +108,7 @@ const RegistrationPage: FC = () => {
               },
               pattern: {
                 value: /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/,
-                message: 'Пароль должен иметь минимум 1 символ и 1 цифру'
+                message: 'Пароль должен состоять из минимум 1 спецсимвола и 1 цифры'
               }
             })}
             error={errors.password && (errors.password.message || 'login is required')}
