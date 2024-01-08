@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { cn } from '@utils/utils'
 
-import eye from '@assets/ui/Eye.svg'
 import eyeOff from '@assets/ui/Eye Off.svg'
+import eye from '@assets/ui/Eye.svg'
 
 export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
@@ -22,10 +22,10 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
     const errorClass = error
       ? 'border-red focus:border-red'
       : 'border-smokyWhite dark:border-cadet focus:border-blue dark:focus:border-twitter'
-    const errorSpanClass = error ? `absolute top-[3.55rem] left-5 text-red` : ''
+    const errorSpanClass = error ? `block pt-2 text-red break-normal` : ''
 
     const input = (
-      <div className='w-full relative pb-6'>
+      <div className='w-full'>
         <input
           type={inputType}
           className={cn(baseClass, errorClass, className)}
@@ -42,7 +42,7 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
         <div className='w-full relative'>
           {input}
           <img
-            className={`cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}
+            className={`cursor-pointer absolute top-4 right-5 transition-all hover:scale-[1.1] active:scale-[0.9]`}
             onClick={toggleType}
             src={inputType === 'text' ? eye : eyeOff}
             alt=''
