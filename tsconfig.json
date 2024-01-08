@@ -26,7 +26,7 @@
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@store/*": ["./src/store/*"],
-      "@types/*": ["./src/types/*"],
+      "@types/*": ["src/shared/lib/types/*"],
       "@ui/*": ["src/components/ui/*"],
       "@utils/*": ["./src/utils/*"]
     }
