@@ -1,20 +1,20 @@
-import Sidebar from '@src/components/sidebar/sidebar'
-import MobileNav from '@src/components/mobile-nav/mobile-nav'
-import Header from '@src/components/ui/header/header'
+import Sidebar from '@src/widgets/sidebar/sidebar'
+import MobileNav from '@src/widgets/mobile-nav/mobile-nav'
+import Header from '@src/widgets/header/header'
 import { useEffect, type FC } from 'react'
 import { Outlet } from 'react-router'
-import { useWindowSize } from '@src/hooks/useWindowSize'
+import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
 import {
   getAllUsersThunk,
   getFriendsThunk,
   getReceivedThunk,
   getSendedThunk
-} from '@src/store/reducers/friends/async-thunks'
-import { useAppDispatch, useAppSelector } from '@src/hooks/store-hooks'
-import { selectUserStatus } from '@src/store/reducers/profileInfo/selectors'
-import { AuthStatus } from '@src/types/api'
-import { getUserChatsThunk } from '@src/store/reducers/messenger/async-thunks'
-import { getUserNotificationsThunk } from '@src/store/reducers/notifications/async-thunks'
+} from '@src/app/store/reducers/friends/async-thunks'
+import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { selectUserStatus } from '@src/app/store/reducers/profileInfo/selectors'
+import { AuthStatus } from '@src/shared/lib/types/api'
+import { getUserChatsThunk } from '@src/app/store/reducers/messenger/async-thunks'
+import { getUserNotificationsThunk } from '@src/app/store/reducers/notifications/async-thunks'
 
 const MainPage: FC = () => {
   const isMobile = useWindowSize(1024)

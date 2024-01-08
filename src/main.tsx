@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import App from '@components/app/app'
-import { store } from '@store/store'
-import { ThemeProvider } from '@src/context/theme-context/theme-provider'
-import { SocketProvider } from './context/socket-context/socket-provider'
+import App from '@src/app/app'
+import { store } from '@src/app/store/store'
+import { ThemeProvider } from '@src/app/providers/theme-context/theme-provider'
+import { SocketProvider } from './app/providers/socket-context/socket-provider'
 import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

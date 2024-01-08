@@ -1,11 +1,11 @@
-import MessageCard from '@src/components/messenger/message-card/message-card'
+import MessageCard from '@src/pages/messenger/ui/message-card/message-card'
 import { type FC } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import notActiveChats from '@assets/messenger/not active chats.svg'
 import chooseChat from '@assets/messenger/choose chat.svg'
-import { useWindowSize } from '@src/hooks/useWindowSize'
-import { useAppSelector } from '@src/hooks/store-hooks'
-import { selectMessengerUserChats } from '@src/store/reducers/messenger/selectors'
+import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
+import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { selectMessengerUserChats } from '@src/app/store/reducers/messenger/selectors'
 
 const MessengerPage: FC = () => {
   const chats = useAppSelector(selectMessengerUserChats)
