@@ -91,10 +91,10 @@ const Chat: FC = () => {
     if (container.current) container.current.scrollTop = container.current.scrollHeight
   }, [formattedMessages])
 
-  // Может стоит вынести эти функции в отдельный файл, к примеру, renders?
   const renderMessages = (value: IMessage, ind: number): ReactNode => {
     const { text, senderId, createdAt } = value
     const isMyMessage = senderId === id
+
     return (
       <Message
         text={text}
@@ -141,6 +141,22 @@ const Chat: FC = () => {
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
         {formattedMessages.map(({ date, messages }) => {
+          // Логика такая: если у нас последнее сообщение прочитано
+          // то значит мы прочитали либо отправили сообщение,
+          // не нужно рендерить блок "новые сообщения"
+          // => просто рендерим все сообщения
+          if (messages.at(-1)?.read) {
+            return (
+              <Fragment key={date}>
+                <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
+                  {parseDateToMonth(date)}
+                </span>
+
+                {messages.map(renderMessages)}
+              </Fragment>
+            )
+          }
+
           const readMessagesChats = messages.filter(
             (item) => item.read || item.senderId === id
           )
@@ -163,7 +179,7 @@ const Chat: FC = () => {
           )
         })}
       </div>
-      <div className='absolute bottom-0 right-5 left-5'>
+      <div className='absolute bottom-0 right-5 left-5 pb-2'>
         <MessageInput sendMessage={sendMessage} />
       </div>
     </div>

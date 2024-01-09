@@ -1,8 +1,8 @@
-import { type FC, useState } from 'react'
+import { useState, type FC } from 'react'
 import Input, { type IInputProps } from '../../ui/form/input/input'
 
-import media from '@assets/ui/paperclip.svg'
 import smile from '@assets/ui/Smile.svg'
+import media from '@assets/ui/paperclip.svg'
 import send from '@assets/ui/send.svg'
 import { cn } from '@src/utils/utils'
 
@@ -33,7 +33,7 @@ const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
         value={message}
       />
 
-      <div className='absolute top-[50%] flex items-center gap-2 translate-y-[-90%] right-[10px]'>
+      <div className='absolute top-[50%] flex items-center gap-2 translate-y-[-50%] right-[10px]'>
         <button type='button'>
           <img
             className='cursor-pointer active:scale-[.95]'
