@@ -1,6 +1,6 @@
 import { type FC } from 'react'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import Input, { type IInputProps } from './input/input'
+import { cn } from '@src/shared/lib/merge-classes'
+import Input, { type IInputProps } from '../input/input'
 import UserAvatar from '@src/shared/ui/avatar/avatar'
 
 import smile from '@assets/ui/Smile.svg'

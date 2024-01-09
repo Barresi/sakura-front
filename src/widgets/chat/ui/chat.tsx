@@ -19,7 +19,7 @@ import {
   groupChatMessagesByDate,
   type IFormattedMessages
 } from '@src/widgets/chat/lib/group-chat-messages'
-import { parseDateToMonth } from '@src/shared/lib/parse-date/parse-date'
+import { parseDateToMonth } from '@src/shared/lib/parse-date'
 import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Message from './message/message'

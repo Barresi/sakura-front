@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import FriendButton from '@src/entities/friends-card/ui/friend-button'
+import FriendButton from '@src/entities/card-friends/ui/friend-button'
 import Card from '../../../shared/ui/card/card'
 import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
@@ -16,9 +16,9 @@ import {
   createChatRequestHandler,
   deleteFriendHandler,
   rejectRequestHandler
-} from '@src/entities/friends-card/lib/handlers'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import { checkStates } from '@src/entities/friends-card/lib/other'
+} from '@src/entities/card-friends/lib/handlers'
+import { cn } from '@src/shared/lib/merge-classes'
+import { checkStates } from '@src/entities/card-friends/lib/other'
 import UserAvatar from '@src/shared/ui/avatar/avatar'
 import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
 import { type FriendTabs } from '@src/shared/lib/types/other'

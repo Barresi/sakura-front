@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Button from '../../../shared/ui/button/button'
 import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
-import { type Icon } from '@src/shared/lib/button-icons/button-icons'
+import { type Icon } from '@src/shared/lib/button-icons'
 import { type FriendTabs } from '@src/shared/lib/types/other'
 
 interface IFriendButtonProps {

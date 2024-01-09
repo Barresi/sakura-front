@@ -1,14 +1,14 @@
 import { type FC } from 'react'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import Card from '../../../../shared/ui/card/card'
-import UserAvatar from '../../../../shared/ui/avatar/avatar'
+import { cn } from '@src/shared/lib/merge-classes'
+import Card from '../../shared/ui/card/card'
+import UserAvatar from '../../shared/ui/avatar/avatar'
 import { type IChat } from '@src/shared/lib/types/api'
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
 import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
 import { Badge } from '@src/shared/ui/badge/badge'
-import { parseDateToMonth } from '@src/shared/lib/parse-date/parse-date'
+import { parseDateToMonth } from '@src/shared/lib/parse-date'
 
 export interface IMessageCardProps extends IChat {
   className?: string

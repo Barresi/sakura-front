@@ -1,4 +1,4 @@
-import MessageCard from '@src/pages/messenger/ui/message-card/message-card'
+import MessageCard from '@src/entities/card-message/message-card'
 import { type FC } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import notActiveChats from '@assets/messenger/not active chats.svg'

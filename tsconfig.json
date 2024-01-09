@@ -22,13 +22,13 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@store/*": ["./src/store/*"],
-      "@types/*": ["src/shared/lib/types/*"],
-      "@ui/*": ["src/components/ui/*"],
-      "@utils/*": ["./src/utils/*"]
+
+      "@app": ["./src/app/*"],
+      "@pages": ["./src/pages/*"],
+      "@widgets": ["./src/widgets/*"],
+      "@features": ["./src/features/*"],
+      "@entities": ["./src/entities/*"],
+      "@shared": ["./src/shared/*"]
     }
   },
   "include": ["src"],

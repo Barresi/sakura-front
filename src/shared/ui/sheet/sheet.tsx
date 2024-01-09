@@ -3,8 +3,8 @@ import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
 
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import { sheetVariants } from '../../lib/variants/variants'
+import { cn } from '@src/shared/lib/merge-classes'
+import { sheetVariants } from '../../lib/ui-variants'
 
 const Sheet = SheetPrimitive.Root
 

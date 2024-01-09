@@ -1,5 +1,5 @@
 import { type FC, type ChangeEventHandler, useState } from 'react'
-import Search from '@src/shared/ui/search-input/search'
+import Search from '@src/shared/ui/input-search/search'
 import { type FriendTabs } from '@src/shared/lib/types/other'
 import FriendsTab from './friends-tab'
 import ReceivedTab from './received-tab'

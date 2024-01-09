@@ -1,5 +1,5 @@
 import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 import { type FC } from 'react'
 
 interface IFriendsProps {

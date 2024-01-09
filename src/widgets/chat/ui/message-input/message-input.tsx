@@ -4,7 +4,7 @@ import Input, { type IInputProps } from '../../../../shared/ui/input/input'
 import media from '@assets/ui/paperclip.svg'
 import smile from '@assets/ui/Smile.svg'
 import send from '@assets/ui/send.svg'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 
 interface IMessageInputProps extends IInputProps {
   sendMessage: (message: string) => void

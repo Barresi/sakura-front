@@ -1,8 +1,8 @@
 import { type FC } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import { badgeVariants } from '../../lib/variants/variants'
+import { cn } from '@src/shared/lib/merge-classes'
+import { badgeVariants } from '../../lib/ui-variants'
 
 export interface IBadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,

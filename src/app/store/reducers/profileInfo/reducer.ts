@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { loginThunk, logoutThunk, userInfoThunk, registrationThunk } from './async-thunks'
-import { deleteCookie, setCookie } from '@src/shared/lib/cookie/cookie'
+import { deleteCookie, setCookie } from '@src/shared/lib/cookie'
 import { type IUser } from '@src/shared/lib/types/types'
 import { AuthStatus } from '@src/shared/lib/types/api'
 

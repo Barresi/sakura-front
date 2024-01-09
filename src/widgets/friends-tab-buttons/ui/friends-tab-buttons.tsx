@@ -1,5 +1,5 @@
 import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import TabButton from '@src/widgets/friends-tab-buttons/ui/tab-button/tab-button'
+import TabButton from '@src/shared/ui/button-tab/tab-button'
 import { selectReceived } from '@src/app/store/reducers/friends/selectors'
 import { type FriendTabs } from '@src/shared/lib/types/other'
 import { type FC } from 'react'

@@ -4,8 +4,8 @@ import { X } from 'lucide-react'
 import * as React from 'react'
 
 import { type IPropsForwardRefsUI } from '@src/shared/lib/types/props'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import { toastVariants } from '../../../../shared/lib/variants/variants'
+import { cn } from '@src/shared/lib/merge-classes'
+import { toastVariants } from '../../../../shared/lib/ui-variants'
 
 const ToastProvider = ToastPrimitives.Provider
 

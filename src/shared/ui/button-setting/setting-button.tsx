@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 import Button, { type IButtonProps } from '../button/button'
 
 import { Badge } from '@src/shared/ui/badge/badge'

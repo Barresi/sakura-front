@@ -1,6 +1,6 @@
-import NotificationCard from '@src/widgets/sheet/ui/notification-card/notification-card'
+import NotificationCard from '@src/entities/card-notification/notification-card'
 import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { parseDateToMonth, parseDateToTime } from '@src/shared/lib/parse-date/parse-date'
+import { parseDateToMonth, parseDateToTime } from '@src/shared/lib/parse-date'
 import SettingButton from '@src/shared/ui/button-setting/setting-button'
 import {
   Sheet,

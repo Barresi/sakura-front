@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Input, { type IInputProps } from '../input/input'
 
 import icon from '@assets/ui/Search.svg'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 
 interface ISearchInputProps extends Omit<IInputProps, 'type'> {}
 

@@ -1,5 +1,5 @@
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 import SettingButton from '../../shared/ui/button-setting/setting-button'
 import Logo from '../../shared/ui/logo/logo'
 import { useTheme } from '@src/app/providers/theme-context/useTheme'

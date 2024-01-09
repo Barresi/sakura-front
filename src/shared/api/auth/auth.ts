@@ -1,6 +1,6 @@
 import { api, apiWithAuth } from '../api'
 import { type ILoginForm, type IRegistrationForm } from '@src/shared/lib/types/forms'
-import { setCookie } from '@src/shared/lib/cookie/cookie'
+import { setCookie } from '@src/shared/lib/cookie'
 import {
   type IRegistrationResponse,
   type ILoginResponse,

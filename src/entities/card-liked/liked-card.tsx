@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 import { Link } from 'react-router-dom'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 import UserAvatar from '@src/shared/ui/avatar/avatar'
 import Card from '../../shared/ui/card/card'
 

@@ -21,7 +21,7 @@ import {
   Thumb,
   Viewport
 } from '@radix-ui/react-scroll-area'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 import { type IPropsForwardRefsUI } from '@src/shared/lib/types/props'
 
 const Select = SelectRoot

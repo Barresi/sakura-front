@@ -2,8 +2,8 @@ import { type FC, type ReactNode } from 'react'
 import { Badge } from '@src/shared/ui/badge/badge'
 import { NavLink, type NavLinkProps } from 'react-router-dom'
 import Button from '../button/button'
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
-import { type Icon } from '../../lib/button-icons/button-icons'
+import { cn } from '@src/shared/lib/merge-classes'
+import { type Icon } from '../../lib/button-icons'
 
 interface INavButtonProps extends NavLinkProps {
   badge?: number

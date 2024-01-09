@@ -1,7 +1,7 @@
 import { type FC, forwardRef } from 'react'
 import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 
-import { cn } from '@src/shared/lib/merge-classes/merge-classes'
+import { cn } from '@src/shared/lib/merge-classes'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
 import { type IPropsForwardRefsUI } from '@src/shared/lib/types/props'
