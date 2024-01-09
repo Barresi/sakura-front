@@ -8,7 +8,7 @@ import SettingButton from '@src/shared/ui/button-setting/setting-button'
 import Logo from '@src/shared/ui/logo/logo'
 import Button from '@src/shared/ui/button/button'
 import Input from '@src/shared/ui/input/input'
-import { useTheme } from '@src/app/providers/theme-context/useTheme'
+import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
 import { useToast } from '@src/widgets/toaster/lib/use-toast'
 
 const LoginPage: FC = () => {

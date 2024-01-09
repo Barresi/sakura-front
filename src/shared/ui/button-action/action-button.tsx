@@ -1,7 +1,7 @@
 import { type FC, useState } from 'react'
 import { cn } from '@src/shared/lib/merge-classes'
 import Button, { type IButtonProps } from '../button/button'
-import { useTheme } from '@src/app/providers/theme-context/useTheme'
+import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
 
 interface IActionButtonProps extends IButtonProps {}
 

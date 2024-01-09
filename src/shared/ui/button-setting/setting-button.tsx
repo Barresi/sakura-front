@@ -3,7 +3,7 @@ import { cn } from '@src/shared/lib/merge-classes'
 import Button, { type IButtonProps } from '../button/button'
 
 import { Badge } from '@src/shared/ui/badge/badge'
-import { useTheme } from '@src/app/providers/theme-context/useTheme'
+import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
 
 interface ISettingButtonProps extends IButtonProps {
   badge?: number

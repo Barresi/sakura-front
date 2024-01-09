@@ -7,8 +7,8 @@ import {
   JOIN_CHAT_EVENT,
   LEAVE_CHAT_EVENT,
   SEND_MESSAGE_EVENT
-} from '@src/app/providers/socket-context/socket-context'
-import { useSocket } from '@src/app/providers/socket-context/useSocket'
+} from '@src/app/providers/socket-context/lib/socket-context'
+import { useSocket } from '@src/app/providers/socket-context/lib/useSocket'
 import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
 import { getUserChatsThunk } from '@src/app/store/reducers/messenger/async-thunks'

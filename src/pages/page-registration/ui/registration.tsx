@@ -8,7 +8,7 @@ import Logo from '@src/shared/ui/logo/logo'
 import SettingButton from '@src/shared/ui/button-setting/setting-button'
 import Input from '@src/shared/ui/input/input'
 import Button from '@src/shared/ui/button/button'
-import { useTheme } from '@src/app/providers/theme-context/useTheme'
+import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
 import { useToast } from '@src/widgets/toaster/lib/use-toast'
 
 const RegistrationPage: FC = () => {
