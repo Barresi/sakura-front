@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import FriendButton from '@src/entities/card-friends/ui/friend-button'
+import FriendButton from '@src/entities/card-friends/ui/button-friend/friend-button'
 import Card from '../../../shared/ui/card/card'
 import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
@@ -18,7 +18,7 @@ import {
   rejectRequestHandler
 } from '@src/entities/card-friends/lib/handlers'
 import { cn } from '@src/shared/lib/merge-classes'
-import { checkStates } from '@src/entities/card-friends/lib/other'
+import { checkFriendState } from '@src/entities/card-friends/lib/check-friend-state'
 import UserAvatar from '@src/shared/ui/avatar/avatar'
 import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
 import { type FriendTabs } from '@src/shared/lib/types/other'
@@ -44,9 +44,9 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
   const { firstName, lastName } = user
 
-  const isFriend = checkStates(friends, currentId, user?.id)
-  const isRequestSended = checkStates(sended, currentId, user?.id)
-  const isRequestReceived = checkStates(received, currentId, user?.id)
+  const isFriend = checkFriendState(friends, currentId, user?.id)
+  const isRequestSended = checkFriendState(sended, currentId, user?.id)
+  const isRequestReceived = checkFriendState(received, currentId, user?.id)
 
   const avatar = (
     <UserAvatar className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]' />

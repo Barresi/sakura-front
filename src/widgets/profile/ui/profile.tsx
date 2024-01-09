@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 import Button from '../../../shared/ui/button/button'
-import Friends from '@src/entities/row-friends/friends'
+import Friends from '@src/entities/row-friends/ui/friends'
 import UserAvatar from '../../../shared/ui/avatar/avatar'
 
 import friend from '@assets/friend.svg'

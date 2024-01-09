@@ -1,7 +1,7 @@
 import { type FC, useEffect } from 'react'
 import { useAppDispatch } from '@src/shared/lib/hooks/store-hooks'
 import { userInfoThunk } from '@src/app/store/reducers/profileInfo/async-thunks'
-import Toaster from '../widgets/toaster/ui/toaster/toaster'
+import Toaster from '../widgets/toaster/ui/toaster'
 import { useSocket } from '@src/app/providers/socket-context/useSocket'
 import { useToast } from '../widgets/toaster/lib/use-toast'
 import {
