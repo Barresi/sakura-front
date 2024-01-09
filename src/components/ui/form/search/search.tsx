@@ -19,7 +19,7 @@ const SearchInput: FC<ISearchInputProps> = ({ className, ...props }) => {
         {...props}
       />
 
-      <img className='absolute top-[52%] right-4 translate-y-[-100%]' src={icon} alt='' />
+      <img className='absolute top-[50%] right-4 translate-y-[-50%]' src={icon} alt='' />
     </div>
   )
 }

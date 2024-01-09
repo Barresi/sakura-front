@@ -1,7 +1,7 @@
-import { type FC } from 'react'
-import { cn } from '@utils/utils'
-import Input, { type IInputProps } from '../input/input'
 import UserAvatar from '@src/components/ui/avatar/avatar'
+import { cn } from '@utils/utils'
+import { type FC } from 'react'
+import Input, { type IInputProps } from '../input/input'
 
 import smile from '@assets/ui/Smile.svg'
 
@@ -30,7 +30,7 @@ const NewsInput: FC<INewsInputProps> = ({ avatar, className, ...props }) => {
         {...props}
       />
       <img
-        className='cursor-pointer absolute top-[50%] right-[20px] translate-y-[-90%] active:scale-[.95]'
+        className='cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] active:scale-[.95]'
         src={smile}
         alt=''
         onClick={() => {
