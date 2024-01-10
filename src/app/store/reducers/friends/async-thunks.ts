@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getFriends } from '@src/shared/api/friends/friends'
-import { getReceived, getSended } from '@src/shared/api/friends/requests'
-import { getAllUsers } from '@src/shared/api/friends/users'
+import { getFriends } from '@shared/api/friends/friends'
+import { getReceived, getSended } from '@shared/api/friends/requests'
+import { getAllUsers } from '@shared/api/friends/users'
 import {
   type IAllUsersResponse,
   type IFriendsResponse,
   type IReceivedResponse,
   type ISendedResponse
-} from '@src/shared/lib/types/api'
+} from '@shared/lib/types/api'
+
 import { AxiosError } from 'axios'
 
 export const getAllUsersThunk = createAsyncThunk<IAllUsersResponse>(

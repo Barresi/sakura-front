@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getUserNotifications } from '@src/shared/api/notifications/notifications'
-import { type IGetUserNotificationsResponse } from '@src/shared/lib/types/api'
+import { getUserNotifications } from '@shared/api/notifications/notifications'
+import { type IGetUserNotificationsResponse } from '@shared/lib/types/api'
 import { AxiosError } from 'axios'
 
 export const getUserNotificationsThunk = createAsyncThunk<IGetUserNotificationsResponse>(

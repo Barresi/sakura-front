@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { type INotification } from '@src/shared/lib/types/api'
+import { type INotification } from '@shared/lib/types/api'
 import { getUserNotificationsThunk } from './async-thunks'
 
 interface IInitialState {

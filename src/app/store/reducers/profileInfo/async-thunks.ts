@@ -4,14 +4,14 @@ import {
   loginRequest,
   logoutRequest,
   registrationRequest
-} from '@src/shared/api/auth/auth'
+} from '@shared/api/auth/auth'
 import {
   type IUserInfoResponse,
   type ILoginResponse,
   type IRegistrationResponse,
   type ILogoutResponse
-} from '@src/shared/lib/types/api'
-import { type ILoginForm, type IRegistrationForm } from '@src/shared/lib/types/forms'
+} from '@shared/lib/types/api'
+import { type ILoginForm, type IRegistrationForm } from '@shared/lib/types/forms'
 import { AxiosError } from 'axios'
 
 export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getUserChatsRequest } from '@src/shared/api/messenger/messenger'
-import { type IGetUserChatsResponse } from '@src/shared/lib/types/api'
+import { getUserChatsRequest } from '@shared/api/messenger/messenger'
+import { type IGetUserChatsResponse } from '@shared/lib/types/api'
 import { AxiosError } from 'axios'
 
 export const getUserChatsThunk = createAsyncThunk<IGetUserChatsResponse>(

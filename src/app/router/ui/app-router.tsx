@@ -1,13 +1,13 @@
-import ProtectedRouteElement from '@src/app/router/ui/protected-route-element'
-import FriendsPage from '@src/pages/page-friends/ui/friends-page'
-import LoginPage from '@src/pages/page-login/ui/login'
-import MainPage from '@src/pages/page-main/ui/main'
-import MessengerPage from '@src/pages/page-messenger/ui/messenger'
-import NotFoundPage from '@src/pages/page-not-found/ui/not-found-page'
-import RegistrationPage from '@src/pages/page-registration/ui/registration'
-import Chat from '@src/widgets/chat/ui/chat'
 import { type FC, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import ProtectedRouteElement from './protected-route-element'
+import { LoginPage } from '@pages/page-login'
+import { RegistrationPage } from '@pages/page-registration'
+import { MainPage } from '@pages/page-main'
+import { MessengerPage } from '@pages/page-messenger'
+import { Chat } from '@widgets/chat'
+import { FriendsPage } from '@pages/page-friends'
+import { NotFoundPage } from '@pages/page-not-found'
 
 const AppRouter: FC = () => {
   return (

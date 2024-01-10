@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { type RootState } from '@src/app/store/store'
-import { type IChat } from '@src/shared/lib/types/api'
+import { type RootState } from '@app/store/store'
+import { type IChat } from '@shared/lib/types/api'
 
 //  Эта логика мемоизирует store и убирает ререндеры
 // было в документации в варнинге

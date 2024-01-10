@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { type IChat } from '@src/shared/lib/types/api'
+import { type IChat } from '@shared/lib/types/api'
 import { getUserChatsThunk } from './async-thunks'
 
 interface IInitialState {

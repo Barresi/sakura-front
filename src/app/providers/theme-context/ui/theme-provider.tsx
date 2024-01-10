@@ -1,8 +1,8 @@
 import { useState, useEffect, type FC } from 'react'
 import {
-  ThemeProviderContext,
+  LOCAL_STORAGE_THEME_KEY,
   Theme,
-  LOCAL_STORAGE_THEME_KEY
+  ThemeProviderContext
 } from '../lib/theme-context'
 
 interface IThemeProviderProps {

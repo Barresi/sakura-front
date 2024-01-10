@@ -1,5 +1,5 @@
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { useEffect, useState, type FC } from 'react'
 import type socketio from 'socket.io-client'
 import { SocketContext, getSocket } from '../lib/socket-context'
