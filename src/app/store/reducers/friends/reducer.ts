@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { type IFriend } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 import {
   getAllUsersThunk,
   getFriendsThunk,
   getReceivedThunk,
   getSendedThunk
 } from './async-thunks'
-import { type IUser } from '@shared/lib/types/types'
-import { type IFriend } from '@shared/lib/types/api'
 
 interface IInitialState {
   isLoading: boolean

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loginThunk, logoutThunk, userInfoThunk, registrationThunk } from './async-thunks'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
-import { type IUser } from '@shared/lib/types/types'
 import { AuthStatus } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
+import { loginThunk, logoutThunk, registrationThunk, userInfoThunk } from './async-thunks'
 
 interface IInitialState {
   isLoading: boolean

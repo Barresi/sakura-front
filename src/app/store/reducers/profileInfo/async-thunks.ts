@@ -6,10 +6,10 @@ import {
   registrationRequest
 } from '@shared/api/auth/auth'
 import {
-  type IUserInfoResponse,
   type ILoginResponse,
+  type ILogoutResponse,
   type IRegistrationResponse,
-  type ILogoutResponse
+  type IUserInfoResponse
 } from '@shared/lib/types/api'
 import { type ILoginForm, type IRegistrationForm } from '@shared/lib/types/forms'
 import { AxiosError } from 'axios'

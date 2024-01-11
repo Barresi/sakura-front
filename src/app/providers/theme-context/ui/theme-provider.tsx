@@ -1,4 +1,4 @@
-import { useState, useEffect, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,

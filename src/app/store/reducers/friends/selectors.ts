@@ -1,6 +1,6 @@
-import { type RootState } from '@app/store/store'
 import { type IFriend } from '@shared/lib/types/api'
 import { type IUser } from '@shared/lib/types/types'
+import { type RootState } from '../../store'
 
 export const selectAllUsers: (store: RootState) => IUser[] = (store) =>
   store.friends.allUsers

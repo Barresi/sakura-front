@@ -28,7 +28,8 @@
       "@entities/*": ["./src/entities/*"],
       "@shared/*": ["./src/shared/*"],
 
-      "@src/*": ["./src/*"]
+      "@store/*": ["./src/app/store/*"],
+      "@assets/*": ["./src/shared/assets/*"]
     }
   },
   "include": ["src"],

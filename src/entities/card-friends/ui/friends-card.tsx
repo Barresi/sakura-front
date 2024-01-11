@@ -1,14 +1,11 @@
-import { type FC } from 'react'
-import FriendButton from '@src/entities/card-friends/ui/button-friend/friend-button'
-import Card from '../../../shared/ui/card/card'
-import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
 import {
   selectAllUsers,
   selectFriends,
   selectReceived,
   selectSended
 } from '@src/app/store/reducers/friends/selectors'
+import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
+import { checkFriendState } from '@src/entities/card-friends/lib/check-friend-state'
 import {
   acceptRequestHandler,
   addFriendHandler,
@@ -17,12 +14,15 @@ import {
   deleteFriendHandler,
   rejectRequestHandler
 } from '@src/entities/card-friends/lib/handlers'
-import { cn } from '@src/shared/lib/merge-classes'
-import { checkFriendState } from '@src/entities/card-friends/lib/check-friend-state'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
+import FriendButton from '@src/entities/card-friends/ui/button-friend/friend-button'
+import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
+import { cn } from '@src/shared/lib/merge-classes'
 import { type FriendTabs } from '@src/shared/lib/types/other'
+import UserAvatar from '@src/shared/ui/avatar/avatar'
+import { type FC } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Card from '../../../shared/ui/card/card'
 
 interface IFriendsCardProps {
   className?: string

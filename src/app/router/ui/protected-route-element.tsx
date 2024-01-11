@@ -1,6 +1,6 @@
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { selectUserStatus } from '@app/store/reducers/profileInfo/selectors'
 import { AuthStatus } from '@shared/lib/types/api'
+import { selectUserStatus } from '@store/reducers/profileInfo/selectors'
 import { type FC, type ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 

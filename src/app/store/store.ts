@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import profileInfoReducer from './reducers/profileInfo/reducer'
 import friendsReducer from './reducers/friends/reducer'
 import messengerReducer from './reducers/messenger/reducer'
 import notificationsReducer from './reducers/notifications/reducer'
+import profileInfoReducer from './reducers/profileInfo/reducer'
 
 export const store = configureStore({
   reducer: {
