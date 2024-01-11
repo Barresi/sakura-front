@@ -1,7 +1,7 @@
-import Friends from '@src/entities/row-friends/ui/friends'
+import { RowFriends } from '@entities/row-friends'
+import { Button } from '@shared/ui/button'
+import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
-import Button from '../../../shared/ui/button'
-import UserAvatar from '../../../shared/ui/user-avatar'
 
 import friend from '@assets/friend.svg'
 import avatar from '@assets/photo.svg'
@@ -10,7 +10,7 @@ import location from '@assets/ui/Location Point.svg'
 import user from '@assets/ui/User.svg'
 import bank from '@assets/ui/bank.svg'
 
-const Profile: FC = () => {
+const UserProfile: FC = () => {
   return (
     <div className='w-full'>
       <div className='flex flex-col lg:flex-row gap-[15px]'>
@@ -47,7 +47,7 @@ const Profile: FC = () => {
         </div>
       </div>
 
-      <Friends avatars={[friend, friend, friend, friend, friend, friend, friend]} />
+      <RowFriends avatars={[friend, friend, friend, friend, friend, friend, friend]} />
 
       <p className='text-[20px] leading-[26px] '>
         Я - опытный UX/UI дизайнер с более чем 4-летним стажем работы в этой области.
@@ -56,4 +56,4 @@ const Profile: FC = () => {
   )
 }
 
-export default Profile
+export { UserProfile }

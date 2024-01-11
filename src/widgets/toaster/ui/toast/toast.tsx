@@ -1,10 +1,9 @@
 import * as ToastPrimitives from '@radix-ui/react-toast'
+import { cn } from '@shared/lib/merge-classes'
+import { type IPropsForwardRefsUI } from '@shared/lib/types/props'
 import { type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
 import * as React from 'react'
-
-import { type IPropsForwardRefsUI } from '@src/shared/lib/types/props'
-import { cn } from '@src/shared/lib/merge-classes'
 import { toastVariants } from '../../../../shared/lib/ui-variants'
 
 const ToastProvider = ToastPrimitives.Provider
@@ -101,13 +100,13 @@ type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
 type ToastActionElement = React.ReactElement<typeof ToastAction>
 
 export {
-  type ToastProps,
-  type ToastActionElement,
-  ToastProvider,
-  ToastViewport,
   Toast,
-  ToastTitle,
-  ToastDescription,
+  ToastAction,
   ToastClose,
-  ToastAction
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
+  type ToastActionElement,
+  type ToastProps
 }

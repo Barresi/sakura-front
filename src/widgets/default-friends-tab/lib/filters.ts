@@ -1,5 +1,5 @@
-import { type IFriend } from '@src/shared/lib/types/api'
-import { type IUser } from '@src/shared/lib/types/types'
+import { type IFriend } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 
 export const filterUsers = (item: IUser, search: string): boolean => {
   if (!search) return true

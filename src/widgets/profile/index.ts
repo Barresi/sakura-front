@@ -1,2 +1,1 @@
-import Profile from './ui/profile'
-export { Profile }
+export { UserProfile } from './ui/profile'

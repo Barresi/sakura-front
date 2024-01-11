@@ -1,10 +1,9 @@
-import { selectReceived } from '@src/app/store/reducers/friends/selectors'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { ButtonNav } from '@shared/ui/button-nav'
+import { selectReceived } from '@store/reducers/friends/selectors'
+import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
 import { type FC } from 'react'
 import { useLocation } from 'react-router-dom'
-import NavButton from '../../../shared/ui/button-nav/button-nav'
-import { selectMessenge } from /../../ shared / ui / button - navrs / messenger / selectors
-'
 
 const MobileNav: FC = () => {
   const { pathname } = useLocation()
@@ -17,49 +16,49 @@ const MobileNav: FC = () => {
         pathname.includes('/main/messenger/') && pathname.length > 16 ? 'hidden' : 'flex'
       } w-full fixed bottom-0 left-0 flex items-center justify-between lg:gap-[10px] bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite lg:px-[20px] rounded-tl-[10px] rounded-tr-[10px] z-[10000] border-t border-t-smokyWhite dark:border-t-cadet`}
     >
-      <NavButton
+      <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='user'
         to='profile'
       >
         Главная
-      </NavButton>
+      </ButtonNav>
 
-      <NavButton
+      <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='news'
         to='feed'
       >
         Новости
-      </NavButton>
+      </ButtonNav>
 
-      <NavButton
+      <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='message'
         to='messenger'
         badge={totalUnreadMessages}
       >
         Мессенджер
-      </NavButton>
+      </ButtonNav>
 
-      <NavButton
+      <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='friends'
         to='friends'
         badge={received.length}
       >
         Друзья
-      </NavButton>
+      </ButtonNav>
 
-      <NavButton
+      <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='photos'
         to='photos'
       >
         Фотографии
-      </NavButton>
+      </ButtonNav>
     </div>
   )
 }
 
-export default MobileNav
+export { MobileNav }

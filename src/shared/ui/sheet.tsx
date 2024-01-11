@@ -1,10 +1,9 @@
-import * as React from 'react'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
-
-import { cn } from '@src/shared/lib/merge-classes'
-import { sheetVariants } from '../../../../shared/lib/ui-variants'
+import * as React from 'react'
+import { cn } from '../lib/merge-classes'
+import { sheetVariants } from '../lib/ui-variants'
 
 const Sheet = SheetPrimitive.Root
 
@@ -102,13 +101,13 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 export {
   Sheet,
-  SheetPortal,
-  SheetOverlay,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
+  SheetDescription,
   SheetFooter,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
   SheetTitle,
-  SheetDescription
+  SheetTrigger
 }

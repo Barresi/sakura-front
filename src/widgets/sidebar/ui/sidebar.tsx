@@ -1,14 +1,13 @@
-import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
-import { selectReceived } from '@src/app/store/reducers/friends/selectors'
-import { logoutThunk } from '@src/app/store/reducers/profileInfo/async-thunks'
-import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import SettingButton from '@src/shared/ui/button-setting/setting-button'
+import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { ButtonNav } from '@shared/ui/button-nav'
+import { ButtonSetting } from '@shared/ui/button-setting'
+import { Logo } from '@shared/ui/logo'
+import { selectReceived } from '@store/reducers/friends/selectors'
+import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
+import { logoutThunk } from '@store/reducers/profileInfo/async-thunks'
+import { useToast } from '@widgets/toaster'
 import { type FC } from 'react'
-import ButtonNav from '../../../shared/ui/button-nav/button-nav'
-import Logo from '../../../shared/ui/logo'
-import { useToast } from '../../toaster/lib/use-toast'
-import { selectMessenge } from /../../ shared / ui / button - navrs / messenger / selectors
-'
 
 const Sidebar: FC = () => {
   const userChats = useAppSelector(selectMessengerUserChats)
@@ -72,13 +71,13 @@ const Sidebar: FC = () => {
       </div>
 
       <div className='flex justify-between w-[100%]'>
-        <SettingButton icon='exit' onClick={logoutHandler} />
-        <SettingButton icon='info' />
-        <SettingButton icon='theme' onClick={toggleTheme} />
-        <SettingButton icon='setting' />
+        <ButtonSetting icon='exit' onClick={logoutHandler} />
+        <ButtonSetting icon='info' />
+        <ButtonSetting icon='theme' onClick={toggleTheme} />
+        <ButtonSetting icon='setting' />
       </div>
     </div>
   )
 }
 
-export default Sidebar
+export { Sidebar }

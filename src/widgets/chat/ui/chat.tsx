@@ -1,22 +1,23 @@
-import arrow from '@assets/ui/arrow.svg'
-import { SocketEvents } from '@src/app/providers/socket-context/lib/socket-context'
-import { useSocket } from '@src/app/providers/socket-context/lib/useSocket'
-import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
-import { getUserChatsThunk } from '@src/app/store/reducers/messenger/async-thunks'
-import { selectMessengerUserChats } from '@src/app/store/reducers/messenger/selectors'
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
-import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { parseDateToMonth } from '@src/shared/lib/parse-date'
-import { type IMessage } from '@src/shared/lib/types/api'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
+import { SocketEvents } from '@app/providers/socket-context/lib/socket-context'
+import { useSocket } from '@app/providers/socket-context/lib/useSocket'
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { parseDateToMonth } from '@shared/lib/parse-date'
+import { type IMessage } from '@shared/lib/types/api'
+import { UserAvatar } from '@shared/ui/user-avatar'
+import { selectAllUsers } from '@store/reducers/friends/selectors'
+import { getUserChatsThunk } from '@store/reducers/messenger/async-thunks'
+import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
+import { selectUser } from '@store/reducers/profileInfo/selectors'
+import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import {
   groupChatMessagesByDate,
   type IFormattedMessages
-} from '@src/widgets/chat/lib/group-chat-messages'
-import MessageInput from '@src/widgets/chat/ui/message-input/message-input'
-import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import Message from './message/message'
+} from '../lib/group-chat-messages'
+import { InputMessage } from './input-message/input-message'
+import { Message } from './message/message'
+
+import arrow from '@assets/ui/arrow.svg'
 
 const Chat: FC = () => {
   const {
@@ -164,10 +165,10 @@ const Chat: FC = () => {
         })}
       </div>
       <div className='absolute bottom-0 right-5 left-5'>
-        <MessageInput sendMessage={sendMessage} />
+        <InputMessage sendMessage={sendMessage} />
       </div>
     </div>
   )
 }
 
-export default Chat
+export { Chat }

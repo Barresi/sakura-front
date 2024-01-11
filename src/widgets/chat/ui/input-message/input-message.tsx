@@ -1,16 +1,16 @@
+import { cn } from '@shared/lib/merge-classes'
+import { Input, type IInputProps } from '@shared/ui/input'
 import { useState, type FC } from 'react'
-import Input, { type IInputProps } from '../../../../shared/ui/input'
 
 import smile from '@assets/ui/Smile.svg'
 import media from '@assets/ui/paperclip.svg'
 import send from '@assets/ui/send.svg'
-import { cn } from '@src/shared/lib/merge-classes'
 
-interface IMessageInputProps extends IInputProps {
+interface IInputMessageProps extends IInputProps {
   sendMessage: (message: string) => void
 }
 
-const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
+const InputMessage: FC<IInputMessageProps> = ({ sendMessage, ...props }) => {
   const [message, setMessage] = useState('')
   return (
     <form
@@ -62,4 +62,4 @@ const MessageInput: FC<IMessageInputProps> = ({ sendMessage, ...props }) => {
   )
 }
 
-export default MessageInput
+export { InputMessage }

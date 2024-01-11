@@ -1,6 +1,6 @@
-import { parseDateToTime } from '@src/shared/lib/parse-date'
+import { parseDateToTime } from '@shared/lib/parse-date'
+import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
-import UserAvatar from '../../../../shared/ui/user-avatar'
 
 interface IMessageProps {
   text: string
@@ -32,4 +32,4 @@ const Message: FC<IMessageProps> = ({ text, my, date }) => {
   )
 }
 
-export default Message
+export { Message }

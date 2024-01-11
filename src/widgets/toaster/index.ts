@@ -1,3 +1,2 @@
-import Toaster from './ui/toaster'
-import { useToast } from './lib/use-toast'
-export { Toaster, useToast }
+export { useToast } from './lib/use-toast'
+export { Toaster } from './ui/toaster'

@@ -1,14 +1,14 @@
+import { CardFriends } from '@entities/card-friends'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { type IBaseTabProps } from '@shared/lib/types/props'
+import { selectAllUsers, selectSended } from '@store/reducers/friends/selectors'
+import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { selectAllUsers, selectSended } from '@src/app/store/reducers/friends/selectors'
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
-import FriendsCard from '@src/entities/card-friends/ui/friends-card'
-import { type IBaseTabProps } from '@src/shared/lib/types/props'
-import { filterRequests } from '@src/widgets/default-friends-tab/lib/filters'
+import { filterRequests } from '../../lib/filters'
 
-interface ISendedTabProps extends IBaseTabProps {}
+interface ITabSendedProps extends IBaseTabProps {}
 
-const SendedTab: FC<ISendedTabProps> = ({ search }) => {
+const TabSended: FC<ITabSendedProps> = ({ search }) => {
   const sended = useAppSelector(selectSended)
   const users = useAppSelector(selectAllUsers)
 
@@ -23,7 +23,7 @@ const SendedTab: FC<ISendedTabProps> = ({ search }) => {
             const dataId = currentId === friend.fromId ? friend.toId : friend.fromId
 
             return (
-              <FriendsCard
+              <CardFriends
                 key={index}
                 type='sended'
                 id={dataId}
@@ -39,4 +39,4 @@ const SendedTab: FC<ISendedTabProps> = ({ search }) => {
   )
 }
 
-export default SendedTab
+export { TabSended }

@@ -1,2 +1,1 @@
-import Chat from './ui/chat'
-export { Chat }
+export { Chat } from './ui/chat'

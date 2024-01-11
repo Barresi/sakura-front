@@ -1,4 +1,4 @@
-import { type IMessage } from '@src/shared/lib/types/api'
+import { type IMessage } from '@shared/lib/types/api'
 
 export interface IFormattedMessages {
   date: string

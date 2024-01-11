@@ -1,16 +1,16 @@
-import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { NotificationTypeEnum } from '@src/shared/lib/types/api'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { NotificationTypeEnum } from '@shared/lib/types/api'
+import { UserAvatar } from '@shared/ui/user-avatar'
+import { selectAllUsers } from '@store/reducers/friends/selectors'
+import { type FC } from 'react'
+import { useToast } from '../lib/use-toast'
 import {
   Toast,
   ToastClose,
   ToastProvider,
   ToastTitle,
   ToastViewport
-} from '@src/widgets/toaster/ui/toast/toast'
-import { type FC } from 'react'
-import UserAvatar from '../../../shared/ui/user-avatar'
-import { useToast } from '../lib/use-toast'
+} from './toast/toast'
 
 export const renderType = {
   [NotificationTypeEnum.sendFriendRequest]: 'Подал Вам заявку в друзья',
@@ -68,4 +68,4 @@ const Toaster: FC = () => {
     </ToastProvider>
   )
 }
-export default Toaster
+export { Toaster }

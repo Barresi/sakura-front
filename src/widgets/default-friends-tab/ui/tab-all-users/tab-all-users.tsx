@@ -1,15 +1,14 @@
-import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { CardFriends } from '@entities/card-friends/ui/card-friends'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { type IBaseTabProps } from '@shared/lib/types/props'
+import { selectAllUsers } from '@store/reducers/friends/selectors'
+import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
+import { filterUsers } from '../../lib/filters'
 
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
-import { type IBaseTabProps } from '@src/shared/lib/types/props'
-import { filterUsers } from '@src/widgets/default-friends-tab/lib/filters'
-import FriendsCard from '../../../../entities/card-friends/ui/card-friends'
+interface ITabAllUsersProps extends IBaseTabProps {}
 
-interface IAllUsersTabProps extends IBaseTabProps {}
-
-const AllUsersTab: FC<IAllUsersTabProps> = ({ search }) => {
+const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
   const users = useAppSelector(selectAllUsers)
   const { id: currentId } = useAppSelector(selectUser)
 
@@ -20,7 +19,7 @@ const AllUsersTab: FC<IAllUsersTabProps> = ({ search }) => {
           .filter((item) => filterUsers(item, search))
           .map((friend, index) => {
             return (
-              <FriendsCard
+              <CardFriends
                 key={index}
                 type='all'
                 id={friend.id}
@@ -36,4 +35,4 @@ const AllUsersTab: FC<IAllUsersTabProps> = ({ search }) => {
   )
 }
 
-export default AllUsersTab
+export { TabAllUsers }

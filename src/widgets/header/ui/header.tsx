@@ -1,11 +1,11 @@
-import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
-import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
-import { cn } from '@src/shared/lib/merge-classes'
+import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
+import { cn } from '@shared/lib/merge-classes'
+import { ButtonSetting } from '@shared/ui/button-setting'
+import { Logo } from '@shared/ui/logo'
+import { UserAvatar } from '@shared/ui/user-avatar'
+import { SheetBlock } from '@widgets/sheet-block'
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import SettingButton from '../../../shared/ui/button-setting'
-import Logo from '../../../shared/ui/logo'
-import UserAvatar from '../../../shared/ui/user-avatar'
-import SheetBlock from '../../sheet/ui/sheet-block'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
@@ -28,7 +28,7 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
       {isMobile ? <Logo isAdaptive /> : <div></div>}
 
       <div className='flex items-center justify-center gap-[15px]'>
-        <SettingButton icon='theme' onClick={toggleTheme} className='flex lg:hidden' />
+        <ButtonSetting icon='theme' onClick={toggleTheme} className='flex lg:hidden' />
         <SheetBlock />
         <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
       </div>
@@ -36,4 +36,4 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
   )
 }
 
-export default Header
+export { Header }

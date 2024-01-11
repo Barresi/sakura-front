@@ -1,15 +1,15 @@
-import NotificationCard from '@src/entities/card-notification/ui/notification-card'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { parseDateToMonth, parseDateToTime } from '@src/shared/lib/parse-date'
-import SettingButton from '@src/shared/ui/button-setting/setting-button'
+import { CardNotification } from '@entities/card-notification'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
+import { ButtonSetting } from '@shared/ui/button-setting'
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger
-} from '@src/widgets/sheet/ui/sheet/sheet'
-import { selectNotifications } from '@src/app/store/reducers/notifications/selectors'
+} from '@shared/ui/sheet'
+import { selectNotifications } from '@store/reducers/notifications/selectors'
 import { type FC } from 'react'
 
 const SheetBlock: FC = () => {
@@ -17,7 +17,7 @@ const SheetBlock: FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <SettingButton icon='notification' />
+        <ButtonSetting icon='notification' />
       </SheetTrigger>
       <SheetContent
         side='top'
@@ -27,7 +27,7 @@ const SheetBlock: FC = () => {
           <SheetTitle>Уведомления</SheetTitle>
           {notifications.map(({ id, content, type, createdAt }) => {
             return (
-              <NotificationCard
+              <CardNotification
                 key={id}
                 id={content.split(' ')[0]}
                 type={type}
@@ -40,4 +40,4 @@ const SheetBlock: FC = () => {
     </Sheet>
   )
 }
-export default SheetBlock
+export { SheetBlock }

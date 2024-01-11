@@ -1,2 +1,1 @@
-import DefaultTab from './ui/tab-default'
-export { DefaultTab }
+export { DefaultFriendsTab } from './ui/default-friends-tab'
