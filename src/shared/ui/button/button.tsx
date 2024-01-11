@@ -1,9 +1,9 @@
-import { type ButtonHTMLAttributes, forwardRef } from 'react'
 import { Slot } from '@radix-ui/react-slot'
-import { type VariantProps } from 'class-variance-authority'
 import { cn } from '@src/shared/lib/merge-classes'
-import { buttonVariants } from '../../lib/ui-variants'
+import { type VariantProps } from 'class-variance-authority'
+import { forwardRef, type ButtonHTMLAttributes } from 'react'
 import { icons, type Icon } from '../../lib/button-icons'
+import { buttonVariants } from '../../lib/ui-variants'
 
 export interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

@@ -1,30 +1,31 @@
 import arrow from '@assets/ui/arrow.svg'
-import MessageInput from '@src/widgets/chat/ui/message-input/message-input'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
-import {
-  GET_HISTORY_EVENT,
-  GET_MESSAGE_EVENT,
-  JOIN_CHAT_EVENT,
-  LEAVE_CHAT_EVENT,
-  SEND_MESSAGE_EVENT
-} from '@src/app/providers/socket-context/lib/socket-context'
+import { SocketEvents } from '@src/app/providers/socket-context/lib/socket-context'
 import { useSocket } from '@src/app/providers/socket-context/lib/useSocket'
-import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
 import { getUserChatsThunk } from '@src/app/store/reducers/messenger/async-thunks'
 import { selectMessengerUserChats } from '@src/app/store/reducers/messenger/selectors'
 import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
+import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { parseDateToMonth } from '@src/shared/lib/parse-date'
 import { type IMessage } from '@src/shared/lib/types/api'
+import UserAvatar from '@src/shared/ui/avatar/avatar'
 import {
   groupChatMessagesByDate,
   type IFormattedMessages
 } from '@src/widgets/chat/lib/group-chat-messages'
-import { parseDateToMonth } from '@src/shared/lib/parse-date'
+import MessageInput from '@src/widgets/chat/ui/message-input/message-input'
 import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Message from './message/message'
 
 const Chat: FC = () => {
+  const {
+    JOIN_CHAT_EVENT,
+    LEAVE_CHAT_EVENT,
+    SEND_MESSAGE_EVENT,
+    GET_MESSAGE_EVENT,
+    GET_HISTORY_EVENT
+  } = SocketEvents
   const container = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
 

@@ -1,13 +1,13 @@
-import { type FC, Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import ProtectedRouteElement from './protected-route-element'
+import { FriendsPage } from '@pages/page-friends'
 import { LoginPage } from '@pages/page-login'
-import { RegistrationPage } from '@pages/page-registration'
 import { MainPage } from '@pages/page-main'
 import { MessengerPage } from '@pages/page-messenger'
-import { Chat } from '@widgets/chat'
-import { FriendsPage } from '@pages/page-friends'
 import { NotFoundPage } from '@pages/page-not-found'
+import { RegistrationPage } from '@pages/page-registration'
+import { Chat } from '@widgets/chat'
+import { Suspense, type FC } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ProtectedRouteElement from './protected-route-element'
 
 const AppRouter: FC = () => {
   return (
