@@ -1,2 +1,1 @@
-import RegistrationPage from './ui/registration'
-export { RegistrationPage }
+export { PageRegistration } from './ui/registration'

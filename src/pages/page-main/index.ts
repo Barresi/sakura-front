@@ -1,2 +1,1 @@
-import MainPage from './ui/main'
-export { MainPage }
+export { PageMain } from './ui/page-main'

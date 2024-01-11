@@ -1,2 +1,1 @@
-import MessengerPage from './ui/messenger'
-export { MessengerPage }
+export { PageMessenger } from './ui/page-messenger'

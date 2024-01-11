@@ -1,2 +1,1 @@
-import FriendsPage from './ui/friends-page'
-export { FriendsPage }
+export { PageFriends } from './ui/page-friends'

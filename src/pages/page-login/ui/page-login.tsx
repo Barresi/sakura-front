@@ -1,17 +1,17 @@
+import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
+import { type ILoginForm } from '@shared/lib/types/forms'
+import { Button } from '@shared/ui/button'
+import { ButtonSetting } from '@shared/ui/button-setting'
+import { Input } from '@shared/ui/input'
+import { Logo } from '@shared/ui/logo'
+import { loginThunk } from '@store/reducers/profileInfo/async-thunks'
+import { useToast } from '@widgets/toaster'
 import { type FC } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { type ILoginForm } from '../../../shared/lib/types/forms'
-import { loginThunk } from '@src/app/store/reducers/profileInfo/async-thunks'
-import { useAppDispatch } from '@src/shared/lib/hooks/store-hooks'
-import SettingButton from '@src/shared/ui/button-setting/setting-button'
-import Logo from '@src/shared/ui/logo/logo'
-import Button from '@src/shared/ui/button/button'
-import Input from '@src/shared/ui/input/input'
-import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
-import { useToast } from '@src/widgets/toaster/lib/use-toast'
+import { useNavigate } from 'react-router-dom'
 
-const LoginPage: FC = () => {
+const PageLogin: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -37,7 +37,7 @@ const LoginPage: FC = () => {
 
   return (
     <div className='flex justify-center items-center py-5 px-5 min-h-[100vh]'>
-      <SettingButton
+      <ButtonSetting
         icon='theme'
         className=' absolute top-5 left-5'
         onClick={toggleTheme}
@@ -103,4 +103,4 @@ const LoginPage: FC = () => {
   )
 }
 
-export default LoginPage
+export { PageLogin }
