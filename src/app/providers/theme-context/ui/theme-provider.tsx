@@ -29,4 +29,4 @@ const ThemeProvider: FC<IThemeProviderProps> = ({ children }) => {
   )
 }
 
-export default ThemeProvider
+export { ThemeProvider }

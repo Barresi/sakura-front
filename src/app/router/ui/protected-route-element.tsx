@@ -28,4 +28,4 @@ const ProtectedRouteElement: FC<IProtectedRouteElement> = ({
   return element
 }
 
-export default ProtectedRouteElement
+export { ProtectedRouteElement }

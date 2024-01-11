@@ -1,13 +1,13 @@
-import { FriendsPage } from '@pages/page-friends'
-import { LoginPage } from '@pages/page-login'
-import { MainPage } from '@pages/page-main'
-import { MessengerPage } from '@pages/page-messenger'
-import { NotFoundPage } from '@pages/page-not-found'
-import { RegistrationPage } from '@pages/page-registration'
+import { PageFriends } from '@pages/page-friends'
+import { PageLogin } from '@pages/page-login'
+import { PageMain } from '@pages/page-main'
+import { PageMessenger } from '@pages/page-messenger'
+import { PageNotFound } from '@pages/page-not-found'
+import { PageRegistration } from '@pages/page-registration'
 import { Chat } from '@widgets/chat'
 import { Suspense, type FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import ProtectedRouteElement from './protected-route-element'
+import { ProtectedRouteElement } from './protected-route-element'
 
 const AppRouter: FC = () => {
   return (
@@ -16,7 +16,7 @@ const AppRouter: FC = () => {
         <Route
           path='/'
           element={
-            <ProtectedRouteElement protectedPageType='auth' element={<LoginPage />} />
+            <ProtectedRouteElement protectedPageType='auth' element={<PageLogin />} />
           }
         />
         <Route
@@ -24,7 +24,7 @@ const AppRouter: FC = () => {
           element={
             <ProtectedRouteElement
               protectedPageType='auth'
-              element={<RegistrationPage />}
+              element={<PageRegistration />}
             />
           }
         />
@@ -32,20 +32,20 @@ const AppRouter: FC = () => {
         <Route
           path='/main'
           element={
-            <ProtectedRouteElement protectedPageType='main' element={<MainPage />} />
+            <ProtectedRouteElement protectedPageType='main' element={<PageMain />} />
           }
         >
-          <Route path='messenger' element={<MessengerPage />}>
+          <Route path='messenger' element={<PageMessenger />}>
             <Route path=':id' element={<Chat />} />
           </Route>
-          <Route path='friends' element={<FriendsPage />} />
-          <Route path='*' element={<NotFoundPage type='inside' />} />
+          <Route path='friends' element={<PageFriends />} />
+          <Route path='*' element={<PageNotFound type='inside' />} />
         </Route>
 
-        <Route path='*' element={<NotFoundPage type='outside' />} />
+        <Route path='*' element={<PageNotFound type='outside' />} />
       </Routes>
     </Suspense>
   )
 }
 
-export default AppRouter
+export { AppRouter }

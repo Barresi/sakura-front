@@ -1,5 +1,7 @@
+import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
+import { NotificationTypeEnum } from '@shared/lib/types/api'
+import { Toaster, useToast } from '@widgets/toaster'
 import { useEffect, type FC } from 'react'
-
 import { SocketEvents } from './providers/socket-context'
 import { useSocket } from './providers/socket-context/lib/useSocket'
 import { AppRouter } from './router'
@@ -11,10 +13,6 @@ import {
 import { getUserChatsThunk } from './store/reducers/messenger/async-thunks'
 import { getUserNotificationsThunk } from './store/reducers/notifications/async-thunks'
 import { userInfoThunk } from './store/reducers/profileInfo/async-thunks'
-
-import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
-import { NotificationTypeEnum } from '@shared/lib/types/api'
-import { Toaster, useToast } from '@widgets/toaster'
 
 interface payloadNtfFnc {
   friendId: string
