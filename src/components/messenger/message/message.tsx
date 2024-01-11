@@ -13,7 +13,7 @@ interface IMessageProps {
 const Message: FC<IMessageProps> = ({ text, my, date }) => {
   return (
     <div
-      className={`p-[15px] flex items-center w-[90%] lg:w-[70%] min-w-[250px] gap-[10px] ${
+      className={`p-[15px] flex items-center w-full md:w-[70%] min-w-[250px] gap-[10px] ${
         my ? ' self-end  flex-row-reverse' : ' self-start'
       }`}
     >
@@ -22,7 +22,7 @@ const Message: FC<IMessageProps> = ({ text, my, date }) => {
         <span>{parseDateToTime(date)}</span>
       </div>
       <div
-        className={`p-[15px] rounded-[5px] self-start break-normal ${
+        className={`p-[15px] rounded-[5px] self-start [overflow-wrap:anywhere] ${
           my ? 'bg-water dark:bg-nickel' : 'bg-darkWhite dark:bg-brownBlack'
         }`}
       >
