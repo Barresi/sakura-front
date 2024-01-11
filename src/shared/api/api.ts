@@ -1,7 +1,7 @@
 import axios from 'axios'
+import { getCookie } from '../lib/cookie'
+import { type IAxiosError } from '../lib/types/api'
 import { refreshRequest } from './auth/auth'
-import { getCookie } from '@src/shared/lib/cookie'
-import { type IAxiosError } from '@src/shared/lib/types/api'
 
 export const URL = import.meta.env.VITE_BACKEND_URL
 

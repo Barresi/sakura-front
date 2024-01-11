@@ -1,4 +1,4 @@
-import { type IFriend } from '@src/shared/lib/types/api'
+import { type IFriend } from '@shared/lib/types/api'
 
 export const checkFriendState = (
   data: IFriend[],

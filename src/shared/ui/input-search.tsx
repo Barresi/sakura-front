@@ -1,12 +1,12 @@
 import { type FC } from 'react'
-import Input, { type IInputProps } from '../input/input'
+import { cn } from '../lib/merge-classes'
+import { Input, type IInputProps } from './input'
 
 import icon from '@assets/ui/Search.svg'
-import { cn } from '@src/shared/lib/merge-classes'
 
-interface ISearchInputProps extends Omit<IInputProps, 'type'> {}
+interface IInputSearchProps extends Omit<IInputProps, 'type'> {}
 
-const SearchInput: FC<ISearchInputProps> = ({ className, ...props }) => {
+const InputSearch: FC<IInputSearchProps> = ({ className, ...props }) => {
   return (
     <div className='flex items-center relative'>
       <Input
@@ -24,4 +24,4 @@ const SearchInput: FC<ISearchInputProps> = ({ className, ...props }) => {
   )
 }
 
-export default SearchInput
+export { InputSearch }

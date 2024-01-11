@@ -1,15 +1,14 @@
+import { useTheme } from '@app/providers/theme-context/lib/useTheme'
 import { type FC } from 'react'
-import { cn } from '@src/shared/lib/merge-classes'
-import Button, { type IButtonProps } from '../button/button'
+import { cn } from '../lib/merge-classes'
+import { Badge } from './badge'
+import { Button, type IButtonProps } from './button'
 
-import { Badge } from '@src/shared/ui/badge/badge'
-import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
-
-interface ISettingButtonProps extends IButtonProps {
+interface IButtonSettingProps extends IButtonProps {
   badge?: number
 }
 
-const SettingButton: FC<ISettingButtonProps> = ({
+const ButtonSetting: FC<IButtonSettingProps> = ({
   className,
   icon,
   badge = 0,
@@ -37,4 +36,4 @@ const SettingButton: FC<ISettingButtonProps> = ({
   )
 }
 
-export default SettingButton
+export { ButtonSetting }

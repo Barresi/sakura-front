@@ -1,6 +1,11 @@
 import { Check, ChevronDown } from 'lucide-react'
 
-import { forwardRef } from 'react'
+import {
+  Root as ScrollRoot,
+  Scrollbar,
+  Thumb,
+  Viewport
+} from '@radix-ui/react-scroll-area'
 import {
   Content,
   Group,
@@ -15,14 +20,9 @@ import {
   Trigger,
   Value
 } from '@radix-ui/react-select'
-import {
-  Root as ScrollRoot,
-  Scrollbar,
-  Thumb,
-  Viewport
-} from '@radix-ui/react-scroll-area'
-import { cn } from '@src/shared/lib/merge-classes'
-import { type IPropsForwardRefsUI } from '@src/shared/lib/types/props'
+import { forwardRef } from 'react'
+import { cn } from '../lib/merge-classes'
+import { type IPropsForwardRefsUI } from '../lib/types/props'
 
 const Select = SelectRoot
 
@@ -132,11 +132,11 @@ SelectSeparator.displayName = Separator.displayName
 
 export {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
-  SelectSeparator
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue
 }

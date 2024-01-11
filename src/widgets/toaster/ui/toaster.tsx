@@ -1,3 +1,6 @@
+import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
+import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { NotificationTypeEnum } from '@src/shared/lib/types/api'
 import {
   Toast,
   ToastClose,
@@ -5,12 +8,9 @@ import {
   ToastTitle,
   ToastViewport
 } from '@src/widgets/toaster/ui/toast/toast'
-import { useToast } from '../lib/use-toast'
 import { type FC } from 'react'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
-import UserAvatar from '../../../shared/ui/avatar/avatar'
-import { NotificationTypeEnum } from '@src/shared/lib/types/api'
+import UserAvatar from '../../../shared/ui/user-avatar'
+import { useToast } from '../lib/use-toast'
 
 export const renderType = {
   [NotificationTypeEnum.sendFriendRequest]: 'Подал Вам заявку в друзья',

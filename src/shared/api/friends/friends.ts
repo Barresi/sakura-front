@@ -1,5 +1,5 @@
+import { type IDeleteResponse, type IFriendsResponse } from '../../lib/types/api'
 import { apiWithAuth } from '../api'
-import { type IDeleteResponse, type IFriendsResponse } from '@src/shared/lib/types/api'
 
 export const getFriends = async (): Promise<IFriendsResponse> => {
   const res = await apiWithAuth.get<IFriendsResponse>('/friends')

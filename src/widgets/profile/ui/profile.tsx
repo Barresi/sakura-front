@@ -1,14 +1,14 @@
-import { type FC } from 'react'
-import Button from '../../../shared/ui/button/button'
 import Friends from '@src/entities/row-friends/ui/friends'
-import UserAvatar from '../../../shared/ui/avatar/avatar'
+import { type FC } from 'react'
+import Button from '../../../shared/ui/button'
+import UserAvatar from '../../../shared/ui/user-avatar'
 
 import friend from '@assets/friend.svg'
 import avatar from '@assets/photo.svg'
+import calendar from '@assets/ui/Calendar.svg'
 import location from '@assets/ui/Location Point.svg'
 import user from '@assets/ui/User.svg'
 import bank from '@assets/ui/bank.svg'
-import calendar from '@assets/ui/Calendar.svg'
 
 const Profile: FC = () => {
   return (

@@ -1,11 +1,11 @@
-import { type FC, useState } from 'react'
-import { cn } from '@src/shared/lib/merge-classes'
-import Button, { type IButtonProps } from '../button/button'
-import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
+import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { useState, type FC } from 'react'
+import { cn } from '../lib/merge-classes'
+import { Button, type IButtonProps } from './button'
 
-interface IActionButtonProps extends IButtonProps {}
+interface IButtonActionProps extends IButtonProps {}
 
-const ActionButton: FC<IActionButtonProps> = ({
+const ButtonAction: FC<IButtonActionProps> = ({
   children,
   icon,
   className,
@@ -41,4 +41,4 @@ const ActionButton: FC<IActionButtonProps> = ({
   )
 }
 
-export default ActionButton
+export { ButtonAction }

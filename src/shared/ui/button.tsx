@@ -1,9 +1,9 @@
 import { Slot } from '@radix-ui/react-slot'
-import { cn } from '@src/shared/lib/merge-classes'
 import { type VariantProps } from 'class-variance-authority'
 import { forwardRef, type ButtonHTMLAttributes } from 'react'
-import { icons, type Icon } from '../../lib/button-icons'
-import { buttonVariants } from '../../lib/ui-variants'
+import { icons, type Icon } from '../lib/button-icons'
+import { cn } from '../lib/merge-classes'
+import { buttonVariants } from '../lib/ui-variants'
 
 export interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -55,4 +55,4 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 )
 Button.displayName = 'Button'
 
-export default Button
+export { Button }

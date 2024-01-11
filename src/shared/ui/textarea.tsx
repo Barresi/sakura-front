@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { cn } from '@src/shared/lib/merge-classes'
+import { cn } from '../lib/merge-classes'
 
 export interface ITextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -26,4 +26,4 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 )
 Textarea.displayName = 'Textarea'
 
-export default Textarea
+export { Textarea }

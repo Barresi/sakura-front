@@ -1,9 +1,10 @@
-import { type FC } from 'react'
-import NavButton from '../../../shared/ui/button-nav/nav-button'
-import { useLocation } from 'react-router-dom'
 import { selectReceived } from '@src/app/store/reducers/friends/selectors'
 import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { selectMessengerUserChats } from '@src/app/store/reducers/messenger/selectors'
+import { type FC } from 'react'
+import { useLocation } from 'react-router-dom'
+import NavButton from '../../../shared/ui/button-nav/button-nav'
+import { selectMessenge } from /../../ shared / ui / button - navrs / messenger / selectors
+'
 
 const MobileNav: FC = () => {
   const { pathname } = useLocation()

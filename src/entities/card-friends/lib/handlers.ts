@@ -1,19 +1,15 @@
 import { type AnyAction, type ThunkDispatch } from '@reduxjs/toolkit'
-import { deleteFriend } from '@src/shared/api/friends/friends'
+import { deleteFriend } from '@shared/api/friends/friends'
+import { acceptFriend, cancelFriend, rejectFriend } from '@shared/api/friends/requests'
+import { addFriend } from '@shared/api/friends/users'
+import { createChatRequest } from '@shared/api/messenger/messenger'
+import { type IFriend } from '@shared/lib/types/api'
 import {
-  acceptFriend,
-  cancelFriend,
-  rejectFriend
-} from '@src/shared/api/friends/requests'
-import { addFriend } from '@src/shared/api/friends/users'
-import { createChatRequest } from '@src/shared/api/messenger/messenger'
-import {
-  getSendedThunk,
   getFriendsThunk,
-  getReceivedThunk
-} from '@src/app/store/reducers/friends/async-thunks'
-import { type RootState } from '@src/app/store/store'
-import { type IFriend } from '@src/shared/lib/types/api'
+  getReceivedThunk,
+  getSendedThunk
+} from '@store/reducers/friends/async-thunks'
+import { type RootState } from '@store/store'
 import { type NavigateFunction } from 'react-router-dom'
 
 export const addFriendHandler = async (

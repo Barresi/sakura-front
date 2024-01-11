@@ -1,7 +1,4 @@
-import {
-  type IGetUserChatsResponse,
-  type ICreateChatResponse
-} from '@src/shared/lib/types/api'
+import { type ICreateChatResponse, type IGetUserChatsResponse } from '../../lib/types/api'
 import { apiWithAuth } from '../api'
 
 export const createChatRequest = async (

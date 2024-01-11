@@ -1,11 +1,11 @@
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
+import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { cn } from '@src/shared/lib/merge-classes'
 import { type NotificationTypeEnum } from '@src/shared/lib/types/api'
 import UserAvatar from '@src/shared/ui/avatar/avatar'
-import { cn } from '@src/shared/lib/merge-classes'
 import { type FC } from 'react'
+import Card from '../../../shared/ui/card'
 import { renderType } from '../../../widgets/toaster/ui/toaster'
-import Card from '../../../shared/ui/card/card'
 
 export interface RequestCardProps {
   img?: string

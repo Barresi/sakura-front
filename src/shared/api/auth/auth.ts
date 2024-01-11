@@ -1,13 +1,13 @@
-import { api, apiWithAuth } from '../api'
-import { type ILoginForm, type IRegistrationForm } from '@src/shared/lib/types/forms'
-import { setCookie } from '@src/shared/lib/cookie'
+import { setCookie } from '../../lib/cookie'
 import {
-  type IRegistrationResponse,
   type ILoginResponse,
+  type ILogoutResponse,
   type IRefreshResponse,
-  type IUserInfoResponse,
-  type ILogoutResponse
-} from '@src/shared/lib/types/api'
+  type IRegistrationResponse,
+  type IUserInfoResponse
+} from '../../lib/types/api'
+import { type ILoginForm, type IRegistrationForm } from '../../lib/types/forms'
+import { api, apiWithAuth } from '../api'
 
 export const loginRequest = async (form: ILoginForm): Promise<ILoginResponse> => {
   const res = await api.post<ILoginResponse>('/auth/login', form)

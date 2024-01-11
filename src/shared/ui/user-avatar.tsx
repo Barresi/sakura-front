@@ -1,10 +1,9 @@
-import { type FC, forwardRef } from 'react'
 import { Fallback, Image, Root } from '@radix-ui/react-avatar'
-
-import { cn } from '@src/shared/lib/merge-classes'
+import { forwardRef, type FC } from 'react'
+import { cn } from '../lib/merge-classes'
+import { type IPropsForwardRefsUI } from '../lib/types/props'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
-import { type IPropsForwardRefsUI } from '@src/shared/lib/types/props'
 
 interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
   text?: string
@@ -72,4 +71,4 @@ const UserAvatar: FC<IUserAvatarProps> = ({ src, className }) => {
   )
 }
 
-export default UserAvatar
+export { UserAvatar }

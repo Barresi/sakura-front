@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { cn } from '@src/shared/lib/merge-classes'
+import { cn } from '../lib/merge-classes'
 
-import eye from '@assets/ui/Eye.svg'
 import eyeOff from '@assets/ui/Eye Off.svg'
+import eye from '@assets/ui/Eye.svg'
 
 export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
@@ -56,4 +56,4 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
 )
 Input.displayName = 'Input'
 
-export default Input
+export { Input }

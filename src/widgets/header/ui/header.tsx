@@ -1,10 +1,10 @@
-import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import { cn } from '@src/shared/lib/merge-classes'
-import SettingButton from '../../../shared/ui/button-setting/setting-button'
-import Logo from '../../../shared/ui/logo/logo'
 import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
-import UserAvatar from '../../../shared/ui/avatar/avatar'
 import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
+import { cn } from '@src/shared/lib/merge-classes'
+import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
+import SettingButton from '../../../shared/ui/button-setting'
+import Logo from '../../../shared/ui/logo'
+import UserAvatar from '../../../shared/ui/user-avatar'
 import SheetBlock from '../../sheet/ui/sheet-block'
 
 interface IHeaderProps

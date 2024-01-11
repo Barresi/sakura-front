@@ -1,15 +1,15 @@
 import { type FC } from 'react'
-import { cn } from '@src/shared/lib/merge-classes'
-import Input, { type IInputProps } from '../input/input'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
+import { cn } from '../lib/merge-classes'
+import { Input, type IInputProps } from './input'
+import { UserAvatar } from './user-avatar'
 
 import smile from '@assets/ui/Smile.svg'
 
-interface INewsInputProps extends IInputProps {
+interface IInputNewsProps extends IInputProps {
   avatar?: string
 }
 
-const NewsInput: FC<INewsInputProps> = ({ avatar, className, ...props }) => {
+const InputNews: FC<IInputNewsProps> = ({ avatar, className, ...props }) => {
   const withAvatar = avatar ? 'pl-[80px]' : ''
 
   return (
@@ -41,4 +41,4 @@ const NewsInput: FC<INewsInputProps> = ({ avatar, className, ...props }) => {
   )
 }
 
-export default NewsInput
+export { InputNews }

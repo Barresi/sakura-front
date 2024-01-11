@@ -1,18 +1,18 @@
 import { type FC, type ReactNode } from 'react'
-import { Badge } from '@src/shared/ui/badge/badge'
 import { NavLink, type NavLinkProps } from 'react-router-dom'
-import Button from '../button/button'
-import { cn } from '@src/shared/lib/merge-classes'
-import { type Icon } from '../../lib/button-icons'
+import { type Icon } from '../lib/button-icons'
+import { cn } from '../lib/merge-classes'
+import { Badge } from './badge'
+import { Button } from './button'
 
-interface INavButtonProps extends NavLinkProps {
+interface IButtonNavProps extends NavLinkProps {
   badge?: number
   icon?: Icon
   linkClassName?: string
   className?: string
 }
 
-const NavButton: FC<INavButtonProps> = ({
+const ButtonNav: FC<IButtonNavProps> = ({
   children,
   icon,
   className = '',
@@ -48,4 +48,4 @@ const NavButton: FC<INavButtonProps> = ({
   )
 }
 
-export default NavButton
+export { ButtonNav }

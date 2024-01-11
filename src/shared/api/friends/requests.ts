@@ -1,11 +1,11 @@
-import { apiWithAuth } from '../api'
 import {
-  type ISendedResponse,
-  type IReceivedResponse,
   type IAcceptResponse,
+  type ICancelResponse,
+  type IReceivedResponse,
   type IRejectResponse,
-  type ICancelResponse
-} from '@src/shared/lib/types/api'
+  type ISendedResponse
+} from '../../lib/types/api'
+import { apiWithAuth } from '../api'
 
 export const getReceived = async (): Promise<IReceivedResponse> => {
   const res = await apiWithAuth.get<IReceivedResponse>('/friend-requests/received')

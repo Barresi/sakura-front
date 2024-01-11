@@ -1,4 +1,4 @@
-import { type IGetUserNotificationsResponse } from '@src/shared/lib/types/api'
+import { type IGetUserNotificationsResponse } from '../../lib/types/api'
 import { apiWithAuth } from '../api'
 
 export const getUserNotifications = async (): Promise<IGetUserNotificationsResponse> => {

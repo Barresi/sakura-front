@@ -1,11 +1,19 @@
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
+import { cn } from '@shared/lib/merge-classes'
+import { type FriendTabs } from '@shared/lib/types/other'
+import Card from '@shared/ui/card'
+import UserAvatar from '@shared/ui/user-avatar'
 import {
   selectAllUsers,
   selectFriends,
   selectReceived,
   selectSended
-} from '@src/app/store/reducers/friends/selectors'
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
-import { checkFriendState } from '@src/entities/card-friends/lib/check-friend-state'
+} from '@store/reducers/friends/selectors'
+import { selectUser } from '@store/reducers/profileInfo/selectors'
+import { type FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { checkFriendState } from '../lib/check-friend-state'
 import {
   acceptRequestHandler,
   addFriendHandler,
@@ -13,16 +21,8 @@ import {
   createChatRequestHandler,
   deleteFriendHandler,
   rejectRequestHandler
-} from '@src/entities/card-friends/lib/handlers'
-import FriendButton from '@src/entities/card-friends/ui/button-friend/friend-button'
-import { useAppDispatch, useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
-import { cn } from '@src/shared/lib/merge-classes'
-import { type FriendTabs } from '@src/shared/lib/types/other'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
-import { type FC } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Card from '../../../shared/ui/card/card'
+} from '../lib/handlers'
+import FriendButton from './button-friend/friend-button'
 
 interface IFriendsCardProps {
   className?: string

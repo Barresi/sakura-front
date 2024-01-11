@@ -1,11 +1,11 @@
+import { useTheme } from '@app/providers/theme-context/lib/useTheme'
 import { type FC } from 'react'
-import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
-import { useTheme } from '@src/app/providers/theme-context/lib/useTheme'
+import { useWindowSize } from '../lib/hooks/useWindowSize'
 
-import logoLight from '@assets/ui/logo-light.svg'
 import logoDark from '@assets/ui/logo-dark.svg'
-import logoMobileLight from '@assets/ui/logo-mobile-light.svg'
+import logoLight from '@assets/ui/logo-light.svg'
 import logoMobileDark from '@assets/ui/logo-mobile-dark.svg'
+import logoMobileLight from '@assets/ui/logo-mobile-light.svg'
 
 interface ILogoProps {
   isAdaptive?: boolean
@@ -25,4 +25,4 @@ const Logo: FC<ILogoProps> = ({ isAdaptive = false }) => {
   return <img src={isMobile ? mobile : desk} alt='Sakura logo' />
 }
 
-export default Logo
+export { Logo }

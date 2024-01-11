@@ -1,5 +1,5 @@
 import { type FC, type ReactNode } from 'react'
-import { cn } from '@src/shared/lib/merge-classes'
+import { cn } from '../lib/merge-classes'
 
 interface ICardProps {
   children: ReactNode

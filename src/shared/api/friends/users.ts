@@ -1,8 +1,5 @@
+import { type IAddFriendResponse, type IAllUsersResponse } from '../../lib/types/api'
 import { apiWithAuth } from '../api'
-import {
-  type IAddFriendResponse,
-  type IAllUsersResponse
-} from '@src/shared/lib/types/api'
 
 export const getAllUsers = async (): Promise<IAllUsersResponse> => {
   const res = await apiWithAuth.get<IAllUsersResponse>('/users')

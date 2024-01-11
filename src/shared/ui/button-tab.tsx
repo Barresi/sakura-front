@@ -1,15 +1,15 @@
 import { type FC, type ReactNode } from 'react'
-import Button from '@src/shared/ui/button/button'
-import { Badge } from '@src/shared/ui/badge/badge'
+import { Badge } from './badge'
+import { Button } from './button'
 
-interface ITabButtonProps {
+interface IButtonTabProps {
   children: ReactNode
   badge?: number
   isActive: boolean
   onClick: () => void
 }
 
-const TabButton: FC<ITabButtonProps> = ({ children, badge, isActive, onClick }) => {
+const ButtonTab: FC<IButtonTabProps> = ({ children, badge, isActive, onClick }) => {
   return (
     <div
       className={isActive ? 'bg-smokyWhite dark:bg-brownBlack rounded-md' : 'rounded-md'}
@@ -28,4 +28,4 @@ const TabButton: FC<ITabButtonProps> = ({ children, badge, isActive, onClick }) 
   )
 }
 
-export default TabButton
+export { ButtonTab }

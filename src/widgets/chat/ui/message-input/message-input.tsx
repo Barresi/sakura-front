@@ -1,8 +1,8 @@
-import { type FC, useState } from 'react'
-import Input, { type IInputProps } from '../../../../shared/ui/input/input'
+import { useState, type FC } from 'react'
+import Input, { type IInputProps } from '../../../../shared/ui/input'
 
-import media from '@assets/ui/paperclip.svg'
 import smile from '@assets/ui/Smile.svg'
+import media from '@assets/ui/paperclip.svg'
 import send from '@assets/ui/send.svg'
 import { cn } from '@src/shared/lib/merge-classes'
 

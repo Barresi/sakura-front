@@ -1,6 +1,6 @@
-import { type FC } from 'react'
-import UserAvatar from '../../../../shared/ui/avatar/avatar'
 import { parseDateToTime } from '@src/shared/lib/parse-date'
+import { type FC } from 'react'
+import UserAvatar from '../../../../shared/ui/user-avatar'
 
 interface IMessageProps {
   text: string
