@@ -1,10 +1,10 @@
-import { cn } from '@src/shared/lib/merge-classes'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
+import { cn } from '@shared/lib/merge-classes'
+import { Card } from '@shared/ui/card'
+import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 import { Link } from 'react-router-dom'
-import Card from '../../../shared/ui/card'
 
-export interface ILikedCardProps {
+interface ICardLikedProps {
   img: string
   name: string
   date?: string
@@ -12,7 +12,7 @@ export interface ILikedCardProps {
   className?: string
 }
 
-const LikedCard: FC<ILikedCardProps> = ({ className, img, name, date, link }) => {
+const CardLiked: FC<ICardLikedProps> = ({ className, img, name, date, link }) => {
   return (
     <Card className={cn('', className)}>
       <div className='flex gap-[15px] items-start lg:items-center'>
@@ -33,4 +33,4 @@ const LikedCard: FC<ILikedCardProps> = ({ className, img, name, date, link }) =>
   )
 }
 
-export default LikedCard
+export { CardLiked }

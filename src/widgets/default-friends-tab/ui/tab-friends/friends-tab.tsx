@@ -1,10 +1,10 @@
-import { type FC } from 'react'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectAllUsers, selectFriends } from '@src/app/store/reducers/friends/selectors'
-import FriendsCard from '../../../../entities/card-friends/ui/friends-card'
 import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
+import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { type IBaseTabProps } from '@src/shared/lib/types/props'
 import { filterRequests } from '@src/widgets/default-friends-tab/lib/filters'
+import { type FC } from 'react'
+import FriendsCard from '../../../../entities/card-friends/ui/card-friends'
 
 interface IFriendsTabProps extends IBaseTabProps {}
 

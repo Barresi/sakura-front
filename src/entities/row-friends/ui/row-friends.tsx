@@ -1,12 +1,12 @@
-import { useWindowSize } from '@src/shared/lib/hooks/useWindowSize'
-import { cn } from '@src/shared/lib/merge-classes'
+import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
+import { cn } from '@shared/lib/merge-classes'
 import { type FC } from 'react'
 
-interface IFriendsProps {
+interface IRowFriendsProps {
   avatars: string[]
 }
 
-const Friends: FC<IFriendsProps> = ({ avatars }) => {
+const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
   const isMobile = useWindowSize(1024)
 
   const maxCount = isMobile ? 3 : 5
@@ -45,4 +45,4 @@ const Friends: FC<IFriendsProps> = ({ avatars }) => {
   )
 }
 
-export default Friends
+export { RowFriends }

@@ -1,13 +1,13 @@
-import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { cn } from '@src/shared/lib/merge-classes'
-import { type NotificationTypeEnum } from '@src/shared/lib/types/api'
-import UserAvatar from '@src/shared/ui/avatar/avatar'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { cn } from '@shared/lib/merge-classes'
+import { type NotificationTypeEnum } from '@shared/lib/types/api'
+import { Card } from '@shared/ui/card'
+import { UserAvatar } from '@shared/ui/user-avatar'
+import { selectAllUsers } from '@store/reducers/friends/selectors'
+import { renderType } from '@widgets/toaster/ui/toaster'
 import { type FC } from 'react'
-import Card from '../../../shared/ui/card'
-import { renderType } from '../../../widgets/toaster/ui/toaster'
 
-export interface RequestCardProps {
+interface ICardNotificationProps {
   img?: string
   id?: string
   date?: string
@@ -15,7 +15,7 @@ export interface RequestCardProps {
   className?: string
 }
 
-const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) => {
+const CardNotification: FC<ICardNotificationProps> = ({ className, date, id, type }) => {
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
 
   return (
@@ -41,4 +41,4 @@ const NotificationCard: FC<RequestCardProps> = ({ className, date, id, type }) =
   )
 }
 
-export default NotificationCard
+export { CardNotification }

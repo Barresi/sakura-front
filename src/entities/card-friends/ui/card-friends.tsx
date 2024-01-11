@@ -2,8 +2,8 @@ import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
 import { type FriendTabs } from '@shared/lib/types/other'
-import Card from '@shared/ui/card'
-import UserAvatar from '@shared/ui/user-avatar'
+import { Card } from '@shared/ui/card'
+import { UserAvatar } from '@shared/ui/user-avatar'
 import {
   selectAllUsers,
   selectFriends,
@@ -22,16 +22,16 @@ import {
   deleteFriendHandler,
   rejectRequestHandler
 } from '../lib/handlers'
-import FriendButton from './button-friend/friend-button'
+import { ButtonFriend } from './button-friend/button-friend'
 
-interface IFriendsCardProps {
+interface ICardFriendsProps {
   className?: string
   id: string
   type?: FriendTabs
   isMine?: boolean
 }
 
-const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => {
+const CardFriends: FC<ICardFriendsProps> = ({ className, id, type, isMine }) => {
   const isMobile = useWindowSize(500)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -116,7 +116,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
         </div>
         <div className='mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
           {isMine || (
-            <FriendButton
+            <ButtonFriend
               isFriend={isFriend}
               isSended={isRequestSended}
               isReceived={isRequestReceived}
@@ -144,7 +144,7 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
 
           <div className='mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
             {isMine || (
-              <FriendButton
+              <ButtonFriend
                 isFriend={isFriend}
                 isSended={isRequestSended}
                 isReceived={isRequestReceived}
@@ -159,4 +159,4 @@ const FriendsCard: FC<IFriendsCardProps> = ({ className, id, type, isMine }) => 
   )
 }
 
-export default FriendsCard
+export { CardFriends }

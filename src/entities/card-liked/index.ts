@@ -1,2 +1,1 @@
-import LikedCard from './ui/liked-card'
-export { LikedCard }
+export { CardLiked } from './ui/card-liked'

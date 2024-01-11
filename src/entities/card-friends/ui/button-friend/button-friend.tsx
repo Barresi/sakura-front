@@ -1,10 +1,10 @@
 import { type Icon } from '@shared/lib/button-icons'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { type FriendTabs } from '@shared/lib/types/other'
-import Button from '@shared/ui/button'
+import { Button } from '@shared/ui/button'
 import { type FC } from 'react'
 
-interface IFriendButtonProps {
+interface IButtonFriendProps {
   type?: FriendTabs
   isFriend?: boolean
   isSended?: boolean
@@ -60,7 +60,7 @@ const types = {
   }
 }
 
-const FriendButton: FC<IFriendButtonProps> = ({
+const ButtonFriend: FC<IButtonFriendProps> = ({
   type,
   isFriend,
   isSended,
@@ -151,4 +151,4 @@ const FriendButton: FC<IFriendButtonProps> = ({
   )
 }
 
-export default FriendButton
+export { ButtonFriend }

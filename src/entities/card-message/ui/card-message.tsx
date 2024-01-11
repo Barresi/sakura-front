@@ -1,20 +1,20 @@
-import { selectAllUsers } from '@src/app/store/reducers/friends/selectors'
-import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
-import { cn } from '@src/shared/lib/merge-classes'
-import { parseDateToMonth } from '@src/shared/lib/parse-date'
-import { type IChat } from '@src/shared/lib/types/api'
-import { Badge } from '@src/shared/ui/badge/badge'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { cn } from '@shared/lib/merge-classes'
+import { parseDateToMonth } from '@shared/lib/parse-date'
+import { type IChat } from '@shared/lib/types/api'
+import { Badge } from '@shared/ui/badge'
+import { Card } from '@shared/ui/card'
+import { UserAvatar } from '@shared/ui/user-avatar'
+import { selectAllUsers } from '@store/reducers/friends/selectors'
+import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import Card from '../../../shared/ui/card'
-import UserAvatar from '../../../shared/ui/user-avatar'
 
-export interface IMessageCardProps extends IChat {
+interface ICardMessageProps extends IChat {
   className?: string
 }
 
-const MessageCard: FC<IMessageCardProps> = ({
+const CardMessage: FC<ICardMessageProps> = ({
   className,
   participants,
   chatId,
@@ -56,4 +56,4 @@ const MessageCard: FC<IMessageCardProps> = ({
   )
 }
 
-export default MessageCard
+export { CardMessage }

@@ -1,2 +1,1 @@
-import MessageCard from './ui/message-card'
-export { MessageCard }
+export { CardMessage } from './ui/card-message'

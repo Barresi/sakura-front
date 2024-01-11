@@ -19,4 +19,4 @@ const Card: FC<ICardProps> = ({ children, className }) => {
   )
 }
 
-export default Card
+export { Card }

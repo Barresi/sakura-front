@@ -1,2 +1,1 @@
-import FriendsCard from './ui/friends-card'
-export { FriendsCard }
+export { CardFriends } from './ui/card-friends'

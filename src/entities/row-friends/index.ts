@@ -1,2 +1,1 @@
-import Friends from './ui/friends'
-export { Friends }
+export { RowFriends } from './ui/row-friends'

@@ -1,2 +1,1 @@
-import NotificationCard from './ui/notification-card'
-export { NotificationCard }
+export { CardNotification } from './ui/card-notification'

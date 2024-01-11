@@ -1,11 +1,11 @@
-import { type FC } from 'react'
-import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
 import { selectAllUsers, selectReceived } from '@src/app/store/reducers/friends/selectors'
+import { useAppSelector } from '@src/shared/lib/hooks/store-hooks'
+import { type FC } from 'react'
 
-import FriendsCard from '../../../../entities/card-friends/ui/friends-card'
-import { type IBaseTabProps } from '@src/shared/lib/types/props'
-import { filterRequests } from '../../lib/filters'
 import { selectUser } from '@src/app/store/reducers/profileInfo/selectors'
+import { type IBaseTabProps } from '@src/shared/lib/types/props'
+import FriendsCard from '../../../../entities/card-friends/ui/card-friends'
+import { filterRequests } from '../../lib/filters'
 
 interface IReceivedTabProps extends IBaseTabProps {}
 
