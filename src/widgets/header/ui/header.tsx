@@ -1,7 +1,6 @@
-import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { ButtonChangeTheme } from '@features/button-change-theme'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
-import { ButtonSetting } from '@shared/ui/button-setting'
 import { Logo } from '@shared/ui/logo'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { SheetBlock } from '@widgets/sheet-block'
@@ -13,7 +12,6 @@ interface IHeaderProps
 }
 
 const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
-  const { toggleTheme } = useTheme()
   const isMobile = useWindowSize(1024)
 
   return (
@@ -28,7 +26,7 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
       {isMobile ? <Logo isAdaptive /> : <div></div>}
 
       <div className='flex items-center justify-center gap-[15px]'>
-        <ButtonSetting icon='theme' onClick={toggleTheme} className='flex lg:hidden' />
+        <ButtonChangeTheme className='flex lg:hidden' />
         <SheetBlock />
         <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
       </div>

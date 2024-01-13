@@ -1,5 +1,3 @@
-import { Check, ChevronDown } from 'lucide-react'
-
 import {
   Root as ScrollRoot,
   Scrollbar,
@@ -20,6 +18,7 @@ import {
   Trigger,
   Value
 } from '@radix-ui/react-select'
+import { Check, ChevronDown } from 'lucide-react'
 import { forwardRef } from 'react'
 import { cn } from '../lib/merge-classes'
 import { type IPropsForwardRefsUI } from '../lib/types/props'
