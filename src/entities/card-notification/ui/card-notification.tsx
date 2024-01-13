@@ -1,10 +1,10 @@
+import { friendActions } from '@shared/lib/friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { cn } from '@shared/lib/merge-classes'
 import { type NotificationTypeEnum } from '@shared/lib/types/api'
 import { Card } from '@shared/ui/card'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { selectAllUsers } from '@store/reducers/friends/selectors'
-import { renderType } from '@widgets/toaster/ui/toaster'
 import { type FC } from 'react'
 
 interface ICardNotificationProps {
@@ -29,7 +29,7 @@ const CardNotification: FC<ICardNotificationProps> = ({ className, date, id, typ
               {user?.firstName} {user?.lastName}
             </span>
             <span className='text-darkElectricBlue'>
-              {renderType[type as keyof typeof renderType]}
+              {friendActions[type as keyof typeof friendActions]}
             </span>
           </h3>
           {date ? (

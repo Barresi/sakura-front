@@ -1,5 +1,5 @@
+import { friendActions } from '@shared/lib/friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { NotificationTypeEnum } from '@shared/lib/types/api'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { selectAllUsers } from '@store/reducers/friends/selectors'
 import { type FC } from 'react'
@@ -11,13 +11,6 @@ import {
   ToastTitle,
   ToastViewport
 } from './toast/toast'
-
-export const renderType = {
-  [NotificationTypeEnum.sendFriendRequest]: 'Подал Вам заявку в друзья',
-  [NotificationTypeEnum.acceptFriendRequest]: 'Принял Вашу заявку в друзья',
-  [NotificationTypeEnum.rejectFriend]: 'Отклонил Вашу заявку в друзья',
-  [NotificationTypeEnum.getMessage]: 'Написал Вам личное сообщение'
-}
 
 const Toaster: FC = () => {
   const { toasts } = useToast()
@@ -51,7 +44,7 @@ const Toaster: FC = () => {
                         {user?.firstName} {user?.lastName}
                       </span>
                       <span>
-                        {renderType[notificationType as keyof typeof renderType]}
+                        {friendActions[notificationType as keyof typeof friendActions]}
                       </span>
                     </div>
                   </>
