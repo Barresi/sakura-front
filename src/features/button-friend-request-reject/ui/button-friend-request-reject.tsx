@@ -7,19 +7,21 @@ import { type FC } from 'react'
 interface ButtonFriendRequestRejectProps {
   className?: string
   isMobile: boolean
-  friendId: string
+  requestId?: string
 }
 const ButtonFriendRequestReject: FC<ButtonFriendRequestRejectProps> = ({
   className,
-  friendId,
+  requestId,
   isMobile
 }) => {
   const dispatch = useAppDispatch()
 
   const rejectRequestHandler = async (): Promise<void> => {
-    await rejectFriend(friendId)
+    if (requestId) {
+      await rejectFriend(requestId)
 
-    dispatch(getReceivedThunk())
+      dispatch(getReceivedThunk())
+    }
   }
   if (isMobile) {
     return (

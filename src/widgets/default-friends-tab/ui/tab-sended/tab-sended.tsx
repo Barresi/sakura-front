@@ -33,7 +33,8 @@ const TabSended: FC<ITabSendedProps> = ({ search }) => {
               >
                 <ButtonsFriendActions
                   friendId={friendId}
-                  friendState={FriendState.isFriend}
+                  friendState={FriendState.isRequestSended}
+                  requestId={friend.id}
                 />
               </CardFriends>
             )

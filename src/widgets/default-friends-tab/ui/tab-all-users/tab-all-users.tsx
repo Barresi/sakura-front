@@ -1,6 +1,7 @@
 import { CardFriends } from '@entities/card-friends/ui/card-friends'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { FriendState } from '@shared/lib/types/api'
 import { type IBaseTabProps } from '@shared/lib/types/props'
 import {
   selectAllUsers,
@@ -36,6 +37,11 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
               sended,
               received
             )
+            let requestId
+            if (friendState === FriendState.isRequestSended)
+              requestId = sended.find((item) => item.fromId === userId)?.id
+            if (friendState === FriendState.isRequestReceived)
+              requestId = received.find((item) => item.toId === userId)?.id
             return (
               <CardFriends
                 key={index}
@@ -43,7 +49,11 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
                 friendId={friend.id}
                 isMine={friend.id === userId}
               >
-                <ButtonsFriendActions friendId={friend.id} friendState={friendState} />
+                <ButtonsFriendActions
+                  friendId={friend.id}
+                  friendState={friendState}
+                  requestId={requestId}
+                />
               </CardFriends>
             )
           })}

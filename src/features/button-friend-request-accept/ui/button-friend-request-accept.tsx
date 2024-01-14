@@ -9,28 +9,30 @@ import { type FC } from 'react'
 
 interface ButtonFriendRequestAcceptProps {
   isMobile: boolean
-  friendId: string
+  requestId?: string
   className?: string
 }
 const ButtonFriendRequestAccept: FC<ButtonFriendRequestAcceptProps> = ({
   className,
-  friendId,
+  requestId,
   isMobile
 }) => {
   const dispatch = useAppDispatch()
 
   const acceptRequestHandler = async (): Promise<void> => {
-    await acceptFriend(friendId)
+    if (requestId) {
+      await acceptFriend(requestId)
 
-    dispatch(getFriendsThunk())
-    dispatch(getReceivedThunk())
+      dispatch(getFriendsThunk())
+      dispatch(getReceivedThunk())
+    }
   }
 
   if (isMobile) {
     return (
       <Button
         icon={'add'}
-        variant='secondary'
+        variant='default'
         className='w-[49%] whitespace-nowrap hover:bg-secondary-hover'
         onClick={async () => {
           await acceptRequestHandler()
@@ -40,7 +42,7 @@ const ButtonFriendRequestAccept: FC<ButtonFriendRequestAcceptProps> = ({
   }
   return (
     <Button
-      variant='secondary'
+      variant='default'
       className={className}
       onClick={async () => {
         await acceptRequestHandler()

@@ -33,7 +33,8 @@ const TabReceived: FC<ITabReceivedProps> = ({ search }) => {
               >
                 <ButtonsFriendActions
                   friendId={friendId}
-                  friendState={FriendState.isFriend}
+                  friendState={FriendState.isRequestReceived}
+                  requestId={friend.id}
                 />
               </CardFriends>
             )

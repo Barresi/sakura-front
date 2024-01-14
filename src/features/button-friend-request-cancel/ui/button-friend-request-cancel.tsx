@@ -7,18 +7,20 @@ import { type FC } from 'react'
 interface ButtonFriendRequestCancelProps {
   className?: string
   isMobile: boolean
-  friendId: string
+  requestId?: string
 }
 const ButtonFriendRequestCancel: FC<ButtonFriendRequestCancelProps> = ({
   className,
-  friendId,
+  requestId,
   isMobile
 }) => {
   const dispatch = useAppDispatch()
 
   const cancelRequestHandler = async (): Promise<void> => {
-    await cancelFriend(friendId)
-    dispatch(getSendedThunk())
+    if (requestId) {
+      await cancelFriend(requestId)
+      dispatch(getSendedThunk())
+    }
   }
   if (isMobile) {
     return (

@@ -9,12 +9,14 @@ import { FriendState } from '@shared/lib/types/api'
 import { type FC } from 'react'
 
 interface ButtonsFriendActionsProps {
+  requestId?: string
   friendId: string
   friendState: FriendState
 }
 const ButtonsFriendActions: FC<ButtonsFriendActionsProps> = ({
   friendId,
-  friendState
+  friendState,
+  requestId
 }) => {
   const isMobile = useWindowSize(500)
   const renderButtons = {
@@ -26,14 +28,14 @@ const ButtonsFriendActions: FC<ButtonsFriendActionsProps> = ({
     ),
     [FriendState.isRequestReceived]: (
       <>
-        <ButtonFriendRequestAccept isMobile={isMobile} friendId={friendId} />
-        <ButtonFriendRequestReject isMobile={isMobile} friendId={friendId} />
+        <ButtonFriendRequestAccept isMobile={isMobile} requestId={requestId} />
+        <ButtonFriendRequestReject isMobile={isMobile} requestId={requestId} />
       </>
     ),
     [FriendState.isRequestSended]: (
       <>
         <ButtonFriendWriteMessage isMobile={isMobile} friendId={friendId} />
-        <ButtonFriendRequestCancel isMobile={isMobile} friendId={friendId} />
+        <ButtonFriendRequestCancel isMobile={isMobile} requestId={requestId} />
       </>
     ),
     [FriendState.isNoFriend]: (
