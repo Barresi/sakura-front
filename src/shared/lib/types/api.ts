@@ -39,6 +39,13 @@ export enum FriendsRequestStatus {
   rejected = 'REJECTED'
 }
 
+export enum FriendState {
+  isFriend = 'isFriend',
+  isRequestSended = 'isRequestSended',
+  isRequestReceived = 'isRequestReceived',
+  isNoFriend = 'isNoFriend'
+}
+
 export interface IFriend {
   id: string
   fromId: string
