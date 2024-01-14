@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
 import { type FriendTabs } from '@shared/lib/types/other'
@@ -12,17 +12,7 @@ import {
 } from '@store/reducers/friends/selectors'
 import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { checkFriendState } from '../lib/check-friend-state'
-import {
-  acceptRequestHandler,
-  addFriendHandler,
-  cancelRequestHandler,
-  createChatRequestHandler,
-  deleteFriendHandler,
-  rejectRequestHandler
-} from '../lib/handlers'
-import { ButtonFriend } from './button-friend/button-friend'
 
 interface ICardFriendsProps {
   className?: string
@@ -33,8 +23,6 @@ interface ICardFriendsProps {
 
 const CardFriends: FC<ICardFriendsProps> = ({ className, id, type, isMine }) => {
   const isMobile = useWindowSize(500)
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
 
   const { id: currentId } = useAppSelector(selectUser)
   const friends = useAppSelector(selectFriends)
@@ -66,41 +54,6 @@ const CardFriends: FC<ICardFriendsProps> = ({ className, id, type, isMine }) => 
     </div>
   )
 
-  const clickHandlers = {
-    friends: [
-      async () => {
-        await createChatRequestHandler(currentId, id, navigate)
-      },
-      async () => {
-        await deleteFriendHandler(id, dispatch)
-      }
-    ],
-    all: [
-      async () => {
-        await createChatRequestHandler(currentId, id, navigate)
-      },
-      async () => {
-        await addFriendHandler(id, dispatch)
-      }
-    ],
-    requests: [
-      async () => {
-        await acceptRequestHandler(id, received, currentId, dispatch)
-      },
-      async () => {
-        await rejectRequestHandler(id, received, currentId, dispatch)
-      }
-    ],
-    sended: [
-      async () => {
-        await createChatRequestHandler(currentId, id, navigate)
-      },
-      async () => {
-        await cancelRequestHandler(id, sended, currentId, dispatch)
-      }
-    ]
-  }
-
   if (isMobile) {
     return (
       <Card
@@ -115,15 +68,7 @@ const CardFriends: FC<ICardFriendsProps> = ({ className, id, type, isMine }) => 
           {info}
         </div>
         <div className='mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
-          {isMine || (
-            <ButtonFriend
-              isFriend={isFriend}
-              isSended={isRequestSended}
-              isReceived={isRequestReceived}
-              type={type}
-              clickHandlers={clickHandlers}
-            />
-          )}
+          {isMine || <div></div>}
         </div>
       </Card>
     )
@@ -143,15 +88,7 @@ const CardFriends: FC<ICardFriendsProps> = ({ className, id, type, isMine }) => 
           {info}
 
           <div className='mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
-            {isMine || (
-              <ButtonFriend
-                isFriend={isFriend}
-                isSended={isRequestSended}
-                isReceived={isRequestReceived}
-                type={type}
-                clickHandlers={clickHandlers}
-              />
-            )}
+            {isMine || <div></div>}
           </div>
         </div>
       </div>
