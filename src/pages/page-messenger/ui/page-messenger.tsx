@@ -3,7 +3,7 @@ import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
 import { type FC } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import chooseChat from '@assets/messenger/choose chat.svg'
 import notActiveChats from '@assets/messenger/not active chats.svg'
@@ -32,9 +32,19 @@ const PageMessenger: FC = () => {
     >
       {!isMobile || pathname === '/main/messenger' ? (
         <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-white dark:bg-grayBlue border-r-smokyWhite dark:border-r-cadet xxl:border-r xxl:rounded-l-[10px] xxl:rounded-r-[0px]'>
-          {chats.map((item, ind) => (
-            <CardMessage className='rounded-none' key={ind} {...item} />
-          ))}
+          {chats.map((item, ind) => {
+            return (
+              <NavLink
+                key={ind}
+                to={item.chatId}
+                className={({ isActive }) =>
+                  isActive ? '[&>div]:bg-ghostlyWhite [&>div]:dark:bg-brownBlack' : ''
+                }
+              >
+                <CardMessage className='rounded-none' {...item} />
+              </NavLink>
+            )
+          })}
         </ul>
       ) : null}
 
