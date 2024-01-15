@@ -1,7 +1,7 @@
 import { ButtonChangeTheme } from '@features/button-change-theme'
 import { ButtonLogout } from '@features/button-logout'
+import { ButtonNav } from '@features/button-nav'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { ButtonNav } from '@shared/ui/button-nav'
 import { ButtonSetting } from '@shared/ui/button-setting'
 import { Logo } from '@shared/ui/logo'
 import { selectReceived } from '@store/reducers/friends/selectors'

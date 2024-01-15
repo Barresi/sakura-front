@@ -1,5 +1,5 @@
+import { ButtonNav } from '@features/button-nav'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { ButtonNav } from '@shared/ui/button-nav'
 import { selectReceived } from '@store/reducers/friends/selectors'
 import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
 import { type FC } from 'react'
