@@ -4,7 +4,6 @@ import socketio, { type Socket } from 'socket.io-client'
 export const getSocket = (id: string): Socket => {
   return socketio(import.meta.env.VITE_BACKEND_DOMEN, { query: { userId: id } })
 }
-
 export const SocketContext = createContext<{
   socket: ReturnType<typeof socketio> | null
 }>({
