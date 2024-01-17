@@ -1,4 +1,4 @@
-import { NotificationTypeEnum } from '@shared/lib/types/api'
+import { NotificationTypeEnum } from './types/api'
 
 export const friendActions = {
   [NotificationTypeEnum.sendFriendRequest]: 'Подал Вам заявку в друзья',

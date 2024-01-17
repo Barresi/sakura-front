@@ -3,6 +3,7 @@ import { PageLogin } from '@pages/page-login'
 import { PageMain } from '@pages/page-main'
 import { PageMessenger } from '@pages/page-messenger'
 import { PageNotFound } from '@pages/page-not-found'
+import { PageProfile } from '@pages/page-profile'
 import { PageRegistration } from '@pages/page-registration'
 import { Chat } from '@widgets/chat'
 import { Suspense, type FC } from 'react'
@@ -35,6 +36,7 @@ const AppRouter: FC = () => {
             <ProtectedRouteElement protectedPageType='main' element={<PageMain />} />
           }
         >
+          <Route path='profile' element={<PageProfile />} />
           <Route path='messenger' element={<PageMessenger />}>
             <Route path=':id' element={<Chat />} />
           </Route>
