@@ -23,7 +23,7 @@ const ButtonNav: FC<IButtonNavProps> = ({
   return (
     <NavLink
       className={({ isActive }) =>
-        isActive ? `${linkClassName} [&>*]:!text-red w-[20%]` : `${linkClassName} w-[20%]`
+        isActive ? `${linkClassName} [&>*]:!text-red w-[20%]` : `${linkClassName} w-[25%]`
       }
       {...props}
     >

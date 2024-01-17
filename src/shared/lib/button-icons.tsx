@@ -2,7 +2,6 @@
 import friends from '@assets/menu/friends.svg'
 import message from '@assets/menu/message.svg'
 import news from '@assets/menu/news.svg'
-import photos from '@assets/menu/photos.svg'
 import user from '@assets/menu/user.svg'
 import clear from '@assets/ui/Clear.svg'
 import comment from '@assets/ui/Comment.svg'
@@ -41,7 +40,6 @@ export const icons = {
   news,
   friends,
   message,
-  photos,
   clear
 }
 

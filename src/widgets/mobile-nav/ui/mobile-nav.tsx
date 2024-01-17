@@ -14,7 +14,7 @@ const MobileNav: FC = () => {
     <div
       className={`${
         pathname.includes('/main/messenger/') && pathname.length > 16 ? 'hidden' : 'flex'
-      } w-full fixed bottom-0 left-0 flex items-center justify-between lg:gap-[10px] bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite lg:px-[20px] rounded-tl-[10px] rounded-tr-[10px] z-[10000] border-t border-t-smokyWhite dark:border-t-cadet`}
+      } w-full fixed bottom-0 left-0 items-center justify-between lg:gap-[10px] bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite lg:px-[20px] rounded-tl-[10px] rounded-tr-[10px] z-[10000] border-t border-t-smokyWhite dark:border-t-cadet`}
     >
       <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
@@ -48,14 +48,6 @@ const MobileNav: FC = () => {
         badge={received.length}
       >
         Друзья
-      </ButtonNav>
-
-      <ButtonNav
-        className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
-        icon='photos'
-        to='photos'
-      >
-        Фотографии
       </ButtonNav>
     </div>
   )

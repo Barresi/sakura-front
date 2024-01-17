@@ -44,14 +44,6 @@ const Sidebar: FC = () => {
           >
             Друзья
           </ButtonNav>
-
-          <ButtonNav
-            className='w-full justify-start gap-[10px]'
-            icon='photos'
-            to='photos'
-          >
-            Фотографии
-          </ButtonNav>
         </div>
       </div>
 
