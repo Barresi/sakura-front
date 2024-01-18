@@ -7,8 +7,8 @@ on:
     branches: [main, notifications, change-architecture-to-fsd]
 
 env:
-  VITE_BACKEND_DOMEN: ${{ env.VITE_BACKEND_DOMEN }}
-  VITE_BACKEND_URL: ${{ env.VITE_BACKEND_URL }}
+  VITE_BACKEND_DOMEN: ${{ vars.VITE_BACKEND_DOMEN }}
+  VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
