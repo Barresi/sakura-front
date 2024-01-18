@@ -8,6 +8,9 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  env:
+    VITE_BACKEND_DOMEN: ${{ vars.VITE_BACKEND_DOMEN }}
+    VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
   # This workflow contains a single job called "build"
   build:
     name: Build
