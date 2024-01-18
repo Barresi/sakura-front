@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Logs env
         run: |
-          echo "repository variable : $REPOSITORY_VAR"
+          echo "repository variable : $VITE_BACKEND_DOMEN"
 
       - name: Checkout repository
         uses: actions/checkout@v4
