@@ -5,7 +5,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [main, notifications, change-architecture-to-fsd]
-
+env:
+  VITE_BACKEND_URL: https://sakura-back.ru/api/v1
+  VITE_BACKEND_DOMEN: https://sakura-back.ru
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
