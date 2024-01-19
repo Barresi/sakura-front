@@ -63,7 +63,10 @@ const PageRegistration: FC = () => {
                 message: 'Максимальное кол-во символов: 20'
               }
             })}
-            error={errors.firstName && (errors.firstName.message || 'Неправильный логин')}
+            error={
+              errors.firstName &&
+              (errors.firstName.message || 'Ошибка, попробуйте ввести другое имя')
+            }
             placeholder='Имя'
           />
 
@@ -79,7 +82,10 @@ const PageRegistration: FC = () => {
                 message: 'Максимальное кол-во символов: 20'
               }
             })}
-            error={errors.lastName && (errors.lastName.message || 'Неправильный логин')}
+            error={
+              errors.lastName &&
+              (errors.lastName.message || 'Ошибка, попробуйте ввести другую фамилию')
+            }
             placeholder='Фамилия'
           />
 
@@ -91,7 +97,10 @@ const PageRegistration: FC = () => {
                 message: 'Данный E-mail не существует'
               }
             })}
-            error={errors.email && (errors.email.message || 'Неправильный email')}
+            error={
+              errors.email &&
+              (errors.email.message || 'Ошибка, попробуйте ввести другой email')
+            }
             placeholder='E-mail'
           />
 
@@ -107,11 +116,14 @@ const PageRegistration: FC = () => {
                 message: 'Максимальное кол-во символов: 20'
               },
               pattern: {
-                value: /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/,
-                message: 'Пароль должен иметь минимум 1 символ и 1 цифру'
+                value: /^(?=.[a-zA-Z])(?=.\d).{8,}$/,
+                message: 'Пароль должен иметь хотя бы 1 цифру'
               }
             })}
-            error={errors.password && (errors.password.message || 'login is required')}
+            error={
+              errors.password &&
+              (errors.password.message || 'Ошибка, попробуйте ввести другой пароль')
+            }
             placeholder='Password'
             type='password'
           />
@@ -127,7 +139,8 @@ const PageRegistration: FC = () => {
             })}
             error={
               errors.confirmPassword &&
-              (errors.confirmPassword.message || 'login is required')
+              (errors.confirmPassword.message ||
+                'Ошибка, попробуйте ввести другой пароль')
             }
             placeholder='Confirm password'
             type='password'
