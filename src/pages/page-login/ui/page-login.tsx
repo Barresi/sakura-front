@@ -57,7 +57,10 @@ const PageLogin: FC = () => {
                 message: 'Данный E-mail не существует'
               }
             })}
-            error={errors.email && (errors.email.message || 'Неправильный логин')}
+            error={
+              errors.email &&
+              (errors.email.message || 'Ошибка, попробуйте ввести другой E-mail')
+            }
             placeholder='E-mail'
           />
 
@@ -73,11 +76,14 @@ const PageLogin: FC = () => {
                 message: 'Максимальное кол-во символов: 20'
               },
               pattern: {
-                value: /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/,
-                message: 'Пароль должен иметь минимум 1 символ и 1 цифру'
+                value: /^(?=.[a-zA-Z])(?=.\d).{8,}$/,
+                message: 'Пароль должен иметь хотя бы 1 цифру'
               }
             })}
-            error={errors.password && (errors.password.message || 'Неправильный пароль')}
+            error={
+              errors.password &&
+              (errors.password.message || 'Ошибка, попробуйте ввести другой пароль')
+            }
             placeholder='Password'
             type='password'
           />

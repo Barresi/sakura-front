@@ -99,7 +99,7 @@ const PageRegistration: FC = () => {
             })}
             error={
               errors.email &&
-              (errors.email.message || 'Ошибка, попробуйте ввести другой email')
+              (errors.email.message || 'Ошибка, попробуйте ввести другой E-mail')
             }
             placeholder='E-mail'
           />
