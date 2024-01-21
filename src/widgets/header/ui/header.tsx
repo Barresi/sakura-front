@@ -3,8 +3,8 @@ import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
 import { Logo } from '@shared/ui/logo'
 import { UserAvatar } from '@shared/ui/user-avatar'
-import { SheetBlock } from '@widgets/sheet-block'
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
+import { SheetBlock } from './sheet-block/sheet-block'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
