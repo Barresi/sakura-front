@@ -23,7 +23,7 @@ import Theme from '@assets/icons/theme.svg?react'
 
 export const icons = {
   edit: <Edit />,
-  setting: <Setting />,
+  setting: <Setting color='#D22828' />,
   notification: <Notification />,
   theme: <Theme />,
   darkTheme: <DarkTheme />,

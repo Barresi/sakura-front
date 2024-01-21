@@ -1,6 +1,7 @@
 import { ButtonChangeTheme } from '@features/button-change-theme'
 import { ButtonLogout } from '@features/button-logout'
 import { ButtonNav } from '@features/button-nav'
+import { ButtonSettings } from '@features/button-settings/ui/button-settings'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { ButtonSetting } from '@shared/ui/button-setting'
 import { Logo } from '@shared/ui/logo'
@@ -51,7 +52,7 @@ const Sidebar: FC = () => {
         <ButtonLogout />
         <ButtonSetting icon='info' />
         <ButtonChangeTheme />
-        <ButtonSetting icon='setting' />
+        <ButtonSettings />
       </div>
     </div>
   )
