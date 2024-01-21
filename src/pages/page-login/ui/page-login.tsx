@@ -1,5 +1,6 @@
 import { useTheme } from '@app/providers/theme-context/lib/useTheme'
 import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
+import { emailRegExp, passwordRegExp } from '@shared/lib/reg-exp'
 import { type ILoginForm } from '@shared/lib/types/forms'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
@@ -53,7 +54,7 @@ const PageLogin: FC = () => {
             {...register('email', {
               required: 'Обязательное поле',
               pattern: {
-                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                value: emailRegExp,
                 message: 'Данный E-mail не существует'
               }
             })}
@@ -76,8 +77,9 @@ const PageLogin: FC = () => {
                 message: 'Максимальное кол-во символов: 20'
               },
               pattern: {
-                value: /^(?=.[a-zA-Z])(?=.\d).{8,}$/,
-                message: 'Пароль должен иметь хотя бы 1 цифру'
+                value: passwordRegExp,
+                message:
+                  'Пароль должен состоять из английских букв и не содержать пробелов'
               }
             })}
             error={
