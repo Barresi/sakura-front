@@ -4,7 +4,11 @@ name: Deploy to Yandex Cloud
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [main, notifications]
+    branches: [feature-**-prod]
+
+env:
+  VITE_BACKEND_DOMEN: ${{ vars.VITE_BACKEND_DOMEN }}
+  VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -13,7 +17,6 @@ jobs:
     name: Build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout repository

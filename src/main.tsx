@@ -1,12 +1,11 @@
+import App from '@app/app'
+import { SocketProvider } from '@app/providers/socket-context/ui/socket-provider'
+import { ThemeProvider } from '@app/providers/theme-context/ui/theme-provider'
+import { store } from '@app/store/store'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-
-import App from '@components/app/app'
-import { store } from '@store/store'
-import { ThemeProvider } from '@src/context/theme-context/theme-provider'
-import { SocketProvider } from './context/socket-context/socket-provider'
+import { BrowserRouter } from 'react-router-dom'
 import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

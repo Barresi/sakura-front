@@ -1,19 +1,21 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { defineConfig } from 'vite'
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr()],
   resolve: {
     alias: {
-      '@src': path.resolve(__dirname, './src'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@components': path.resolve(__dirname, './src/components'),
+      '@assets': path.resolve(__dirname, './src/shared/assets'),
+      '@store': path.resolve(__dirname, './src/app/store'),
+
+      '@app': path.resolve(__dirname, './src/app'),
       '@pages': path.resolve(__dirname, './src/pages'),
-      '@store': path.resolve(__dirname, './src/store'),
-      '@types': path.resolve(__dirname, './src/types'),
-      '@ui': path.resolve(__dirname, './src/components/ui'),
-      '@utils': path.resolve(__dirname, './src/utils')
+      '@widgets': path.resolve(__dirname, './src/widgets'),
+      '@features': path.resolve(__dirname, './src/features'),
+      '@entities': path.resolve(__dirname, './src/entities'),
+      '@shared': path.resolve(__dirname, './src/shared')
     }
   },
   server: {
