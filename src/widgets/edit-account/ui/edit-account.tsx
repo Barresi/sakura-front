@@ -1,5 +1,8 @@
+import { cn } from '@shared/lib/merge-classes'
 import { Button } from '@shared/ui/button'
+import { Calendar } from '@shared/ui/calendar'
 import { Input } from '@shared/ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui/popover'
 import {
   Select,
   SelectContent,
@@ -8,9 +11,12 @@ import {
   SelectValue
 } from '@shared/ui/select'
 import { Textarea } from '@shared/ui/textarea'
-import { type FC } from 'react'
+import { format } from 'date-fns'
+import { Calendar as CalendarIcon } from 'lucide-react'
+import { useState, type FC } from 'react'
 
 const EditAccount: FC = () => {
+  const [date, setDate] = useState<Date>()
   return (
     <div className='flex flex-col gap-5'>
       <h1 className='text-2xl'>Аккаунт</h1>
@@ -38,7 +44,28 @@ const EditAccount: FC = () => {
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>День рождения</h3>
-            <Input />
+            <Popover>
+              <PopoverTrigger asChild className='mb-6 h-[54px]'>
+                <Button
+                  variant={'outline'}
+                  className={cn(
+                    'w-[100%] text-left text-black dark:text-white font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet hover:text-black dark:hover:text-white',
+                    !date && 'text-muted-foreground'
+                  )}
+                >
+                  {date ? format(date, 'PPP') : <span>Выберите дату</span>}
+                  <CalendarIcon className='mr-2 h-4 w-4' />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                className='w-auto p-0 bg-ghostlyWhite dark:bg-grayBlue'
+                side='bottom'
+                align='end'
+              >
+                {/* @ts-expect-error не рабочие пропсы у Calendar */}
+                <Calendar mode='single' selected={date} onSelect={setDate} initialFocus />
+              </PopoverContent>
+            </Popover>
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>Пол</h3>
