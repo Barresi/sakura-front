@@ -7,6 +7,6 @@ const ButtonSettings: FC = () => {
   const clickHandler = (): void => {
     navigate('settings')
   }
-  return <ButtonSetting icon='setting' onClick={clickHandler} />
+  return <ButtonSetting icon='settingsWhite' onClick={clickHandler} />
 }
 export { ButtonSettings }
