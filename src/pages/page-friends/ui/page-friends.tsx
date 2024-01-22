@@ -1,8 +1,8 @@
 import { type FriendTabs } from '@shared/lib/types/other'
 import { DefaultFriendsTab } from '@widgets/default-friends-tab'
-import { FilterFriendsTabs } from '@widgets/filter-friends-tabs'
 import { type FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { FilterFriendsTabs } from './filter-friends-tabs/filter-friends-tabs'
 
 const PageFriends: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams({ usertype: 'friends' })

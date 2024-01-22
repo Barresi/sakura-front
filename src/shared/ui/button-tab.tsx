@@ -1,23 +1,32 @@
+import { cn } from '@shared/lib/merge-classes'
 import { type FC, type ReactNode } from 'react'
 import { Badge } from './badge'
 import { Button } from './button'
 
 interface IButtonTabProps {
+  className?: string
   children: ReactNode
   badge?: number
   isActive: boolean
   onClick: () => void
 }
 
-const ButtonTab: FC<IButtonTabProps> = ({ children, badge, isActive, onClick }) => {
+const ButtonTab: FC<IButtonTabProps> = ({
+  children,
+  badge,
+  isActive,
+  onClick,
+  className
+}) => {
   return (
     <div
       className={isActive ? 'bg-smokyWhite dark:bg-brownBlack rounded-md' : 'rounded-md'}
     >
       <Button
-        className={
-          'w-full flex justify-between sm:justify-center whitespace-nowrap xl:justify-between text-left sm:text-center active:scale-[0.97]'
-        }
+        className={cn(
+          'w-full flex justify-between sm:justify-center xl:justify-between whitespace-nowrap active:scale-[0.97]',
+          className
+        )}
         variant='text'
         onClick={onClick}
       >
