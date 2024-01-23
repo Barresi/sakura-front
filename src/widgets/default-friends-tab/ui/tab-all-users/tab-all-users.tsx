@@ -30,6 +30,7 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
         {users
           .filter((item) => filterUsers(item, search))
           .map((friend, index) => {
+            if (!userId) return null
             const friendState = checkFriendState(
               userId,
               friend.id,

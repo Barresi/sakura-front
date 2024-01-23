@@ -19,6 +19,7 @@ const ButtonFriendWriteMessage: FC<ButtonFriendWriteMessageProps> = ({
   const navigate = useNavigate()
 
   const createChatRequestHandler = async (): Promise<void> => {
+    if (!userId) return
     const res = await createChatRequest(userId, friendId)
 
     if (res.chatId) navigate('/main/messenger/' + res.chatId)

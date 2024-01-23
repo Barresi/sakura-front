@@ -122,3 +122,21 @@ export interface INotification {
 export interface IGetUserNotificationsResponse {
   notifications: INotification[]
 }
+
+// UserInfo api
+
+export interface IEditUserInfoResponse {
+  updatedFields: {
+    username: 'string'
+    firstName: 'string'
+    lastName: 'string'
+    city: 'string'
+    birthDate: 'string'
+    gender: 'string'
+    description: 'string'
+  }
+}
+
+export interface IEditUserSecurityInfo {
+  msg: string
+}

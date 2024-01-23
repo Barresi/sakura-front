@@ -1,14 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
 import { AuthStatus } from '@shared/lib/types/api'
-import { type IUser } from '@shared/lib/types/types'
 import { loginThunk, logoutThunk, registrationThunk, userInfoThunk } from './async-thunks'
 
 interface IInitialState {
   isLoading: boolean
-  error: string
+  error: string | null
   status: AuthStatus
-  user: IUser
+  user: {
+    id: null | string
+    email: null | string
+    firstName: null | string
+    lastName: null | string
+    birthDate: null | string
+    city: null | string
+    description: null | string
+    gender: null | 'female' | 'male'
+    username: null | string
+  }
 }
 
 const initialState: IInitialState = {
@@ -16,10 +25,15 @@ const initialState: IInitialState = {
   error: '',
   status: AuthStatus.pending,
   user: {
-    id: '',
-    email: '',
-    firstName: '',
-    lastName: ''
+    id: null,
+    email: null,
+    firstName: null,
+    lastName: null,
+    birthDate: null,
+    city: null,
+    description: null,
+    gender: null,
+    username: null
   }
 }
 
@@ -31,7 +45,7 @@ const profileInfoSlice = createSlice({
     // Authorization
     builder.addCase(loginThunk.pending, (state) => {
       state.isLoading = true
-      state.error = ''
+      state.error = null
       state.status = AuthStatus.pending
     })
     builder.addCase(loginThunk.fulfilled, (state, action) => {
@@ -50,7 +64,7 @@ const profileInfoSlice = createSlice({
     // Registration
     builder.addCase(registrationThunk.pending, (state) => {
       state.isLoading = true
-      state.error = ''
+      state.error = null
     })
     builder.addCase(registrationThunk.fulfilled, (state) => {
       state.isLoading = false
@@ -62,16 +76,16 @@ const profileInfoSlice = createSlice({
     // LogOut
     builder.addCase(logoutThunk.pending, (state) => {
       state.isLoading = true
-      state.error = ''
+      state.error = null
       state.status = AuthStatus.pending
     })
     builder.addCase(logoutThunk.fulfilled, (state) => {
       state.isLoading = false
       state.status = AuthStatus.notAuthorized
-      state.user.email = ''
-      state.user.id = ''
-      state.user.firstName = ''
-      state.user.lastName = ''
+      state.user.email = null
+      state.user.id = null
+      state.user.firstName = null
+      state.user.lastName = null
       deleteCookie('accessToken')
       localStorage.removeItem('refreshToken')
     })
@@ -83,7 +97,7 @@ const profileInfoSlice = createSlice({
     // Protected Info
     builder.addCase(userInfoThunk.pending, (state) => {
       state.isLoading = true
-      state.error = ''
+      state.error = null
       state.status = AuthStatus.pending
     })
     builder.addCase(userInfoThunk.fulfilled, (state, action) => {

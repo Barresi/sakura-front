@@ -20,7 +20,10 @@ const TabReceived: FC<ITabReceivedProps> = ({ search }) => {
     <>
       <div className='flex flex-col gap-[20px]'>
         {received
-          .filter((item) => filterRequests(users, userId, item, search))
+          .filter((item) => {
+            if (!userId) return null
+            return filterRequests(users, userId, item, search)
+          })
           .map((friend, index) => {
             const friendId = userId === friend.fromId ? friend.toId : friend.fromId
 

@@ -6,8 +6,8 @@ interface IMessageProps {
   text: string
   my: boolean
   date: string
-  firstName: string | undefined
-  lastName: string | undefined
+  firstName: string | undefined | null
+  lastName: string | undefined | null
 }
 
 const Message: FC<IMessageProps> = ({ text, my, date }) => {

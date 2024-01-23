@@ -58,11 +58,11 @@ const EditAccount: FC = () => {
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>Имя</h3>
-            <Input placeholder={userInfo.firstName} />
+            <Input placeholder={userInfo.firstName || undefined} />
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>Фамилия</h3>
-            <Input placeholder={userInfo.lastName} />
+            <Input placeholder={userInfo.lastName || undefined} />
           </div>
         </div>
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
