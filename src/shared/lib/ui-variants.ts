@@ -26,8 +26,7 @@ export const buttonVariants = cva(
         default: 'bg-red text-white dark:text-white hover:bg-redHover border-none',
         secondary:
           'bg-smokyWhite dark:bg-brownBlack text-cadet dark:text-smokyWhite border border-smokyWhite dark:border-brownBlack hover:border-cadet dark:hover:border-grayBlue dark:hover:bg-grayBlue',
-        outline:
-          'text-cadet dark:text-cadetBlue border border-cadet dark:border-darkGray bg-white dark:bg-grayBlue hover:border-cadetBlue dark:hover:border-cadet hover:text-cadetBlue dark:hover:text-cadet',
+        outline: 'text-black dark:text-white border-2 border-darkElectricBlue',
         link: 'text-cadet dark:text-darkWhite underline-offset-4 hover:text-twitter dark:hover:text-twitter',
         text: 'text-signalBlack dark:text-smokyWhite'
       },
