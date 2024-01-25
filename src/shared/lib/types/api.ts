@@ -132,11 +132,11 @@ export interface IEditUserInfoResponse {
     lastName: 'string'
     city: 'string'
     birthDate: 'string'
-    gender: 'string'
+    gender: 'male' | 'female'
     description: 'string'
   }
 }
 
-export interface IEditUserSecurityInfo {
-  msg: string
+export interface IEditUserSecurityInfoResponse {
+  email: string
 }

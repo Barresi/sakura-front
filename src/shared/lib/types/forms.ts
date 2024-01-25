@@ -10,15 +10,15 @@ export interface IRegistrationForm {
   confirmPassword: string
 }
 export interface IEditUserInfoForm {
-  username: 'string'
-  firstName: 'string'
-  lastName: 'string'
-  city: 'string'
-  birthDate: 'string'
-  gender: 'string'
-  description: 'string'
+  username?: 'string'
+  firstName?: 'string'
+  lastName?: 'string'
+  city?: 'string'
+  birthDate?: 'string'
+  gender?: 'string'
+  description?: 'string'
 }
 export interface IEditUserSecurityInfoForm {
-  email: string
-  password: string
+  email?: string
+  password?: string
 }

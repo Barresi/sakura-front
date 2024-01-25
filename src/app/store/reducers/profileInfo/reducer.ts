@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
 import { AuthStatus } from '@shared/lib/types/api'
-import { loginThunk, logoutThunk, registrationThunk, userInfoThunk } from './async-thunks'
+import {
+  editUserInfoThunk,
+  editUserSecurityInfoThunk,
+  loginThunk,
+  logoutThunk,
+  registrationThunk,
+  userInfoThunk
+} from './async-thunks'
 
 interface IInitialState {
   isLoading: boolean
@@ -108,6 +115,41 @@ const profileInfoSlice = createSlice({
     builder.addCase(userInfoThunk.rejected, (state, action) => {
       state.isLoading = false
       state.status = AuthStatus.notAuthorized
+      state.error = action.payload as string
+    })
+    // Edit user info
+    builder.addCase(editUserInfoThunk.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(editUserInfoThunk.fulfilled, (state, action) => {
+      state.isLoading = false
+
+      const { birthDate, city, description, firstName, gender, lastName, username } =
+        action.payload.updatedFields
+      state.user.birthDate = birthDate
+      state.user.city = city
+      state.user.description = description
+      state.user.firstName = firstName
+      state.user.lastName = lastName
+      state.user.gender = gender
+      state.user.username = username
+    })
+    builder.addCase(editUserInfoThunk.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.payload as string
+    })
+    // Edit security user info
+    builder.addCase(editUserSecurityInfoThunk.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(editUserSecurityInfoThunk.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.user.email = action.payload.email
+    })
+    builder.addCase(editUserSecurityInfoThunk.rejected, (state, action) => {
+      state.isLoading = false
       state.error = action.payload as string
     })
   }

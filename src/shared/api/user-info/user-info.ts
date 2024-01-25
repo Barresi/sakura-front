@@ -1,6 +1,6 @@
 import {
   type IEditUserInfoResponse,
-  type IEditUserSecurityInfo
+  type IEditUserSecurityInfoResponse
 } from '@shared/lib/types/api'
 import {
   type IEditUserInfoForm,
@@ -18,8 +18,11 @@ export const editUserInfo = async (
 
 export const editUserSecurityInfo = async (
   form: IEditUserSecurityInfoForm
-): Promise<IEditUserSecurityInfo> => {
-  const res = await apiWithAuth.patch<IEditUserSecurityInfo>('/auth/security', form)
+): Promise<IEditUserSecurityInfoResponse> => {
+  const res = await apiWithAuth.patch<IEditUserSecurityInfoResponse>(
+    '/auth/security',
+    form
+  )
 
   return res.data
 }
