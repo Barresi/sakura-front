@@ -26,15 +26,19 @@ const CardMessage: FC<ICardMessageProps> = ({
   const friendId = participants.find((item) => item.id !== user?.id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
   return (
-    <Card className={cn('flex items-center justify-between cursor-pointer', className)}>
-      <div className='flex items-center gap-[15px]'>
-        <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
-        <div>
-          <h3 className='font-bold leading-6 whitespace-nowrap'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
-          <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
-            {newMessage?.text}
-          </span>
-        </div>
+    <Card
+      className={cn(
+        'flex items-center justify-between cursor-pointer gap-[15px]',
+        className
+      )}
+    >
+      <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
+
+      <div className='flex-1'>
+        <h3 className='font-bold leading-6 whitespace-nowrap'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
+        <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
+          {newMessage?.text}
+        </span>
       </div>
 
       <div className='flex flex-col self-start items-center gap-[5px] mt-[10px]'>
