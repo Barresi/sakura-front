@@ -52,6 +52,7 @@ const Sidebar: FC = () => {
         <ButtonLogout />
         <ButtonSetting icon='info' />
         <ButtonChangeTheme />
+        {/* Todo Добавить активный цвет при нахождении на странице настроек */}
         <ButtonSettings />
       </div>
     </div>
