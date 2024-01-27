@@ -21,9 +21,9 @@ const CardMessage: FC<ICardMessageProps> = ({
   updatedAt
 }) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
-  const { id: userId } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
-  const friendId = participants.find((item) => item.id !== userId)?.id
+  const friendId = participants.find((item) => item.id !== user?.id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
   return (
     <Card className={cn('flex items-center justify-between cursor-pointer', className)}>

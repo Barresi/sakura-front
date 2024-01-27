@@ -35,11 +35,11 @@ const Chat: FC = () => {
 
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
-  const { id, firstName, lastName } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const userChats = useAppSelector(selectMessengerUserChats)
   const currentChat = userChats.find((item) => item.chatId === chatId.id)
-  const friendId = currentChat?.participants.find((item) => item.id !== id)?.id
+  const friendId = currentChat?.participants.find((item) => item.id !== user?.id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
 
   const [chatMessages, setChatMessages] = useState<IMessage[]>([])
@@ -50,7 +50,7 @@ const Chat: FC = () => {
   const sendMessage = (message: string): void => {
     if (!socket) return
     socket.emit(SEND_MESSAGE_EVENT, {
-      userId: id,
+      userId: user?.id,
       message,
       chatId: chatId.id,
       socketId: socket.id
@@ -95,15 +95,15 @@ const Chat: FC = () => {
 
   const renderMessages = (value: IMessage, ind: number): ReactNode => {
     const { text, senderId, createdAt } = value
-    const isMyMessage = senderId === id
+    const isMyMessage = senderId === user?.id
     return (
       <Message
         text={text}
         date={createdAt}
         my={isMyMessage}
         key={ind}
-        firstName={isMyMessage ? firstName : friend?.firstName}
-        lastName={isMyMessage ? lastName : friend?.lastName}
+        firstName={isMyMessage ? user?.firstName : friend?.firstName}
+        lastName={isMyMessage ? user?.lastName : friend?.lastName}
       />
     )
   }
@@ -143,10 +143,10 @@ const Chat: FC = () => {
       >
         {formattedMessages.map(({ date, messages }) => {
           const readMessagesChats = messages.filter(
-            (item) => item.read || item.senderId === id
+            (item) => item.read || item.senderId === user?.id
           )
           const unreadMessagesChats = messages.filter(
-            (item) => !item.read && item.senderId !== id
+            (item) => !item.read && item.senderId !== user?.id
           )
 
           return (

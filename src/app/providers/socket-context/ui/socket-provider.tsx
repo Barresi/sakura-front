@@ -10,15 +10,15 @@ interface ISocketProviderProps {
 
 const SocketProvider: FC<ISocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<ReturnType<typeof socketio> | null>(null)
-  const { id } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
 
   useEffect(() => {
-    if (id) {
-      setSocket(getSocket(id))
+    if (user?.id) {
+      setSocket(getSocket(user?.id))
     } else {
       setSocket(null)
     }
-  }, [id])
+  }, [user?.id])
 
   return <SocketContext.Provider value={{ socket }}>{children}</SocketContext.Provider>
 }

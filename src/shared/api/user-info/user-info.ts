@@ -1,12 +1,19 @@
 import {
   type IEditUserInfoResponse,
-  type IEditUserSecurityInfoResponse
+  type IEditUserSecurityInfoResponse,
+  type IGetUserInfoResponse
 } from '@shared/lib/types/api'
 import {
   type IEditUserInfoForm,
   type IEditUserSecurityInfoForm
 } from '@shared/lib/types/forms'
 import { apiWithAuth } from '../api'
+
+export const getUserInfo = async (): Promise<IGetUserInfoResponse> => {
+  const res = await apiWithAuth.get<IGetUserInfoResponse>('/auth/userInfo')
+
+  return res.data
+}
 
 export const editUserInfo = async (
   form: IEditUserInfoForm

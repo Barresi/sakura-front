@@ -35,6 +35,7 @@ apiWithAuth.interceptors.response.use(
       } else {
         throw error
       }
+      // Todo настроить грамотный вывод ошибок ниже
     } else if (error.request) {
       // Запрос был сделан, но ответ не получен
       throw new AxiosError(

@@ -1,18 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { loginRequest, logoutRequest, registrationRequest } from '@shared/api/auth/auth'
 import {
-  getUserInfo,
-  loginRequest,
-  logoutRequest,
-  registrationRequest
-} from '@shared/api/auth/auth'
-import { editUserInfo, editUserSecurityInfo } from '@shared/api/user-info/user-info'
+  editUserInfo,
+  editUserSecurityInfo,
+  getUserInfo
+} from '@shared/api/user-info/user-info'
 import {
   type IEditUserInfoResponse,
   type IEditUserSecurityInfoResponse,
+  type IGetUserInfoResponse,
   type ILoginResponse,
   type ILogoutResponse,
-  type IRegistrationResponse,
-  type IUserInfoResponse
+  type IRegistrationResponse
 } from '@shared/lib/types/api'
 import {
   type IEditUserInfoForm,
@@ -21,6 +20,8 @@ import {
   type IRegistrationForm
 } from '@shared/lib/types/forms'
 import { AxiosError } from 'axios'
+
+// Todo убрать ошибки ts в async thunks
 
 export const loginThunk = createAsyncThunk<ILoginResponse, ILoginForm>(
   'profileInfo/login',
@@ -70,7 +71,7 @@ export const logoutThunk = createAsyncThunk<ILogoutResponse>(
   }
 )
 
-export const userInfoThunk = createAsyncThunk<IUserInfoResponse>(
+export const userInfoThunk = createAsyncThunk<IGetUserInfoResponse>(
   'profileInfo/userInfo',
   async (_, { rejectWithValue }) => {
     try {

@@ -19,36 +19,26 @@ import { UserAvatar } from '@shared/ui/user-avatar'
 import { useToast } from '@widgets/toaster'
 import { format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
-import { useState, type FC, type FormEvent } from 'react'
+import { useEffect, useState, type FC, type FormEvent } from 'react'
 import { removeNullProperties } from '../lib/remove-null-properties'
 
 const EditAccount: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
   const userInfo = useAppSelector(selectUser)
-  const userBirthDate = userInfo.birthDate ? new Date(userInfo.birthDate) : null
 
   const [username, setUsername] = useState<string>('')
   const [city, setCity] = useState<string>('')
   const [firstName, setFirstName] = useState<string>('')
   const [lastName, setLastName] = useState<string>('')
-  const [date, setDate] = useState<Date | null>(userBirthDate)
-  const [gender, setGender] = useState<'male' | 'female' | null>(userInfo.gender)
+  const [birthDate, setBirthDate] = useState<Date | null>(null)
+  const [gender, setGender] = useState<'male' | 'female' | null>(null)
   const [description, setDescription] = useState<string>('')
 
-  const matchUserInfo = (): boolean => {
-    if (
-      username === userInfo.username &&
-      city === userInfo.city &&
-      firstName === userInfo.firstName &&
-      lastName === userInfo.lastName &&
-      date === userBirthDate &&
-      gender === userInfo.gender &&
-      description === userInfo.description
-    )
-      return true
-    return false
-  }
+  useEffect(() => {
+    setBirthDate(userInfo?.birthDate || null)
+    setGender(userInfo?.gender || null)
+  }, [userInfo?.birthDate])
 
   const onSubmit = (e: FormEvent): void => {
     e.preventDefault()
@@ -59,15 +49,19 @@ const EditAccount: FC = () => {
         firstName,
         lastName,
         description,
-        birthDate: date,
+        birthDate,
         gender
       },
-      userInfo.gender,
-      userBirthDate
+      userInfo?.gender || null,
+      userInfo?.birthDate || null
     )
     dispatch(editUserInfoThunk(payloadWithoutNullProperties)).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {
-        resetUserInfo()
+        setUsername('')
+        setCity('')
+        setFirstName('')
+        setLastName('')
+        setDescription('')
         toast({
           title: 'Системное уведомление',
           description: 'Вы успешно обновили данные своего аккаунта'
@@ -83,8 +77,8 @@ const EditAccount: FC = () => {
     setCity('')
     setFirstName('')
     setLastName('')
-    setDate(userBirthDate)
-    setGender(userInfo.gender || null)
+    setBirthDate(userInfo?.birthDate || null)
+    setGender(userInfo?.gender || null)
     setDescription('')
   }
 
@@ -112,8 +106,9 @@ const EditAccount: FC = () => {
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3 className='text-sm'>Никнейм</h3>
+            {/* Todo добавить ограничение кол-ва символов и проверку на @ в начале ввода */}
             <Input
-              placeholder={userInfo.username || undefined}
+              placeholder={userInfo?.username || 'Введите свой @username'}
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value)
@@ -122,8 +117,9 @@ const EditAccount: FC = () => {
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3 className='text-sm'>Родной город</h3>
+            {/* Todo добавить ограничение кол-ва символов */}
             <Input
-              placeholder={userInfo.city || undefined}
+              placeholder={userInfo?.city || 'Введите свой родной город'}
               value={city}
               onChange={(e) => {
                 setCity(e.target.value)
@@ -134,8 +130,9 @@ const EditAccount: FC = () => {
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>Имя</h3>
+            {/* Todo добавить ограничение кол-ва символов */}
             <Input
-              placeholder={userInfo.firstName || undefined}
+              placeholder={userInfo?.firstName || 'Введите свое имя'}
               value={firstName}
               onChange={(e) => {
                 setFirstName(e.target.value)
@@ -144,8 +141,9 @@ const EditAccount: FC = () => {
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>Фамилия</h3>
+            {/* Todo добавить ограничение кол-ва символов */}
             <Input
-              placeholder={userInfo.lastName || undefined}
+              placeholder={userInfo?.lastName || 'Введите свою фамилию'}
               value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value)
@@ -156,16 +154,17 @@ const EditAccount: FC = () => {
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>День рождения</h3>
+            {/* Todo Убрать анимацию нажатия на PopoverTrigger */}
             <Popover>
               <PopoverTrigger asChild className='mb-6 h-[54px]'>
                 <Button
                   variant={'outline'}
                   className={cn(
                     'w-[100%] text-left text-black dark:text-white font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet hover:text-black dark:hover:text-white',
-                    !date && 'text-muted-foreground'
+                    !birthDate && 'text-muted-foreground'
                   )}
                 >
-                  {date ? format(date, 'PPP') : <span>Выберите дату</span>}
+                  {birthDate ? format(birthDate, 'PPP') : <span>Выберите дату</span>}
                   <CalendarIcon className='mr-2 h-4 w-4' />
                 </Button>
               </PopoverTrigger>
@@ -174,18 +173,25 @@ const EditAccount: FC = () => {
                 side='bottom'
                 align='end'
               >
-                {/* @ts-expect-error не рабочие пропсы у Calendar */}
-                <Calendar mode='single' selected={date} onSelect={setDate} initialFocus />
+                <Calendar
+                  /* @ts-expect-error не рабочие пропсы у Calendar */
+                  mode='single'
+                  selected={birthDate}
+                  onSelect={setBirthDate}
+                  initialFocus
+                />
               </PopoverContent>
             </Popover>
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3>Пол</h3>
+            {/* Todo добавить анимацию закрытия SelectContent */}
             <Select
               onValueChange={(e: 'male' | 'female') => {
                 setGender(e)
               }}
-              defaultValue={userInfo.gender || undefined}
+              defaultValue={userInfo?.gender || undefined}
+              value={gender || undefined}
             >
               <SelectTrigger className='mb-6 rounded-[6px]'>
                 <SelectValue placeholder='Выберите пол' />
@@ -199,16 +205,23 @@ const EditAccount: FC = () => {
         </div>
         <div className='w-[100%] flex flex-col gap-1'>
           <h3>Краткая информация</h3>
+          {/* Todo добавить ограничение кол-ва символов */}
           <Textarea
-            placeholder={userInfo.description || undefined}
+            placeholder={userInfo?.description || 'Введите краткую информацию о себе'}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value)
             }}
           />
         </div>
-        {/* eslint-disable-next-line */}
-        {!matchUserInfo() && (
+
+        {(username !== '' ||
+          city !== '' ||
+          firstName !== '' ||
+          lastName !== '' ||
+          birthDate !== (userInfo?.birthDate || null) ||
+          gender !== (userInfo?.gender || null) ||
+          description !== '') && (
           <div className='flex flex-col sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end mt-3'>
             <Button variant='secondary' type='button' onClick={resetUserInfo}>
               Отмена

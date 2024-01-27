@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
-import { AuthStatus } from '@shared/lib/types/api'
+import { AuthStatus, type IUserInfoResponse } from '@shared/lib/types/api'
 import {
   editUserInfoThunk,
   editUserSecurityInfoThunk,
@@ -14,34 +14,14 @@ interface IInitialState {
   isLoading: boolean
   error: string | null
   status: AuthStatus
-  user: {
-    id: null | string
-    email: null | string
-    firstName: null | string
-    lastName: null | string
-    birthDate: null | string
-    city: null | string
-    description: null | string
-    gender: null | 'female' | 'male'
-    username: null | string
-  }
+  user: IUserInfoResponse | null
 }
 
 const initialState: IInitialState = {
   isLoading: false,
   error: '',
   status: AuthStatus.pending,
-  user: {
-    id: null,
-    email: null,
-    firstName: null,
-    lastName: null,
-    birthDate: null,
-    city: null,
-    description: null,
-    gender: null,
-    username: null
-  }
+  user: null
 }
 
 const profileInfoSlice = createSlice({
@@ -89,10 +69,7 @@ const profileInfoSlice = createSlice({
     builder.addCase(logoutThunk.fulfilled, (state) => {
       state.isLoading = false
       state.status = AuthStatus.notAuthorized
-      state.user.email = null
-      state.user.id = null
-      state.user.firstName = null
-      state.user.lastName = null
+      state.user = null
       deleteCookie('accessToken')
       localStorage.removeItem('refreshToken')
     })
@@ -125,15 +102,7 @@ const profileInfoSlice = createSlice({
     builder.addCase(editUserInfoThunk.fulfilled, (state, action) => {
       state.isLoading = false
 
-      const { birthDate, city, description, firstName, gender, lastName, username } =
-        action.payload.updatedFields
-      state.user.birthDate = birthDate
-      state.user.city = city
-      state.user.description = description
-      state.user.firstName = firstName
-      state.user.lastName = lastName
-      state.user.gender = gender
-      state.user.username = username
+      if (state.user) state.user = { ...state.user, ...action.payload.updatedFields }
     })
     builder.addCase(editUserInfoThunk.rejected, (state, action) => {
       state.isLoading = false
@@ -146,7 +115,7 @@ const profileInfoSlice = createSlice({
     })
     builder.addCase(editUserSecurityInfoThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.user.email = action.payload.email
+      if (state.user) state.user.email = action.payload.email
     })
     builder.addCase(editUserSecurityInfoThunk.rejected, (state, action) => {
       state.isLoading = false

@@ -1,20 +1,22 @@
-import { type AuthStatus } from '@shared/lib/types/api'
+import { createSelector } from '@reduxjs/toolkit'
+import { type AuthStatus, type IUserInfoResponse } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 import { type RootState } from '../../store'
 
-interface IUserInfo {
-  id: null | string
-  email: null | string
-  firstName: null | string
-  lastName: null | string
-  birthDate: null | string
-  city: null | string
-  description: null | string
-  gender: null | 'female' | 'male'
-  username: null | string
-}
+//  Эта логика мемоизирует store и убирает ререндеры
+// было в документации в варнинге
+// https://redux.js.org/usage/deriving-data-selectors#optimizing-selectors-with-memoization
 
-export const selectUser: (store: RootState) => IUserInfo = (store) =>
+const userInfoSelector = (store: RootState): IUserInfoResponse | null =>
   store.profileInfo.user
+export const selectUser: (store: RootState) => IUser | null = createSelector(
+  [userInfoSelector],
+  (userInfo) => {
+    if (!userInfo) return null
+    const birthDate = userInfo?.birthDate ? new Date(userInfo.birthDate) : null
+    return { ...userInfo, birthDate }
+  }
+)
 
 export const selectUserStatus: (store: RootState) => AuthStatus = (store) =>
   store.profileInfo.status

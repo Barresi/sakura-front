@@ -5,7 +5,7 @@ export interface IUser {
   email: string
   username: string | null
   city: string | null
-  birthDate: string | null
+  birthDate: Date | null
   gender: 'male' | 'female' | null
   description: string | null
 }
