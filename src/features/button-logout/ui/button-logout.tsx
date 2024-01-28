@@ -2,6 +2,14 @@ import { logoutThunk } from '@app/store/reducers/profileInfo/async-thunks'
 import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@shared/ui/dialog'
 import { useToast } from '@widgets/toaster'
 import { type FC } from 'react'
 
@@ -25,18 +33,36 @@ const ButtonLogout: FC<IButtonLogoutProps> = ({ classname, variant = 'text' }) =
       }
     })
   }
-  if (variant === 'text') {
-    return (
-      <Button
-        variant='text'
-        className={classname + ' text-darkLightGray dark:text-darkLightGray'}
-        onClick={logoutHandler}
-      >
-        Выйти
-      </Button>
-    )
-  }
 
-  return <ButtonSetting icon='exit' onClick={logoutHandler} className={classname} />
+  return (
+    <Dialog>
+      <DialogTrigger>
+        {variant === 'text' ? (
+          <Button
+            variant='text'
+            className={classname + ' text-darkLightGray dark:text-darkLightGray'}
+          >
+            Выйти
+          </Button>
+        ) : (
+          <ButtonSetting icon='exit' className={classname} />
+        )}
+      </DialogTrigger>
+      <DialogContent>
+        {/* @ts-expect-error не рабочие пропсы у DialogHeader */}
+        <DialogHeader>
+          <DialogTitle>Вы уверены что хотите выйти из своего аккаунта?</DialogTitle>
+        </DialogHeader>
+        {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
+        <DialogFooter>
+          <Button variant='secondary'>Отменить</Button>
+          <Button variant='default' onClick={logoutHandler}>
+            Да, выйти
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
 }
+
 export { ButtonLogout }
