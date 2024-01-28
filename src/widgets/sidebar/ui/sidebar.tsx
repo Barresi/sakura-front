@@ -49,7 +49,7 @@ const Sidebar: FC = () => {
       </div>
 
       <div className='flex justify-between w-[100%]'>
-        <ButtonLogout />
+        <ButtonLogout variant='icon' />
         <ButtonSetting icon='info' />
         <ButtonChangeTheme />
         {/* Todo Добавить активный цвет при нахождении на странице настроек */}
