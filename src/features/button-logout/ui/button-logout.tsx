@@ -4,6 +4,7 @@ import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -55,7 +56,10 @@ const ButtonLogout: FC<IButtonLogoutProps> = ({ classname, variant = 'text' }) =
         </DialogHeader>
         {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
         <DialogFooter>
-          <Button variant='secondary'>Отменить</Button>
+          <DialogClose asChild>
+            <Button variant='secondary'>Отменить</Button>
+          </DialogClose>
+
           <Button variant='default' onClick={logoutHandler}>
             Да, выйти
           </Button>

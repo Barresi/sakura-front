@@ -38,13 +38,13 @@ const EditSecurity: FC = () => {
         </div>
       </div>
 
-      <div className='flex justify-between items-center'>
-        <div>
+      <div className='flex justify-between items-center flex-col-reverse sm:flex-row gap-4'>
+        <div className='flex  flex-[50%] flex-col sm:flex-row'>
           <ButtonLogout classname='w-auto' />
           <ButtonDeleteAccount classname='w-auto' />
         </div>
 
-        <div className='flex flex-col sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end'>
+        <div className='flex flex-col flex-[50%] sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end'>
           {(email !== '' || password !== '') && (
             <>
               <Button variant='secondary'>Отмена</Button>

@@ -1,6 +1,7 @@
 import { Button } from '@shared/ui/button'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -36,7 +37,9 @@ const ButtonDeleteAccount: FC<IButtonDeleteAccountProps> = ({ classname }) => {
         </DialogHeader>
         {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
         <DialogFooter>
-          <Button variant='secondary'>Отменить</Button>
+          <DialogClose asChild>
+            <Button variant='secondary'>Отменить</Button>
+          </DialogClose>
           <Button variant='default'>Удалить аккаунт</Button>
         </DialogFooter>
       </DialogContent>
