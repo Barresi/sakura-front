@@ -8,7 +8,7 @@ export const removeNullProperties = (
   for (const prop in obj) {
     if (obj[prop] === null || obj[prop] === '') delete obj[prop]
     if (prop === 'gender' && obj[prop] === gender) delete obj[prop]
-    if (prop === 'gender' && obj[prop] === birthDate) delete obj[prop]
+    if (prop === 'birthDate' && obj[prop] === birthDate) delete obj[prop]
   }
   return obj
 }

@@ -22,7 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
     const errorClass = error
       ? 'border-red focus:border-red'
       : 'border-smokyWhite dark:border-cadet focus:border-blue dark:focus:border-twitter'
-    const errorSpanClass = error ? `absolute top-[3.55rem] left-5 text-red` : ''
+    const errorSpanClass = `absolute top-[3.55rem] left-5 text-red`
 
     const input = (
       <div className='w-full relative pb-6'>
