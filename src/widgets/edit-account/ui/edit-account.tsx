@@ -294,7 +294,7 @@ const EditAccount: FC = () => {
               control={control}
               name='gender'
               render={({ field }) => (
-                <Select onValueChange={field.onChange} {...field}>
+                <Select onValueChange={field.onChange} value={field.value || undefined}>
                   <SelectTrigger className='mb-6 rounded-[6px]'>
                     <SelectValue placeholder='Выберите пол' />
                   </SelectTrigger>
