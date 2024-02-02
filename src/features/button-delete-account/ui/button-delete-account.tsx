@@ -74,6 +74,7 @@ const ButtonDeleteAccount: FC<IButtonDeleteAccountProps> = ({ classname }) => {
             </DialogDescription>
           </DialogHeader>
           <Input
+            className='mt-4'
             placeholder='Введите ваш старый пароль'
             {...register('confirmPassword', {
               required: 'Обязательное поле',
