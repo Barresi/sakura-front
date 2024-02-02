@@ -22,7 +22,7 @@ import { format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
 import { useEffect, useState, type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { removeNullProperties } from '../lib/remove-null-properties'
+import { removeNullPropertiesInUserInfo } from '../lib/remove-null-properties'
 
 interface IFormInputs {
   firstName: string
@@ -103,7 +103,7 @@ const EditAccount: FC = () => {
     birthDate,
     gender
   }: IFormInputs): void => {
-    const payloadWithoutNullProperties = removeNullProperties(
+    const payloadWithoutNullProperties = removeNullPropertiesInUserInfo(
       {
         username,
         city,

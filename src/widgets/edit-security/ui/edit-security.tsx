@@ -1,39 +1,114 @@
+import { editUserSecurityInfoThunk } from '@app/store/reducers/profileInfo/async-thunks'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonDeleteAccount } from '@features/button-delete-account'
 import { ButtonLogout } from '@features/button-logout'
-import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { emailRegExp, passwordRegExp } from '@shared/lib/reg-exp'
+import { removeNullProperties } from '@shared/lib/remove-null-properties'
 import { Button } from '@shared/ui/button'
+import { Dialog, DialogContent, DialogTrigger } from '@shared/ui/dialog'
 import { Input } from '@shared/ui/input'
-import { useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
+import { useForm } from 'react-hook-form'
+import { FormConfirmPassword } from './form-confirm-password/form-confirm-password'
+
+interface IFormInputs {
+  email: string
+  password: string
+}
 
 const EditSecurity: FC = () => {
   const userInfo = useAppSelector(selectUser)
+  const dispatch = useAppDispatch()
 
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [isEditInfo, setEditInfo] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    clearErrors,
+    reset,
+    formState: { errors, isSubmitSuccessful }
+  } = useForm<IFormInputs>({
+    mode: 'onSubmit',
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  })
+
+  const onSubmit = ({ confirmPassword }: { confirmPassword: string }): void => {
+    const payloadWithoutNullProperties = removeNullProperties({
+      email: watch('email'),
+      password: watch('password'),
+      confirmPassword
+    })
+    // @ts-expect-error значения полей payloadWithoutNullProperties никогда не будут !== string
+    dispatch(editUserSecurityInfoThunk(payloadWithoutNullProperties))
+  }
+
+  const resetValueInputs = (): void => {
+    clearErrors()
+    reset()
+  }
+
+  useEffect(() => {
+    const subscription = watch(({ email, password }) => {
+      if (email === '' && password === '') {
+        setEditInfo(false)
+      } else {
+        setEditInfo(true)
+      }
+    })
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [watch])
 
   return (
-    <div className='flex flex-col gap-4'>
+    <form onChange={handleSubmit(() => {})} className='flex flex-col gap-4'>
       <h1 className='text-2xl'>Безопасность</h1>
       <div>
         <div className='w-[100%] flex flex-col gap-1'>
           <h3>E-mail</h3>
           <Input
             placeholder={userInfo?.email}
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
+            {...register('email', {
+              pattern: {
+                value: emailRegExp,
+                message: 'Данный E-mail не существует'
+              }
+            })}
+            error={
+              errors.email &&
+              (errors.email.message || 'Ошибка, попробуйте ввести другой E-mail')
+            }
           />
         </div>
         <div className='w-[100%] flex flex-col gap-1'>
           <h3>Пароль</h3>
           <Input
             placeholder='Введите новый пароль'
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
+            {...register('password', {
+              minLength: {
+                value: 8,
+                message: 'Минимальное кол-во символов: 8'
+              },
+              maxLength: {
+                value: 20,
+                message: 'Максимальное кол-во символов: 20'
+              },
+              pattern: {
+                value: passwordRegExp,
+                message:
+                  'Пароль должен состоять из английских букв и не содержать пробелов'
+              }
+            })}
+            error={
+              errors.password &&
+              (errors.password.message || 'Ошибка, попробуйте ввести другой пароль')
+            }
           />
         </div>
       </div>
@@ -45,15 +120,32 @@ const EditSecurity: FC = () => {
         </div>
 
         <div className='flex flex-col flex-[50%] sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end'>
-          {(email !== '' || password !== '') && (
+          {isEditInfo && (
             <>
-              <Button variant='secondary'>Отмена</Button>
-              <Button variant='default'>Сохранить</Button>
+              <Button variant='secondary' onClick={resetValueInputs}>
+                Отмена
+              </Button>
+
+              <Dialog>
+                {isSubmitSuccessful ? (
+                  <DialogTrigger asChild>
+                    <Button variant='default'>Сохранить</Button>
+                  </DialogTrigger>
+                ) : (
+                  <Button variant='default' type='button'>
+                    Сохранить
+                  </Button>
+                )}
+
+                <DialogContent>
+                  <FormConfirmPassword onSubmit={onSubmit} />
+                </DialogContent>
+              </Dialog>
             </>
           )}
         </div>
       </div>
-    </div>
+    </form>
   )
 }
 export { EditSecurity }

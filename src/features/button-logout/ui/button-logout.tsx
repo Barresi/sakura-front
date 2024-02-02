@@ -40,6 +40,7 @@ const ButtonLogout: FC<IButtonLogoutProps> = ({ classname, variant = 'text' }) =
       <DialogTrigger>
         {variant === 'text' ? (
           <Button
+            type='button'
             variant='text'
             className={classname + ' text-darkLightGray dark:text-darkLightGray'}
           >

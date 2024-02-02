@@ -21,6 +21,7 @@ const ButtonDeleteAccount: FC<IButtonDeleteAccountProps> = ({ classname }) => {
       <DialogTrigger>
         <Button
           variant='link'
+          type='button'
           className={`text-red dark:text-red hover:text-red dark:hover:text-red ${classname}`}
         >
           Удалить аккаунт

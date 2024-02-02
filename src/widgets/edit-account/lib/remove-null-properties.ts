@@ -1,14 +1,15 @@
+import { removeNullProperties } from '@shared/lib/remove-null-properties'
+
 type argObject = Record<string, any>
 
-export const removeNullProperties = (
+export const removeNullPropertiesInUserInfo = (
   obj: argObject,
   gender: 'male' | 'female' | null,
   birthDate: Date | null
 ): argObject => {
-  for (const prop in obj) {
-    if (obj[prop] === null || obj[prop] === '') delete obj[prop]
-    if (prop === 'gender' && obj[prop] === gender) delete obj[prop]
-    if (prop === 'birthDate' && obj[prop] === birthDate) delete obj[prop]
-  }
-  return obj
+  const payloadWithoutNullProperties = removeNullProperties(obj)
+  if (payloadWithoutNullProperties.gender === gender) delete obj.gender
+  if (new Date(payloadWithoutNullProperties.birthDate).getTime() === birthDate?.getTime())
+    delete obj.birthDate
+  return payloadWithoutNullProperties
 }

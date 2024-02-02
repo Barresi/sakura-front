@@ -21,4 +21,5 @@ export interface IEditUserInfoForm {
 export interface IEditUserSecurityInfoForm {
   email?: string
   password?: string
+  confirmPassword: string
 }
