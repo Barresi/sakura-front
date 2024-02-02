@@ -1,13 +1,15 @@
 import {
+  type IDeleteAccountResponse,
   type IEditUserInfoResponse,
   type IEditUserSecurityInfoResponse,
-  type IGetUserInfoResponse
+  type IGetUserInfoResponse,
+  type ILogoutResponse
 } from '@shared/lib/types/api'
 import {
   type IEditUserInfoForm,
   type IEditUserSecurityInfoForm
 } from '@shared/lib/types/forms'
-import { apiWithAuth } from '../api'
+import { api, apiWithAuth } from '../api'
 
 export const getUserInfo = async (): Promise<IGetUserInfoResponse> => {
   const res = await apiWithAuth.get<IGetUserInfoResponse>('/auth/userInfo')
@@ -30,6 +32,24 @@ export const editUserSecurityInfo = async (
     '/auth/security',
     form
   )
+
+  return res.data
+}
+
+export const logoutRequest = async (): Promise<ILogoutResponse> => {
+  const res = await api.post<ILogoutResponse>('auth/logout', {
+    refreshToken: localStorage.getItem('refreshToken')
+  })
+
+  return res.data
+}
+
+export const deleteAccountRequest = async (
+  confirmPassword: string
+): Promise<IDeleteAccountResponse> => {
+  const res = await apiWithAuth.delete<IDeleteAccountResponse>('auth/delete', {
+    data: { confirmPassword }
+  })
 
   return res.data
 }

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
 import { AuthStatus, type IUserInfoResponse } from '@shared/lib/types/api'
 import {
+  deleteAccountThunk,
   editUserInfoThunk,
   editUserSecurityInfoThunk,
   loginThunk,
@@ -60,24 +61,6 @@ const profileInfoSlice = createSlice({
       state.isLoading = false
       state.error = action.payload as string
     })
-    // LogOut
-    builder.addCase(logoutThunk.pending, (state) => {
-      state.isLoading = true
-      state.error = null
-      state.status = AuthStatus.pending
-    })
-    builder.addCase(logoutThunk.fulfilled, (state) => {
-      state.isLoading = false
-      state.status = AuthStatus.notAuthorized
-      state.user = null
-      deleteCookie('accessToken')
-      localStorage.removeItem('refreshToken')
-    })
-    builder.addCase(logoutThunk.rejected, (state, action) => {
-      state.isLoading = false
-      state.status = AuthStatus.authorized
-      state.error = action.payload as string
-    })
     // Protected Info
     builder.addCase(userInfoThunk.pending, (state) => {
       state.isLoading = true
@@ -118,6 +101,38 @@ const profileInfoSlice = createSlice({
       if (state.user) state.user.email = action.payload.email
     })
     builder.addCase(editUserSecurityInfoThunk.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.payload as string
+    })
+    // Logout
+    builder.addCase(logoutThunk.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(logoutThunk.fulfilled, (state) => {
+      state.isLoading = false
+      state.status = AuthStatus.notAuthorized
+      state.user = null
+      deleteCookie('accessToken')
+      localStorage.removeItem('refreshToken')
+    })
+    builder.addCase(logoutThunk.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.payload as string
+    })
+    // Delete Account
+    builder.addCase(deleteAccountThunk.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(deleteAccountThunk.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.status = AuthStatus.notAuthorized
+      state.user = null
+      deleteCookie('accessToken')
+      localStorage.removeItem('refreshToken')
+    })
+    builder.addCase(deleteAccountThunk.rejected, (state, action) => {
       state.isLoading = false
       state.error = action.payload as string
     })

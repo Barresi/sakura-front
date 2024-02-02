@@ -1,11 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { loginRequest, logoutRequest, registrationRequest } from '@shared/api/auth/auth'
+import { loginRequest, registrationRequest } from '@shared/api/auth/auth'
 import {
+  deleteAccountRequest,
   editUserInfo,
   editUserSecurityInfo,
-  getUserInfo
+  getUserInfo,
+  logoutRequest
 } from '@shared/api/user-info/user-info'
 import {
+  type IDeleteAccountResponse,
   type IEditUserInfoResponse,
   type IEditUserSecurityInfoResponse,
   type IGetUserInfoResponse,
@@ -55,22 +58,6 @@ export const registrationThunk = createAsyncThunk<
   }
 })
 
-export const logoutThunk = createAsyncThunk<ILogoutResponse>(
-  'profileInfo/logout',
-  async (_, { rejectWithValue }) => {
-    try {
-      return await logoutRequest()
-    } catch (err) {
-      if (err instanceof AxiosError) {
-        if (err.response?.data.msg) return rejectWithValue(err.response.data.msg)
-        if (err.message) return rejectWithValue(err.message)
-      } else {
-        return rejectWithValue('Упс, что-то пошло не так')
-      }
-    }
-  }
-)
-
 export const userInfoThunk = createAsyncThunk<IGetUserInfoResponse>(
   'profileInfo/userInfo',
   async (_, { rejectWithValue }) => {
@@ -118,3 +105,35 @@ export const editUserSecurityInfoThunk = createAsyncThunk<
     }
   }
 })
+
+export const logoutThunk = createAsyncThunk<ILogoutResponse>(
+  'profileInfo/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await logoutRequest()
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err.response?.data.msg) return rejectWithValue(err.response.data.msg)
+        if (err.message) return rejectWithValue(err.message)
+      } else {
+        return rejectWithValue('Упс, что-то пошло не так')
+      }
+    }
+  }
+)
+
+export const deleteAccountThunk = createAsyncThunk<IDeleteAccountResponse, string>(
+  'profileInfo/deleteAccount',
+  async (confirmPassword, { rejectWithValue }) => {
+    try {
+      return await deleteAccountRequest(confirmPassword)
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err.response?.data.msg) return rejectWithValue(err.response.data.msg)
+        if (err.message) return rejectWithValue(err.message)
+      } else {
+        return rejectWithValue('Упс, что-то пошло не так')
+      }
+    }
+  }
+)

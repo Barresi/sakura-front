@@ -22,7 +22,6 @@ export interface ILoginResponse {
 export interface IRegistrationResponse {
   id: string
 }
-export interface ILogoutResponse extends INoContentResponse {}
 
 export interface IRefreshResponse {
   accessToken: string
@@ -154,3 +153,6 @@ export interface IEditUserInfoResponse {
 export interface IEditUserSecurityInfoResponse {
   email: string
 }
+
+export interface IDeleteAccountResponse extends INoContentResponse {}
+export interface ILogoutResponse extends INoContentResponse {}

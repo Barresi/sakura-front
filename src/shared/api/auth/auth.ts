@@ -1,7 +1,6 @@
 import { setCookie } from '../../lib/cookie'
 import {
   type ILoginResponse,
-  type ILogoutResponse,
   type IRefreshResponse,
   type IRegistrationResponse
 } from '../../lib/types/api'
@@ -18,14 +17,6 @@ export const registrationRequest = async (
   form: IRegistrationForm
 ): Promise<IRegistrationResponse> => {
   const res = await api.post<IRegistrationResponse>('/auth/signup', form)
-
-  return res.data
-}
-
-export const logoutRequest = async (): Promise<ILogoutResponse> => {
-  const res = await api.post<ILogoutResponse>('auth/logout', {
-    refreshToken: localStorage.getItem('refreshToken')
-  })
 
   return res.data
 }
