@@ -12,7 +12,7 @@ import {
 import { selectNotifications } from '@store/reducers/notifications/selectors'
 import { type FC } from 'react'
 
-import emptyNotifications from '@assets/notifications/Notification empty.svg'
+import emptyNotifications from '@assets/notifications/notification empty.svg'
 
 const SheetBlock: FC = () => {
   const notifications = useAppSelector(selectNotifications)
