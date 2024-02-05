@@ -156,11 +156,13 @@ const EditAccount: FC = () => {
 
             <Input
               {...register('username', {
+                validate: (value: string) => {
+                  if (value[0] !== '@') return '@username должен начинаться с "@"'
+                },
                 pattern: {
                   value: usernameRegExp,
-                  message: '@username не должен содержать спец. символы '
+                  message: 'Ошибка, попробуйте ввести другой @username'
                 },
-
                 minLength: {
                   value: 5,
                   message: 'Минимальное кол-во символов: 5'
