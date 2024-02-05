@@ -1,6 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { getCookie } from '../lib/cookie'
-import { type IAxiosError } from '../lib/types/api'
 import { refreshRequest } from './auth/auth'
 
 export const URL = import.meta.env.VITE_BACKEND_URL
@@ -31,17 +30,20 @@ apiWithAuth.interceptors.response.use(
 
           return await apiWithAuth.request(error.config)
         } catch (e) {
-          throw new Error((e as IAxiosError).response?.data?.msg)
+          throw error
         }
       } else {
-        throw new Error(error.response.data?.msg)
+        throw error
       }
+      // Todo настроить грамотный вывод ошибок ниже
     } else if (error.request) {
       // Запрос был сделан, но ответ не получен
-      throw new Error('Похоже у нас проблемы с серверами, попробуйте зайти чуть позже')
+      throw new AxiosError(
+        'Похоже у нас проблемы с серверами, попробуйте зайти чуть позже'
+      )
     } else {
       // Произошло что-то при настройке запроса, вызвавшее ошибку
-      throw new Error('Что-то пошло не так, попробуйте перезагрузить страницу')
+      throw new AxiosError('Что-то пошло не так, попробуйте перезагрузить страницу')
     }
   }
 )

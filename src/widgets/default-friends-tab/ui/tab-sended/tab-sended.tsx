@@ -14,22 +14,25 @@ const TabSended: FC<ITabSendedProps> = ({ search }) => {
   const sended = useAppSelector(selectSended)
   const users = useAppSelector(selectAllUsers)
 
-  const { id: userId } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
 
   return (
     <>
       <div className='flex flex-col gap-[20px]'>
         {sended
-          .filter((item) => filterRequests(users, userId, item, search))
+          .filter((item) => {
+            if (!user?.id) return null
+            return filterRequests(users, user?.id, item, search)
+          })
           .map((friend, index) => {
-            const friendId = userId === friend.fromId ? friend.toId : friend.fromId
+            const friendId = user?.id === friend.fromId ? friend.toId : friend.fromId
 
             return (
               <CardFriends
                 key={index}
                 type='sended'
                 friendId={friendId}
-                isMine={friendId === userId}
+                isMine={friendId === user?.id}
               >
                 <ButtonsFriendActions
                   friendId={friendId}

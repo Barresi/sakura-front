@@ -53,6 +53,11 @@ module.exports = {
       md: 'calc(0.5rem - 2px)',
       sm: 'calc(0.5rem - 4px)',
       full: '9999px'
+    },
+    extend: {
+      width: {
+        selectWidth: 'var(--radix-select-trigger-width)'
+      }
     }
   },
   plugins: [require('tailwindcss-animate')]

@@ -3,15 +3,15 @@ import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { type FC } from 'react'
 
 const PageProfile: FC = () => {
-  const { email, id, firstName, lastName } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
 
   return (
     <div>
       <h1>
-        name: {firstName} {lastName}
+        name: {user?.firstName} {user?.lastName}
       </h1>
-      <h1>email: {email}</h1>
-      <h1>id: {id}</h1>
+      <h1>email: {user?.email}</h1>
+      <h1>id: {user?.id}</h1>
     </div>
   )
 }

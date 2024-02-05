@@ -18,7 +18,6 @@ const InputSearch: FC<IInputSearchProps> = ({ className, ...props }) => {
         type='text'
         {...props}
       />
-
       <img className='absolute top-[52%] right-4 translate-y-[-100%]' src={icon} alt='' />
     </div>
   )

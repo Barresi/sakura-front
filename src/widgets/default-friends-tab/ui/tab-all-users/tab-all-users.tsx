@@ -18,7 +18,7 @@ interface ITabAllUsersProps extends IBaseTabProps {}
 
 const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
   const users = useAppSelector(selectAllUsers)
-  const { id: userId } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
 
   const friends = useAppSelector(selectFriends)
   const sended = useAppSelector(selectSended)
@@ -30,8 +30,9 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
         {users
           .filter((item) => filterUsers(item, search))
           .map((friend, index) => {
+            if (!user?.id) return null
             const friendState = checkFriendState(
-              userId,
+              user?.id,
               friend.id,
               friends,
               sended,
@@ -39,15 +40,15 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
             )
             let requestId
             if (friendState === FriendState.isRequestSended)
-              requestId = sended.find((item) => item.fromId === userId)?.id
+              requestId = sended.find((item) => item.fromId === user?.id)?.id
             if (friendState === FriendState.isRequestReceived)
-              requestId = received.find((item) => item.toId === userId)?.id
+              requestId = received.find((item) => item.toId === user?.id)?.id
             return (
               <CardFriends
                 key={index}
                 type='all'
                 friendId={friend.id}
-                isMine={friend.id === userId}
+                isMine={friend.id === user?.id}
               >
                 <ButtonsFriendActions
                   friendId={friend.id}

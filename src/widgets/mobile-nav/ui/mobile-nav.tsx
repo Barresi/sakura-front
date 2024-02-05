@@ -49,6 +49,14 @@ const MobileNav: FC = () => {
       >
         Друзья
       </ButtonNav>
+
+      <ButtonNav
+        className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
+        icon='settingsRed'
+        to='settings'
+      >
+        Настройки
+      </ButtonNav>
     </div>
   )
 }

@@ -13,9 +13,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
     const errorClass = error
       ? 'border-input-errorBorder focus:border-input-errorBorder'
       : 'border-input focus:border-input-hoverBorder'
-    const errorSpanClass = error
-      ? 'absolute bottom-[-1rem] left-5 text-input-errorBorder'
-      : ''
+    const errorSpanClass =
+      'absolute bottom-[-1rem] left-5 text-input-errorBorder text-red'
+
     return (
       <div className='w-full relative pb-6'>
         <textarea className={cn(baseClass, errorClass, className)} ref={ref} {...props} />
