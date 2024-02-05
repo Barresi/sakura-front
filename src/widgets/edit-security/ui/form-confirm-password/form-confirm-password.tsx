@@ -20,7 +20,7 @@ const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({ onSubmit }) => {
   } = useForm<IFormInputs>()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
       {/* @ts-expect-error не рабочие пропсы у DialogHeader */}
       <DialogHeader>
         <DialogTitle>

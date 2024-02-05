@@ -12,6 +12,8 @@ import {
 import { selectNotifications } from '@store/reducers/notifications/selectors'
 import { type FC } from 'react'
 
+import emptyNotifications from '@assets/notifications/Notification empty.svg'
+
 const SheetBlock: FC = () => {
   const notifications = useAppSelector(selectNotifications)
   return (
@@ -20,22 +22,31 @@ const SheetBlock: FC = () => {
         <ButtonSetting icon='notification' />
       </SheetTrigger>
       <SheetContent
-        side='top'
-        className='w-[97%] lg:max-w-[600px] max-h-[80vh] top-[60px] md:top-[100px] lg:top-[120px] right-[1%] shadow-xl dark:bg-grayBlue'
+        side='right'
+        className='right-5 fixed lg:max-w-[600px] top-[70px] bottom-[90px] md:top-[100px] lg:top-[120px] lg:bottom-[20px] shadow-xl dark:bg-grayBlue'
       >
         <SheetHeader>
           <SheetTitle>Уведомления</SheetTitle>
-          {notifications.map(({ id, content, type, createdAt }) => {
-            return (
-              <CardNotification
-                key={id}
-                id={content.split(' ')[0]}
-                type={type}
-                date={`${parseDateToMonth(createdAt)} ${parseDateToTime(createdAt)}`}
-              />
-            )
-          })}
         </SheetHeader>
+        <div className='flex flex-col justify-center items-center h-[80%] '>
+          {notifications.length ? (
+            notifications.map(({ id, content, type, createdAt }) => {
+              return (
+                <CardNotification
+                  key={id}
+                  id={content.split(' ')[0]}
+                  type={type}
+                  date={`${parseDateToMonth(createdAt)} ${parseDateToTime(createdAt)}`}
+                />
+              )
+            })
+          ) : (
+            <div className='flex flex-col flex-auto w-[100%] h-[100%] justify-center items-center'>
+              <img src={emptyNotifications} alt='empty notifications' />
+              <p className='text-lg text-center'>Уведомления отсутствуют</p>
+            </div>
+          )}
+        </div>
       </SheetContent>
     </Sheet>
   )

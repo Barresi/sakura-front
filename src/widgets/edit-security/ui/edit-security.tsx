@@ -8,6 +8,7 @@ import { removeNullProperties } from '@shared/lib/remove-null-properties'
 import { Button } from '@shared/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@shared/ui/dialog'
 import { Input } from '@shared/ui/input'
+import { useToast } from '@widgets/toaster'
 import { useEffect, useState, type FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormConfirmPassword } from './form-confirm-password/form-confirm-password'
@@ -20,6 +21,7 @@ interface IFormInputs {
 const EditSecurity: FC = () => {
   const userInfo = useAppSelector(selectUser)
   const dispatch = useAppDispatch()
+  const { toast } = useToast()
 
   const [isEditInfo, setEditInfo] = useState(false)
 
@@ -45,7 +47,17 @@ const EditSecurity: FC = () => {
       confirmPassword
     })
     // @ts-expect-error значения полей payloadWithoutNullProperties никогда не будут !== string
-    dispatch(editUserSecurityInfoThunk(payloadWithoutNullProperties))
+    dispatch(editUserSecurityInfoThunk(payloadWithoutNullProperties)).then((data) => {
+      if (data.meta.requestStatus === 'fulfilled') {
+        resetValueInputs()
+        toast({
+          title: 'Системное уведомление',
+          description: 'Вы успешно обновили данные своего аккаунта'
+        })
+      } else {
+        toast({ title: 'Системное уведомление', description: data.payload as string })
+      }
+    })
   }
 
   const resetValueInputs = (): void => {
@@ -114,12 +126,12 @@ const EditSecurity: FC = () => {
       </div>
 
       <div className='flex justify-between items-center flex-col-reverse sm:flex-row gap-4'>
-        <div className='flex  flex-[50%] flex-col sm:flex-row'>
+        <div className='flex flex-[50%] flex-col sm:flex-row'>
           <ButtonLogout classname='w-auto' />
           <ButtonDeleteAccount classname='w-auto' />
         </div>
 
-        <div className='flex flex-col flex-[50%] sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end'>
+        <div className='flex w-[100%] flex-col sm:flex-row gap-3 sm:w-[360px] lg:self-end'>
           {isEditInfo && (
             <>
               <Button variant='secondary' onClick={resetValueInputs}>
