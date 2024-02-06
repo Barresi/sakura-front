@@ -44,7 +44,7 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
           <img
             className={`cursor-pointer absolute top-[35%] translate-y-[-50%] right-[20px] transition-all hover:scale-[1.1] active:scale-[0.9]`}
             onClick={toggleType}
-            src={inputType === 'text' ? eye : eyeOff}
+            src={inputType === 'text' ? eyeOff : eye}
             alt=''
           />
         </div>
