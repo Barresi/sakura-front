@@ -38,7 +38,7 @@ const PageMessenger: FC = () => {
                 key={ind}
                 to={item.chatId}
                 className={({ isActive }) =>
-                  isActive ? '[&>div]:bg-ghostlyWhite [&>div]:dark:bg-brownBlack' : ''
+                  `${isActive && '[&>div]:dark:border-r-red [&>div]:border-r-red'} `
                 }
               >
                 <CardMessage className='rounded-none' {...item} />

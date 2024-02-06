@@ -48,12 +48,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
 
   if (isMobile) {
     return (
-      <Card
-        className={cn(
-          'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
-          className
-        )}
-      >
+      <Card className={cn('', className)}>
         <div className='flex items-start lg:items-center gap-[15px]'>
           {avatar}
 
@@ -67,12 +62,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
   }
 
   return (
-    <Card
-      className={cn(
-        'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
-        className
-      )}
-    >
+    <Card className={cn('block ', className)}>
       <div className='flex items-start lg:items-center gap-[15px]'>
         {avatar}
 

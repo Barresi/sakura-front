@@ -19,7 +19,7 @@ const CardNotification: FC<ICardNotificationProps> = ({ className, date, id, typ
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
 
   return (
-    <Card className={cn('block', className)}>
+    <Card className={cn('', className)}>
       <div className='flex items-center gap-[15px]'>
         <UserAvatar className='w-[60px] h-[60px]' />
 
