@@ -204,7 +204,7 @@ const EditAccount: FC = () => {
         </div>
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
-            <h3>Имя</h3>
+            <h3 className='text-sm'>Имя</h3>
 
             <Input
               {...register('firstName', {
@@ -225,7 +225,7 @@ const EditAccount: FC = () => {
             />
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
-            <h3>Фамилия</h3>
+            <h3 className='text-sm'>Фамилия</h3>
 
             <Input
               {...register('lastName', {
@@ -248,7 +248,7 @@ const EditAccount: FC = () => {
         </div>
         <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
-            <h3>День рождения</h3>
+            <h3 className='text-sm'>День рождения</h3>
             {/* Todo Убрать анимацию нажатия на PopoverTrigger */}
             <Controller
               control={control}
@@ -289,7 +289,7 @@ const EditAccount: FC = () => {
             />
           </div>
           <div className='w-[100%] flex flex-col gap-1'>
-            <h3>Пол</h3>
+            <h3 className='text-sm'>Пол</h3>
             {/* Todo добавить анимацию закрытия SelectContent */}
             <Controller
               control={control}
@@ -309,7 +309,7 @@ const EditAccount: FC = () => {
           </div>
         </div>
         <div className='w-[100%] flex flex-col gap-1'>
-          <h3>Краткая информация</h3>
+          <h3 className='text-sm'>Краткая информация</h3>
           <Textarea
             {...register('description', {
               maxLength: {

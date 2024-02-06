@@ -83,7 +83,7 @@ const EditSecurity: FC = () => {
       <h1 className='text-2xl'>Безопасность</h1>
       <div>
         <div className='w-[100%] flex flex-col gap-1'>
-          <h3>E-mail</h3>
+          <h3 className='text-sm'>E-mail</h3>
           <Input
             placeholder={userInfo?.email}
             {...register('email', {
@@ -99,7 +99,7 @@ const EditSecurity: FC = () => {
           />
         </div>
         <div className='w-[100%] flex flex-col gap-1'>
-          <h3>Пароль</h3>
+          <h3 className='text-sm'>Пароль</h3>
           <Input
             placeholder='Введите новый пароль'
             {...register('password', {
