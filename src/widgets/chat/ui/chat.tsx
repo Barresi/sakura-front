@@ -3,6 +3,7 @@ import { useSocket } from '@app/providers/socket-context/lib/useSocket'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { parseDateToMonth } from '@shared/lib/parse-date'
 import { type IMessage } from '@shared/lib/types/api'
+import { InputSendMessage } from '@shared/ui/input-send-message'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { selectAllUsers } from '@store/reducers/friends/selectors'
 import { getUserChatsThunk } from '@store/reducers/messenger/async-thunks'
@@ -14,7 +15,6 @@ import {
   groupChatMessagesByDate,
   type IFormattedMessages
 } from '../lib/group-chat-messages'
-import { InputMessage } from './input-message/input-message'
 import { Message } from './message/message'
 
 import arrow from '@assets/ui/arrow.svg'
@@ -165,7 +165,7 @@ const Chat: FC = () => {
         })}
       </div>
       <div className='absolute bottom-0 right-5 left-5'>
-        <InputMessage sendMessage={sendMessage} />
+        <InputSendMessage placeholder='Написать сообщение...' sendMessage={sendMessage} />
       </div>
     </div>
   )
