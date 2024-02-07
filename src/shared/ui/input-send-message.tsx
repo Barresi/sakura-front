@@ -51,7 +51,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       />
       <button type='submit'>
         <img
-          className='cursor-pointer absolute top-[50%] right-[20px] translate-y-[-90%] active:scale-[.95]'
+          className='cursor-pointer absolute top-[50%] right-[20px] translate-y-[-50%] active:scale-[.95]'
           src={send}
           alt='send'
         />

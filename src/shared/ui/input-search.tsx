@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import { cn } from '../lib/merge-classes'
 import { Input, type IInputProps } from './input'
 
-import icon from '@assets/ui/Search.svg'
+import search from '@assets/ui/Search.svg'
 
 interface IInputSearchProps extends Omit<IInputProps, 'type'> {}
 
@@ -18,7 +18,11 @@ const InputSearch: FC<IInputSearchProps> = ({ className, ...props }) => {
         type='text'
         {...props}
       />
-      <img className='absolute top-[52%] right-4 translate-y-[-100%]' src={icon} alt='' />
+      <img
+        className='absolute top-[50%] right-4 translate-y-[-50%]'
+        src={search}
+        alt='search'
+      />
     </div>
   )
 }
