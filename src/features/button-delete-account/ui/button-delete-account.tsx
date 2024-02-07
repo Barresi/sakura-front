@@ -64,17 +64,16 @@ const ButtonDeleteAccount: FC<IButtonDeleteAccountProps> = ({ classname }) => {
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-7'>
           {/* @ts-expect-error не рабочие пропсы у DialogHeader */}
           <DialogHeader>
-            <DialogTitle>Вы уверены что хотите удалить свой аккаунт?</DialogTitle>
-            <DialogDescription>
-              Это действие не может быть отменено. Вы уверены, что хотите навсегда удалить
-              этот аккаунт с наших серверов?
-            </DialogDescription>
+            <DialogTitle>Удаление аккаунта</DialogTitle>
           </DialogHeader>
+          <DialogDescription>
+            Это действие не может быть отменено. Вы уверены, что хотите навсегда удалить
+            этот аккаунт с наших серверов?
+          </DialogDescription>
           <Input
-            className='mt-4'
             placeholder='Введите ваш старый пароль'
             {...register('confirmPassword', {
               required: 'Обязательное поле',

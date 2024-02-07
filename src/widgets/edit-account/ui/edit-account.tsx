@@ -140,7 +140,7 @@ const EditAccount: FC = () => {
             className='w-[100%] object-cover rounded-[6px]'
           />
           <Button
-            variant='outline'
+            variant='secondary'
             className='absolute usm:right-[20px] usm:bottom-[10px] w-[190px] h-[40px] xxl:right-[30px] xxl:bottom-[30px]'
           >
             Изменить обложку
@@ -149,8 +149,8 @@ const EditAccount: FC = () => {
 
         <UserAvatar className='mt-[50px] h-[100%] w-[100%] usm:absolute usm:mt-0 usm:left-[20px] usm:bottom-[10px] usm:w-[100px] usm:h-[100px] xxl:left-[30px] xxl:bottom-[30px] sm:h-[150px] sm:w-[150px]' />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col'>
-        <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
+      <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col gap-5'>
+        <div className='flex flex-col md:flex-row gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3 className='text-sm'>Никнейм</h3>
 
@@ -202,7 +202,7 @@ const EditAccount: FC = () => {
             />
           </div>
         </div>
-        <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
+        <div className='flex flex-col md:flex-row gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3 className='text-sm'>Имя</h3>
 
@@ -246,7 +246,7 @@ const EditAccount: FC = () => {
             />
           </div>
         </div>
-        <div className='flex flex-col md:flex-row md:gap-5 justify-between'>
+        <div className='flex flex-col md:flex-row gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3 className='text-sm'>День рождения</h3>
             {/* Todo Убрать анимацию нажатия на PopoverTrigger */}
@@ -255,7 +255,7 @@ const EditAccount: FC = () => {
               name='birthDate'
               render={({ field }) => (
                 <Popover>
-                  <PopoverTrigger asChild className='mb-6 h-[54px]'>
+                  <PopoverTrigger asChild className=' h-[54px]'>
                     <Button
                       variant={'outline'}
                       className={cn(
@@ -296,7 +296,7 @@ const EditAccount: FC = () => {
               name='gender'
               render={({ field }) => (
                 <Select onValueChange={field.onChange} value={field.value || undefined}>
-                  <SelectTrigger className='mb-6 rounded-[6px]'>
+                  <SelectTrigger className=' rounded-[6px]'>
                     <SelectValue placeholder='Выберите пол' />
                   </SelectTrigger>
                   <SelectContent className='border-smokyWhite dark:border-cadet rounded-[6px] w-selectWidth'>

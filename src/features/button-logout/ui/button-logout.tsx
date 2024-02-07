@@ -50,7 +50,7 @@ const ButtonLogout: FC<IButtonLogoutProps> = ({ classname, variant = 'text' }) =
           <ButtonSetting icon='exit' className={classname} />
         )}
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className='flex flex-col gap-7'>
         {/* @ts-expect-error не рабочие пропсы у DialogHeader */}
         <DialogHeader>
           <DialogTitle>Вы уверены что хотите выйти из своего аккаунта?</DialogTitle>

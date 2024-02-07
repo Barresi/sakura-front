@@ -49,7 +49,7 @@ const PageLogin: FC = () => {
           <div className=' text-2xl text-center mt-5'>Авторизация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-4'>
           <Input
             {...register('email', {
               required: 'Обязательное поле',

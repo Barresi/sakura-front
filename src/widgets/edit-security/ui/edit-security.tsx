@@ -81,7 +81,7 @@ const EditSecurity: FC = () => {
   return (
     <form onChange={handleSubmit(() => {})} className='flex flex-col gap-4'>
       <h1 className='text-2xl'>Безопасность</h1>
-      <div>
+      <div className='flex flex-col gap-5'>
         <div className='w-[100%] flex flex-col gap-1'>
           <h3 className='text-sm'>E-mail</h3>
           <Input

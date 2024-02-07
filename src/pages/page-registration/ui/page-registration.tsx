@@ -51,7 +51,7 @@ const PageRegistration: FC = () => {
           <div className=' text-2xl text-center mt-5'>Регистрация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-4'>
           <Input
             {...register('firstName', {
               required: 'Обязательное поле',
