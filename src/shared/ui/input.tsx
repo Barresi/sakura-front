@@ -24,34 +24,28 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
       : 'border-smokyWhite dark:border-cadet focus:border-blue dark:focus:border-twitter'
     const errorSpanClass = ` text-red`
 
-    const input = (
-      <div className='w-full relative'>
-        <input
-          type={inputType}
-          className={cn(baseClass, errorClass, className)}
-          ref={ref}
-          {...props}
-        />
+    return (
+      <div className='w-full '>
+        <div className='relative'>
+          <input
+            type={inputType}
+            className={cn(baseClass, errorClass, className)}
+            ref={ref}
+            {...props}
+          />
+          {type === 'password' && (
+            <img
+              className={`cursor-pointer absolute top-[50%] translate-y-[-50%] right-5 transition-all hover:scale-[1.1] active:scale-[0.9]`}
+              onClick={toggleType}
+              src={inputType === 'text' ? eyeOff : eye}
+              alt='eye'
+            />
+          )}
+        </div>
 
         {error && <span className={errorSpanClass}>{error}</span>}
       </div>
     )
-
-    if (type === 'password') {
-      return (
-        <div className='w-full relative'>
-          {input}
-          <img
-            className={`cursor-pointer absolute top-[50%] translate-y-[-50%] right-5 transition-all hover:scale-[1.1] active:scale-[0.9]`}
-            onClick={toggleType}
-            src={inputType === 'text' ? eyeOff : eye}
-            alt=''
-          />
-        </div>
-      )
-    }
-
-    return input
   }
 )
 Input.displayName = 'Input'
