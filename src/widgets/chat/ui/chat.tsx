@@ -12,6 +12,7 @@ import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { Fragment, useEffect, useRef, useState, type FC, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
+  addMessageInGroupedMessagesByDate,
   groupChatMessagesByDate,
   type IFormattedMessages
 } from '../lib/group-chat-messages'
@@ -31,7 +32,7 @@ const Chat: FC = () => {
   const dispatch = useAppDispatch()
 
   // Флаг для отрисовки только одного блока новых сообщений
-  let isRendered = false
+  let isRenderedBlockNewMessages = false
 
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const chatId = useParams()
@@ -42,7 +43,6 @@ const Chat: FC = () => {
   const friendId = currentChat?.participants.find((item) => item.id !== user?.id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
 
-  const [chatMessages, setChatMessages] = useState<IMessage[]>([])
   const [formattedMessages, setFormattedMessages] = useState<IFormattedMessages[]>([])
 
   const { socket } = useSocket()
@@ -57,12 +57,12 @@ const Chat: FC = () => {
     })
   }
   const getMessage = (message: IMessage): void => {
-    setChatMessages((prev) => [...prev, message])
+    setFormattedMessages((prev) => addMessageInGroupedMessagesByDate(prev, message))
     // Нужен для обновления последнего сообщения в user chats
     dispatch(getUserChatsThunk())
   }
   const getHistory = (history: IMessage[]): void => {
-    setChatMessages(history)
+    setFormattedMessages(groupChatMessagesByDate(history))
     // Нужен для обновления счетчика прочитанных сообщений в user chats
     dispatch(getUserChatsThunk())
   }
@@ -86,32 +86,30 @@ const Chat: FC = () => {
   }, [socket])
 
   useEffect(() => {
-    setFormattedMessages(groupChatMessagesByDate(chatMessages))
-  }, [chatMessages])
-
-  useEffect(() => {
     if (container.current) container.current.scrollTop = container.current.scrollHeight
   }, [formattedMessages])
 
   const renderMessages = (value: IMessage, ind: number): ReactNode => {
-    const { text, senderId, createdAt } = value
+    const { text, senderId, createdAt, read } = value
     const isMyMessage = senderId === user?.id
     return (
-      <Message
-        text={text}
-        date={createdAt}
-        my={isMyMessage}
-        key={ind}
-        firstName={isMyMessage ? user?.firstName : friend?.firstName}
-        lastName={isMyMessage ? user?.lastName : friend?.lastName}
-      />
+      <>
+        {!read && renderNewMessagesBlock()}
+        <Message
+          text={text}
+          date={createdAt}
+          my={isMyMessage}
+          key={ind}
+          firstName={isMyMessage ? user?.firstName : friend?.firstName}
+          lastName={isMyMessage ? user?.lastName : friend?.lastName}
+        />
+      </>
     )
   }
 
   const renderNewMessagesBlock = (): ReactNode => {
-    if (!isRendered) {
-      isRendered = true
-
+    if (!isRenderedBlockNewMessages) {
+      isRenderedBlockNewMessages = true
       return (
         <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
           Новые сообщения
@@ -142,24 +140,12 @@ const Chat: FC = () => {
         className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
       >
         {formattedMessages.map(({ date, messages }) => {
-          const readMessagesChats = messages.filter(
-            (item) => item.read || item.senderId === user?.id
-          )
-          const unreadMessagesChats = messages.filter(
-            (item) => !item.read && item.senderId !== user?.id
-          )
-
           return (
             <Fragment key={date}>
               <span className='text-center my-4 text-signalBlack dark:text-darkGray'>
                 {parseDateToMonth(date)}
               </span>
-
-              {readMessagesChats.map(renderMessages)}
-
-              {!!unreadMessagesChats.length && renderNewMessagesBlock()}
-
-              {unreadMessagesChats.map(renderMessages)}
+              {messages.map(renderMessages)}
             </Fragment>
           )
         })}
