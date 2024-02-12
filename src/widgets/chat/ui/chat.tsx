@@ -19,6 +19,7 @@ import {
 import { Message } from './message/message'
 
 import arrow from '@assets/ui/arrow.svg'
+import { AppRoutes } from '@shared/lib/types/routes'
 
 const Chat: FC = () => {
   const {
@@ -119,25 +120,23 @@ const Chat: FC = () => {
   }
 
   return (
-    <div className='flex flex-col flex-auto w-[65%] relative h-[100%] bg-white dark:bg-grayBlue rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
-      <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px]'>
-        <div className='text-lightGray dark:text-ghostlyWhite text-[20px] flex gap-[10px]'>
-          <Link
-            to='/main/messenger'
-            className='flex justify-center items-center px-[10px]'
-          >
-            <img src={arrow} alt='arrow' className='w-[20px] h-[20px]' />
-          </Link>
-          <div className='flex flex-col md:flex-row md:gap-[10px]'>
-            <span className='font-bold text-xl text-signalBlack dark:text-darkWhite'>{`${friend?.firstName} ${friend?.lastName}`}</span>
-          </div>
+    <div className='fixed left-0 right-0 top-0 bottom-0 z-50 lg:z-0 w-[100vw] flex flex-col flex-auto md:w-[65%] md:relative h-[100%] bg-white dark:bg-grayBlue rounded-0 md:rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
+      <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px] text-[20px] text-lightGray dark:text-ghostlyWhite gap-[10px]'>
+        <Link
+          to={AppRoutes.MESSENGER}
+          className='flex justify-center items-center px-[10px]'
+        >
+          <img src={arrow} alt='arrow' className='w-[20px] h-[20px]' />
+        </Link>
+        <div className='flex flex-col md:flex-row md:gap-[10px]'>
+          <span className='font-bold text-xl text-signalBlack dark:text-darkWhite'>{`${friend?.firstName} ${friend?.lastName}`}</span>
         </div>
 
         <UserAvatar />
       </div>
       <div
         ref={container}
-        className='h-[100%] mt-[80px] flex flex-col overflow-auto mb-[77px] scrollbar-none'
+        className='h-[100%] mt-[80px] flex flex-col overflow-auto overflow-x-hidden mb-[50px] md:mb-[70px] xxl:mb-[90px] scrollbar-none bg-body dark:bg-bodyDark md:bg-white md:dark:bg-grayBlue'
       >
         {formattedMessages.map(({ date, messages }) => {
           return (
@@ -150,8 +149,12 @@ const Chat: FC = () => {
           )
         })}
       </div>
-      <div className='absolute bottom-0 right-5 left-5'>
-        <InputSendMessage placeholder='Написать сообщение...' sendMessage={sendMessage} />
+      <div className='fixed md:absolute bottom-0 right-0 left-0 md:right-5 md:left-5 md:mb-5'>
+        <InputSendMessage
+          placeholder='Написать сообщение...'
+          sendMessage={sendMessage}
+          className='h-[50px] xxl:h-[70px] border-0 md:border'
+        />
       </div>
     </div>
   )

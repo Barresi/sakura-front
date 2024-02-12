@@ -66,7 +66,6 @@ const UserAvatar: FC<IUserAvatarProps> = ({ src, className }) => {
   return (
     <Avatar className={className}>
       <AvatarImage src={img} />
-      <AvatarFallback>Avatar</AvatarFallback>
     </Avatar>
   )
 }

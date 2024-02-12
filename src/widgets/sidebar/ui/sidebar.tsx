@@ -3,6 +3,7 @@ import { ButtonLogout } from '@features/button-logout'
 import { ButtonNav } from '@features/button-nav'
 import { ButtonSettings } from '@features/button-settings/ui/button-settings'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { AppRoutes } from '@shared/lib/types/routes'
 import { ButtonSetting } from '@shared/ui/button-setting'
 import { Logo } from '@shared/ui/logo'
 import { selectReceived } from '@store/reducers/friends/selectors'
@@ -20,18 +21,26 @@ const Sidebar: FC = () => {
         <Logo />
 
         <div className='pt-[50px]'>
-          <ButtonNav className='w-full justify-start gap-[10px]' icon='user' to='profile'>
+          <ButtonNav
+            className='w-full justify-start gap-[10px]'
+            icon='user'
+            to={AppRoutes.PROFILE}
+          >
             Моя страница
           </ButtonNav>
 
-          <ButtonNav className='w-full justify-start gap-[10px]' icon='news' to='feed'>
+          <ButtonNav
+            className='w-full justify-start gap-[10px]'
+            icon='news'
+            to={AppRoutes.NEWS}
+          >
             Новости
           </ButtonNav>
 
           <ButtonNav
             className='w-full justify-start gap-[10px]'
             icon='message'
-            to='messenger'
+            to={AppRoutes.MESSENGER}
             badge={totalUnreadMessages}
           >
             Мессенджер
@@ -40,7 +49,7 @@ const Sidebar: FC = () => {
           <ButtonNav
             className='w-full justify-start gap-[10px]'
             icon='friends'
-            to='friends'
+            to={AppRoutes.FRIENDS}
             badge={received.length}
           >
             Друзья
