@@ -29,7 +29,7 @@ export const addMessageInGroupedMessagesByDate = (
   newMessage: IMessage
 ): IFormattedMessages[] => {
   const lastDateOfGroupMessages = new Date(
-    formattedMessages[formattedMessages.length - 1].date
+    formattedMessages[formattedMessages.length - 1]?.date
   ).toDateString()
   const dateOfNewMessage = new Date(newMessage.createdAt).toDateString()
   if (lastDateOfGroupMessages !== dateOfNewMessage) {
