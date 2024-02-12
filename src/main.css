@@ -27,8 +27,7 @@
     background: #d22828;
 
     /* Вроде так красивше вышло, чекни скроллбары */
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
   }
 
   /* Handle on hover */
