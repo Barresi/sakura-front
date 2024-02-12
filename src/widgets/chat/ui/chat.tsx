@@ -95,7 +95,7 @@ const Chat: FC = () => {
     const isMyMessage = senderId === user?.id
     return (
       <>
-        {!read && renderNewMessagesBlock()}
+        {!read && senderId !== user?.id && renderNewMessagesBlock()}
         <Message
           text={text}
           date={createdAt}
