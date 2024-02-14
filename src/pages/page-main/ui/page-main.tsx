@@ -42,7 +42,7 @@ const PageMain: FC = () => {
         <Header />
         <div
           className={`${
-            isChat ? 'pb-0' : 'pb-10 md:pb-14'
+            isChat ? 'pb-0' : 'pb-[90px]'
           } lg:pb-0 mt-[74px] md:mt-[104px] lg:mt-0`}
         >
           <Outlet />

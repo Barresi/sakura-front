@@ -11,7 +11,7 @@ const PageFriends: FC = () => {
     setSearchParams({ usertype })
   }
   return (
-    <div className='w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] mb-[60px] lg:mb-[20px] px-[20px] lg:px-0'>
+    <div className='w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] lg:mb-[20px] px-[20px] lg:px-0'>
       <FilterFriendsTabs handleChangeType={handleChangeType} type={type} />
 
       <div className='list w-full xl:w-2/3 bg-white dark:bg-grayBlue rounded-[10px] p-[20px] xl:p-[30px]'>
