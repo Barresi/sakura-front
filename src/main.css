@@ -14,7 +14,9 @@
 
   /* width */
   ::-webkit-scrollbar {
-    width: 7px;
+    /* width: 7px; */
+    /* Эксперемент с нулевым скроллом */
+    width: 0px;
   }
 
   /* Track */
