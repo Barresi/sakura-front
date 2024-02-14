@@ -31,7 +31,7 @@ const PageMessenger: FC = () => {
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!isMobile || pathname === '/main/messenger' ? (
-        <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-white dark:bg-grayBlue border-r-smokyWhite dark:border-r-cadet xxl:border-r xxl:rounded-l-[10px] xxl:rounded-r-[0px]'>
+        <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-darkWhite dark:bg-brownBlack xxl:rounded-l-[10px] xxl:rounded-r-[0px] flex flex-col gap-[2px]'>
           {chats.map((item, ind) => {
             return (
               <NavLink

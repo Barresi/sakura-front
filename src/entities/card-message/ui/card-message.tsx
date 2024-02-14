@@ -28,7 +28,7 @@ const CardMessage: FC<ICardMessageProps> = ({
   return (
     <Card
       className={cn(
-        'flex items-center justify-between cursor-pointer gap-[15px]',
+        'flex items-center justify-between cursor-pointer gap-[15px] border-b-0',
         className
       )}
     >

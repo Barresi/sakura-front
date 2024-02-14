@@ -121,7 +121,7 @@ const Chat: FC = () => {
 
   return (
     <div className='fixed left-0 right-0 top-0 bottom-0 z-50 lg:z-0 w-[100vw] flex flex-col flex-auto md:w-[65%] md:relative h-[100%] bg-white dark:bg-grayBlue rounded-0 md:rounded-[10px] xxl:rounded-r-[10px] xxl:rounded-l-[0px]'>
-      <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px] text-[20px] text-lightGray dark:text-ghostlyWhite gap-[10px]'>
+      <div className='absolute left-0 right-0 top-0 h-[80px] px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px] text-[20px] text-lightGray dark:text-ghostlyWhite gap-[10px]'>
         <Link
           to={AppRoutes.MESSENGER}
           className='flex justify-center items-center px-[10px] w-10 h-10 xxl:pointer-events-none'
