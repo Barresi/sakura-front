@@ -124,9 +124,9 @@ const Chat: FC = () => {
       <div className='absolute left-0 right-0 top-0 h-[80px] border-b border-smokyWhite dark:border-cadet px-[20px] lg:px-[30px] py-[20px] flex justify-between items-center z-10 bg-white dark:bg-grayBlue rounded-t-[10px] text-[20px] text-lightGray dark:text-ghostlyWhite gap-[10px]'>
         <Link
           to={AppRoutes.MESSENGER}
-          className='flex justify-center items-center px-[10px]'
+          className='flex justify-center items-center px-[10px] w-10 h-10 xxl:pointer-events-none'
         >
-          <img src={arrow} alt='arrow' className='w-[20px] h-[20px]' />
+          <img src={arrow} alt='arrow' className='w-[20px] h-[20px] xxl:hidden ' />
         </Link>
         <div className='flex flex-col md:flex-row md:gap-[10px]'>
           <span className='font-bold text-xl text-signalBlack dark:text-darkWhite'>{`${friend?.firstName} ${friend?.lastName}`}</span>
