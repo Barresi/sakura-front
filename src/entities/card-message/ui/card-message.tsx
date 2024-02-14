@@ -45,7 +45,7 @@ const CardMessage: FC<ICardMessageProps> = ({
         <span className='text-darkElectricBlue whitespace-nowrap'>
           {parseDateToMonth(newMessage?.createdAt || updatedAt)}
         </span>
-        {unread ? <Badge>{unread}</Badge> : null}
+        {unread ? <Badge className='self-end'>{unread}</Badge> : null}
       </div>
     </Card>
   )
