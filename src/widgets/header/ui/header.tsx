@@ -28,7 +28,7 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
       <div className='flex items-center justify-center gap-[15px]'>
         <ButtonChangeTheme className='flex lg:hidden' />
         <SheetBlock />
-        <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
+        <UserAvatar src={avatar} className='w-[44px] h-[44px]' />
       </div>
     </header>
   )
