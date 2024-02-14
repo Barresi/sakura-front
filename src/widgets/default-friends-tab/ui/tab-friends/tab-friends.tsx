@@ -17,33 +17,34 @@ const TabFriends: FC<ITabFriendsProps> = ({ search }) => {
 
   return (
     <>
-      <div className='flex flex-col gap-[20px]'>
-        {friends
-          .filter((item) => {
-            if (!user?.id) return null
-            return filterRequests(users, user?.id, item, search)
-          })
-          .map((friend, index) => {
-            const friendId = user?.id === friend.fromId ? friend.toId : friend.fromId
-
-            return (
-              <CardFriends
-                key={index}
-                type='friends'
-                friendId={friendId}
-                isMine={friendId === user?.id}
-              >
-                <ButtonsFriendActions
-                  friendId={friendId}
-                  friendState={FriendState.isFriend}
-                />
-              </CardFriends>
-            )
-          })}
-      </div>
       {friends?.length < 1 ? (
-        <span className='text-lg flex justify-center'>Здесь пока ничего нет</span>
-      ) : null}
+        <span className='text-lg flex justify-center mt-5'>Здесь пока ничего нет</span>
+      ) : (
+        <div className='flex flex-col gap-[20px]'>
+          {friends
+            .filter((item) => {
+              if (!user?.id) return null
+              return filterRequests(users, user?.id, item, search)
+            })
+            .map((friend, index) => {
+              const friendId = user?.id === friend.fromId ? friend.toId : friend.fromId
+
+              return (
+                <CardFriends
+                  key={index}
+                  type='friends'
+                  friendId={friendId}
+                  isMine={friendId === user?.id}
+                >
+                  <ButtonsFriendActions
+                    friendId={friendId}
+                    friendState={FriendState.isFriend}
+                  />
+                </CardFriends>
+              )
+            })}
+        </div>
+      )}
     </>
   )
 }

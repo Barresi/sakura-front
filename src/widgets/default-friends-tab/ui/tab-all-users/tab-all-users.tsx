@@ -26,42 +26,43 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
 
   return (
     <>
-      <div className='flex flex-col gap-[20px]'>
-        {users
-          .filter((item) => filterUsers(item, search))
-          .map((friend, index) => {
-            if (!user?.id) return null
-            const friendState = checkFriendState(
-              user?.id,
-              friend.id,
-              friends,
-              sended,
-              received
-            )
-            let requestId
-            if (friendState === FriendState.isRequestSended)
-              requestId = sended.find((item) => item.fromId === user?.id)?.id
-            if (friendState === FriendState.isRequestReceived)
-              requestId = received.find((item) => item.toId === user?.id)?.id
-            return (
-              <CardFriends
-                key={index}
-                type='all'
-                friendId={friend.id}
-                isMine={friend.id === user?.id}
-              >
-                <ButtonsFriendActions
-                  friendId={friend.id}
-                  friendState={friendState}
-                  requestId={requestId}
-                />
-              </CardFriends>
-            )
-          })}
-      </div>
       {users?.length < 1 ? (
-        <span className='text-lg flex justify-center'>Здесь пока ничего нет</span>
-      ) : null}
+        <span className='text-lg flex justify-center mt-5'>Здесь пока ничего нет</span>
+      ) : (
+        <div className='flex flex-col gap-[20px]'>
+          {users
+            .filter((item) => filterUsers(item, search))
+            .map((friend, index) => {
+              if (!user?.id) return null
+              const friendState = checkFriendState(
+                user?.id,
+                friend.id,
+                friends,
+                sended,
+                received
+              )
+              let requestId
+              if (friendState === FriendState.isRequestSended)
+                requestId = sended.find((item) => item.fromId === user?.id)?.id
+              if (friendState === FriendState.isRequestReceived)
+                requestId = received.find((item) => item.toId === user?.id)?.id
+              return (
+                <CardFriends
+                  key={index}
+                  type='all'
+                  friendId={friend.id}
+                  isMine={friend.id === user?.id}
+                >
+                  <ButtonsFriendActions
+                    friendId={friend.id}
+                    friendState={friendState}
+                    requestId={requestId}
+                  />
+                </CardFriends>
+              )
+            })}
+        </div>
+      )}
     </>
   )
 }
