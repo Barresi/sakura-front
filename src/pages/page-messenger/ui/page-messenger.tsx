@@ -29,8 +29,8 @@ const PageMessenger: FC = () => {
     <div
       className={`${
         isChat
-          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-220px)] lg:h-[calc(100vh-144px)]'
-          : 'h-[calc(100vh-140px)] md:h-[calc(100vh-175px)] lg:h-[calc(100vh-144px)]'
+          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-200px)] lg:h-[calc(100vh-144px)]'
+          : 'h-[calc(100vh-140px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-144px)]'
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!isMobile || pathname === '/main/messenger' ? (
