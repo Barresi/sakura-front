@@ -7,14 +7,17 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import chooseChat from '@assets/messenger/choose chat.svg'
 import notActiveChats from '@assets/messenger/not active chats.svg'
+import { useCurrentRoute } from '@shared/lib/hooks/useCurrentRoute'
+import { AppRoutes } from '@shared/lib/types/routes'
 
 const PageMessenger: FC = () => {
+  const isChat = useCurrentRoute(AppRoutes.CHAT)
   const chats = useAppSelector(selectMessengerUserChats)
 
   const { pathname } = useLocation()
   const isMobile = useWindowSize(1440)
 
-  if (!chats.length && pathname.length <= 16)
+  if (!chats.length && !isChat)
     return (
       <div className='flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-white dark:bg-grayBlue rounded-[10px] mx-5 lg:mx-0'>
         <img src={notActiveChats} alt='not active chat' />
@@ -25,9 +28,9 @@ const PageMessenger: FC = () => {
   return (
     <div
       className={`${
-        pathname.includes('/main/messenger/') && pathname.length > 16
+        isChat
           ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-220px)] lg:h-[calc(100vh-144px)]'
-          : 'h-[calc(100vh-150px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-144px)]'
+          : 'h-[calc(100vh-140px)] md:h-[calc(100vh-175px)] lg:h-[calc(100vh-144px)]'
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!isMobile || pathname === '/main/messenger' ? (
