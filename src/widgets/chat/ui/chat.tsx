@@ -136,7 +136,7 @@ const Chat: FC = () => {
       </div>
       <div
         ref={container}
-        className='h-[100%] mt-[80px] flex flex-col overflow-auto overflow-x-hidden mb-[50px] md:mb-[70px] xxl:mb-[90px] scrollbar-none bg-body dark:bg-bodyDark md:bg-white md:dark:bg-grayBlue px-5'
+        className='h-[100%] mt-[80px] flex flex-col overflow-auto overflow-x-hidden mb-[50px] md:mb-[70px] xxl:mb-[90px] scrollbar-none bg-body dark:bg-bodyDark md:bg-white md:dark:bg-grayBlue md:px-5'
       >
         {formattedMessages.map(({ date, messages }) => {
           return (
