@@ -1,5 +1,6 @@
 import { SocketEvents } from '@app/providers/socket-context/lib/socket-context'
 import { useSocket } from '@app/providers/socket-context/lib/useSocket'
+import { Message } from '@entities/message/message'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { parseDateToMonth } from '@shared/lib/parse-date'
 import { type IMessage } from '@shared/lib/types/api'
@@ -16,7 +17,6 @@ import {
   groupChatMessagesByDate,
   type IFormattedMessages
 } from '../lib/group-chat-messages'
-import { Message } from './message/message'
 
 import arrow from '@assets/ui/arrow.svg'
 import { AppRoutes } from '@shared/lib/types/routes'
