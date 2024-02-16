@@ -1,5 +1,6 @@
 import { ButtonNav } from '@features/button-nav'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { FriendTabs } from '@shared/lib/types/other'
 import { AppRoutes } from '@shared/lib/types/routes'
 import { selectReceived } from '@store/reducers/friends/selectors'
 import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
@@ -39,7 +40,7 @@ const MobileNav: FC = () => {
       <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='friends'
-        to={AppRoutes.FRIENDS}
+        to={{ pathname: AppRoutes.FRIENDS, search: `usertype=${FriendTabs.FRIENDS}` }}
         badge={received.length}
       >
         Друзья

@@ -1,6 +1,7 @@
 import { CardFriends } from '@entities/card-friends/ui/card-friends'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendState } from '@shared/lib/types/api'
+import { FriendTabs } from '@shared/lib/types/other'
 import { type IBaseTabProps } from '@shared/lib/types/props'
 import {
   selectAllUsers,
@@ -49,7 +50,7 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
               return (
                 <CardFriends
                   key={index}
-                  type='all'
+                  type={FriendTabs.ALL}
                   friendId={friend.id}
                   isMine={friend.id === user?.id}
                 >

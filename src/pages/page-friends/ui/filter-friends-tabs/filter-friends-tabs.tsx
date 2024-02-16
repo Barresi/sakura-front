@@ -1,5 +1,5 @@
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { type FriendTabs } from '@shared/lib/types/other'
+import { FriendTabs } from '@shared/lib/types/other'
 import { ButtonTab } from '@shared/ui/button-tab'
 import { selectReceived } from '@store/reducers/friends/selectors'
 import { type FC } from 'react'
@@ -14,34 +14,34 @@ const FilterFriendsTabs: FC<IFilterFriendsTabsProps> = ({ handleChangeType, type
   return (
     <div className='w-full xl:w-1/3 h-fit flex flex-col bg-white dark:bg-grayBlue rounded-[10px] p-[20px] [&>div]:w-[100%] sm:flex-row md:gap-[1rem] xl:gap-0 xl:p-[30px] xl:flex-col'>
       <ButtonTab
-        isActive={type === 'friends'}
+        isActive={type === FriendTabs.FRIENDS}
         onClick={() => {
-          handleChangeType('friends')
+          handleChangeType(FriendTabs.FRIENDS)
         }}
       >
         Мои друзья
       </ButtonTab>
       <ButtonTab
-        isActive={type === 'all'}
+        isActive={type === FriendTabs.ALL}
         onClick={() => {
-          handleChangeType('all')
+          handleChangeType(FriendTabs.ALL)
         }}
       >
         Все пользователи
       </ButtonTab>
       <ButtonTab
-        isActive={type === 'requests'}
+        isActive={type === FriendTabs.RECEIVED}
         onClick={() => {
-          handleChangeType('requests')
+          handleChangeType(FriendTabs.RECEIVED)
         }}
         badge={received.length}
       >
         Заявки в друзья
       </ButtonTab>
       <ButtonTab
-        isActive={type === 'sended'}
+        isActive={type === FriendTabs.SENDED}
         onClick={() => {
-          handleChangeType('sended')
+          handleChangeType(FriendTabs.SENDED)
         }}
       >
         Отправленные заявки

@@ -1,6 +1,7 @@
 import { CardFriends } from '@entities/card-friends'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendState } from '@shared/lib/types/api'
+import { FriendTabs } from '@shared/lib/types/other'
 import { type IBaseTabProps } from '@shared/lib/types/props'
 import { selectAllUsers, selectFriends } from '@store/reducers/friends/selectors'
 import { selectUser } from '@store/reducers/profileInfo/selectors'
@@ -32,7 +33,7 @@ const TabFriends: FC<ITabFriendsProps> = ({ search }) => {
               return (
                 <CardFriends
                   key={index}
-                  type='friends'
+                  type={FriendTabs.FRIENDS}
                   friendId={friendId}
                   isMine={friendId === user?.id}
                 >

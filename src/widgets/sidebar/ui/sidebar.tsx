@@ -3,6 +3,7 @@ import { ButtonLogout } from '@features/button-logout'
 import { ButtonNav } from '@features/button-nav'
 import { ButtonSettings } from '@features/button-settings/ui/button-settings'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { FriendTabs } from '@shared/lib/types/other'
 import { AppRoutes } from '@shared/lib/types/routes'
 import { ButtonSetting } from '@shared/ui/button-setting'
 import { Logo } from '@shared/ui/logo'
@@ -49,7 +50,7 @@ const Sidebar: FC = () => {
           <ButtonNav
             className='w-full justify-start gap-[10px]'
             icon='friends'
-            to={AppRoutes.FRIENDS}
+            to={{ pathname: AppRoutes.FRIENDS, search: `usertype=${FriendTabs.FRIENDS}` }}
             badge={received.length}
           >
             Друзья

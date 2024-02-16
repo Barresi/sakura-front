@@ -1,1 +1,6 @@
-export type FriendTabs = 'all' | 'requests' | 'sended' | 'friends'
+export enum FriendTabs {
+  ALL = 'all',
+  RECEIVED = 'received',
+  SENDED = 'sended',
+  FRIENDS = 'friends'
+}
