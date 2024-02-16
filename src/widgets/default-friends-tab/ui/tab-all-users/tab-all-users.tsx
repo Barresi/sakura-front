@@ -1,5 +1,4 @@
 import { CardFriends } from '@entities/card-friends/ui/card-friends'
-import { ButtonsFriendActions } from '@features/buttons-friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendState } from '@shared/lib/types/api'
 import { type IBaseTabProps } from '@shared/lib/types/props'
@@ -13,6 +12,7 @@ import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
 import { checkFriendState } from '../../lib/check-friend-state'
 import { filterUsers } from '../../lib/filters'
+import { ButtonsFriendActions } from '../buttons-friend-actions/buttons-friend-actions'
 
 interface ITabAllUsersProps extends IBaseTabProps {}
 

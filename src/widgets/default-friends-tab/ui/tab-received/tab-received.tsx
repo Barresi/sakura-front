@@ -1,5 +1,4 @@
 import { CardFriends } from '@entities/card-friends'
-import { ButtonsFriendActions } from '@features/buttons-friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendState } from '@shared/lib/types/api'
 import { type IBaseTabProps } from '@shared/lib/types/props'
@@ -7,6 +6,7 @@ import { selectAllUsers, selectReceived } from '@store/reducers/friends/selector
 import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
 import { filterRequests } from '../../lib/filters'
+import { ButtonsFriendActions } from '../buttons-friend-actions/buttons-friend-actions'
 
 interface ITabReceivedProps extends IBaseTabProps {}
 
