@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { capitalizeFirstLetter } from '@shared/lib/capitalize-first-letter'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
 import { AuthStatus, type IUserInfoResponse } from '@shared/lib/types/api'
 import {
@@ -39,7 +40,13 @@ const profileInfoSlice = createSlice({
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.status = AuthStatus.authorized
-      state.user = { ...state.user, ...action.payload.userWithoutPassword }
+      const user = action.payload.userWithoutPassword
+      state.user = {
+        ...state.user,
+        ...user,
+        firstName: capitalizeFirstLetter(user.firstName),
+        lastName: capitalizeFirstLetter(user.lastName)
+      }
 
       setCookie('accessToken', action.payload.accessToken)
       localStorage.setItem('refreshToken', action.payload.refreshToken)
@@ -69,7 +76,12 @@ const profileInfoSlice = createSlice({
     })
     builder.addCase(userInfoThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.user = action.payload.user
+      const user = action.payload.user
+      state.user = {
+        ...user,
+        firstName: capitalizeFirstLetter(user.firstName),
+        lastName: capitalizeFirstLetter(user.lastName)
+      }
       state.status = AuthStatus.authorized
     })
     builder.addCase(userInfoThunk.rejected, (state, action) => {
@@ -84,8 +96,14 @@ const profileInfoSlice = createSlice({
     })
     builder.addCase(editUserInfoThunk.fulfilled, (state, action) => {
       state.isLoading = false
-
-      if (state.user) state.user = { ...state.user, ...action.payload.updatedFields }
+      const updatedFields = action.payload.updatedFields
+      if (state.user)
+        state.user = {
+          ...state.user,
+          ...updatedFields,
+          firstName: capitalizeFirstLetter(updatedFields.firstName),
+          lastName: capitalizeFirstLetter(updatedFields.lastName)
+        }
     })
     builder.addCase(editUserInfoThunk.rejected, (state, action) => {
       state.isLoading = false
@@ -125,7 +143,7 @@ const profileInfoSlice = createSlice({
       state.isLoading = true
       state.error = null
     })
-    builder.addCase(deleteAccountThunk.fulfilled, (state, action) => {
+    builder.addCase(deleteAccountThunk.fulfilled, (state) => {
       state.isLoading = false
       state.status = AuthStatus.notAuthorized
       state.user = null
