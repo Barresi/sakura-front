@@ -25,6 +25,7 @@ const CardMessage: FC<ICardMessageProps> = ({
   const allUsers = useAppSelector(selectAllUsers)
   const friendId = participants.find((item) => item.id !== user?.id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
+  const friendName = friend?.firstName + ' ' + friend?.lastName
   return (
     <Card
       className={cn(
@@ -35,7 +36,9 @@ const CardMessage: FC<ICardMessageProps> = ({
       <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
 
       <div className='flex-1'>
-        <h3 className='font-bold leading-6 whitespace-nowrap'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
+        <h3 className='font-bold leading-6 whitespace-nowrap'>
+          {friendName.length > 15 ? `${friendName.slice(0, 15)}...` : friendName}
+        </h3>
         <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
           {newMessage?.text}
         </span>

@@ -129,7 +129,7 @@ const Chat: FC = () => {
           <img src={arrow} alt='arrow' className='w-[20px] h-[20px] xxl:hidden ' />
         </Link>
         <div className='flex flex-col md:flex-row md:gap-[10px]'>
-          <span className='font-bold text-xl text-signalBlack dark:text-darkWhite'>{`${friend?.firstName} ${friend?.lastName}`}</span>
+          <span className='font-bold text-xl text-signalBlack dark:text-darkWhite text-center'>{`${friend?.firstName} ${friend?.lastName}`}</span>
         </div>
 
         <UserAvatar />
