@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
       'flex w-full outline-none rounded-md bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50'
     const errorClass = error
       ? 'border-red focus:border-red'
-      : 'border-smokyWhite dark:border-cadet focus:border-blue dark:focus:border-twitter'
+      : 'border-smokyWhite dark:border-cadet'
     const errorSpanClass = ` text-red`
 
     return (
