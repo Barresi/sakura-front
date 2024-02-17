@@ -299,7 +299,7 @@ const EditAccount: FC = () => {
                   <SelectTrigger className=' rounded-[6px]'>
                     <SelectValue placeholder='Выберите пол' />
                   </SelectTrigger>
-                  <SelectContent className='border-smokyWhite dark:border-cadet rounded-[6px] w-selectWidth'>
+                  <SelectContent className='rounded-[6px] w-selectWidth bg-white dark:bg'>
                     <SelectItem value='male'>Мужской</SelectItem>
                     <SelectItem value='female'>Женский</SelectItem>
                   </SelectContent>
