@@ -3,7 +3,7 @@ import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import banner from '@assets/banner/default user banner.jpg'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { cn } from '@shared/lib/merge-classes'
-import { usernameRegExp } from '@shared/lib/reg-exp'
+import { nameRegExp, usernameRegExp } from '@shared/lib/reg-exp'
 import { Button } from '@shared/ui/button'
 import { Calendar } from '@shared/ui/calendar'
 import { Input } from '@shared/ui/input'
@@ -215,6 +215,10 @@ const EditAccount: FC = () => {
                 maxLength: {
                   value: 20,
                   message: 'Максимальное кол-во символов: 20'
+                },
+                pattern: {
+                  value: nameRegExp,
+                  message: 'Имя должно состоять исключительно из букв'
                 }
               })}
               error={
@@ -236,6 +240,10 @@ const EditAccount: FC = () => {
                 maxLength: {
                   value: 20,
                   message: 'Максимальное кол-во символов: 20'
+                },
+                pattern: {
+                  value: nameRegExp,
+                  message: 'Фамилия должна состоять исключительно из букв'
                 }
               })}
               error={

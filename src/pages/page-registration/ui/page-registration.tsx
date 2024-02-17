@@ -1,6 +1,6 @@
 import { useTheme } from '@app/providers/theme-context/lib/useTheme'
 import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
-import { emailRegExp, passwordRegExp } from '@shared/lib/reg-exp'
+import { emailRegExp, nameRegExp, passwordRegExp } from '@shared/lib/reg-exp'
 import { type IRegistrationForm } from '@shared/lib/types/forms'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
@@ -62,6 +62,10 @@ const PageRegistration: FC = () => {
               maxLength: {
                 value: 20,
                 message: 'Максимальное кол-во символов: 20'
+              },
+              pattern: {
+                value: nameRegExp,
+                message: 'Имя должно состоять исключительно из букв'
               }
             })}
             error={
@@ -81,6 +85,10 @@ const PageRegistration: FC = () => {
               maxLength: {
                 value: 20,
                 message: 'Максимальное кол-во символов: 20'
+              },
+              pattern: {
+                value: nameRegExp,
+                message: 'Фамилия должна состоять исключительно из букв'
               }
             })}
             error={
