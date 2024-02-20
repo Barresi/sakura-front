@@ -78,13 +78,13 @@ const DialogTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      'text-lg font-semibold leading-none tracking-tight flex justify-between items-center text-left',
+      'text-lg font-semibold leading-none tracking-tight flex justify-between items-center text-left gap-2',
       className
     )}
     {...props}
   >
     {children}
-    <DialogPrimitive.Close className=' rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground'>
+    <DialogPrimitive.Close className=' self-start rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground'>
       <X className='h-6 w-6' />
       <span className='sr-only'>Close</span>
     </DialogPrimitive.Close>
