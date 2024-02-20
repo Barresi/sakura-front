@@ -19,7 +19,7 @@ const PageMessenger: FC = () => {
 
   if (!chats.length && !isChat)
     return (
-      <div className='flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-white dark:bg-grayBlue rounded-[10px] mx-5 lg:mx-0'>
+      <div className='flex justify-center items-center flex-auto h-[calc(100vh-165px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-154px)] px-5 flex-col bg-white dark:bg-grayBlue rounded-[10px] mx-5 lg:mx-0'>
         <img src={notActiveChats} alt='not active chat' />
         <p className='text-lg text-center'>У вас нет активных чатов</p>
       </div>
@@ -29,8 +29,8 @@ const PageMessenger: FC = () => {
     <div
       className={`${
         isChat
-          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-200px)] lg:h-[calc(100vh-144px)]'
-          : 'h-[calc(100vh-165px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-144px)]'
+          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-200px)] lg:h-[calc(100vh-154px)]'
+          : 'h-[calc(100vh-165px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-154px)]'
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!isMobile || pathname === '/main/messenger' ? (
