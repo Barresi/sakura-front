@@ -86,7 +86,7 @@ const PageLogin: FC = () => {
               errors.password &&
               (errors.password.message || 'Ошибка, попробуйте ввести другой пароль')
             }
-            placeholder='Password'
+            placeholder='Пароль'
             type='password'
           />
 

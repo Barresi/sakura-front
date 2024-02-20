@@ -134,7 +134,7 @@ const PageRegistration: FC = () => {
               errors.password &&
               (errors.password.message || 'Ошибка, попробуйте ввести другой пароль')
             }
-            placeholder='Password'
+            placeholder='Пароль'
             type='password'
           />
 
@@ -152,7 +152,7 @@ const PageRegistration: FC = () => {
               (errors.confirmPassword.message ||
                 'Ошибка, попробуйте ввести другой пароль')
             }
-            placeholder='Confirm password'
+            placeholder='Подтвердите пароль'
             type='password'
           />
 
