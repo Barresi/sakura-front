@@ -36,14 +36,14 @@ const SelectTrigger = forwardRef<
   <Trigger
     ref={ref}
     className={cn(
-      'flex w-full items-center justify-between rounded-[1px] border border-smokyWhite dark:border-cadet bg-white dark:bg-grayBlue p-4 text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+      'flex w-full items-center justify-between rounded-md border border-smokyWhite dark:border-cadet bg-white dark:bg-grayBlue p-4 text-sm  focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
       className
     )}
     {...props}
   >
     {children}
     <Icon asChild>
-      <ChevronDown className='h-4 w-4 opacity-50' />
+      <ChevronDown className='h-4 w-4 stroke-cadetBlue' />
     </Icon>
   </Trigger>
 ))

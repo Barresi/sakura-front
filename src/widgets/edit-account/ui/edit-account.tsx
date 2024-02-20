@@ -267,16 +267,15 @@ const EditAccount: FC = () => {
                     <Button
                       variant={'outline'}
                       className={cn(
-                        'w-[100%] text-left text-black dark:text-white font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet hover:text-black dark:hover:text-white',
-                        !field.value && 'text-muted-foreground'
+                        'w-[100%] text-left font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet border'
                       )}
                     >
                       {field.value ? (
                         format(field.value, 'PPP')
                       ) : (
-                        <span>Выберите дату</span>
+                        <span className='text-darkGray'>Выберите дату</span>
                       )}
-                      <CalendarIcon className='mr-2 h-4 w-4' />
+                      <CalendarIcon className='h-4 w-4 stroke-cadetBlue' />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent
@@ -304,7 +303,7 @@ const EditAccount: FC = () => {
               name='gender'
               render={({ field }) => (
                 <Select onValueChange={field.onChange} value={field.value || undefined}>
-                  <SelectTrigger className=' rounded-[6px]'>
+                  <SelectTrigger className={field.value ? '' : 'text-cadetBlue '}>
                     <SelectValue placeholder='Выберите пол' />
                   </SelectTrigger>
                   <SelectContent className='rounded-[6px] w-selectWidth bg-white dark:bg'>

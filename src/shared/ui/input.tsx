@@ -18,7 +18,7 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
     }
 
     const baseClass =
-      'flex w-full outline-none rounded-md bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50'
+      'flex w-full outline-none rounded-md bg-white dark:bg-grayBlue text-signalBlack dark:text-smokyWhite border px-5 py-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium  disabled:cursor-not-allowed disabled:opacity-50 placeholder:text-cadetBlue'
     const errorClass = error
       ? 'border-red focus:border-red'
       : 'border-smokyWhite dark:border-cadet'
