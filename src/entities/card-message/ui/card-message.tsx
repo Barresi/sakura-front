@@ -40,7 +40,12 @@ const CardMessage: FC<ICardMessageProps> = ({
         <h3 className='font-bold leading-6 whitespace-nowrap'>
           {friendName.length > 15 ? `${friendName.slice(0, 15)}...` : friendName}
         </h3>
-        <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
+        <span
+          className={cn(
+            'w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis',
+            !newMessage?.text && 'text-signalBlack dark:text-darkGray'
+          )}
+        >
           {newMessage?.text ||
             (createdBy === user?.id
               ? `Вы создали чат`

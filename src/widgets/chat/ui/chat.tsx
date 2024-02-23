@@ -138,6 +138,12 @@ const Chat: FC = () => {
         ref={container}
         className='h-[100%] mt-[80px] flex flex-col overflow-auto overflow-x-hidden mb-[50px] md:mb-[70px] xxl:mb-[90px] scrollbar-none bg-body dark:bg-bodyDark md:bg-white md:dark:bg-grayBlue md:px-5'
       >
+        <span className=' text-center my-4 text-signalBlack dark:text-darkGray'>
+          {currentChat?.createdBy === user?.id
+            ? `Вы создали чат`
+            : `${friend?.firstName} создал чат`}
+        </span>
+
         {formattedMessages.map(({ date, messages }) => {
           return (
             <Fragment key={date}>
