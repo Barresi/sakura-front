@@ -1,4 +1,3 @@
-import { editUserSecurityInfoThunk } from '@app/store/reducers/profileInfo/async-thunks'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonDeleteAccount } from '@features/button-delete-account'
 import { ButtonLogout } from '@features/button-logout'
@@ -6,8 +5,9 @@ import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { emailRegExp, passwordRegExp } from '@shared/lib/reg-exp'
 import { removeNullProperties } from '@shared/lib/remove-null-properties'
 import { Button } from '@shared/ui/button'
-import { Dialog, DialogContent, DialogTrigger } from '@shared/ui/dialog'
+import { Dialog, DialogContent } from '@shared/ui/dialog'
 import { Input } from '@shared/ui/input'
+import { editUserSecurityInfoThunk } from '@store/reducers/profileInfo/async-thunks'
 import { useToast } from '@widgets/toaster'
 import { useEffect, useState, type FC } from 'react'
 import { useForm } from 'react-hook-form'
@@ -23,15 +23,16 @@ const EditSecurity: FC = () => {
   const dispatch = useAppDispatch()
   const { toast } = useToast()
 
+  const [openDialog, setOpenDialog] = useState(false)
   const [isEditInfo, setEditInfo] = useState(false)
 
   const {
     register,
-    handleSubmit,
     watch,
     clearErrors,
     reset,
-    formState: { errors, isSubmitSuccessful }
+    handleSubmit,
+    formState: { errors }
   } = useForm<IFormInputs>({
     mode: 'onSubmit',
     defaultValues: {
@@ -40,7 +41,7 @@ const EditSecurity: FC = () => {
     }
   })
 
-  const onSubmit = ({ confirmPassword }: { confirmPassword: string }): void => {
+  const onConfirmPassword = ({ confirmPassword }: { confirmPassword: string }): void => {
     const payloadWithoutNullProperties = removeNullProperties({
       email: watch('email'),
       password: watch('password'),
@@ -58,6 +59,10 @@ const EditSecurity: FC = () => {
         toast({ title: 'Системное уведомление', description: data.payload as string })
       }
     })
+  }
+
+  const onSubmit = (): void => {
+    setOpenDialog(true)
   }
 
   const resetValueInputs = (): void => {
@@ -79,7 +84,7 @@ const EditSecurity: FC = () => {
   }, [watch])
 
   return (
-    <form onChange={handleSubmit(() => {})} className='flex flex-col gap-4'>
+    <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
       <h1 className='text-2xl'>Безопасность</h1>
       <div className='flex flex-col gap-5'>
         <div className='w-[100%] flex flex-col gap-1'>
@@ -137,20 +142,17 @@ const EditSecurity: FC = () => {
               <Button variant='secondary' onClick={resetValueInputs}>
                 Отмена
               </Button>
-
-              <Dialog>
-                {isSubmitSuccessful ? (
-                  <DialogTrigger asChild>
-                    <Button variant='default'>Сохранить</Button>
-                  </DialogTrigger>
-                ) : (
-                  <Button variant='default' type='button'>
-                    Сохранить
-                  </Button>
-                )}
-
+              <Button variant='default' type='submit'>
+                Сохранить
+              </Button>
+              <Dialog open={openDialog} onOpenChange={setOpenDialog}>
                 <DialogContent>
-                  <FormConfirmPassword onSubmit={onSubmit} />
+                  <FormConfirmPassword
+                    onConfirmPassword={onConfirmPassword}
+                    closeDialog={() => {
+                      setOpenDialog(false)
+                    }}
+                  />
                 </DialogContent>
               </Dialog>
             </>

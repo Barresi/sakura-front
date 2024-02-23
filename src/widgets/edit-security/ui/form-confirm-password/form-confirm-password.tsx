@@ -10,9 +10,13 @@ interface IFormInputs {
 }
 
 interface IFormConfirmPasswordProps {
-  onSubmit: ({ confirmPassword }: IFormInputs) => void
+  onConfirmPassword: ({ confirmPassword }: IFormInputs) => void
+  closeDialog: () => void
 }
-const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({ onSubmit }) => {
+const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({
+  onConfirmPassword,
+  closeDialog
+}) => {
   const {
     register,
     handleSubmit,
@@ -20,7 +24,7 @@ const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({ onSubmit }) => {
   } = useForm<IFormInputs>()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-7'>
+    <form onSubmit={handleSubmit(onConfirmPassword)} className='flex flex-col gap-7'>
       {/* @ts-expect-error не рабочие пропсы у DialogHeader */}
       <DialogHeader>
         <DialogTitle>Подтверждение пароля</DialogTitle>
@@ -52,7 +56,7 @@ const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({ onSubmit }) => {
       </div>
       {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
       <DialogFooter>
-        <Button variant='secondary' type='button'>
+        <Button variant='secondary' type='button' onClick={closeDialog}>
           Отменить
         </Button>
         <Button variant='default' type='submit'>
