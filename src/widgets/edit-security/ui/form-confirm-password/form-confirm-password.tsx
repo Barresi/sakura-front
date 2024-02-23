@@ -20,6 +20,7 @@ const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<IFormInputs>()
 
@@ -56,7 +57,14 @@ const FormConfirmPassword: FC<IFormConfirmPasswordProps> = ({
       </div>
       {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
       <DialogFooter>
-        <Button variant='secondary' type='button' onClick={closeDialog}>
+        <Button
+          variant='secondary'
+          type='button'
+          onClick={() => {
+            closeDialog()
+            reset()
+          }}
+        >
           Отменить
         </Button>
         <Button variant='default' type='submit'>

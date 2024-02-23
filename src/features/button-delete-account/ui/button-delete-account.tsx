@@ -32,6 +32,7 @@ const ButtonDeleteAccount: FC<IButtonDeleteAccountProps> = ({ classname }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<IFormInputs>({
     mode: 'onSubmit',
@@ -101,7 +102,14 @@ const ButtonDeleteAccount: FC<IButtonDeleteAccountProps> = ({ classname }) => {
           {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant='secondary'>Отменить</Button>
+              <Button
+                variant='secondary'
+                onClick={() => {
+                  reset()
+                }}
+              >
+                Отменить
+              </Button>
             </DialogClose>
             <Button variant='default' type='submit'>
               Удалить аккаунт
