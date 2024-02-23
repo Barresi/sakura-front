@@ -84,7 +84,7 @@ const SheetTitle = React.forwardRef<
     {...props}
   >
     {children}
-    <SheetPrimitive.Close className='rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-secondary '>
+    <SheetPrimitive.Close className='rounded-sm ring-offset-background transition-opacity hover:opacity-100 disabled:pointer-events-none data-[state=open]:bg-secondary '>
       <X className='h-6 w-6' />
       <span className='sr-only'>Close</span>
     </SheetPrimitive.Close>

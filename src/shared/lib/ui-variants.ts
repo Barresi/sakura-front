@@ -60,7 +60,7 @@ export const toastVariants = cva(
 )
 
 export const sheetVariants = cva(
-  'absolute z-[1000] gap-4 bg-white overflow-y-scroll rounded-[10px] dark:bg-brownBlack p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-[500s] data-[state=open]:duration-[700s]',
+  'absolute z-[1000] flex flex-col gap-4 bg-white rounded-[10px] dark:bg-brownBlack p-6 pb-1 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-[500s] data-[state=open]:duration-[700s]',
   {
     variants: {
       side: {

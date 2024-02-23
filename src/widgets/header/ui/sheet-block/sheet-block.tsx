@@ -23,12 +23,12 @@ const SheetBlock: FC = () => {
       </SheetTrigger>
       <SheetContent
         side='right'
-        className='right-5 fixed lg:max-w-[600px] top-[70px] bottom-[90px] md:top-[100px] lg:top-[120px] lg:bottom-[20px] shadow-xl dark:bg-grayBlue'
+        className='lg:w-[600px] maxlg:max-w-none right-5 maxlg:left-5 fixed top-[70px] bottom-[90px] md:top-[100px] lg:top-[120px] lg:bottom-[20px] shadow-xl dark:bg-grayBlue'
       >
         <SheetHeader>
           <SheetTitle>Уведомления</SheetTitle>
         </SheetHeader>
-        <div className='flex flex-col justify-center items-center h-[80%] '>
+        <div className='flex flex-col items-center h-[100%] overflow-y-scroll'>
           {notifications.length ? (
             notifications.map(({ id, content, type, createdAt }) => {
               return (
