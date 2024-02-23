@@ -18,7 +18,8 @@ const CardMessage: FC<ICardMessageProps> = ({
   participants,
   newMessage,
   unread,
-  updatedAt
+  updatedAt,
+  createdBy
 }) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
   const user = useAppSelector(selectUser)
@@ -40,7 +41,10 @@ const CardMessage: FC<ICardMessageProps> = ({
           {friendName.length > 15 ? `${friendName.slice(0, 15)}...` : friendName}
         </h3>
         <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
-          {newMessage?.text}
+          {newMessage?.text ||
+            (createdBy === user?.id
+              ? `Вы создали чат`
+              : `${friend?.firstName} создал чат`)}
         </span>
       </div>
 
