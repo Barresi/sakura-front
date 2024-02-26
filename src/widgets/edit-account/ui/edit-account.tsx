@@ -159,7 +159,7 @@ const EditAccount: FC = () => {
                 validate: (value: string) => {
                   if (value && value[0] !== '@')
                     return '@username должен начинаться с "@"'
-                  if (!usernameRegExp.test(value.slice(1)))
+                  if (!usernameRegExp.test(value.slice(1)) && value.slice(1).length)
                     return 'Ошибка, попробуйте ввести другой @username'
                 },
 
