@@ -141,7 +141,7 @@ const Chat: FC = () => {
         <span className=' text-center my-4 text-signalBlack dark:text-darkGray'>
           {currentChat?.createdBy === user?.id
             ? `Вы создали чат`
-            : `${friend?.firstName} создал чат`}
+            : `${friend?.firstName} создал(а) чат`}
         </span>
 
         {formattedMessages.map(({ date, messages }) => {

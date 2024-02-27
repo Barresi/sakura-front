@@ -19,7 +19,10 @@ const SheetBlock: FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <ButtonSetting icon='notification' />
+        <ButtonSetting
+          icon='notification'
+          badge={notifications.filter((item) => !item.read).length}
+        />
       </SheetTrigger>
       <SheetContent
         side='right'

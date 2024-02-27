@@ -49,7 +49,7 @@ const CardMessage: FC<ICardMessageProps> = ({
           {newMessage?.text ||
             (createdBy === user?.id
               ? `Вы создали чат`
-              : `${friend?.firstName} создал чат`)}
+              : `${friend?.firstName} создал(а) чат`)}
         </span>
       </div>
 
