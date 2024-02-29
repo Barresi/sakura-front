@@ -266,7 +266,7 @@ const EditAccount: FC = () => {
                     <Button
                       variant={'outline'}
                       className={cn(
-                        'w-[100%] text-left font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet border'
+                        'w-[100%] text-left font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet border transition-none active:scale-100'
                       )}
                     >
                       {field.value ? (
