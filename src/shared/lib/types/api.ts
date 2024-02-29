@@ -113,11 +113,14 @@ export interface INotification {
   id: 'string'
   type: NotificationTypeEnum
   content: 'string'
-  read: false
+  read: boolean
   createdAt: 'string'
   updatedAt: 'string'
 }
 export interface IGetUserNotificationsResponse {
+  notifications: INotification[]
+}
+export interface IReadUserNotificationsResponse {
   notifications: INotification[]
 }
 
