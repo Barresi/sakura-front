@@ -46,7 +46,7 @@ const SheetBlock: FC = () => {
           ) : (
             <div className='flex flex-col flex-auto w-[100%] h-[100%] justify-center items-center'>
               <img src={emptyNotifications} alt='empty notifications' />
-              <p className='text-lg text-center'>Уведомления отсутствуют</p>
+              <p className='text-lg text-center mt-2'>Уведомления отсутствуют</p>
             </div>
           )}
         </div>
