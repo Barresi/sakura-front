@@ -21,29 +21,26 @@ const ButtonNav: FC<IButtonNavProps> = ({
   ...props
 }) => {
   return (
-    <NavLink
-      className={({ isActive }) =>
-        isActive ? `${linkClassName} [&>*]:!text-red w-[20%]` : `${linkClassName} w-[25%]`
-      }
-      {...props}
-    >
-      <Button
-        className={cn(className, 'relative')}
-        icon={icon}
-        iconPos='left'
-        variant='text'
-      >
-        {children as ReactNode}
-        {badge! > 0 && (
-          <Badge
-            className={
-              'absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4'
-            }
-          >
-            {badge}
-          </Badge>
-        )}
-      </Button>
+    <NavLink className={`${linkClassName} w-[20%]`} {...props}>
+      {({ isActive }) => (
+        <Button
+          className={cn(className, 'relative', isActive && '!text-red')}
+          icon={icon}
+          iconPos='left'
+          variant='text'
+        >
+          {children as ReactNode}
+          {badge! > 0 && (
+            <Badge
+              className={
+                'absolute top-0 lg:top-[50%] lg:translate-y-[-50%] right-0 sm:right-[20%] lg:right-4'
+              }
+            >
+              {badge}
+            </Badge>
+          )}
+        </Button>
+      )}
     </NavLink>
   )
 }

@@ -19,12 +19,14 @@ const CardNotification: FC<ICardNotificationProps> = ({ className, date, id, typ
   const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
 
   return (
-    <Card className={cn('block', className)}>
+    <Card className={cn('', className)}>
       <div className='flex items-center gap-[15px]'>
-        <UserAvatar className='w-[60px] h-[60px]' />
+        <div className='self-start'>
+          <UserAvatar className='w-[60px] h-[60px] ' />
+        </div>
 
         <div className='flex flex-col gap-[5px]'>
-          <h3 className='flex flex-col lg:flex-row lg:items-center gap-[5px] leading-6 '>
+          <h3 className='flex flex-col md:flex-row lg:items-center gap-[5px] leading-6 '>
             <span className='font-bold text-signalBlack dark:text-darkWhite'>
               {user?.firstName} {user?.lastName}
             </span>

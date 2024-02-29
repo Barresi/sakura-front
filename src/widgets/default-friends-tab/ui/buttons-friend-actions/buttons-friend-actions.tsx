@@ -18,7 +18,7 @@ const ButtonsFriendActions: FC<ButtonsFriendActionsProps> = ({
   friendState,
   requestId
 }) => {
-  const isMobile = useWindowSize(500)
+  const isMobile = useWindowSize(600)
   const renderButtons = {
     [FriendState.isFriend]: (
       <>

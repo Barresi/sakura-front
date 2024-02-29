@@ -18,30 +18,46 @@ const CardMessage: FC<ICardMessageProps> = ({
   participants,
   newMessage,
   unread,
-  updatedAt
+  updatedAt,
+  createdBy
 }) => {
   // Эта логика нужна чтобы найти объект друга, с которым у вас есть чат
-  const { id: userId } = useAppSelector(selectUser)
+  const user = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
-  const friendId = participants.find((item) => item.id !== userId)?.id
+  const friendId = participants.find((item) => item.id !== user?.id)?.id
   const friend = allUsers.find((item) => item.id === friendId)
+  const friendName = friend?.firstName + ' ' + friend?.lastName
   return (
-    <Card className={cn('flex items-center justify-between cursor-pointer', className)}>
-      <div className='flex items-center gap-[15px]'>
-        <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
-        <div>
-          <h3 className='font-bold leading-6 whitespace-nowrap'>{`${friend?.firstName} ${friend?.lastName}`}</h3>
-          <span className='w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis'>
-            {newMessage?.text}
-          </span>
-        </div>
+    <Card
+      className={cn(
+        'flex items-center justify-between cursor-pointer gap-[15px] border-b-0 xxl:border-r-darkWhite xxl:dark:border-r-brownBlack ',
+        className
+      )}
+    >
+      <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
+
+      <div className='flex-1'>
+        <h3 className='font-bold leading-6 whitespace-nowrap'>
+          {friendName.length > 15 ? `${friendName.slice(0, 15)}...` : friendName}
+        </h3>
+        <span
+          className={cn(
+            'w-[120px] lg:w-[150px] block leading-6 whitespace-nowrap overflow-hidden text-ellipsis',
+            !newMessage?.text && 'text-signalBlack dark:text-darkGray'
+          )}
+        >
+          {newMessage?.text ||
+            (createdBy === user?.id
+              ? `Вы создали чат`
+              : `${friend?.firstName} создал(а) чат`)}
+        </span>
       </div>
 
       <div className='flex flex-col self-start items-center gap-[5px] mt-[10px]'>
         <span className='text-darkElectricBlue whitespace-nowrap'>
           {parseDateToMonth(newMessage?.createdAt || updatedAt)}
         </span>
-        {unread ? <Badge>{unread}</Badge> : null}
+        {unread ? <Badge className='self-end'>{unread}</Badge> : null}
       </div>
     </Card>
   )

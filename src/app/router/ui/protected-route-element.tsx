@@ -1,5 +1,6 @@
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { AuthStatus } from '@shared/lib/types/api'
+import { AppRoutes } from '@shared/lib/types/routes'
 import { selectUserStatus } from '@store/reducers/profileInfo/selectors'
 import { type FC, type ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -15,13 +16,13 @@ const ProtectedRouteElement: FC<IProtectedRouteElement> = ({
 }) => {
   const navigate = useNavigate()
   const userStatus = useAppSelector(selectUserStatus)
-
+  // Todo пофиксить перебрасывание на "моя страница" при обновлении страницы
   switch (protectedPageType) {
     case 'auth':
-      if (userStatus === AuthStatus.authorized) navigate('/main/profile')
+      if (userStatus === AuthStatus.authorized) navigate(AppRoutes.PROFILE)
       break
     case 'main':
-      if (userStatus === AuthStatus.notAuthorized) navigate('/')
+      if (userStatus === AuthStatus.notAuthorized) navigate(AppRoutes.LOGIN)
       break
   }
 

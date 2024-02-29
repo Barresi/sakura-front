@@ -6,14 +6,14 @@ interface IMessageProps {
   text: string
   my: boolean
   date: string
-  firstName: string | undefined
-  lastName: string | undefined
+  firstName: string | undefined | null
+  lastName: string | undefined | null
 }
 
 const Message: FC<IMessageProps> = ({ text, my, date }) => {
   return (
     <div
-      className={`p-[15px] flex items-center w-[60%] min-w-[250px] gap-[10px] ${
+      className={`p-[15px] flex items-center gap-[10px] ${
         my ? ' self-end  flex-row-reverse' : ' self-start'
       }`}
     >
@@ -22,7 +22,7 @@ const Message: FC<IMessageProps> = ({ text, my, date }) => {
         <span>{parseDateToTime(date)}</span>
       </div>
       <div
-        className={`p-[15px] rounded-[5px] self-start break-all ${
+        className={`p-[15px] rounded-[5px] self-start break-words max-w-[250px] usm:max-w-[350px] lg:max-w-[500px] xxl:max-w-[600px] ${
           my ? 'bg-water dark:bg-nickel' : 'bg-darkWhite dark:bg-brownBlack'
         }`}
       >

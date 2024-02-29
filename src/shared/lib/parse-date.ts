@@ -14,6 +14,8 @@ export function parseDateToMonth(date: string): string {
     'декабря'
   ]
   const parseDate = new Date(date)
+  if (parseDate.getDate() === new Date().getDate()) return 'Сегодня'
+  if (parseDate.getDate() === new Date().getDate() - 1) return 'Вчера'
   const day = parseDate.getDate()
   const month = parseDate.getMonth()
 

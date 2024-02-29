@@ -1,7 +1,7 @@
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
-import { type FriendTabs } from '@shared/lib/types/other'
+import { FriendTabs } from '@shared/lib/types/other'
 import { Card } from '@shared/ui/card'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { selectAllUsers } from '@store/reducers/friends/selectors'
@@ -33,14 +33,18 @@ const CardFriends: FC<ICardFriendsProps> = ({
   )
 
   const info = (
-    <div className={`flex flex-col justify-between ${type === 'requests' && 'flex-col'}`}>
+    <div
+      className={`flex flex-col justify-between ${
+        type === FriendTabs.RECEIVED && 'flex-col'
+      }`}
+    >
       <h3 className='font-bold leading-6 text-signalBlack dark:text-smokyWhite text-lg'>
         {friend?.firstName} {friend?.lastName} {isMine ? '(Вы)' : null}
       </h3>
-      {type === 'requests' && (
+      {type === FriendTabs.RECEIVED && (
         <span className='text-darkElectricBlue'>подал вам заявку в друзья</span>
       )}
-      {type === 'sended' && (
+      {type === FriendTabs.SENDED && (
         <span className='text-darkElectricBlue'>вы отправили заявку в друзья</span>
       )}
     </div>
@@ -48,12 +52,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
 
   if (isMobile) {
     return (
-      <Card
-        className={cn(
-          'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
-          className
-        )}
-      >
+      <Card className={cn('', className)}>
         <div className='flex items-start lg:items-center gap-[15px]'>
           {avatar}
 
@@ -67,12 +66,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
   }
 
   return (
-    <Card
-      className={cn(
-        'block hover:border-b-smokyWhite hover:bg-transparent dark:hover:bg-transparent',
-        className
-      )}
-    >
+    <Card className={cn('block ', className)}>
       <div className='flex items-start lg:items-center gap-[15px]'>
         {avatar}
 

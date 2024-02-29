@@ -7,16 +7,19 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import chooseChat from '@assets/messenger/choose chat.svg'
 import notActiveChats from '@assets/messenger/not active chats.svg'
+import { useCurrentRoute } from '@shared/lib/hooks/useCurrentRoute'
+import { AppRoutes } from '@shared/lib/types/routes'
 
 const PageMessenger: FC = () => {
+  const isChat = useCurrentRoute(AppRoutes.CHAT)
   const chats = useAppSelector(selectMessengerUserChats)
 
   const { pathname } = useLocation()
   const isMobile = useWindowSize(1440)
 
-  if (!chats.length && pathname.length <= 16)
+  if (!chats.length && !isChat)
     return (
-      <div className='flex justify-center items-center flex-auto h-[calc(100vh-144px)] px-5 flex-col bg-white dark:bg-grayBlue rounded-[10px] mx-5 lg:mx-0'>
+      <div className='flex justify-center items-center flex-auto h-[calc(100vh-165px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-154px)] px-5 flex-col bg-white dark:bg-grayBlue rounded-[10px] mx-5 lg:mx-0'>
         <img src={notActiveChats} alt='not active chat' />
         <p className='text-lg text-center'>У вас нет активных чатов</p>
       </div>
@@ -25,20 +28,20 @@ const PageMessenger: FC = () => {
   return (
     <div
       className={`${
-        pathname.includes('/main/messenger/') && pathname.length > 16
-          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-220px)] lg:h-[calc(100vh-144px)]'
-          : 'h-[calc(100vh-150px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-144px)]'
+        isChat
+          ? 'h-[calc(100vh-94px)] md:h-[calc(110vh-200px)] lg:h-[calc(100vh-154px)]'
+          : 'h-[calc(100vh-165px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-154px)]'
       } flex justify-center items-center flex-auto  border-border mx-5 lg:m-0`}
     >
       {!isMobile || pathname === '/main/messenger' ? (
-        <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-white dark:bg-grayBlue border-r-smokyWhite dark:border-r-cadet xxl:border-r xxl:rounded-l-[10px] xxl:rounded-r-[0px]'>
+        <ul className='flex-auto w-[30%] overflow-auto overflow-x-hidden h-[100%] rounded-[10px] scrollbar-none bg-darkWhite dark:bg-brownBlack xxl:rounded-l-[10px] xxl:rounded-r-[0px] flex flex-col gap-[2px]'>
           {chats.map((item, ind) => {
             return (
               <NavLink
                 key={ind}
                 to={item.chatId}
                 className={({ isActive }) =>
-                  isActive ? '[&>div]:bg-ghostlyWhite [&>div]:dark:bg-brownBlack' : ''
+                  `${isActive && '[&>div]:dark:border-r-red [&>div]:border-r-red'} `
                 }
               >
                 <CardMessage className='rounded-none' {...item} />

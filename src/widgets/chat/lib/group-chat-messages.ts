@@ -23,3 +23,20 @@ export function groupChatMessagesByDate(chatMessages: IMessage[]): IFormattedMes
 
   return finalResult
 }
+
+export const addMessageInGroupedMessagesByDate = (
+  formattedMessages: IFormattedMessages[],
+  newMessage: IMessage
+): IFormattedMessages[] => {
+  const lastDateOfGroupMessages = new Date(
+    formattedMessages[formattedMessages.length - 1]?.date
+  ).toDateString()
+  const dateOfNewMessage = new Date(newMessage.createdAt).toDateString()
+  if (lastDateOfGroupMessages !== dateOfNewMessage) {
+    formattedMessages.push({ date: dateOfNewMessage, messages: [newMessage] })
+  } else {
+    formattedMessages[formattedMessages.length - 1].messages.push(newMessage)
+  }
+
+  return formattedMessages
+}

@@ -1,6 +1,8 @@
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { useCurrentRoute } from '@shared/lib/hooks/useCurrentRoute'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { AuthStatus } from '@shared/lib/types/api'
+import { AppRoutes } from '@shared/lib/types/routes'
 import {
   getAllUsersThunk,
   getFriendsThunk,
@@ -17,7 +19,9 @@ import { useEffect, type FC } from 'react'
 import { Outlet } from 'react-router'
 
 const PageMain: FC = () => {
+  const isChat = useCurrentRoute(AppRoutes.CHAT)
   const isMobile = useWindowSize(1024)
+
   const dispatch = useAppDispatch()
   const status = useAppSelector(selectUserStatus)
   useEffect(() => {
@@ -32,15 +36,19 @@ const PageMain: FC = () => {
     }
   }, [status])
   return (
-    <div className='p-0  lg:px-5 lg:pt-5 flex max-w-[1920px] mx-auto relative'>
+    <div className='p-0 lg:px-5 lg:pt-5 flex max-w-[1920px] mx-auto'>
       {!isMobile && <Sidebar />}
-      <div className=' flex-auto lg:ml-[310px] flex flex-col gap-[20px]'>
+      <div className=' flex-auto lg:ml-[310px] flex flex-col gap-[30px]'>
         <Header />
-        <div className='pb-10 md:pb-14 lg:pb-0'>
+        <div
+          className={`${
+            isChat ? 'pb-0' : 'pb-[90px]'
+          } lg:pb-0 mt-[74px] md:mt-[104px] lg:mt-0`}
+        >
           <Outlet />
         </div>
       </div>
-      {isMobile && <MobileNav />}
+      {isMobile && !isChat && <MobileNav />}
     </div>
   )
 }

@@ -6,6 +6,7 @@ import { SocketEvents } from './providers/socket-context'
 import { useSocket } from './providers/socket-context/lib/useSocket'
 import { AppRouter } from './router'
 import {
+  getAllUsersThunk,
   getFriendsThunk,
   getReceivedThunk,
   getSendedThunk
@@ -39,6 +40,7 @@ const App: FC = () => {
       notificationType: NotificationTypeEnum.sendFriendRequest,
       userId: friendId
     })
+    dispatch(getAllUsersThunk())
     dispatch(getReceivedThunk())
     dispatch(getUserNotificationsThunk())
   }
@@ -73,6 +75,7 @@ const App: FC = () => {
       notificationType: NotificationTypeEnum.getMessage,
       userId: senderId
     })
+    dispatch(getAllUsersThunk())
     dispatch(getUserChatsThunk())
   }
 

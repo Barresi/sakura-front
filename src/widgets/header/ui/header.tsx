@@ -1,10 +1,10 @@
 import { ButtonChangeTheme } from '@features/button-change-theme'
+import { ButtonOpenNotifications } from '@features/button-open-notifications'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
 import { Logo } from '@shared/ui/logo'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type DetailedHTMLProps, type FC, type HTMLAttributes } from 'react'
-import { SheetBlock } from './sheet-block/sheet-block'
 
 interface IHeaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
@@ -17,7 +17,7 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
   return (
     <header
       className={cn(
-        'max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-white dark:bg-grayBlue lg:rounded-[10px] z-[100]',
+        'fixed left-0 right-0 top-0 max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-white dark:bg-grayBlue lg:rounded-[10px] lg:relative z-40',
         className
       )}
       {...props}
@@ -27,8 +27,8 @@ const Header: FC<IHeaderProps> = ({ className, avatar, ...props }) => {
 
       <div className='flex items-center justify-center gap-[15px]'>
         <ButtonChangeTheme className='flex lg:hidden' />
-        <SheetBlock />
-        <UserAvatar src={avatar} className='w-[44px] h-[44px] mt-2' />
+        <ButtonOpenNotifications />
+        <UserAvatar src={avatar} className='w-[44px] h-[44px]' />
       </div>
     </header>
   )

@@ -7,7 +7,7 @@ import notFoundLight from '@assets/404/404 light.svg'
 const PageNotFound: FC<{ type: 'inside' | 'outside' }> = ({ type }) => {
   const { theme } = useTheme()
   const insideClass =
-    'flex justify-center items-center flex-auto h-[calc(100vh-124px)] px-5'
+    'flex justify-center items-center flex-auto h-[calc(100vh-164px)] px-5'
   const outsideClass = 'w-[100vw] h-[100vh] flex justify-center items-center px-5'
   return (
     <div className={type === 'inside' ? insideClass : outsideClass}>

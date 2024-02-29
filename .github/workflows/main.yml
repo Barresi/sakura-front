@@ -4,7 +4,7 @@ name: Deploy to Yandex Cloud
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [feature-**-prod]
+    branches: [feature/**-prod]
 
 env:
   VITE_BACKEND_DOMEN: ${{ vars.VITE_BACKEND_DOMEN }}

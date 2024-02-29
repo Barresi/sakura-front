@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { capitalizeFirstLetter } from '@shared/lib/capitalize-first-letter'
 import { type IFriend } from '@shared/lib/types/api'
 import { type IUser } from '@shared/lib/types/types'
 import {
@@ -38,7 +39,12 @@ const friendsSlice = createSlice({
     })
     builder.addCase(getAllUsersThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.allUsers = [...action.payload]
+
+      state.allUsers = [...action.payload].map((item) => ({
+        ...item,
+        firstName: capitalizeFirstLetter(item.firstName),
+        lastName: capitalizeFirstLetter(item.lastName)
+      }))
     })
     builder.addCase(getAllUsersThunk.rejected, (state, action) => {
       state.isLoading = false

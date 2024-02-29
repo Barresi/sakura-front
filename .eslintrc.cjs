@@ -25,6 +25,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    '@typescript-eslint/no-dynamic-delete': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',

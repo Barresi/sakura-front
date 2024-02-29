@@ -1,6 +1,6 @@
 import { useTheme } from '@app/providers/theme-context/lib/useTheme'
 import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
-import { emailRegExp, passwordRegExp } from '@shared/lib/reg-exp'
+import { emailRegExp, nameRegExp, passwordRegExp } from '@shared/lib/reg-exp'
 import { type IRegistrationForm } from '@shared/lib/types/forms'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
@@ -51,7 +51,7 @@ const PageRegistration: FC = () => {
           <div className=' text-2xl text-center mt-5'>Регистрация</div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-2'>
+        <form onSubmit={handleSubmit(onSubmit)} className=' w-[100%] flex flex-col gap-4'>
           <Input
             {...register('firstName', {
               required: 'Обязательное поле',
@@ -62,6 +62,10 @@ const PageRegistration: FC = () => {
               maxLength: {
                 value: 20,
                 message: 'Максимальное кол-во символов: 20'
+              },
+              pattern: {
+                value: nameRegExp,
+                message: 'Имя должно состоять исключительно из букв'
               }
             })}
             error={
@@ -81,6 +85,10 @@ const PageRegistration: FC = () => {
               maxLength: {
                 value: 20,
                 message: 'Максимальное кол-во символов: 20'
+              },
+              pattern: {
+                value: nameRegExp,
+                message: 'Фамилия должна состоять исключительно из букв'
               }
             })}
             error={
@@ -126,7 +134,7 @@ const PageRegistration: FC = () => {
               errors.password &&
               (errors.password.message || 'Ошибка, попробуйте ввести другой пароль')
             }
-            placeholder='Password'
+            placeholder='Пароль'
             type='password'
           />
 
@@ -144,7 +152,7 @@ const PageRegistration: FC = () => {
               (errors.confirmPassword.message ||
                 'Ошибка, попробуйте ввести другой пароль')
             }
-            placeholder='Confirm password'
+            placeholder='Подтвердите пароль'
             type='password'
           />
 

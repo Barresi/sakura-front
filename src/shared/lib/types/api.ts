@@ -17,15 +17,12 @@ export enum AuthStatus {
 export interface ILoginResponse {
   accessToken: string
   refreshToken: string
-  userWithoutPassword: IUser
+  userWithoutPassword: IUserInfoResponse
 }
 export interface IRegistrationResponse {
   id: string
 }
-export interface ILogoutResponse extends INoContentResponse {}
-export interface IUserInfoResponse {
-  user: IUser
-}
+
 export interface IRefreshResponse {
   accessToken: string
   refreshToken: string
@@ -92,6 +89,7 @@ export interface IChat {
   unread: number
   createdAt: string
   updatedAt: string
+  createdBy: string
 }
 
 export interface ICreateChatResponse {
@@ -115,10 +113,50 @@ export interface INotification {
   id: 'string'
   type: NotificationTypeEnum
   content: 'string'
-  read: false
+  read: boolean
   createdAt: 'string'
   updatedAt: 'string'
 }
 export interface IGetUserNotificationsResponse {
   notifications: INotification[]
 }
+export interface IReadUserNotificationsResponse {
+  notifications: INotification[]
+}
+
+// UserInfo api
+
+export interface IUserInfoResponse {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  username: string | null
+  city: string | null
+  birthDate: string | null
+  gender: 'male' | 'female' | null
+  description: string | null
+}
+
+export interface IGetUserInfoResponse {
+  user: IUserInfoResponse
+}
+
+export interface IEditUserInfoResponse {
+  updatedFields: {
+    username: 'string' | null
+    firstName: 'string'
+    lastName: 'string'
+    city: 'string' | null
+    birthDate: 'string' | null
+    gender: 'male' | 'female' | null
+    description: 'string' | null
+  }
+}
+
+export interface IEditUserSecurityInfoResponse {
+  email: string
+}
+
+export interface IDeleteAccountResponse extends INoContentResponse {}
+export interface ILogoutResponse extends INoContentResponse {}
