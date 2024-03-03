@@ -32,7 +32,7 @@ const PageProfile: FC = () => {
   return (
     <div>
       <div className='w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] lg:mb-[20px] px-[20px] lg:px-0'>
-        <div className='hidden xl:block w-full xl:w-1/3'>
+        <div className='hidden xl:block w-full w-1/3'>
           <div className='bg-white dark:bg-grayBlue xl:p-[30px] rounded-[10px]'>
             <div className='flex flex-row justify-between'>
               <div className='flex flex-row justify-start w-full'>
@@ -92,80 +92,96 @@ const PageProfile: FC = () => {
           <img
             src={banner}
             alt='banner'
-            className='w-[100%] object-cover rounded-[6px]'
+            className='w-[100%] rounded-[6px] h-[180px] sm:h-auto'
           />
           {/* mobile user info */}
 
-          <div className='relative bg-white dark:bg-grayBlue p-[30px] rounded-[10px]'>
+          <div className='block xl:hidden relative bg-white dark:bg-grayBlue p-[30px] rounded-[10px]'>
             <div className='flex flex-row justify-between'>
               <div className='flex flex-row justify-start w-full'>
-                <div className='w-[120px]'></div>
                 <UserAvatar
                   src={avatarLight}
-                  className='absolute w-[120px] h-[120px] mr-[15px] left-[20px] top-[-40px]'
+                  className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px]'
                 />
-                <div>
-                  <h4 className='text-[18px] mb-[10px]'>Борис Маслов</h4>
-                  <div className='flex flex-row'>
-                    <p className='flex flex-row text-[15px] mr-[10px]'>
+                <div className='w-[200px] hidden sm:block'></div>
+                <div className='mt-[50px] mx-auto sm:mt-auto sm:mx-0'>
+                  <h4 className='text-[32px] mb-[0] sm:mb-[10px] text-center sm:text-start'>
+                    Борис Маслов
+                  </h4>
+                  <div className='block sm:hidden mt-[20px] w-full mb-[20px]'>
+                    <p>
+                      Я - опытный UX/UI дизайнер с более чем 4-летним стажем работы в этой
+                      области.
+                    </p>
+                  </div>
+                  <div className='grid grid-cols-2 gap-[10px] mx-auto sm:flex sm:flex-row'>
+                    <p className='text-center flex flex-row justify-center text-[16px] sm:mr-[10px]'>
                       <img src={LoacationIcon} alt='' /> Москва
                     </p>
-                    <p className='flex flex-row text-[15px] mr-[10px]'>
+                    <p className='text-center flex flex-row justify-center text-[16px] sm:mr-[10px]'>
                       <img src={UserIcon} alt='' /> Мужской
                     </p>
-                    <p className='flex flex-row text-[15px] mr-[10px]'>
+                    <p className='text-center flex flex-row justify-center text-[16px] sm:mr-[10px]'>
                       <img src={BankIcon} alt='' /> overcast
                     </p>
-                    <p className='flex flex-row text-[15px] mr-[10px]'>
+                    <p className='text-center flex flex-row justify-center text-[16px] sm:mr-[10px]'>
                       <img src={CalenderIcon} alt='' />
                       20.05.1995
                     </p>
                   </div>
                 </div>
               </div>
-              <div>
+              <div className='hidden sm:block'>
                 <Button icon={'edit'} iconPos='left' variant='secondary'></Button>
               </div>
             </div>
             <div className='w-full flex items-center flex-col lg:flex-row'>
-              <div className='mt-[20px] w-full lg:w-1/2'>
+              <div className='hidden sm:block mt-[20px] w-full xl:w-1/2'>
                 <p>
                   Я - опытный UX/UI дизайнер с более чем 4-летним стажем работы в этой
                   области.
                 </p>
               </div>
-              <div className='flex flex-row justify-between items-center lg:w-1/2 border-2 border-[#F2F2F2] rounded-[10px] px-[20px] py-[10px] mt-[20px]'>
-                <p>8 друзей</p>
+              <div className='flex flex-row justify-between items-center w-full xl:w-1/2 border-2 border-[#F2F2F2] rounded-[10px] px-[20px] py-[10px] mt-[20px]'>
+                <p className='font-bold'>8 друзей</p>
                 <div className='relative flex flex-row justify-between'>
                   <UserAvatar src={avatarLight} className='w-[40px] h-[40px] mr-[15px]' />
                   <UserAvatar
                     src={avatarLight}
-                    className='absolute w-[40px] h-[40px] mr-[15px] right-[15px]'
+                    className='absolute w-[40px] h-[40px] mr-[15px] right-[20px] lg:right-[15px]'
                   />
                   <UserAvatar
                     src={avatarLight}
-                    className='absolute w-[40px] h-[40px] mr-[15px] right-[30px]'
+                    className='absolute w-[40px] h-[40px] mr-[15px] right-[40px] lg:right-[30px]'
                   />
                   <UserAvatar
                     src={avatarLight}
-                    className='absolute w-[40px] h-[40px] mr-[15px] right-[45px]'
+                    className='hidden lg:block absolute w-[40px] h-[40px] mr-[15px] right-[45px]'
                   />
                   <UserAvatar
                     src={avatarLight}
-                    className='absolute w-[40px] h-[40px] mr-[15px] right-[60px]'
+                    className='hidden lg:block absolute w-[40px] h-[40px] mr-[15px] right-[60px]'
                   />
                 </div>
               </div>
             </div>
+            <Button className='mt-[20px] block sm:hidden' variant={'secondary'}>
+              Редактировать
+            </Button>
           </div>
 
           {/* News Input */}
 
-          <div className='w-full bg-white dark:bg-grayBlue rounded-[10px]'>
+          <div className='relative w-full bg-white dark:bg-grayBlue rounded-[10px]'>
             <input
               type='text'
               className='bg-white dark:bg-grayBlue w-full p-[20px] rounded-[10px]'
               placeholder='Что у вас нового?'
+            />
+            <img
+              className='absolute top-[18px] right-[30px] block'
+              src={SmileIcon}
+              alt=''
             />
           </div>
 
