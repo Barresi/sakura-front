@@ -16,7 +16,7 @@ const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
     'mr-[-20px] z-[90]',
     'mr-[-20px] z-[80]',
     'mr-[-20px] z-[70]',
-    'mr-[-0px] z-[60]'
+    'mr-[-20px] z-[60]'
   ]
 
   const renderImg = (avatars: string[]): JSX.Element[] => {
@@ -33,10 +33,10 @@ const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
   }
 
   return (
-    <div className='my-[20px] px-[20px] py-[10px] rounded-[10px] border border-[#f2f2f2] flex items-center justify-between'>
+    <div className='w-full px-[20px] py-[10px] rounded-[10px] border border-smokyWhite dark:border-cadet flex items-center justify-between'>
       <span>{avatars.length} друзей</span>
 
-      <div className='flex items-center mr-[20px] lg:mr-0'>
+      <div className='flex items-center mr-5'>
         {renderImg(
           avatars.slice(0, avatars.length > maxCount ? maxCount : avatars.length)
         )}
