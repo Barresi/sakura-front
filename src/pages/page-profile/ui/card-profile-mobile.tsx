@@ -2,9 +2,9 @@ import { RowFriends } from '@entities/row-friends'
 import { Button } from '@shared/ui/button'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
+import { CardProfileDesc } from './card-profile-desc'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
-import { CardProfileDesc } from './card-profile-desc'
 
 const CardProfileMobile: FC = () => {
   return (
