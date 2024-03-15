@@ -1,9 +1,9 @@
 import { editUserInfoThunk } from '@app/store/reducers/profileInfo/async-thunks'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
-import banner from '@assets/banner/default user banner.jpg'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { cn } from '@shared/lib/merge-classes'
 import { nameRegExp, usernameRegExp } from '@shared/lib/reg-exp'
+import { Banner } from '@shared/ui/banner'
 import { Button } from '@shared/ui/button'
 import { Calendar } from '@shared/ui/calendar'
 import { Input } from '@shared/ui/input'
@@ -134,11 +134,7 @@ const EditAccount: FC = () => {
       <h1 className='text-2xl'>Аккаунт</h1>
       <div className='relative'>
         <div className='relative flex justify-center items-center'>
-          <img
-            src={banner}
-            alt='banner'
-            className='w-[100%] object-cover rounded-[6px]'
-          />
+          <Banner />
           <Button
             variant='secondary'
             className='absolute usm:right-[20px] usm:bottom-[10px] w-[190px] h-[40px] xxl:right-[30px] xxl:bottom-[30px]'
@@ -266,7 +262,7 @@ const EditAccount: FC = () => {
                     <Button
                       variant={'outline'}
                       className={cn(
-                        'w-[100%] text-left font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet border'
+                        'w-[100%] text-left font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet border transition-none active:scale-100'
                       )}
                     >
                       {field.value ? (
