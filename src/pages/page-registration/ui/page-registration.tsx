@@ -12,6 +12,10 @@ import { type FC } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
+interface IFormInputs extends IRegistrationForm {
+  confirmPassword: string
+}
+
 const PageRegistration: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
@@ -22,10 +26,17 @@ const PageRegistration: FC = () => {
     handleSubmit,
     watch,
     formState: { errors }
-  } = useForm<IRegistrationForm>({ mode: 'onSubmit' })
+  } = useForm<IFormInputs>({ mode: 'onSubmit' })
 
-  const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
-    await dispatch(registrationThunk(data)).then((data) => {
+  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    const payload: IRegistrationForm = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password
+    }
+
+    await dispatch(registrationThunk(payload)).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {
         navigate('/')
         toast({
