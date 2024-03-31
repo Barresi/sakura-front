@@ -3,7 +3,6 @@ import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { cn } from '@shared/lib/merge-classes'
 import { nameRegExp, usernameRegExp } from '@shared/lib/reg-exp'
-import { Banner } from '@shared/ui/banner'
 import { Button } from '@shared/ui/button'
 import { Calendar } from '@shared/ui/calendar'
 import { Input } from '@shared/ui/input'
@@ -16,13 +15,14 @@ import {
   SelectValue
 } from '@shared/ui/select'
 import { Textarea } from '@shared/ui/textarea'
-import { UserAvatar } from '@shared/ui/user-avatar'
 import { useToast } from '@widgets/toaster'
 import { format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
-import { useEffect, useRef, useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { removeNullPropertiesInUserInfo } from '../lib/remove-null-properties'
+import { AvatarChange } from './avatar-change/avatar-change'
+import { BannerChange } from './banner-change/banner-change'
 
 interface IFormInputs {
   firstName: string
@@ -32,17 +32,12 @@ interface IFormInputs {
   description: string
   gender: 'male' | 'female' | null
   birthDate: Date | null
-  avatar: null
-  banner: null
 }
 
 const EditAccount: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
   const userInfo = useAppSelector(selectUser)
-
-  const buttonBannerRef = useRef(null)
-  const buttonAvatarRef = useRef(null)
 
   const {
     register,
@@ -61,11 +56,10 @@ const EditAccount: FC = () => {
       lastName: '',
       username: '',
       birthDate: null,
-      gender: null,
-      avatar: null,
-      banner: null
+      gender: null
     }
   })
+
   const [isEditInfo, setEditInfo] = useState(false)
 
   useEffect(() => {
@@ -141,33 +135,8 @@ const EditAccount: FC = () => {
       <h1 className='text-2xl'>Аккаунт</h1>
       <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col gap-5'>
         <div className='relative flex flex-col justify-center items-center usm:flex-row w-full usm:h-[230px] lg:h-[284px]'>
-          <div className='relative flex-grow h-[120px] usm:h-full w-full'>
-            <Banner />
-            <Button
-              variant='secondary'
-              className='absolute bottom-[40px] right-[50%] translate-x-[50%] usm:translate-x-0 usm:right-[20px] usm:bottom-[20px] w-[190px] h-[40px] lg:right-[30px] lg:bottom-[30px] xxl:right-[20px]'
-              type='button'
-              onClick={() =>
-                (buttonBannerRef.current as HTMLInputElement | null)?.click()
-              }
-            >
-              Изменить обложку
-            </Button>
-            <Input type='file' className='hidden' ref={buttonBannerRef} />
-          </div>
-
-          <div
-            className='cursor-pointer relative mt-[50px] h-[100%] w-[100%] usm:absolute usm:mt-0 usm:left-[20px] usm:bottom-[20px] usm:w-[150px] usm:h-[150px] lg:left-[30px] lg:bottom-[30px] xxl:left-[20px] rounded-full'
-            onClick={() => (buttonAvatarRef.current as HTMLInputElement | null)?.click()}
-          >
-            <div className='absolute left-0 right-0 top-0 bottom-0 rounded-full flex justify-center items-center'>
-              <span className='z-20 text-md usm:text-sm font-medium'>Изменить фото</span>
-              <div className='z-10 flex justify-center items-center bg-black opacity-20 absolute left-0 right-0 top-0 bottom-0 rounded-full' />
-            </div>
-
-            <UserAvatar className='h-[100%] w-[100%]' />
-            <Input type='file' className='hidden' ref={buttonAvatarRef} />
-          </div>
+          <BannerChange />
+          <AvatarChange />
         </div>
 
         <div className='flex flex-col md:flex-row gap-5 justify-between'>

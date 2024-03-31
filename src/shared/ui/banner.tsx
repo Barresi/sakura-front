@@ -5,12 +5,13 @@ import banner from '@assets/banner/default user banner.jpg'
 
 interface IBannerProps {
   className?: string
+  src?: string
 }
 
-const Banner: FC<IBannerProps> = ({ className }) => {
+const Banner: FC<IBannerProps> = ({ className, src }) => {
   return (
     <img
-      src={banner}
+      src={src || banner}
       alt='banner'
       className={cn('w-full h-full object-cover rounded-[6px]', className)}
     />
