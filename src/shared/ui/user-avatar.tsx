@@ -11,7 +11,7 @@ interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
 
 const Avatar = forwardRef<React.ElementRef<typeof Root>, IAvatarProps>(
   ({ className, children, text, ...props }, ref) => (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center rounded-full'>
       <Root
         ref={ref}
         className={cn(

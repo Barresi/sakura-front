@@ -12,7 +12,7 @@ const Banner: FC<IBannerProps> = ({ className }) => {
     <img
       src={banner}
       alt='banner'
-      className={cn('w-[100%] object-cover rounded-[6px]', className)}
+      className={cn('w-full h-full object-cover rounded-[6px]', className)}
     />
   )
 }

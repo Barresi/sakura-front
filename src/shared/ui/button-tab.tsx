@@ -24,7 +24,7 @@ const ButtonTab: FC<IButtonTabProps> = ({
     >
       <Button
         className={cn(
-          'w-full flex justify-between sm:justify-center xl:justify-between whitespace-nowrap active:scale-[0.97]',
+          'w-full flex justify-between sm:justify-center xxl:justify-between whitespace-nowrap active:scale-[0.97]',
           className
         )}
         variant='text'

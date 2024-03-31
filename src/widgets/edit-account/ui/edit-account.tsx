@@ -20,7 +20,7 @@ import { UserAvatar } from '@shared/ui/user-avatar'
 import { useToast } from '@widgets/toaster'
 import { format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
-import { useEffect, useState, type FC } from 'react'
+import { useEffect, useRef, useState, type FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { removeNullPropertiesInUserInfo } from '../lib/remove-null-properties'
 
@@ -32,12 +32,17 @@ interface IFormInputs {
   description: string
   gender: 'male' | 'female' | null
   birthDate: Date | null
+  avatar: null
+  banner: null
 }
 
 const EditAccount: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
   const userInfo = useAppSelector(selectUser)
+
+  const buttonBannerRef = useRef(null)
+  const buttonAvatarRef = useRef(null)
 
   const {
     register,
@@ -56,7 +61,9 @@ const EditAccount: FC = () => {
       lastName: '',
       username: '',
       birthDate: null,
-      gender: null
+      gender: null,
+      avatar: null,
+      banner: null
     }
   })
   const [isEditInfo, setEditInfo] = useState(false)
@@ -132,20 +139,37 @@ const EditAccount: FC = () => {
   return (
     <div className='flex flex-col gap-5'>
       <h1 className='text-2xl'>Аккаунт</h1>
-      <div className='relative'>
-        <div className='relative flex justify-center items-center'>
-          <Banner />
-          <Button
-            variant='secondary'
-            className='absolute usm:right-[20px] usm:bottom-[10px] w-[190px] h-[40px] xxl:right-[30px] xxl:bottom-[30px]'
+      <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col gap-5'>
+        <div className='relative flex flex-col justify-center items-center usm:flex-row w-full usm:h-[230px] lg:h-[284px]'>
+          <div className='relative flex-grow h-[120px] usm:h-full w-full'>
+            <Banner />
+            <Button
+              variant='secondary'
+              className='absolute bottom-[40px] right-[50%] translate-x-[50%] usm:translate-x-0 usm:right-[20px] usm:bottom-[20px] w-[190px] h-[40px] lg:right-[30px] lg:bottom-[30px] xxl:right-[20px]'
+              type='button'
+              onClick={() =>
+                (buttonBannerRef.current as HTMLInputElement | null)?.click()
+              }
+            >
+              Изменить обложку
+            </Button>
+            <Input type='file' className='hidden' ref={buttonBannerRef} />
+          </div>
+
+          <div
+            className='cursor-pointer relative mt-[50px] h-[100%] w-[100%] usm:absolute usm:mt-0 usm:left-[20px] usm:bottom-[20px] usm:w-[150px] usm:h-[150px] lg:left-[30px] lg:bottom-[30px] xxl:left-[20px] rounded-full'
+            onClick={() => (buttonAvatarRef.current as HTMLInputElement | null)?.click()}
           >
-            Изменить обложку
-          </Button>
+            <div className='absolute left-0 right-0 top-0 bottom-0 rounded-full flex justify-center items-center'>
+              <span className='z-20 text-md usm:text-sm font-medium'>Изменить фото</span>
+              <div className='z-10 flex justify-center items-center bg-black opacity-20 absolute left-0 right-0 top-0 bottom-0 rounded-full' />
+            </div>
+
+            <UserAvatar className='h-[100%] w-[100%]' />
+            <Input type='file' className='hidden' ref={buttonAvatarRef} />
+          </div>
         </div>
 
-        <UserAvatar className='mt-[50px] h-[100%] w-[100%] usm:absolute usm:mt-0 usm:left-[20px] usm:bottom-[10px] usm:w-[100px] usm:h-[100px] xxl:left-[30px] xxl:bottom-[30px] sm:h-[150px] sm:w-[150px]' />
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col gap-5'>
         <div className='flex flex-col md:flex-row gap-5 justify-between'>
           <div className='w-[100%] flex flex-col gap-1'>
             <h3 className='text-sm'>Никнейм</h3>
