@@ -1,10 +1,10 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { cn } from '@shared/lib/merge-classes'
+import { parseDateToYear } from '@shared/lib/parse-date'
 import { Button } from '@shared/ui/button'
 import { Calendar } from '@shared/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui/popover'
-import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { type FC } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -27,7 +27,7 @@ const BirthDateChange: FC = () => {
                 )}
               >
                 {value || userInfo?.birthDate ? (
-                  format(value || userInfo?.birthDate, 'PPP')
+                  parseDateToYear(value || userInfo?.birthDate)
                 ) : (
                   <span className='text-darkGray'>Выберите дату</span>
                 )}

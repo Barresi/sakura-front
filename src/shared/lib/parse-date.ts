@@ -1,18 +1,26 @@
+const months = [
+  'января',
+  'февраля',
+  'марта',
+  'апреля',
+  'мая',
+  'июня',
+  'июля',
+  'августа',
+  'сентября',
+  'октября',
+  'ноября',
+  'декабря'
+]
+export function parseDateToYear(date: string): string {
+  const parseDate = new Date(date)
+  const day = parseDate.getDate().toString()
+  const month = (parseDate.getMonth() + 1).toString()
+  return `${day.length < 2 ? '0' + day : day}.${
+    month.length < 2 ? '0' + month : month
+  }.${parseDate.getFullYear()}`
+}
 export function parseDateToMonth(date: string): string {
-  const months = [
-    'января',
-    'февраля',
-    'марта',
-    'апреля',
-    'мая',
-    'июня',
-    'июля',
-    'августа',
-    'сентября',
-    'октября',
-    'ноября',
-    'декабря'
-  ]
   const parseDate = new Date(date)
   if (parseDate.getDate() === new Date().getDate()) return 'Сегодня'
   if (parseDate.getDate() === new Date().getDate() - 1) return 'Вчера'
