@@ -27,9 +27,15 @@ const BannerChange: FC = () => {
 
         const [bannerImg, setBannerImg] = useState<string | null>(null)
         useEffect(() => {
-          const urlOnBackend =
-            import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/' + user?.banner
-          setBannerImg(previewUrl || urlOnBackend || null)
+          if (previewUrl) {
+            setBannerImg(previewUrl)
+          } else if (user?.banner) {
+            const urlOnBackend =
+              import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/' + user?.banner
+            setBannerImg(urlOnBackend)
+          } else {
+            setBannerImg(null)
+          }
         }, [previewUrl, user?.banner])
         return (
           <div className='relative flex-grow h-[120px] usm:h-full w-full'>
