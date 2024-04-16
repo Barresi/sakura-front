@@ -9,7 +9,6 @@ import { handleFileChange } from '../../lib/handle-file-change'
 
 const BannerChange: FC = () => {
   const { control } = useFormContext()
-  const user = useAppSelector(selectUser)
 
   return (
     <Controller
@@ -17,7 +16,7 @@ const BannerChange: FC = () => {
       control={control}
       render={({ field: { onChange, value } }) => {
         const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-
+        const user = useAppSelector(selectUser)
         useEffect(() => {
           if (value) {
             handleFileChange(value, setPreviewUrl)

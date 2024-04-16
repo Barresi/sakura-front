@@ -9,9 +9,9 @@ interface IBannerProps {
 }
 
 const Banner: FC<IBannerProps> = ({ className, src }) => {
-  const img = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + src || banner
+  const img = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/' + src || banner
   return (
-    <img
+    <img /* Todo убрать иконку файла при отсутствии урл */
       src={img}
       className={cn('w-full h-full object-cover rounded-[6px]', className)}
     />
