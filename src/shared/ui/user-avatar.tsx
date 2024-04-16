@@ -62,7 +62,7 @@ interface IUserAvatarProps {
 }
 
 const UserAvatar: FC<IUserAvatarProps> = ({ src, className }) => {
-  const img = src || avatarLight
+  const img = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + src || avatarLight
   return (
     <Avatar className={className}>
       <AvatarImage src={img} />
