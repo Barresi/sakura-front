@@ -1,3 +1,5 @@
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { Input } from '@shared/ui/input'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { useEffect, useState, type FC } from 'react'
@@ -6,6 +8,7 @@ import { handleFileChange } from '../../lib/handle-file-change'
 
 const AvatarChange: FC = () => {
   const { control } = useFormContext()
+  const user = useAppSelector(selectUser)
 
   return (
     <Controller
@@ -36,7 +39,10 @@ const AvatarChange: FC = () => {
               <div className='z-10 flex justify-center items-center bg-black opacity-20 absolute left-0 right-0 top-0 bottom-0 rounded-full' />
             </div>
 
-            <UserAvatar className='h-[100%] w-[100%]' src={previewUrl || null} />
+            <UserAvatar
+              className='h-[100%] w-[100%]'
+              src={previewUrl || user?.avatar || null}
+            />
             <Input
               type='file'
               className='hidden'
