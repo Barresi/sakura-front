@@ -29,7 +29,10 @@ const CardFriends: FC<ICardFriendsProps> = ({
   const friend = users.find((user) => user.id === friendId)
 
   const avatar = (
-    <UserAvatar className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]' />
+    <UserAvatar
+      src={friend?.avatar || null}
+      className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]'
+    />
   )
 
   const info = (

@@ -36,7 +36,7 @@ const AvatarChange: FC = () => {
               <div className='z-10 flex justify-center items-center bg-black opacity-20 absolute left-0 right-0 top-0 bottom-0 rounded-full' />
             </div>
 
-            <UserAvatar className='h-[100%] w-[100%]' src={previewUrl || undefined} />
+            <UserAvatar className='h-[100%] w-[100%]' src={previewUrl || null} />
             <Input
               type='file'
               className='hidden'

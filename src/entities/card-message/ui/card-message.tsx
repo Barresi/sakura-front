@@ -34,7 +34,10 @@ const CardMessage: FC<ICardMessageProps> = ({
         className
       )}
     >
-      <UserAvatar className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]' />
+      <UserAvatar
+        src={friend?.avatar || null}
+        className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]'
+      />
 
       <div className='flex-1'>
         <h3 className='font-bold leading-6 whitespace-nowrap'>

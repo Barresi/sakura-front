@@ -92,18 +92,10 @@ const Chat: FC = () => {
 
   const renderMessages = (value: IMessage, ind: number): ReactNode => {
     const { text, senderId, createdAt, read } = value
-    const isMyMessage = senderId === user?.id
     return (
       <>
         {!read && senderId !== user?.id && renderNewMessagesBlock()}
-        <Message
-          text={text}
-          date={createdAt}
-          my={isMyMessage}
-          key={ind}
-          firstName={isMyMessage ? user?.firstName : friend?.firstName}
-          lastName={isMyMessage ? user?.lastName : friend?.lastName}
-        />
+        <Message text={text} date={createdAt} key={ind} senderId={senderId} />
       </>
     )
   }
@@ -132,7 +124,7 @@ const Chat: FC = () => {
           <span className='font-bold text-xl text-signalBlack dark:text-darkWhite text-center'>{`${friend?.firstName} ${friend?.lastName}`}</span>
         </div>
 
-        <UserAvatar />
+        <UserAvatar src={friend?.avatar || null} />
       </div>
       <div
         ref={container}

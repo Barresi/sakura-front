@@ -4,14 +4,20 @@ import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 import { CardProfileDesc } from './card-profile-desc'
 
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import avatarLight from '@assets/avatar/default avatar light.svg'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 
 const CardProfileMobile: FC = () => {
+  const user = useAppSelector(selectUser)
   return (
     <div className='block xxl:hidden relative bg-white dark:bg-grayBlue p-[30px] rounded-[10px]'>
       <div className='flex flex-row justify-between'>
         <div className='flex flex-row justify-start w-full'>
-          <UserAvatar className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px]' />
+          <UserAvatar
+            src={user?.avatar || null}
+            className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px]'
+          />
           <div className='mt-[50px] mx-auto sm:mt-auto sm:mx-0 sm:ml-[200px]'>
             <h4 className='text-[32px] mb-[0] sm:mb-[10px] text-center sm:text-start'>
               Борис Маслов

@@ -26,7 +26,7 @@ const Toaster: FC = () => {
         userId,
         description
       }) {
-        const user = users.filter((user) => user.id === userId)[0]
+        const user = users.find((user) => user.id === userId)
 
         return (
           <Toast className='' key={id}>
@@ -38,7 +38,7 @@ const Toaster: FC = () => {
               <div className='flex items-center gap-[15px]'>
                 {notificationType ? (
                   <>
-                    <UserAvatar />
+                    <UserAvatar src={user?.avatar || null} />
                     <div className='flex flex-col gap-[5px]'>
                       <span className='font-bold text-twitter'>
                         {user?.firstName} {user?.lastName}

@@ -7,7 +7,6 @@ import icon1 from './svg/icon1.svg'
 import EyeIcon from './svg/Eye.svg'
 
 import { ButtonAction } from '@shared/ui/button-action'
-import { InputSendMessage } from '@shared/ui/input-send-message'
 import Image1 from './image/image.png'
 
 interface IPostNewsProps {
@@ -61,9 +60,9 @@ const PostNews: FC<IPostNewsProps> = () => {
           </p>
         </div>
       </div>
-      <hr />
+      {/* <hr />
       <div className='flex flex-row justify-start w-full'>
-        <UserAvatar className='w-[50px] h-[50px] mr-[15px]' />
+        <UserAvatar src={} className='w-[50px] h-[50px] mr-[15px]' />
         <div>
           <h4 className='text-[#D22828] text-[18px] font-bold'>Борис Маслов</h4>
           <p className='text-[16px]'>Классное фото</p>
@@ -72,7 +71,7 @@ const PostNews: FC<IPostNewsProps> = () => {
           </p>
         </div>
       </div>
-      <InputSendMessage sendMessage={() => {}} placeholder='Написать сообщение...' />
+      <InputSendMessage sendMessage={() => {}} placeholder='Написать сообщение...' /> */}
     </div>
   )
 }

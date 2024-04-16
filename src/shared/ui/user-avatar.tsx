@@ -57,7 +57,7 @@ const AvatarFallback = forwardRef<
 AvatarFallback.displayName = Fallback.displayName
 
 interface IUserAvatarProps {
-  src?: string
+  src: string | null
   className?: string
 }
 

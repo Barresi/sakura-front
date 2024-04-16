@@ -127,6 +127,8 @@ export interface IReadUserNotificationsResponse {
 // UserInfo api
 
 export interface IUserInfoResponse {
+  avatar: null | string
+  banner: null | string
   id: string
   firstName: string
   lastName: string

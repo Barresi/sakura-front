@@ -16,13 +16,13 @@ interface ICardNotificationProps {
 }
 
 const CardNotification: FC<ICardNotificationProps> = ({ className, date, id, type }) => {
-  const user = useAppSelector(selectAllUsers).filter((user) => user.id === id)[0]
+  const user = useAppSelector(selectAllUsers).find((user) => user.id === id)
 
   return (
     <Card className={cn('', className)}>
       <div className='flex items-center gap-[15px]'>
         <div className='self-start'>
-          <UserAvatar className='w-[60px] h-[60px] ' />
+          <UserAvatar className='w-[60px] h-[60px] ' src={user?.avatar || null} />
         </div>
 
         <div className='flex flex-col gap-[5px]'>
