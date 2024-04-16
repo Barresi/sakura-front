@@ -5,7 +5,7 @@ import banner from '@assets/banner/default user banner.jpg'
 
 interface IBannerProps {
   className?: string
-  src?: string
+  src: string | null
 }
 
 const Banner: FC<IBannerProps> = ({ className, src }) => {

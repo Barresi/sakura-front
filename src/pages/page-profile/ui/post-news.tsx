@@ -60,7 +60,8 @@ const PostNews: FC<IPostNewsProps> = () => {
           </p>
         </div>
       </div>
-      {/* <hr />
+      <hr />
+      {/* 
       <div className='flex flex-row justify-start w-full'>
         <UserAvatar src={} className='w-[50px] h-[50px] mr-[15px]' />
         <div>
