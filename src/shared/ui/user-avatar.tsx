@@ -59,10 +59,12 @@ AvatarFallback.displayName = Fallback.displayName
 interface IUserAvatarProps {
   src: string | null
   className?: string
+  isImgNotOnBackend?: boolean
 }
 
-const UserAvatar: FC<IUserAvatarProps> = ({ src, className }) => {
-  const img = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + src || avatarLight
+const UserAvatar: FC<IUserAvatarProps> = ({ src, className, isImgNotOnBackend }) => {
+  const urlBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/'
+  const img = (isImgNotOnBackend ? src : urlBackend + src) || avatarLight
   return (
     <Avatar className={className}>
       <AvatarImage src={img} />

@@ -30,7 +30,7 @@ const BannerChange: FC = () => {
           const urlOnBackend =
             import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/' + user?.banner
           setBannerImg(previewUrl || urlOnBackend || null)
-        }, [previewUrl, user])
+        }, [previewUrl, user?.banner])
         return (
           <div className='relative flex-grow h-[120px] usm:h-full w-full'>
             <Banner src={bannerImg || null} isImgNotOnBackend />

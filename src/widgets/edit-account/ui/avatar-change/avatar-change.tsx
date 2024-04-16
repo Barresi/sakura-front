@@ -24,6 +24,12 @@ const AvatarChange: FC = () => {
           }
         }, [value])
 
+        const [avatarImg, setAvatarImg] = useState<string | null>(null)
+        useEffect(() => {
+          const urlOnBackend =
+            import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + user?.banner
+          setAvatarImg(previewUrl || urlOnBackend || null)
+        }, [previewUrl, user?.avatar])
         return (
           <div
             className='cursor-pointer relative mt-[50px] h-[100%] w-[100%] usm:absolute usm:mt-0 usm:left-[20px] usm:bottom-[20px] usm:w-[150px] usm:h-[150px] lg:left-[30px] lg:bottom-[30px] xxl:left-[20px] rounded-full usm:border-[4px] dark:border-grayBlue'
@@ -41,7 +47,8 @@ const AvatarChange: FC = () => {
 
             <UserAvatar
               className='h-[100%] w-[100%]'
-              src={previewUrl || user?.avatar || null}
+              src={avatarImg || null}
+              isImgNotOnBackend
             />
             <Input
               type='file'
