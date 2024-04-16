@@ -6,7 +6,7 @@ import { UserAvatar } from './user-avatar'
 import send from '@assets/ui/send.svg'
 
 interface IInputSendMessageProps extends IInputProps {
-  avatar?: string
+  avatar?: string | null
   sendMessage: (message: string) => void
 }
 

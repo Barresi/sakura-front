@@ -7,8 +7,6 @@ import { CardProfile } from './card-profile'
 import { CardProfileMobile } from './card-profile-mobile'
 import { PostNews } from './post-news'
 
-import avatarLight from '@assets/avatar/default avatar light.svg'
-
 const PageProfile: FC = () => {
   const user = useAppSelector(selectUser)
   return (
@@ -24,7 +22,7 @@ const PageProfile: FC = () => {
           <CardProfileMobile />
 
           <InputSendMessage
-            avatar={avatarLight}
+            avatar={user?.avatar || null}
             sendMessage={() => {}}
             placeholder='Что у вас нового?'
             className='border-none'
