@@ -9,6 +9,7 @@ import { handleFileChange } from '../../lib/handle-file-change'
 
 const BannerChange: FC = () => {
   const { control } = useFormContext()
+  const user = useAppSelector(selectUser)
 
   return (
     <Controller
@@ -16,7 +17,6 @@ const BannerChange: FC = () => {
       control={control}
       render={({ field: { onChange, value } }) => {
         const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-        const user = useAppSelector(selectUser)
         useEffect(() => {
           if (value) {
             handleFileChange(value, setPreviewUrl)
@@ -26,7 +26,7 @@ const BannerChange: FC = () => {
         }, [value])
         return (
           <div className='relative flex-grow h-[120px] usm:h-full w-full'>
-            <Banner src={previewUrl || user?.avatar || null} />
+            <Banner src={previewUrl || user?.banner || null} />
             <Button
               variant='secondary'
               className='absolute bottom-[40px] right-[50%] translate-x-[50%] usm:translate-x-0 usm:right-[20px] usm:bottom-[20px] w-[190px] h-[40px] lg:right-[30px] lg:bottom-[30px] xxl:right-[20px]'

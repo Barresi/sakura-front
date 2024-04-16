@@ -16,7 +16,10 @@ const PageProfile: FC = () => {
       <div className='w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] lg:mb-[20px] px-[20px] lg:px-0'>
         <CardProfile />
         <div className='w-full xxl:w-2/3 rounded-[10px] grid gap-[20px] xl:gap-[30px]'>
-          <Banner className='h-[180px] sm:h-auto' src={user?.banner || null} />
+          <Banner
+            className='h-[180px] sm:h-[295px] lg:h-[337px]'
+            src={user?.banner || null}
+          />
           {/* mobile user info */}
           <CardProfileMobile />
 
