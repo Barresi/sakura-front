@@ -64,10 +64,10 @@ interface IUserAvatarProps {
 
 const UserAvatar: FC<IUserAvatarProps> = ({ src, className, isImgNotOnBackend }) => {
   const urlBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/'
-  const img = (isImgNotOnBackend ? src : urlBackend + src) || avatarLight
+  const img = isImgNotOnBackend ? src : urlBackend + src
   return (
     <Avatar className={className}>
-      <AvatarImage src={img} />
+      <AvatarImage src={src && img ? img : avatarLight} />
     </Avatar>
   )
 }

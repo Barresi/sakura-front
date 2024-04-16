@@ -11,10 +11,10 @@ interface IBannerProps {
 
 const Banner: FC<IBannerProps> = ({ className, src, isImgNotOnBackend }) => {
   const urlBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/'
-  const img = (isImgNotOnBackend ? src : urlBackend + src) || banner
+  const img = isImgNotOnBackend ? src : urlBackend + src
   return (
     <img /* Todo убрать иконку файла при отсутствии урл */
-      src={img}
+      src={src && img ? img : banner}
       className={cn('w-full h-full object-cover rounded-[6px]', className)}
     />
   )
