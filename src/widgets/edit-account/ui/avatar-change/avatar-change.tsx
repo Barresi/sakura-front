@@ -26,9 +26,15 @@ const AvatarChange: FC = () => {
 
         const [avatarImg, setAvatarImg] = useState<string | null>(null)
         useEffect(() => {
-          const urlOnBackend =
-            import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + user?.avatar
-          setAvatarImg(previewUrl || urlOnBackend || null)
+          if (previewUrl) {
+            setAvatarImg(previewUrl)
+          } else if (user?.avatar) {
+            const urlOnBackend =
+              import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + user?.avatar
+            setAvatarImg(urlOnBackend)
+          } else {
+            setAvatarImg(null)
+          }
         }, [previewUrl, user?.avatar])
         return (
           <div
