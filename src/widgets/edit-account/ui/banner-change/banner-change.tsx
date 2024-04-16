@@ -24,9 +24,14 @@ const BannerChange: FC = () => {
             setPreviewUrl(null)
           }
         }, [value])
+
+        const [bannerImg, setBannerImg] = useState<string | null>(null)
+        useEffect(() => {
+          setBannerImg(previewUrl || user?.banner || null)
+        }, [previewUrl, user])
         return (
           <div className='relative flex-grow h-[120px] usm:h-full w-full'>
-            <Banner src={previewUrl || user?.banner || null} />
+            <Banner src={bannerImg || null} />
             <Button
               variant='secondary'
               className='absolute bottom-[40px] right-[50%] translate-x-[50%] usm:translate-x-0 usm:right-[20px] usm:bottom-[20px] w-[190px] h-[40px] lg:right-[30px] lg:bottom-[30px] xxl:right-[20px]'
