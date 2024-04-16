@@ -18,7 +18,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
 }) => {
   const [message, setMessage] = useState('')
 
-  const withAvatar = avatar ? 'pl-[80px]' : ''
+  const withAvatar = avatar !== undefined
 
   return (
     <form
@@ -31,7 +31,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       }}
       className='w-full relative flex'
     >
-      {avatar !== undefined && (
+      {withAvatar && (
         <UserAvatar
           src={avatar}
           className='absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]'
@@ -40,7 +40,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       <Input
         className={cn(
           'py-[20px] px-[20px] pr-[60px] rounded-[10px]',
-          withAvatar,
+          withAvatar && 'pl-[80px]',
           className
         )}
         onChange={(e) => {
