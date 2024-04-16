@@ -31,7 +31,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       }}
       className='w-full relative flex'
     >
-      {avatar && (
+      {avatar !== undefined && (
         <UserAvatar
           src={avatar}
           className='absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]'
