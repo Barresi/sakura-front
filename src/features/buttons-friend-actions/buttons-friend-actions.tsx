@@ -1,12 +1,12 @@
-import { ButtonFriendAdd } from '@features/button-friend-add'
-import { ButtonFriendDelete } from '@features/button-friend-delete'
-import { ButtonFriendRequestAccept } from '@features/button-friend-request-accept/ui/button-friend-request-accept'
-import { ButtonFriendRequestCancel } from '@features/button-friend-request-cancel'
-import { ButtonFriendRequestReject } from '@features/button-friend-request-reject/ui/button-friend-request-reject'
-import { ButtonFriendWriteMessage } from '@features/button-friend-write-message'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { FriendState } from '@shared/lib/types/api'
 import { type FC } from 'react'
+import { ButtonFriendAdd } from '../button-friend-add'
+import { ButtonFriendDelete } from '../button-friend-delete'
+import { ButtonFriendRequestAccept } from '../button-friend-request-accept/ui/button-friend-request-accept'
+import { ButtonFriendRequestCancel } from '../button-friend-request-cancel'
+import { ButtonFriendRequestReject } from '../button-friend-request-reject/ui/button-friend-request-reject'
+import { ButtonFriendWriteMessage } from '../button-friend-write-message'
 
 interface ButtonsFriendActionsProps {
   requestId?: string

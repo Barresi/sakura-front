@@ -14,7 +14,7 @@ const desc = [
 
 const CardProfileDesc: FC = () => {
   return (
-    <div className={'flex flex-wrap gap-[10px] xxl:flex-col'}>
+    <div className={'flex flex-wrap gap-[10px]'}>
       {desc.map((item, ind) => (
         <p key={ind} className='flex gap-[5px] text-[16px]'>
           <img src={item.icon} /> {item.text}

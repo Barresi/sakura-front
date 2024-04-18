@@ -51,8 +51,8 @@ const PostNews: FC<IPostNewsProps> = () => {
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
           <ButtonAction icon='like'>10</ButtonAction>
-          <ButtonAction icon='comment'>10</ButtonAction>
-          <ButtonAction icon='share'>10</ButtonAction>
+          {/* <ButtonAction icon='comment'>10</ButtonAction>
+          <ButtonAction icon='share'>10</ButtonAction> */}
         </div>
         <div>
           <p className='flex flex-row'>

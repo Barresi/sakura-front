@@ -1,4 +1,5 @@
 import { CardFriends } from '@entities/card-friends'
+import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendState } from '@shared/lib/types/api'
 import { FriendTabs } from '@shared/lib/types/other'
@@ -7,7 +8,6 @@ import { selectAllUsers, selectSended } from '@store/reducers/friends/selectors'
 import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
 import { filterRequests } from '../../lib/filters'
-import { ButtonsFriendActions } from '../buttons-friend-actions/buttons-friend-actions'
 
 interface ITabSendedProps extends IBaseTabProps {}
 
