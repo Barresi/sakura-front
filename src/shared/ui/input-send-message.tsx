@@ -34,7 +34,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       {withAvatar && (
         <UserAvatar
           src={avatar}
-          className='absolute top-[10px] z-50 left-[30px] w-[40px] h-[40px]'
+          className='absolute top-[10px] z-[2] left-[30px] w-[40px] h-[40px]'
         />
       )}
       <Input

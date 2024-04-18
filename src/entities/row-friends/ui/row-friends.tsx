@@ -12,11 +12,11 @@ const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
   const maxCount = isMobile ? 3 : 5
 
   const imgClasses = [
-    'mr-[-20px] z-[100]',
-    'mr-[-20px] z-[90]',
-    'mr-[-20px] z-[80]',
-    'mr-[-20px] z-[70]',
-    'mr-[-20px] z-[60]'
+    'mr-[-20px] z-[6]',
+    'mr-[-20px] z-[5]',
+    'mr-[-20px] z-[4]',
+    'mr-[-20px] z-[3]',
+    'mr-[-20px] z-[2]'
   ]
 
   const renderImg = (avatars: string[]): JSX.Element[] => {

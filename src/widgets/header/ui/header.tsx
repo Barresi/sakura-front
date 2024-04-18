@@ -17,7 +17,7 @@ const Header: FC<IHeaderProps> = ({ className, ...props }) => {
   return (
     <header
       className={cn(
-        'fixed left-0 right-0 top-0 max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-white dark:bg-grayBlue lg:rounded-[10px] lg:relative z-40',
+        'fixed left-0 right-0 top-0 max-w-[100%] h-[54px] md:h-[84px] flex items-center justify-between py-[10px] px-[20px] lg:py-[20px] lg:px-[30px] bg-white dark:bg-grayBlue lg:rounded-[10px] lg:relative z-10',
         className
       )}
       {...props}
