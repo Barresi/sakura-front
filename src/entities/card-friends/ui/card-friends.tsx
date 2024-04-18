@@ -30,6 +30,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
 
   const avatar = (
     <UserAvatar
+      link={friendId}
       src={friend?.avatar || null}
       className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]'
     />

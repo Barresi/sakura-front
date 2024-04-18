@@ -1,5 +1,6 @@
 import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 import { forwardRef, type FC } from 'react'
+import { Link } from 'react-router-dom'
 import { cn } from '../lib/merge-classes'
 import { type IPropsForwardRefsUI } from '../lib/types/props'
 
@@ -58,13 +59,29 @@ AvatarFallback.displayName = Fallback.displayName
 
 interface IUserAvatarProps {
   src: string | null
-  className?: string
   isImgNotOnBackend?: boolean
+  className?: string
+  link?: string
 }
 
-const UserAvatar: FC<IUserAvatarProps> = ({ src, className, isImgNotOnBackend }) => {
+const UserAvatar: FC<IUserAvatarProps> = ({
+  src,
+  className,
+  isImgNotOnBackend,
+  link
+}) => {
   const urlBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/'
   const img = isImgNotOnBackend ? src : urlBackend + src
+
+  if (link) {
+    return (
+      <Link to={`/main/users/${link}`}>
+        <Avatar className={className}>
+          <AvatarImage src={src && img ? img : avatarLight} />
+        </Avatar>
+      </Link>
+    )
+  }
   return (
     <Avatar className={className}>
       <AvatarImage src={src && img ? img : avatarLight} />

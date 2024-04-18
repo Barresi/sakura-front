@@ -124,7 +124,7 @@ const Chat: FC = () => {
           <span className='font-bold text-xl text-signalBlack dark:text-darkWhite text-center'>{`${friend?.firstName} ${friend?.lastName}`}</span>
         </div>
 
-        <UserAvatar src={friend?.avatar || null} />
+        <UserAvatar src={friend?.avatar || null} link={friendId} />
       </div>
       <div
         ref={container}

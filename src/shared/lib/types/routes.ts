@@ -2,7 +2,7 @@ export enum AppRoutes {
   LOGIN = '/',
   REGISTRATION = '/registration',
   MAIN = '/main',
-  PROFILE = '/main/profile',
+  PROFILE = '/main/users/:id',
   MESSENGER = '/main/messenger',
   CHAT = '/main/messenger:id',
   FRIENDS = '/main/friends',

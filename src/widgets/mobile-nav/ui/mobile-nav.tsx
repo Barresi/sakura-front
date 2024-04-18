@@ -1,3 +1,4 @@
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonNav } from '@features/button-nav'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendTabs } from '@shared/lib/types/other'
@@ -7,6 +8,7 @@ import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
 import { type FC } from 'react'
 
 const MobileNav: FC = () => {
+  const user = useAppSelector(selectUser)
   const received = useAppSelector(selectReceived)
   const userChats = useAppSelector(selectMessengerUserChats)
   const totalUnreadMessages = userChats.reduce((acc, cur) => acc + cur.unread, 0)
@@ -15,7 +17,7 @@ const MobileNav: FC = () => {
       <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='user'
-        to={AppRoutes.PROFILE}
+        to={`users/${user?.id}`}
       >
         Главная
       </ButtonNav>

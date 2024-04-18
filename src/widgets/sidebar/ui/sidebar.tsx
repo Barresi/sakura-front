@@ -1,3 +1,4 @@
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonChangeTheme } from '@features/button-change-theme'
 import { ButtonLogout } from '@features/button-logout'
 import { ButtonNav } from '@features/button-nav'
@@ -12,6 +13,7 @@ import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
 import { type FC } from 'react'
 
 const Sidebar: FC = () => {
+  const user = useAppSelector(selectUser)
   const userChats = useAppSelector(selectMessengerUserChats)
   const received = useAppSelector(selectReceived)
 
@@ -25,7 +27,7 @@ const Sidebar: FC = () => {
           <ButtonNav
             className='w-full justify-start gap-[10px]'
             icon='user'
-            to={AppRoutes.PROFILE}
+            to={`users/${user?.id}`}
           >
             Моя страница
           </ButtonNav>

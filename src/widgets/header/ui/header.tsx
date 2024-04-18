@@ -28,7 +28,11 @@ const Header: FC<IHeaderProps> = ({ className, ...props }) => {
       <div className='flex items-center justify-center gap-[15px]'>
         <ButtonChangeTheme className='flex lg:hidden' />
         <ButtonOpenNotifications />
-        <UserAvatar src={user?.avatar || null} className='w-[44px] h-[44px]' />
+        <UserAvatar
+          link={user?.id}
+          src={user?.avatar || null}
+          className='w-[44px] h-[44px]'
+        />
       </div>
     </header>
   )

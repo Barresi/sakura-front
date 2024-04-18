@@ -45,10 +45,10 @@ const AvatarChange: FC = () => {
           >
             {/* Todo сделать затемнение только при ховере */}
             <div className='absolute left-0 right-0 top-0 bottom-0 rounded-full flex justify-center items-center'>
-              <span className='z-20 text-md usm:text-sm font-medium text-white'>
+              <span className='z-[3] text-md usm:text-sm font-medium text-white'>
                 Изменить фото
               </span>
-              <div className='z-10 flex justify-center items-center bg-black opacity-20 absolute left-0 right-0 top-0 bottom-0 rounded-full' />
+              <div className='z-[2] flex justify-center items-center bg-black opacity-20 absolute left-0 right-0 top-0 bottom-0 rounded-full' />
             </div>
 
             <UserAvatar
