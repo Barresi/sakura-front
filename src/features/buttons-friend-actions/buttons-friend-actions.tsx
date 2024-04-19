@@ -1,3 +1,11 @@
+import {
+  selectFriends,
+  selectReceived,
+  selectSended
+} from '@app/store/reducers/friends/selectors'
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { checkFriendState } from '@shared/lib/check-friend-state'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { FriendState } from '@shared/lib/types/api'
 import { type FC } from 'react'
@@ -9,16 +17,26 @@ import { ButtonFriendRequestReject } from '../button-friend-request-reject/ui/bu
 import { ButtonFriendWriteMessage } from '../button-friend-write-message'
 
 interface ButtonsFriendActionsProps {
-  requestId?: string
-  friendId: string
-  friendState: FriendState
+  friendId: string | undefined
 }
-const ButtonsFriendActions: FC<ButtonsFriendActionsProps> = ({
-  friendId,
-  friendState,
-  requestId
-}) => {
+const ButtonsFriendActions: FC<ButtonsFriendActionsProps> = ({ friendId }) => {
   const isMobile = useWindowSize(600)
+  const user = useAppSelector(selectUser)
+  const friends = useAppSelector(selectFriends)
+  const sended = useAppSelector(selectSended)
+  const received = useAppSelector(selectReceived)
+
+  if (!user || !friendId) return null
+
+  const friendState = checkFriendState(user?.id, friendId, friends, sended, received)
+  const requestTypes = {
+    [FriendState.isRequestSended]: sended.find((item) => item.fromId === user?.id)?.id,
+    [FriendState.isRequestReceived]: received.find((item) => item.toId === user?.id)?.id,
+    [FriendState.isFriend]: undefined,
+    [FriendState.isNoFriend]: undefined
+  }
+  const requestId = requestTypes[friendState]
+
   const renderButtons = {
     [FriendState.isFriend]: (
       <>

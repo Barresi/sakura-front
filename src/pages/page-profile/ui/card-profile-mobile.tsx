@@ -1,6 +1,5 @@
 import { RowFriends } from '@entities/row-friends'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
-import { FriendState } from '@shared/lib/types/api'
 import { type IUser } from '@shared/lib/types/types'
 import { Button } from '@shared/ui/button'
 import { UserAvatar } from '@shared/ui/user-avatar'
@@ -19,7 +18,7 @@ const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) =
       <div className='flex flex-row justify-between flex-[90px]'>
         <div className='flex flex-row justify-center sm:justify-start w-full'>
           <UserAvatar
-            src={user?.avatar}
+            src={user?.avatar || null}
             className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px]'
           />
           <div className=' mt-[50px] sm:mt-0 sm:mx-0 sm:ml-[200px]'>
@@ -52,7 +51,7 @@ const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) =
             </Button>
           ) : (
             <div className='flex gap-[10px]'>
-              <ButtonsFriendActions friendState={FriendState.isFriend} />
+              <ButtonsFriendActions friendId={user?.id} />
             </div>
           )}
         </div>
