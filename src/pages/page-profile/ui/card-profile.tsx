@@ -1,11 +1,11 @@
 import { RowFriends } from '@entities/row-friends'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { type IUser } from '@shared/lib/types/types'
-import { Button } from '@shared/ui/button'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
+import { ButtonEditProfile } from '@features/button-edit-profile'
 
 interface ICardProfileProps {
   user: IUser | undefined
@@ -24,7 +24,7 @@ const CardProfile: FC<ICardProfileProps> = ({ user, isMyProfile }) => {
         {/* <CardProfileDesc /> */}
         <RowFriends avatars={[avatarLight, avatarLight]} />
         {isMyProfile ? (
-          <Button variant='secondary'>Редактировать</Button>
+          <ButtonEditProfile type='text' />
         ) : (
           <div className='flex gap-[10px]'>
             <ButtonsFriendActions friendId={user?.id} />

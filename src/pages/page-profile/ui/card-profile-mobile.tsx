@@ -1,11 +1,11 @@
 import { RowFriends } from '@entities/row-friends'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { type IUser } from '@shared/lib/types/types'
-import { Button } from '@shared/ui/button'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
+import { ButtonEditProfile } from '@features/button-edit-profile'
 
 interface ICardProfileMobileProps {
   user: IUser | undefined
@@ -33,7 +33,7 @@ const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) =
         </div>
         {isMyProfile && (
           <div className='hidden sm:block'>
-            <Button icon={'edit'} iconPos='left' variant='secondary' />
+            <ButtonEditProfile type='icon' />
           </div>
         )}
       </div>
@@ -46,9 +46,7 @@ const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) =
         <div className='w-full lg:flex-[50%] self-start flex flex-col gap-[15px]'>
           <RowFriends avatars={[avatarLight, avatarLight, avatarLight]} />
           {isMyProfile ? (
-            <Button variant='secondary' className='sm:hidden'>
-              Редактировать
-            </Button>
+            <ButtonEditProfile type='text' className='sm:hidden' />
           ) : (
             <div className='flex gap-[10px]'>
               <ButtonsFriendActions friendId={user?.id} />
