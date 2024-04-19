@@ -15,6 +15,8 @@ const PageProfile: FC = () => {
   const currentUser = allUsers.find((item) => item.id === id)
   const isMyProfile = user?.id === id
 
+  // Todo Добавить "Страница не найдена" при отсутствии currentUser
+
   return (
     <div>
       <div className='w-full flex flex-col xl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] lg:mb-[20px] px-[20px] lg:px-0'>
