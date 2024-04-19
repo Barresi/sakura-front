@@ -23,7 +23,7 @@ const Message: FC<IMessageProps> = ({ text, senderId, date }) => {
       }`}
     >
       <div className='flex flex-col items-center self-start'>
-        <UserAvatar src={user?.avatar || null} />
+        <UserAvatar src={user?.avatar || null} link={user?.id} />
         <span>{parseDateToTime(date)}</span>
       </div>
       <div

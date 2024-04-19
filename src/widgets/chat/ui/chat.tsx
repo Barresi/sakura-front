@@ -20,6 +20,7 @@ import {
 
 import arrow from '@assets/ui/arrow.svg'
 import { AppRoutes } from '@shared/lib/types/routes'
+import { LinkName } from '@shared/ui/link-name'
 
 const Chat: FC = () => {
   const {
@@ -121,7 +122,10 @@ const Chat: FC = () => {
           <img src={arrow} alt='arrow' className='w-[20px] h-[20px] xxl:hidden ' />
         </Link>
         <div className='flex flex-col md:flex-row md:gap-[10px]'>
-          <span className='font-bold text-xl text-signalBlack dark:text-darkWhite text-center'>{`${friend?.firstName} ${friend?.lastName}`}</span>
+          <LinkName
+            link={friendId}
+            className='font-bold text-xl text-signalBlack dark:text-darkWhite text-center hover:no-underline'
+          >{`${friend?.firstName} ${friend?.lastName}`}</LinkName>
         </div>
 
         <UserAvatar src={friend?.avatar || null} link={friendId} />
