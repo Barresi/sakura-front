@@ -16,10 +16,10 @@ const ProtectedRouteElement: FC<IProtectedRouteElement> = ({
 }) => {
   const navigate = useNavigate()
   const userStatus = useAppSelector(selectUserStatus)
-  // Todo пофиксить перебрасывание на "моя страница" при обновлении страницы
+
   switch (protectedPageType) {
     case 'auth':
-      if (userStatus === AuthStatus.authorized) navigate(AppRoutes.PROFILE)
+      if (userStatus === AuthStatus.authorized) navigate(AppRoutes.NEWS)
       break
     case 'main':
       if (userStatus === AuthStatus.notAuthorized) navigate(AppRoutes.LOGIN)
