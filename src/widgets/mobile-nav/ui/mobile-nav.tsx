@@ -50,7 +50,7 @@ const MobileNav: FC = () => {
 
       <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
-        icon='settings'
+        icon='settingsRed'
         to={AppRoutes.SETTINGS}
       >
         Настройки
