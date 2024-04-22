@@ -26,7 +26,7 @@ export const icons = {
   noFriendsWhite: <NoFriends stroke='white' />,
   noFriendsBlack: <NoFriends stroke='black' />,
   edit: <Edit />,
-  settings: <Setting />,
+  settings: <Setting color='#D22828' />,
   notification: <Notification />,
   theme: <Theme />,
   darkTheme: <DarkTheme />,
