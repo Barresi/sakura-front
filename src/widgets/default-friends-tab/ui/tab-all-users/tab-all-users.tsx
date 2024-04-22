@@ -1,4 +1,5 @@
 import { CardFriends } from '@entities/card-friends/ui/card-friends'
+import { ButtonRedirectProfile } from '@features/button-redirect-profile'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendTabs } from '@shared/lib/types/other'
@@ -24,14 +25,19 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
             .filter((item) => filterUsers(item, search))
             .map((friend, index) => {
               if (!user?.id) return null
+              const isMine = friend.id === user?.id
               return (
                 <CardFriends
                   key={index}
                   type={FriendTabs.ALL}
                   friendId={friend.id}
-                  isMine={friend.id === user?.id}
+                  isMine={isMine}
                 >
-                  <ButtonsFriendActions friendId={friend.id} />
+                  {isMine ? (
+                    <ButtonRedirectProfile className='sm:w-[49%]' />
+                  ) : (
+                    <ButtonsFriendActions friendId={friend.id} />
+                  )}
                 </CardFriends>
               )
             })}

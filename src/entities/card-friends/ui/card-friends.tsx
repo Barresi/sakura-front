@@ -67,7 +67,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
           {info}
         </div>
         <div className='mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
-          {isMine || children}
+          {children}
         </div>
       </Card>
     )
@@ -81,7 +81,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
           {info}
 
           <div className='mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
-            {isMine || children}
+            {children}
           </div>
         </div>
       </div>
