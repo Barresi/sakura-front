@@ -50,8 +50,11 @@ export interface IFriend {
   status: FriendsRequestStatus
   createdAt: string
 }
-
-export interface IAllUsersResponse extends Array<IUser> {}
+export interface IAllUser extends IUser {
+  friends: string[]
+}
+export interface IAllUsersResponse
+  extends Array<IUserInfoResponse & { friended: IFriend[]; friends: IFriend[] }> {}
 export interface IAddFriendResponse extends INoContentResponse {}
 export interface IFriendsResponse extends Array<IFriend> {}
 export interface IDeleteResponse extends INoContentResponse {}
@@ -126,7 +129,7 @@ export interface IReadUserNotificationsResponse {
 
 // UserInfo api
 
-export interface IUserInfoResponse {
+interface IUserInfoResponse {
   avatar: null | string
   banner: null | string
   id: string
@@ -145,15 +148,7 @@ export interface IGetUserInfoResponse {
 }
 
 export interface IEditUserInfoResponse {
-  updatedFields: {
-    username: 'string' | null
-    firstName: 'string'
-    lastName: 'string'
-    city: 'string' | null
-    birthDate: 'string' | null
-    gender: 'male' | 'female' | null
-    description: 'string' | null
-  }
+  updatedFields: Omit<IUserInfoResponse, 'id' | 'email'>
 }
 
 export interface IEditUserSecurityInfoResponse {

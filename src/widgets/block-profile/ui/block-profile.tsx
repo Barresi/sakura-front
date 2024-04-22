@@ -1,18 +1,17 @@
 import { RowFriends } from '@entities/row-friends'
+import { ButtonEditProfile } from '@features/button-edit-profile'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
-import { type IUser } from '@shared/lib/types/types'
+import { type IAllUser } from '@shared/lib/types/api'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
-import avatarLight from '@assets/avatar/default avatar light.svg'
-import { ButtonEditProfile } from '@features/button-edit-profile'
-
-interface ICardProfileProps {
-  user: IUser | undefined
+interface IBlockProfileProps {
+  user: IAllUser | undefined
   isMyProfile: boolean
+  friends: IAllUser[] | undefined
 }
 
-const CardProfile: FC<ICardProfileProps> = ({ user, isMyProfile }) => {
+const BlockProfile: FC<IBlockProfileProps> = ({ user, isMyProfile, friends }) => {
   return (
     <div className='hidden xxl:block w-1/3'>
       <div className='bg-white dark:bg-grayBlue xl:p-[30px] rounded-[10px] flex flex-col gap-[15px] relative'>
@@ -22,7 +21,7 @@ const CardProfile: FC<ICardProfileProps> = ({ user, isMyProfile }) => {
         </h4>
         {user?.description && <div className=' text-center'>{user?.description}</div>}
         {/* <CardProfileDesc /> */}
-        <RowFriends avatars={[avatarLight, avatarLight]} />
+        <RowFriends avatars={friends?.map((friend) => friend?.avatar)} />
         {isMyProfile ? (
           <ButtonEditProfile type='text' />
         ) : (
@@ -34,4 +33,4 @@ const CardProfile: FC<ICardProfileProps> = ({ user, isMyProfile }) => {
     </div>
   )
 }
-export { CardProfile }
+export { BlockProfile }

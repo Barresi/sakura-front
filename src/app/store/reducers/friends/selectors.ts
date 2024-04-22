@@ -1,8 +1,7 @@
-import { type IFriend } from '@shared/lib/types/api'
-import { type IUser } from '@shared/lib/types/types'
+import { type IAllUser, type IFriend } from '@shared/lib/types/api'
 import { type RootState } from '../../store'
 
-export const selectAllUsers: (store: RootState) => IUser[] = (store) =>
+export const selectAllUsers: (store: RootState) => IAllUser[] = (store) =>
   store.friends.allUsers
 
 export const selectFriends: (store: RootState) => IFriend[] = (store) =>

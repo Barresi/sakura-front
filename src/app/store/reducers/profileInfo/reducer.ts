@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { capitalizeFirstLetter } from '@shared/lib/capitalize-first-letter'
+import { convertBirthDate } from '@shared/lib/convert-birth-date'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
-import { AuthStatus, type IUserInfoResponse } from '@shared/lib/types/api'
+import { AuthStatus } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 import {
   deleteAccountThunk,
   editUserInfoThunk,
@@ -16,7 +18,7 @@ interface IInitialState {
   isLoading: boolean
   error: string | null
   status: AuthStatus
-  user: IUserInfoResponse | null
+  user: IUser | null
 }
 
 const initialState: IInitialState = {
@@ -45,7 +47,8 @@ const profileInfoSlice = createSlice({
         ...state.user,
         ...user,
         firstName: capitalizeFirstLetter(user.firstName),
-        lastName: capitalizeFirstLetter(user.lastName)
+        lastName: capitalizeFirstLetter(user.lastName),
+        birthDate: convertBirthDate(user.birthDate)
       }
 
       setCookie('accessToken', action.payload.accessToken)
@@ -80,7 +83,8 @@ const profileInfoSlice = createSlice({
       state.user = {
         ...user,
         firstName: capitalizeFirstLetter(user.firstName),
-        lastName: capitalizeFirstLetter(user.lastName)
+        lastName: capitalizeFirstLetter(user.lastName),
+        birthDate: convertBirthDate(user.birthDate)
       }
       state.status = AuthStatus.authorized
     })
@@ -102,7 +106,8 @@ const profileInfoSlice = createSlice({
           ...state.user,
           ...updatedFields,
           firstName: capitalizeFirstLetter(updatedFields.firstName),
-          lastName: capitalizeFirstLetter(updatedFields.lastName)
+          lastName: capitalizeFirstLetter(updatedFields.lastName),
+          birthDate: convertBirthDate(updatedFields.birthDate)
         }
     })
     builder.addCase(editUserInfoThunk.rejected, (state, action) => {

@@ -1,13 +1,11 @@
 import { Button } from '@shared/ui/button'
+import { ButtonAction } from '@shared/ui/button-action'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
-import icon1 from './svg/icon1.svg'
-
-import EyeIcon from './svg/Eye.svg'
-
-import { ButtonAction } from '@shared/ui/button-action'
-import Image1 from './image/image.png'
+import EyeIcon from './Eye.svg'
+import icon1 from './icon1.svg'
+import Image1 from './image.png'
 
 interface IPostNewsProps {
   children?: ReactNode

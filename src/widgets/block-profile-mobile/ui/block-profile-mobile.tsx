@@ -4,15 +4,20 @@ import { type IUser } from '@shared/lib/types/types'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
-import avatarLight from '@assets/avatar/default avatar light.svg'
 import { ButtonEditProfile } from '@features/button-edit-profile'
+import { type IAllUser } from '@shared/lib/types/api'
 
-interface ICardProfileMobileProps {
+interface IBlockProfileMobileProps {
   user: IUser | undefined
   isMyProfile: boolean
+  friends: IAllUser[] | undefined
 }
 
-const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) => {
+const BlockProfileMobile: FC<IBlockProfileMobileProps> = ({
+  user,
+  isMyProfile,
+  friends
+}) => {
   return (
     <div className='flex flex-col xxl:hidden relative bg-white dark:bg-grayBlue p-[30px] rounded-[10px]'>
       <div className='flex flex-row justify-between flex-[90px]'>
@@ -44,7 +49,7 @@ const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) =
           </div>
         )}
         <div className='w-full lg:flex-[50%] self-start flex flex-col gap-[15px]'>
-          <RowFriends avatars={[avatarLight, avatarLight, avatarLight]} />
+          <RowFriends avatars={friends?.map((friend) => friend?.avatar)} />
           {isMyProfile ? (
             <ButtonEditProfile type='text' className='sm:hidden' />
           ) : (
@@ -61,4 +66,4 @@ const CardProfileMobile: FC<ICardProfileMobileProps> = ({ user, isMyProfile }) =
     </div>
   )
 }
-export { CardProfileMobile }
+export { BlockProfileMobile }

@@ -1,9 +1,9 @@
 import { type FC } from 'react'
 
-import CalenderIcon from './svg/Calendar.svg'
-import LoacationIcon from './svg/Location Point.svg'
-import UserIcon from './svg/User.svg'
-import BankIcon from './svg/bank.svg'
+import CalenderIcon from './Calendar.svg'
+import LoacationIcon from './Location Point.svg'
+import UserIcon from './User.svg'
+import BankIcon from './bank.svg'
 
 const desc = [
   { text: 'Москва', icon: LoacationIcon },
@@ -12,7 +12,7 @@ const desc = [
   { text: '20.05.1995', icon: CalenderIcon }
 ]
 
-const CardProfileDesc: FC = () => {
+const ProfileDescription: FC = () => {
   return (
     <div className={'flex flex-wrap gap-[10px]'}>
       {desc.map((item, ind) => (
@@ -23,4 +23,4 @@ const CardProfileDesc: FC = () => {
     </div>
   )
 }
-export { CardProfileDesc }
+export { ProfileDescription }
