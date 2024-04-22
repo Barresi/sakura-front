@@ -1,15 +1,19 @@
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
+import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
+import { useTheme } from '@app/providers/theme-context'
+import { Theme } from '@app/providers/theme-context/lib/theme-context'
 import avatarLight from '@assets/avatar/default avatar light.svg'
-import noFriends from '@assets/ui/No Friends.svg'
+import { icons } from '@shared/lib/button-icons'
 
 interface IRowFriendsProps {
   avatars: Array<string | null> | undefined
 }
 
 const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
+  const { theme } = useTheme()
   const isMobile = useWindowSize(500)
 
   const maxCount = isMobile ? 3 : 5
@@ -25,14 +29,14 @@ const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
   const renderImg = (avatars: Array<string | null>): JSX.Element[] => {
     return avatars.map((avatar, i) => {
       return (
-        <img
+        <UserAvatar
           key={i}
           className={cn(
             'w-[50px] h-[50px] border-2 rounded-full border-White dark:border-grayBlue',
             avatars.length > 0 && imgClasses[i]
           )}
           src={avatar || avatarLight}
-          alt=''
+          isImgNotOnBackend={!avatar}
         />
       )
     })
@@ -49,7 +53,7 @@ const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
           )
         ) : (
           <div className='w-[50px] h-[50px] flex items-center justify-center border-2 rounded-full border-smokyWhite dark:border-cadet'>
-            <img src={noFriends} alt='' />
+            {theme === Theme.LIGHT ? icons.noFriendsBlack : icons.noFriendsWhite}
           </div>
         )}
       </div>

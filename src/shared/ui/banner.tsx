@@ -2,6 +2,7 @@ import { cn } from '@shared/lib/merge-classes'
 import { type FC } from 'react'
 
 import banner from '@assets/banner/default user banner.jpg'
+import { URL_BANNERS } from '@shared/lib/url'
 
 interface IBannerProps {
   className?: string
@@ -10,8 +11,7 @@ interface IBannerProps {
 }
 
 const Banner: FC<IBannerProps> = ({ className, src, isImgNotOnBackend }) => {
-  const urlBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/'
-  const img = isImgNotOnBackend ? src : urlBackend + src
+  const img = isImgNotOnBackend ? src : URL_BANNERS + src
   return (
     <img /* Todo убрать иконку файла при отсутствии урл */
       src={src && img ? img : banner}

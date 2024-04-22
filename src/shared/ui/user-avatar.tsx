@@ -5,6 +5,7 @@ import { cn } from '../lib/merge-classes'
 import { type IPropsForwardRefsUI } from '../lib/types/props'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
+import { URL_AVATARS } from '@shared/lib/url'
 
 interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
   text?: string
@@ -70,8 +71,7 @@ const UserAvatar: FC<IUserAvatarProps> = ({
   isImgNotOnBackend,
   link
 }) => {
-  const urlBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/'
-  const img = isImgNotOnBackend ? src : urlBackend + src
+  const img = isImgNotOnBackend ? src : URL_AVATARS + src
 
   if (link) {
     return (
