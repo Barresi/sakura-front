@@ -127,18 +127,8 @@ export interface IReadUserNotificationsResponse {
 
 // UserInfo api
 
-interface IUserInfoResponse {
-  avatar: null | string
-  banner: null | string
-  id: string
-  firstName: string
-  lastName: string
-  email: string
-  username: string | null
-  city: string | null
+interface IUserInfoResponse extends Omit<IUser, 'birthDate'> {
   birthDate: string | null
-  gender: 'male' | 'female' | null
-  description: string | null
 }
 
 export interface IGetUserInfoResponse {
@@ -155,7 +145,7 @@ export interface ILogoutResponse extends INoContentResponse {}
 
 // News api
 
-export interface IPostResponse {
+export interface IPost {
   id: string
   text: string
   pictures: string[]
@@ -163,9 +153,16 @@ export interface IPostResponse {
   createdById: string
   createdBy: IUser
   likedBy: IUser[]
+  createdAt: Date
+  updatedAt: Date
+  deleted: Date | null
+}
+
+export interface IPostResponse
+  extends Omit<IPost, 'createdAt' | 'updatedAt' | 'deleted'> {
   createdAt: string
   updatedAt: string
-  deleted: string
+  deleted: string | null
 }
 
 export interface IGetPostsResponse {
