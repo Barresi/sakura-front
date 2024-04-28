@@ -1,9 +1,10 @@
 import { selectAllUsers } from '@app/store/reducers/friends/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { PostNews } from '@entities/post-news/ui/post-news'
+import { InputCreatePost } from '@features/input-create-post'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { type IAllUser } from '@shared/lib/types/api'
 import { Banner } from '@shared/ui/banner'
-import { InputSendMessage } from '@shared/ui/input-send-message'
 import { BlockProfile } from '@widgets/block-profile'
 import { BlockProfileMobile } from '@widgets/block-profile-mobile'
 import { type FC } from 'react'
@@ -38,17 +39,10 @@ const PageProfile: FC = () => {
             friends={friends}
           />
 
-          {isMyProfile && (
-            <InputSendMessage
-              avatar={currentUser?.avatar || null}
-              sendMessage={() => {}}
-              placeholder='Что у вас нового?'
-              className='border-none'
-            />
-          )}
-          {/* <PostNews />
+          {isMyProfile && <InputCreatePost />}
           <PostNews />
-          <PostNews /> */}
+          <PostNews />
+          <PostNews />
         </div>
       </div>
     </div>

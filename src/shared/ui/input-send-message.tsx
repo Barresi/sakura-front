@@ -10,6 +10,8 @@ interface IInputSendMessageProps extends IInputProps {
   sendMessage: (message: string) => void
 }
 
+// Todo Переписать в textarea
+
 const InputSendMessage: FC<IInputSendMessageProps> = ({
   avatar,
   className,
