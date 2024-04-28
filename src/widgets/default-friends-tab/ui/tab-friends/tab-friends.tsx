@@ -1,13 +1,12 @@
 import { CardFriends } from '@entities/card-friends'
+import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { FriendState } from '@shared/lib/types/api'
 import { FriendTabs } from '@shared/lib/types/other'
 import { type IBaseTabProps } from '@shared/lib/types/props'
 import { selectAllUsers, selectFriends } from '@store/reducers/friends/selectors'
 import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
 import { filterRequests } from '../../lib/filters'
-import { ButtonsFriendActions } from '../buttons-friend-actions/buttons-friend-actions'
 
 interface ITabFriendsProps extends IBaseTabProps {}
 
@@ -37,10 +36,7 @@ const TabFriends: FC<ITabFriendsProps> = ({ search }) => {
                   friendId={friendId}
                   isMine={friendId === user?.id}
                 >
-                  <ButtonsFriendActions
-                    friendId={friendId}
-                    friendState={FriendState.isFriend}
-                  />
+                  <ButtonsFriendActions friendId={friendId} />
                 </CardFriends>
               )
             })}

@@ -1,4 +1,6 @@
 export interface IUser {
+  avatar: null | string
+  banner: null | string
   id: string
   firstName: string
   lastName: string

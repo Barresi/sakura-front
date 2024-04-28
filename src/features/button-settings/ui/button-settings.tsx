@@ -8,6 +8,6 @@ const ButtonSettings: FC = () => {
   const clickHandler = (): void => {
     navigate(AppRoutes.SETTINGS)
   }
-  return <ButtonSetting icon='settingsWhite' onClick={clickHandler} />
+  return <ButtonSetting icon='settings' onClick={clickHandler} />
 }
 export { ButtonSettings }

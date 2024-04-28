@@ -1,44 +1,60 @@
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
+import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
+import { useTheme } from '@app/providers/theme-context'
+import { Theme } from '@app/providers/theme-context/lib/theme-context'
+import avatarLight from '@assets/avatar/default avatar light.svg'
+import { icons } from '@shared/lib/button-icons'
+
 interface IRowFriendsProps {
-  avatars: string[]
+  avatars: Array<string | null> | undefined
 }
 
 const RowFriends: FC<IRowFriendsProps> = ({ avatars }) => {
-  const isMobile = useWindowSize(1024)
+  const { theme } = useTheme()
+  const isMobile = useWindowSize(500)
 
   const maxCount = isMobile ? 3 : 5
 
   const imgClasses = [
-    'mr-[-20px] z-[100]',
-    'mr-[-20px] z-[90]',
-    'mr-[-20px] z-[80]',
-    'mr-[-20px] z-[70]',
-    'mr-[-0px] z-[60]'
+    'z-[1]',
+    'mr-[-20px] z-[2]',
+    'mr-[-20px] z-[3]',
+    'mr-[-20px] z-[4]',
+    'mr-[-20px] z-[5]'
   ]
 
-  const renderImg = (avatars: string[]): JSX.Element[] => {
+  const renderImg = (avatars: Array<string | null>): JSX.Element[] => {
     return avatars.map((avatar, i) => {
       return (
-        <img
+        <UserAvatar
           key={i}
-          className={cn('w-[50px] h-[50px]', avatars.length > 1 && imgClasses[i])}
-          src={avatar}
-          alt=''
+          className={cn(
+            'w-[50px] h-[50px] border-2 rounded-full border-White dark:border-grayBlue',
+            avatars.length > 0 && imgClasses[i]
+          )}
+          src={avatar || avatarLight}
+          isImgNotOnBackend={!avatar}
         />
       )
     })
   }
 
   return (
-    <div className='my-[20px] px-[20px] py-[10px] rounded-[10px] border border-[#f2f2f2] flex items-center justify-between'>
-      <span>{avatars.length} друзей</span>
+    <div className='w-full px-[20px] py-[10px] rounded-[10px] border border-smokyWhite dark:border-cadet flex items-center justify-between'>
+      <span>{avatars?.length ? `${avatars.length} друзей` : 'Пока нет друзей'}</span>
 
-      <div className='flex items-center mr-[20px] lg:mr-0'>
-        {renderImg(
-          avatars.slice(0, avatars.length > maxCount ? maxCount : avatars.length)
+      <div className='flex items-center  flex-row-reverse'>
+        {avatars?.length ? (
+          renderImg(
+            avatars.slice(0, avatars.length > maxCount ? maxCount : avatars.length)
+          )
+        ) : (
+          <div className='w-[50px] h-[50px] flex items-center justify-center border-2 rounded-full border-smokyWhite dark:border-cadet'>
+            {theme === Theme.LIGHT ? icons.noFriendsBlack : icons.noFriendsWhite}
+          </div>
         )}
       </div>
     </div>

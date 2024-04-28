@@ -1,7 +1,7 @@
 import { FriendState, type IFriend } from '@shared/lib/types/api'
 
 export const checkFriendState = (
-  userId: string,
+  userId: string | undefined,
   friendId: string | undefined,
 
   arrayFriends: IFriend[],

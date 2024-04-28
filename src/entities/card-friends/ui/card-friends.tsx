@@ -3,6 +3,7 @@ import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { cn } from '@shared/lib/merge-classes'
 import { FriendTabs } from '@shared/lib/types/other'
 import { Card } from '@shared/ui/card'
+import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { selectAllUsers } from '@store/reducers/friends/selectors'
 import { type FC, type ReactNode } from 'react'
@@ -29,18 +30,25 @@ const CardFriends: FC<ICardFriendsProps> = ({
   const friend = users.find((user) => user.id === friendId)
 
   const avatar = (
-    <UserAvatar className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]' />
+    <UserAvatar
+      link={friendId}
+      src={friend?.avatar || null}
+      className='w-[50px] h-[50px] usm:w-[75px] usm:h-[75px] lg:w-[100px] lg:h-[100px]'
+    />
   )
 
   const info = (
     <div
-      className={`flex flex-col justify-between ${
+      className={`inline-flex flex-col justify-between ${
         type === FriendTabs.RECEIVED && 'flex-col'
       }`}
     >
-      <h3 className='font-bold leading-6 text-signalBlack dark:text-smokyWhite text-lg'>
+      <LinkName
+        link={friend?.id}
+        className='font-bold leading-6 text-signalBlack dark:text-smokyWhite text-lg'
+      >
         {friend?.firstName} {friend?.lastName} {isMine ? '(Вы)' : null}
-      </h3>
+      </LinkName>
       {type === FriendTabs.RECEIVED && (
         <span className='text-darkElectricBlue'>подал вам заявку в друзья</span>
       )}
@@ -59,7 +67,7 @@ const CardFriends: FC<ICardFriendsProps> = ({
           {info}
         </div>
         <div className='mt-[10px] lg:max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
-          {isMine || children}
+          {children}
         </div>
       </Card>
     )
@@ -69,12 +77,11 @@ const CardFriends: FC<ICardFriendsProps> = ({
     <Card className={cn('block ', className)}>
       <div className='flex items-start lg:items-center gap-[15px]'>
         {avatar}
-
         <div className='w-full'>
           {info}
 
           <div className='mt-[15px] max-w-[485px] whitespace-nowrap flex justify-between gap-[10px]'>
-            {isMine || children}
+            {children}
           </div>
         </div>
       </div>

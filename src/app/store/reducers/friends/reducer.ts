@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { capitalizeFirstLetter } from '@shared/lib/capitalize-first-letter'
-import { type IFriend } from '@shared/lib/types/api'
-import { type IUser } from '@shared/lib/types/types'
+import { convertBirthDate } from '@shared/lib/convert-birth-date'
+import { FriendsRequestStatus, type IAllUser, type IFriend } from '@shared/lib/types/api'
 import {
   getAllUsersThunk,
   getFriendsThunk,
@@ -13,7 +13,7 @@ interface IInitialState {
   isLoading: boolean
   error: string
   friends: IFriend[]
-  allUsers: IUser[]
+  allUsers: IAllUser[]
   sended: IFriend[]
   received: IFriend[]
 }
@@ -39,11 +39,20 @@ const friendsSlice = createSlice({
     })
     builder.addCase(getAllUsersThunk.fulfilled, (state, action) => {
       state.isLoading = false
-
-      state.allUsers = [...action.payload].map((item) => ({
-        ...item,
-        firstName: capitalizeFirstLetter(item.firstName),
-        lastName: capitalizeFirstLetter(item.lastName)
+      const allUsers = action.payload
+      state.allUsers = [...allUsers].map((user) => ({
+        ...user,
+        firstName: capitalizeFirstLetter(user.firstName),
+        lastName: capitalizeFirstLetter(user.lastName),
+        friends: [
+          ...user.friended
+            .filter((friend) => friend.status === FriendsRequestStatus.accepted)
+            .map((item) => item.fromId),
+          ...user.friends
+            .filter((friend) => friend.status === FriendsRequestStatus.accepted)
+            .map((item) => item.toId)
+        ],
+        birthDate: convertBirthDate(user.birthDate)
       }))
     })
     builder.addCase(getAllUsersThunk.rejected, (state, action) => {

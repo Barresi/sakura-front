@@ -12,7 +12,7 @@ interface IFilterFriendsTabsProps {
 const FilterFriendsTabs: FC<IFilterFriendsTabsProps> = ({ handleChangeType, type }) => {
   const received = useAppSelector(selectReceived)
   return (
-    <div className='w-full xl:w-1/3 h-fit flex flex-col bg-white dark:bg-grayBlue rounded-[10px] p-[20px] [&>div]:w-[100%] sm:flex-row md:gap-[1rem] xl:gap-0 xl:p-[30px] xl:flex-col'>
+    <div className='w-full xxl:w-1/3 h-fit flex flex-col bg-white dark:bg-grayBlue rounded-[10px] p-[20px] [&>div]:w-[100%] sm:flex-row md:gap-[1rem] xxl:gap-0 xxl:p-[30px] xxl:flex-col'>
       <ButtonTab
         isActive={type === FriendTabs.FRIENDS}
         onClick={() => {

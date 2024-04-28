@@ -20,11 +20,14 @@ import Info from '@assets/icons/info.svg?react'
 import Notification from '@assets/icons/notification.svg?react'
 import Setting from '@assets/icons/setting.svg?react'
 import Theme from '@assets/icons/theme.svg?react'
+import NoFriends from '@assets/ui/No Friends.svg?react'
 
 export const icons = {
+  noFriendsWhite: <NoFriends stroke='white' />,
+  noFriendsBlack: <NoFriends stroke='black' />,
   edit: <Edit />,
+  settings: <Setting />,
   settingsRed: <Setting color='#D22828' />,
-  settingsWhite: <Setting />,
   notification: <Notification />,
   theme: <Theme />,
   darkTheme: <DarkTheme />,

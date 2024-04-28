@@ -1,28 +1,18 @@
 import { editUserInfoThunk } from '@app/store/reducers/profileInfo/async-thunks'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
-import banner from '@assets/banner/default user banner.jpg'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { cn } from '@shared/lib/merge-classes'
 import { nameRegExp, usernameRegExp } from '@shared/lib/reg-exp'
+import { removeNullProperties } from '@shared/lib/remove-null-properties'
 import { Button } from '@shared/ui/button'
-import { Calendar } from '@shared/ui/calendar'
 import { Input } from '@shared/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@shared/ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@shared/ui/select'
 import { Textarea } from '@shared/ui/textarea'
-import { UserAvatar } from '@shared/ui/user-avatar'
 import { useToast } from '@widgets/toaster'
-import { format } from 'date-fns'
-import { Calendar as CalendarIcon } from 'lucide-react'
 import { useEffect, useState, type FC } from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { removeNullPropertiesInUserInfo } from '../lib/remove-null-properties'
+import { FormProvider, useForm } from 'react-hook-form'
+import { AvatarChange } from './avatar-change/avatar-change'
+import { BannerChange } from './banner-change/banner-change'
+import { BirthDateChange } from './birth-date-change/birth-date-change'
+import { GenderChange } from './gender-change/gender-change'
 
 interface IFormInputs {
   firstName: string
@@ -32,6 +22,8 @@ interface IFormInputs {
   description: string
   gender: 'male' | 'female' | null
   birthDate: Date | null
+  avatar: File | null
+  banner: File | null
 }
 
 const EditAccount: FC = () => {
@@ -39,15 +31,7 @@ const EditAccount: FC = () => {
   const dispatch = useAppDispatch()
   const userInfo = useAppSelector(selectUser)
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    clearErrors,
-    control,
-    setValue,
-    formState: { errors }
-  } = useForm<IFormInputs>({
+  const methods = useForm<IFormInputs>({
     mode: 'onSubmit',
     defaultValues: {
       city: '',
@@ -59,21 +43,41 @@ const EditAccount: FC = () => {
       gender: null
     }
   })
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    clearErrors,
+    setValue,
+    formState: { errors }
+  } = methods
+
   const [isEditInfo, setEditInfo] = useState(false)
 
   useEffect(() => {
-    setValue('birthDate', userInfo?.birthDate || null)
-    setValue('gender', userInfo?.gender || null)
     const subscription = watch(
-      ({ birthDate, city, description, firstName, gender, lastName, username }) => {
+      ({
+        birthDate,
+        city,
+        description,
+        firstName,
+        gender,
+        lastName,
+        username,
+        avatar,
+        banner
+      }) => {
         if (
-          birthDate?.getTime() === userInfo?.birthDate?.getTime() &&
-          gender === userInfo?.gender &&
           city === '' &&
           description === '' &&
           firstName === '' &&
           lastName === '' &&
-          username === ''
+          username === '' &&
+          birthDate === null &&
+          gender === null &&
+          avatar === null &&
+          banner === null
         ) {
           setEditInfo(false)
         } else {
@@ -84,7 +88,7 @@ const EditAccount: FC = () => {
     return () => {
       subscription.unsubscribe()
     }
-  }, [watch, userInfo?.birthDate, userInfo?.gender])
+  }, [watch])
 
   const resetUserInfo = (): void => {
     setValue('city', '')
@@ -92,30 +96,14 @@ const EditAccount: FC = () => {
     setValue('firstName', '')
     setValue('lastName', '')
     setValue('username', '')
+    setValue('avatar', null)
+    setValue('banner', null)
+    setValue('birthDate', null)
+    setValue('gender', null)
   }
 
-  const onSubmit = ({
-    city,
-    description,
-    firstName,
-    lastName,
-    username,
-    birthDate,
-    gender
-  }: IFormInputs): void => {
-    const payloadWithoutNullProperties = removeNullPropertiesInUserInfo(
-      {
-        username,
-        city,
-        firstName,
-        lastName,
-        description,
-        birthDate,
-        gender
-      },
-      userInfo?.gender || null,
-      userInfo?.birthDate || null
-    )
+  const onSubmit = (form: IFormInputs): void => {
+    const payloadWithoutNullProperties = removeNullProperties(form)
     dispatch(editUserInfoThunk(payloadWithoutNullProperties)).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {
         resetUserInfo()
@@ -132,226 +120,166 @@ const EditAccount: FC = () => {
   return (
     <div className='flex flex-col gap-5'>
       <h1 className='text-2xl'>Аккаунт</h1>
-      <div className='relative'>
-        <div className='relative flex justify-center items-center'>
-          <img
-            src={banner}
-            alt='banner'
-            className='w-[100%] object-cover rounded-[6px]'
-          />
-          <Button
-            variant='secondary'
-            className='absolute usm:right-[20px] usm:bottom-[10px] w-[190px] h-[40px] xxl:right-[30px] xxl:bottom-[30px]'
-          >
-            Изменить обложку
-          </Button>
-        </div>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col gap-5'>
+          <div className='relative flex flex-col justify-center items-center usm:flex-row w-full usm:h-[230px] lg:h-[284px]'>
+            <BannerChange />
+            <AvatarChange />
+          </div>
 
-        <UserAvatar className='mt-[50px] h-[100%] w-[100%] usm:absolute usm:mt-0 usm:left-[20px] usm:bottom-[10px] usm:w-[100px] usm:h-[100px] xxl:left-[30px] xxl:bottom-[30px] sm:h-[150px] sm:w-[150px]' />
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)} className='relative flex flex-col gap-5'>
-        <div className='flex flex-col md:flex-row gap-5 justify-between'>
+          <div className='flex flex-col md:flex-row gap-5 justify-between'>
+            <div className='w-[100%] flex flex-col gap-1'>
+              <h3 className='text-sm'>Никнейм</h3>
+
+              <Input
+                {...register('username', {
+                  validate: (value: string) => {
+                    if (value && value[0] !== '@')
+                      return '@username должен начинаться с "@"'
+                    if (!usernameRegExp.test(value.slice(1)) && value.slice(1).length)
+                      return 'Ошибка, попробуйте ввести другой @username'
+                  },
+
+                  minLength: {
+                    value: 5,
+                    message: 'Минимальное кол-во символов: 5'
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальное кол-во символов: 20'
+                  }
+                })}
+                error={
+                  errors.username &&
+                  (errors.username.message ||
+                    'Ошибка, попробуйте ввести другой @username')
+                }
+                placeholder={userInfo?.username || 'Введите свой @username'}
+              />
+            </div>
+            <div className='w-[100%] flex flex-col gap-1'>
+              <h3 className='text-sm'>Родной город</h3>
+
+              <Input
+                {...register('city', {
+                  minLength: {
+                    value: 2,
+                    message: 'Минимальное кол-во символов: 2'
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальное кол-во символов: 20'
+                  }
+                })}
+                error={
+                  errors.city &&
+                  (errors.city.message || 'Ошибка, попробуйте ввести другой город')
+                }
+                placeholder={userInfo?.city || 'Введите свой родной город'}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col md:flex-row gap-5 justify-between'>
+            <div className='w-[100%] flex flex-col gap-1'>
+              <h3 className='text-sm'>Имя</h3>
+
+              <Input
+                {...register('firstName', {
+                  minLength: {
+                    value: 2,
+                    message: 'Минимальное кол-во символов: 2'
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальное кол-во символов: 20'
+                  },
+                  pattern: {
+                    value: nameRegExp,
+                    message: 'Имя должно состоять исключительно из букв'
+                  }
+                })}
+                error={
+                  errors.firstName &&
+                  (errors.firstName.message || 'Ошибка, попробуйте ввести другое имя')
+                }
+                placeholder={userInfo?.firstName || 'Введите свое имя'}
+              />
+            </div>
+            <div className='w-[100%] flex flex-col gap-1'>
+              <h3 className='text-sm'>Фамилия</h3>
+
+              <Input
+                {...register('lastName', {
+                  minLength: {
+                    value: 2,
+                    message: 'Минимальное кол-во символов: 2'
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальное кол-во символов: 20'
+                  },
+                  pattern: {
+                    value: nameRegExp,
+                    message: 'Фамилия должна состоять исключительно из букв'
+                  }
+                })}
+                error={
+                  errors.lastName &&
+                  (errors.lastName.message || 'Ошибка, попробуйте ввести другую фамилию')
+                }
+                placeholder={userInfo?.lastName || 'Введите свою фамилию'}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col md:flex-row gap-5 justify-between'>
+            <div className='w-[100%] flex flex-col gap-1'>
+              <h3 className='text-sm'>День рождения</h3>
+              {/* Todo Убрать анимацию нажатия на PopoverTrigger */}
+              <BirthDateChange />
+            </div>
+            <div className='w-[100%] flex flex-col gap-1'>
+              <h3 className='text-sm'>Пол</h3>
+              {/* Todo добавить анимацию закрытия SelectContent */}
+              <GenderChange />
+            </div>
+          </div>
           <div className='w-[100%] flex flex-col gap-1'>
-            <h3 className='text-sm'>Никнейм</h3>
-
-            <Input
-              {...register('username', {
-                validate: (value: string) => {
-                  if (value && value[0] !== '@')
-                    return '@username должен начинаться с "@"'
-                  if (!usernameRegExp.test(value.slice(1)) && value.slice(1).length)
-                    return 'Ошибка, попробуйте ввести другой @username'
-                },
-
-                minLength: {
-                  value: 5,
-                  message: 'Минимальное кол-во символов: 5'
-                },
+            <h3 className='text-sm'>Краткая информация</h3>
+            <Textarea
+              {...register('description', {
                 maxLength: {
-                  value: 20,
-                  message: 'Максимальное кол-во символов: 20'
+                  value: 200,
+                  message: 'Максимальное кол-во символов: 200'
                 }
               })}
               error={
-                errors.username &&
-                (errors.username.message || 'Ошибка, попробуйте ввести другой @username')
+                errors.description &&
+                (errors.description.message ||
+                  'Ошибка, попробуйте ввести другую информацию')
               }
-              placeholder={userInfo?.username || 'Введите свой @username'}
+              placeholder={userInfo?.description || 'Введите краткую информацию о себе'}
             />
           </div>
-          <div className='w-[100%] flex flex-col gap-1'>
-            <h3 className='text-sm'>Родной город</h3>
 
-            <Input
-              {...register('city', {
-                minLength: {
-                  value: 2,
-                  message: 'Минимальное кол-во символов: 2'
-                },
-                maxLength: {
-                  value: 20,
-                  message: 'Максимальное кол-во символов: 20'
-                }
-              })}
-              error={
-                errors.city &&
-                (errors.city.message || 'Ошибка, попробуйте ввести другой город')
-              }
-              placeholder={userInfo?.city || 'Введите свой родной город'}
-            />
-          </div>
-        </div>
-        <div className='flex flex-col md:flex-row gap-5 justify-between'>
-          <div className='w-[100%] flex flex-col gap-1'>
-            <h3 className='text-sm'>Имя</h3>
-
-            <Input
-              {...register('firstName', {
-                minLength: {
-                  value: 2,
-                  message: 'Минимальное кол-во символов: 2'
-                },
-                maxLength: {
-                  value: 20,
-                  message: 'Максимальное кол-во символов: 20'
-                },
-                pattern: {
-                  value: nameRegExp,
-                  message: 'Имя должно состоять исключительно из букв'
-                }
-              })}
-              error={
-                errors.firstName &&
-                (errors.firstName.message || 'Ошибка, попробуйте ввести другое имя')
-              }
-              placeholder={userInfo?.firstName || 'Введите свое имя'}
-            />
-          </div>
-          <div className='w-[100%] flex flex-col gap-1'>
-            <h3 className='text-sm'>Фамилия</h3>
-
-            <Input
-              {...register('lastName', {
-                minLength: {
-                  value: 2,
-                  message: 'Минимальное кол-во символов: 2'
-                },
-                maxLength: {
-                  value: 20,
-                  message: 'Максимальное кол-во символов: 20'
-                },
-                pattern: {
-                  value: nameRegExp,
-                  message: 'Фамилия должна состоять исключительно из букв'
-                }
-              })}
-              error={
-                errors.lastName &&
-                (errors.lastName.message || 'Ошибка, попробуйте ввести другую фамилию')
-              }
-              placeholder={userInfo?.lastName || 'Введите свою фамилию'}
-            />
-          </div>
-        </div>
-        <div className='flex flex-col md:flex-row gap-5 justify-between'>
-          <div className='w-[100%] flex flex-col gap-1'>
-            <h3 className='text-sm'>День рождения</h3>
-            {/* Todo Убрать анимацию нажатия на PopoverTrigger */}
-            <Controller
-              control={control}
-              name='birthDate'
-              render={({ field }) => (
-                <Popover>
-                  <PopoverTrigger asChild className=' h-[54px]'>
-                    <Button
-                      variant={'outline'}
-                      className={cn(
-                        'w-[100%] text-left font-normal flex justify-between border-smokyWhite dark:border-cadet hover:border-smokyWhite dark:hover:border-cadet border'
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, 'PPP')
-                      ) : (
-                        <span className='text-darkGray'>Выберите дату</span>
-                      )}
-                      <CalendarIcon className='h-4 w-4 stroke-cadetBlue' />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    className='w-auto p-0 bg-ghostlyWhite dark:bg-grayBlue'
-                    side='bottom'
-                    align='end'
-                  >
-                    <Calendar
-                      /* @ts-expect-error не рабочие пропсы у Calendar */
-                      mode='single'
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              )}
-            />
-          </div>
-          <div className='w-[100%] flex flex-col gap-1'>
-            <h3 className='text-sm'>Пол</h3>
-            {/* Todo добавить анимацию закрытия SelectContent */}
-            <Controller
-              control={control}
-              name='gender'
-              render={({ field }) => (
-                <Select onValueChange={field.onChange} value={field.value || undefined}>
-                  <SelectTrigger className={field.value ? '' : 'text-cadetBlue '}>
-                    <SelectValue placeholder='Выберите пол' />
-                  </SelectTrigger>
-                  <SelectContent className='rounded-[6px] w-selectWidth bg-white dark:bg'>
-                    <SelectItem value='male'>Мужской</SelectItem>
-                    <SelectItem value='female'>Женский</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
-          </div>
-        </div>
-        <div className='w-[100%] flex flex-col gap-1'>
-          <h3 className='text-sm'>Краткая информация</h3>
-          <Textarea
-            {...register('description', {
-              maxLength: {
-                value: 200,
-                message: 'Максимальное кол-во символов: 200'
-              }
-            })}
-            error={
-              errors.description &&
-              (errors.description.message ||
-                'Ошибка, попробуйте ввести другую информацию')
-            }
-            placeholder={userInfo?.description || 'Введите краткую информацию о себе'}
-          />
-        </div>
-
-        {isEditInfo && (
-          <div className='flex flex-col sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end mt-3'>
-            <Button
-              variant='secondary'
-              type='button'
-              onClick={() => {
-                resetUserInfo()
-                setValue('birthDate', userInfo?.birthDate || null)
-                setValue('gender', userInfo?.gender || null)
-                clearErrors()
-              }}
-            >
-              Отмена
-            </Button>
-            <Button variant='default' type='submit'>
-              Сохранить
-            </Button>
-          </div>
-        )}
-      </form>
+          {isEditInfo && (
+            <div className='flex flex-col sm:flex-row gap-3 w-[100%] lg:w-[480px] lg:self-end mt-3'>
+              <Button
+                variant='secondary'
+                type='button'
+                onClick={() => {
+                  resetUserInfo()
+                  clearErrors()
+                }}
+              >
+                Отмена
+              </Button>
+              <Button variant='default' type='submit'>
+                Сохранить
+              </Button>
+            </div>
+          )}
+        </form>
+      </FormProvider>
     </div>
   )
 }

@@ -1,9 +1,11 @@
 import { Fallback, Image, Root } from '@radix-ui/react-avatar'
 import { forwardRef, type FC } from 'react'
+import { Link } from 'react-router-dom'
 import { cn } from '../lib/merge-classes'
 import { type IPropsForwardRefsUI } from '../lib/types/props'
 
 import avatarLight from '@assets/avatar/default avatar light.svg'
+import { URL_AVATARS } from '@shared/lib/url'
 
 interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
   text?: string
@@ -11,7 +13,7 @@ interface IAvatarProps extends React.ComponentPropsWithoutRef<typeof Root> {
 
 const Avatar = forwardRef<React.ElementRef<typeof Root>, IAvatarProps>(
   ({ className, children, text, ...props }, ref) => (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center rounded-full'>
       <Root
         ref={ref}
         className={cn(
@@ -57,15 +59,32 @@ const AvatarFallback = forwardRef<
 AvatarFallback.displayName = Fallback.displayName
 
 interface IUserAvatarProps {
-  src?: string
+  src: string | null
+  isImgNotOnBackend?: boolean
   className?: string
+  link?: string
 }
 
-const UserAvatar: FC<IUserAvatarProps> = ({ src, className }) => {
-  const img = src || avatarLight
+const UserAvatar: FC<IUserAvatarProps> = ({
+  src,
+  className,
+  isImgNotOnBackend,
+  link
+}) => {
+  const img = isImgNotOnBackend ? src : URL_AVATARS + src
+
+  if (link) {
+    return (
+      <Link to={`/main/users/${link}`}>
+        <Avatar className={className}>
+          <AvatarImage src={src && img ? img : avatarLight} />
+        </Avatar>
+      </Link>
+    )
+  }
   return (
     <Avatar className={className}>
-      <AvatarImage src={img} />
+      <AvatarImage src={src && img ? img : avatarLight} />
     </Avatar>
   )
 }

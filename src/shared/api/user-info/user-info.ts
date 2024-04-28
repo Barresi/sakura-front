@@ -20,7 +20,9 @@ export const getUserInfo = async (): Promise<IGetUserInfoResponse> => {
 export const editUserInfo = async (
   form: IEditUserInfoForm
 ): Promise<IEditUserInfoResponse> => {
-  const res = await apiWithAuth.patch<IEditUserInfoResponse>('/auth/account', form)
+  const res = await apiWithAuth.patch<IEditUserInfoResponse>('/auth/account', form, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
 
   return res.data
 }
