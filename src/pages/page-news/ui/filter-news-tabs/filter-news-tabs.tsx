@@ -13,7 +13,7 @@ const FilterNewsTabs: FC<IFilterNewsTabsProps> = ({ handleChangeType, type }) =>
       <ButtonTab
         isActive={type === NewsTabs.ALL}
         onClick={() => {
-          handleChangeType(NewsTabs.FRIENDS)
+          handleChangeType(NewsTabs.ALL)
         }}
       >
         Все
@@ -21,7 +21,7 @@ const FilterNewsTabs: FC<IFilterNewsTabsProps> = ({ handleChangeType, type }) =>
       <ButtonTab
         isActive={type === NewsTabs.FRIENDS}
         onClick={() => {
-          handleChangeType(NewsTabs.ALL)
+          handleChangeType(NewsTabs.FRIENDS)
         }}
       >
         Друзья
