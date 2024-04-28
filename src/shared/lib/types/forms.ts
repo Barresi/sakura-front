@@ -22,3 +22,7 @@ export interface IEditUserSecurityInfoForm {
   password?: string
   confirmPassword: string
 }
+export interface ICreatePostForm {
+  text: string
+  pictures?: string
+}

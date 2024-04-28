@@ -22,7 +22,6 @@ export interface ILoginResponse {
 export interface IRegistrationResponse {
   id: string
 }
-
 export interface IRefreshResponse {
   accessToken: string
   refreshToken: string
@@ -98,7 +97,6 @@ export interface IChat {
 export interface ICreateChatResponse {
   chatId: string
 }
-
 export interface IGetUserChatsResponse {
   userChats: IChat[]
 }
@@ -146,14 +144,36 @@ interface IUserInfoResponse {
 export interface IGetUserInfoResponse {
   user: IUserInfoResponse
 }
-
 export interface IEditUserInfoResponse {
   updatedFields: Omit<IUserInfoResponse, 'id' | 'email'>
 }
-
 export interface IEditUserSecurityInfoResponse {
   email: string
 }
-
 export interface IDeleteAccountResponse extends INoContentResponse {}
 export interface ILogoutResponse extends INoContentResponse {}
+
+// News api
+
+export interface IPostResponse {
+  id: string
+  text: string
+  pictures: string[]
+  watched: number
+  createdById: string
+  createdBy: IUser
+  likedBy: IUser[]
+  createdAt: string
+  updatedAt: string
+  deleted: string
+}
+
+export interface IGetPostsResponse {
+  posts: IPostResponse[]
+}
+export interface ICreatePostResponse extends IPostResponse {}
+export interface IMarkWatchedPostResponse {
+  watched: number
+}
+export interface ILikePostResponse extends IPostResponse {}
+export interface IDeletePostResponse extends INoContentResponse {}
