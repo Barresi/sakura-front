@@ -1,16 +1,17 @@
 import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 import { type IPost } from '@shared/lib/types/api'
-import { Button } from '@shared/ui/button'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
+import { LinkName } from '@shared/ui/link-name'
 
 interface IPostNewsProps {
   post: IPost | undefined
   buttonLike: ReactNode
+  buttonDelete: ReactNode
 }
-const PostNews: FC<IPostNewsProps> = ({ post, buttonLike }) => {
+const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
     : 'Дата неизвестна'
@@ -24,13 +25,14 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike }) => {
             link={post?.createdBy?.id}
           />
           <div>
-            <h4 className='text-[#D22828] text-[18px] font-bold'>{`${post?.createdBy?.firstName} ${post?.createdBy?.lastName}`}</h4>
+            <LinkName
+              link={post?.createdBy.id}
+              className='text-[#D22828] text-[18px] font-bold'
+            >{`${post?.createdBy?.firstName} ${post?.createdBy?.lastName}`}</LinkName>
             <p className='text-[#ADB5BD]'>{createDate}</p>
           </div>
         </div>
-        <div>
-          <Button variant='text' icon='more' className='p-0' />
-        </div>
+        <div>{buttonDelete}</div>
       </div>
       <p>
         {post?.text}

@@ -2,6 +2,7 @@ import { selectFriends } from '@app/store/reducers/friends/selectors'
 import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { PostNews } from '@entities/post-news'
+import { ButtonDeletePost } from '@features/button-delete-post'
 import { ButtonLikePost } from '@features/button-like-post'
 import { InputCreatePost } from '@features/input-create-post'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
@@ -36,7 +37,12 @@ const PageNews: FC = () => {
       <div className='list w-full xxl:w-2/3 rounded-[10px] flex flex-col gap-[30px]'>
         <InputCreatePost />
         {tabs[type].map((post, ind) => (
-          <PostNews post={post} key={ind} buttonLike={<ButtonLikePost post={post} />} />
+          <PostNews
+            post={post}
+            key={ind}
+            buttonLike={<ButtonLikePost post={post} />}
+            buttonDelete={<ButtonDeletePost post={post} />}
+          />
         ))}
       </div>
     </div>
