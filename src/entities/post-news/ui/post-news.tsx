@@ -1,19 +1,17 @@
-import { type IAllUser, type IPost } from '@shared/lib/types/api'
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
+import { type IPost } from '@shared/lib/types/api'
 import { Button } from '@shared/ui/button'
 import { ButtonAction } from '@shared/ui/button-action'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
-import { selectUser } from '@app/store/reducers/profileInfo/selectors'
-import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
-
 interface IPostNewsProps {
   post: IPost | undefined
-  postCreater: IAllUser | undefined
   className?: string
 }
-const PostNews: FC<IPostNewsProps> = ({ postCreater, post }) => {
+const PostNews: FC<IPostNewsProps> = ({ post }) => {
   const user = useAppSelector(selectUser)
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
@@ -24,11 +22,11 @@ const PostNews: FC<IPostNewsProps> = ({ postCreater, post }) => {
         <div className='flex flex-row justify-start w-full'>
           <UserAvatar
             className='w-[50px] h-[50px] mr-[15px]'
-            src={postCreater?.avatar || null}
-            link={postCreater?.id}
+            src={post?.createdBy?.avatar || null}
+            link={post?.createdBy?.id}
           />
           <div>
-            <h4 className='text-[#D22828] text-[18px] font-bold'>{`${postCreater?.firstName} ${postCreater?.lastName}`}</h4>
+            <h4 className='text-[#D22828] text-[18px] font-bold'>{`${post?.createdBy?.firstName} ${post?.createdBy?.lastName}`}</h4>
             <p className='text-[#ADB5BD]'>{createDate}</p>
           </div>
         </div>

@@ -45,7 +45,7 @@ const PageProfile: FC = () => {
           {posts
             .filter((post) => post.createdById === currentUser?.id)
             .map((post, ind) => (
-              <PostNews post={post} key={ind} postCreater={currentUser} />
+              <PostNews post={post} key={ind} />
             ))}
         </div>
       </div>
