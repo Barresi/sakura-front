@@ -1,7 +1,7 @@
 import { selectAllUsers } from '@app/store/reducers/friends/selectors'
 import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
-import { PostNews } from '@entities/post-news/ui/post-news'
+import { PostNews } from '@entities/post-news'
 import { ButtonLikePost } from '@features/button-like-post'
 import { InputCreatePost } from '@features/input-create-post'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
