@@ -1,20 +1,16 @@
-import { selectUser } from '@app/store/reducers/profileInfo/selectors'
-import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 import { type IPost } from '@shared/lib/types/api'
 import { Button } from '@shared/ui/button'
-import { ButtonAction } from '@shared/ui/button-action'
 import { UserAvatar } from '@shared/ui/user-avatar'
-import { type FC } from 'react'
+import { type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
 
 interface IPostNewsProps {
   post: IPost | undefined
-  className?: string
+  buttonLike: ReactNode
 }
-const PostNews: FC<IPostNewsProps> = ({ post }) => {
-  const user = useAppSelector(selectUser)
+const PostNews: FC<IPostNewsProps> = ({ post, buttonLike }) => {
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
     : 'Дата неизвестна'
@@ -47,12 +43,7 @@ const PostNews: FC<IPostNewsProps> = ({ post }) => {
       */}
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
-          <ButtonAction
-            icon='like'
-            isActive={!!post?.likedBy.find((item) => item.id === user?.id)}
-          >
-            {post?.likedBy.length || 0}
-          </ButtonAction>
+          {buttonLike}
           {/* <ButtonAction icon='comment'>10</ButtonAction>
           <ButtonAction icon='share'>10</ButtonAction> */}
         </div>
