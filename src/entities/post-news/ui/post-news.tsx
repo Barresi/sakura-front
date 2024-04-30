@@ -7,6 +7,8 @@ import { ButtonAction } from '@shared/ui/button-action'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
+import eye from '@assets/ui/Eye.svg'
+
 interface IPostNewsProps {
   post: IPost | undefined
   className?: string
@@ -31,16 +33,18 @@ const PostNews: FC<IPostNewsProps> = ({ post }) => {
           </div>
         </div>
         <div>
-          <Button variant='text' icon='more' />
+          <Button variant='text' icon='more' className='p-0' />
         </div>
       </div>
       <p>
         {post?.text}
-        <span className='text-[#20B5EE]'>Показать полностью</span>
+        {/* Todo добавить показать полностью */}
       </p>
-      <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
+      {/* Todo добавить фото 
+       <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
         {post?.pictures.map((picture, ind) => <img src={picture} key={ind} />)}
-      </div>
+       </div>
+      */}
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
           <ButtonAction
@@ -53,10 +57,13 @@ const PostNews: FC<IPostNewsProps> = ({ post }) => {
           <ButtonAction icon='share'>10</ButtonAction> */}
         </div>
         <div>
-          <p className='flex flex-row'>{post?.watched || 0}</p>
+          <div className='flex flex-row text-lg font-bold text-darkElectricBlue leading-[23px] gap-2'>
+            <img src={eye} />
+            {post?.watched || 0}
+          </div>
         </div>
       </div>
-      <hr />
+      <hr className='text-lg font-bold text-darkElectricBlue leading-[23px]' />
       {/* 
       <div className='flex flex-row justify-start w-full'>
         <UserAvatar src={} className='w-[50px] h-[50px] mr-[15px]' />

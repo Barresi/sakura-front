@@ -21,8 +21,8 @@ const PageNews: FC = () => {
   const posts = useAppSelector(selectAllPosts)
   const tabs = {
     [NewsTabs.ALL]: posts,
-    [NewsTabs.FRIENDS]: posts.filter((post) =>
-      friendsId.findIndex((id) => id === post.createdById)
+    [NewsTabs.FRIENDS]: posts.filter(
+      (post) => friendsId.findIndex((id) => id === post.createdById) === 0
     )
   }
   const handleChangeType = (newstype: NewsTabs): void => {

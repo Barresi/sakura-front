@@ -26,12 +26,15 @@ const newsSlice = createSlice({
     })
     builder.addCase(getAllPostsThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.posts = action.payload.posts.map((post) => ({
-        ...post,
-        createdAt: convertStringToDate(post.createdAt) as Date,
-        updatedAt: convertStringToDate(post.updatedAt) as Date,
-        deleted: convertStringToDate(post.deleted)
-      }))
+      state.posts = action.payload.posts
+        .map((post) => ({
+          ...post,
+          createdAt: convertStringToDate(post.createdAt) as Date,
+          updatedAt: convertStringToDate(post.updatedAt) as Date,
+          deleted: convertStringToDate(post.deleted)
+        }))
+        /* @ts-expect-error излишне */
+        .sort((a, b) => b.createdAt - a.createdAt)
     })
     builder.addCase(getAllPostsThunk.rejected, (state, action) => {
       state.isLoading = false
