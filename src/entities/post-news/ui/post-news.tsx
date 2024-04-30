@@ -1,64 +1,62 @@
-import { Button } from '@shared/ui/button'
-import { ButtonAction } from '@shared/ui/button-action'
+import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
+import { type IPost } from '@shared/lib/types/api'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
-import EyeIcon from './Eye.svg'
-import icon1 from './icon1.svg'
-import Image1 from './image.png'
+import eye from '@assets/ui/Eye.svg'
+import { LinkName } from '@shared/ui/link-name'
 
 interface IPostNewsProps {
-  children?: ReactNode
-  className?: string
+  post: IPost | undefined
+  buttonLike: ReactNode
+  buttonDelete: ReactNode
 }
-const PostNews: FC<IPostNewsProps> = () => {
+const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
+  const createDate = post?.createdAt
+    ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
+    : 'Дата неизвестна'
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
       <div className='flex flex-row justify-between'>
         <div className='flex flex-row justify-start w-full'>
-          <UserAvatar className='w-[50px] h-[50px] mr-[15px]' />
+          <UserAvatar
+            className='w-[50px] h-[50px] mr-[15px]'
+            src={post?.createdBy?.avatar || null}
+            link={post?.createdBy?.id}
+          />
           <div>
-            <h4 className='text-[#D22828] text-[18px] font-bold'>Борис Маслов</h4>
-            <p className='text-[#ADB5BD]'>21 окт. в 13:11</p>
+            <LinkName
+              link={post?.createdBy.id}
+              className='text-[#D22828] text-[18px] font-bold'
+            >{`${post?.createdBy?.firstName} ${post?.createdBy?.lastName}`}</LinkName>
+            <p className='text-[#ADB5BD]'>{createDate}</p>
           </div>
         </div>
-        <div>
-          <Button variant='text'>
-            <img src={icon1} />
-          </Button>
-        </div>
+        <div>{buttonDelete}</div>
       </div>
       <p>
-        15 октября прошёл финал онлайн-хакатона VTB API hackathon 2022, я принял в нем
-        участие, участвовал впервые. Наша команда в составе 3-ёх человек заняла 7 место.
-        Было 2 задачи:
-        <br /> <br />
-        1 Создайте продукты на основе API <br /> 2 Разработайте инструменты обеспечения
-        безопасности API <br />
-        <span className='text-[#20B5EE]'>Показать полностью</span>
+        {post?.text}
+        {/* Todo добавить показать полностью */}
       </p>
-      <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
-        <div>
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-        </div>
-        <div className='hidden md:grid md:gap-3'>
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-        </div>
-      </div>
+      {/* Todo добавить фото 
+       <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
+        {post?.pictures.map((picture, ind) => <img src={picture} key={ind} />)}
+       </div>
+      */}
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
-          <ButtonAction icon='like'>10</ButtonAction>
+          {buttonLike}
           {/* <ButtonAction icon='comment'>10</ButtonAction>
           <ButtonAction icon='share'>10</ButtonAction> */}
         </div>
         <div>
-          <p className='flex flex-row'>
-            <img className='mr-1' src={EyeIcon} /> 1
-          </p>
+          <div className='flex flex-row text-lg font-bold text-darkElectricBlue leading-[23px] gap-2'>
+            <img src={eye} />
+            {post?.watched || 0}
+          </div>
         </div>
       </div>
-      <hr />
+      <hr className='text-lg font-bold text-darkElectricBlue leading-[23px]' />
       {/* 
       <div className='flex flex-row justify-start w-full'>
         <UserAvatar src={} className='w-[50px] h-[50px] mr-[15px]' />

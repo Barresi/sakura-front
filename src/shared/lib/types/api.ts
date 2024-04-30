@@ -22,7 +22,6 @@ export interface ILoginResponse {
 export interface IRegistrationResponse {
   id: string
 }
-
 export interface IRefreshResponse {
   accessToken: string
   refreshToken: string
@@ -98,7 +97,6 @@ export interface IChat {
 export interface ICreateChatResponse {
   chatId: string
 }
-
 export interface IGetUserChatsResponse {
   userChats: IChat[]
 }
@@ -129,31 +127,50 @@ export interface IReadUserNotificationsResponse {
 
 // UserInfo api
 
-interface IUserInfoResponse {
-  avatar: null | string
-  banner: null | string
-  id: string
-  firstName: string
-  lastName: string
-  email: string
-  username: string | null
-  city: string | null
+interface IUserInfoResponse extends Omit<IUser, 'birthDate'> {
   birthDate: string | null
-  gender: 'male' | 'female' | null
-  description: string | null
 }
 
 export interface IGetUserInfoResponse {
   user: IUserInfoResponse
 }
-
 export interface IEditUserInfoResponse {
   updatedFields: Omit<IUserInfoResponse, 'id' | 'email'>
 }
-
 export interface IEditUserSecurityInfoResponse {
   email: string
 }
-
 export interface IDeleteAccountResponse extends INoContentResponse {}
 export interface ILogoutResponse extends INoContentResponse {}
+
+// News api
+
+export interface IPost {
+  id: string
+  text: string
+  pictures: string[]
+  watched: number
+  createdById: string
+  createdBy: IUser
+  likedBy: IUser[]
+  createdAt: Date
+  updatedAt: Date
+  deleted: Date | null
+}
+
+export interface IPostResponse
+  extends Omit<IPost, 'createdAt' | 'updatedAt' | 'deleted'> {
+  createdAt: string
+  updatedAt: string
+  deleted: string | null
+}
+
+export interface IGetPostsResponse {
+  posts: IPostResponse[]
+}
+export interface ICreatePostResponse extends IPostResponse {}
+export interface IMarkWatchedPostResponse {
+  watched: number
+}
+export interface ILikePostResponse extends IPostResponse {}
+export interface IDeletePostResponse extends INoContentResponse {}

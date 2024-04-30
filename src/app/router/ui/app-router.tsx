@@ -2,6 +2,7 @@ import { PageFriends } from '@pages/page-friends'
 import { PageLogin } from '@pages/page-login'
 import { PageMain } from '@pages/page-main'
 import { PageMessenger } from '@pages/page-messenger'
+import { PageNews } from '@pages/page-news'
 import { PageNotFound } from '@pages/page-not-found'
 import { PageProfile } from '@pages/page-profile'
 import { PageRegistration } from '@pages/page-registration'
@@ -41,6 +42,8 @@ const AppRouter: FC = () => {
           }
         >
           <Route path={AppRoutes.PROFILE} element={<PageProfile />} />
+
+          <Route path={AppRoutes.NEWS} element={<PageNews />} />
 
           <Route path={AppRoutes.MESSENGER} element={<PageMessenger />}>
             <Route path={AppRoutes.CHAT} element={<Chat />} />

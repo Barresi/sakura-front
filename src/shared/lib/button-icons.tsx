@@ -8,6 +8,7 @@ import comment from '@assets/ui/Comment.svg'
 import likeActiveDark from '@assets/ui/Like Active Dark.svg'
 import likeActive from '@assets/ui/Like Active.svg'
 import like from '@assets/ui/Like.svg'
+import more from '@assets/ui/More.svg'
 import share from '@assets/ui/Share.svg'
 
 // dynamic icons
@@ -44,7 +45,8 @@ export const icons = {
   news,
   friends,
   message,
-  clear
+  clear,
+  more
 }
 
 export type Icon = keyof typeof icons

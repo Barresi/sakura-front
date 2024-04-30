@@ -1,15 +1,20 @@
 import { selectAllUsers } from '@app/store/reducers/friends/selectors'
+import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { PostNews } from '@entities/post-news'
+import { ButtonDeletePost } from '@features/button-delete-post'
+import { ButtonLikePost } from '@features/button-like-post'
+import { InputCreatePost } from '@features/input-create-post'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { type IAllUser } from '@shared/lib/types/api'
 import { Banner } from '@shared/ui/banner'
-import { InputSendMessage } from '@shared/ui/input-send-message'
 import { BlockProfile } from '@widgets/block-profile'
 import { BlockProfileMobile } from '@widgets/block-profile-mobile'
 import { type FC } from 'react'
 import { useParams } from 'react-router-dom'
 
 const PageProfile: FC = () => {
+  const posts = useAppSelector(selectAllPosts)
   const user = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const { id } = useParams()
@@ -38,17 +43,17 @@ const PageProfile: FC = () => {
             friends={friends}
           />
 
-          {isMyProfile && (
-            <InputSendMessage
-              avatar={currentUser?.avatar || null}
-              sendMessage={() => {}}
-              placeholder='Что у вас нового?'
-              className='border-none'
-            />
-          )}
-          {/* <PostNews />
-          <PostNews />
-          <PostNews /> */}
+          {isMyProfile && <InputCreatePost />}
+          {posts
+            .filter((post) => post.createdById === currentUser?.id)
+            .map((post, ind) => (
+              <PostNews
+                post={post}
+                key={ind}
+                buttonLike={<ButtonLikePost post={post} />}
+                buttonDelete={<ButtonDeletePost post={post} />}
+              />
+            ))}
         </div>
       </div>
     </div>
