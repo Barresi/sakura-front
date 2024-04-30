@@ -1,61 +1,61 @@
+import { type IAllUser, type IPost } from '@shared/lib/types/api'
 import { Button } from '@shared/ui/button'
 import { ButtonAction } from '@shared/ui/button-action'
 import { UserAvatar } from '@shared/ui/user-avatar'
-import { type FC, type ReactNode } from 'react'
+import { type FC } from 'react'
 
-import EyeIcon from './Eye.svg'
-import icon1 from './icon1.svg'
-import Image1 from './image.png'
+import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 
 interface IPostNewsProps {
-  children?: ReactNode
+  post: IPost | undefined
+  postCreater: IAllUser | undefined
   className?: string
 }
-const PostNews: FC<IPostNewsProps> = () => {
+const PostNews: FC<IPostNewsProps> = ({ postCreater, post }) => {
+  const user = useAppSelector(selectUser)
+  const createDate = post?.createdAt
+    ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
+    : 'Дата неизвестна'
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
       <div className='flex flex-row justify-between'>
         <div className='flex flex-row justify-start w-full'>
-          <UserAvatar className='w-[50px] h-[50px] mr-[15px]' />
+          <UserAvatar
+            className='w-[50px] h-[50px] mr-[15px]'
+            src={postCreater?.avatar || null}
+            link={postCreater?.id}
+          />
           <div>
-            <h4 className='text-[#D22828] text-[18px] font-bold'>Борис Маслов</h4>
-            <p className='text-[#ADB5BD]'>21 окт. в 13:11</p>
+            <h4 className='text-[#D22828] text-[18px] font-bold'>{`${postCreater?.firstName} ${postCreater?.lastName}`}</h4>
+            <p className='text-[#ADB5BD]'>{createDate}</p>
           </div>
         </div>
         <div>
-          <Button variant='text'>
-            <img src={icon1} />
-          </Button>
+          <Button variant='text' icon='more' />
         </div>
       </div>
       <p>
-        15 октября прошёл финал онлайн-хакатона VTB API hackathon 2022, я принял в нем
-        участие, участвовал впервые. Наша команда в составе 3-ёх человек заняла 7 место.
-        Было 2 задачи:
-        <br /> <br />
-        1 Создайте продукты на основе API <br /> 2 Разработайте инструменты обеспечения
-        безопасности API <br />
+        {post?.text}
         <span className='text-[#20B5EE]'>Показать полностью</span>
       </p>
       <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
-        <div>
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-        </div>
-        <div className='hidden md:grid md:gap-3'>
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-        </div>
+        {post?.pictures.map((picture, ind) => <img src={picture} key={ind} />)}
       </div>
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
-          <ButtonAction icon='like'>10</ButtonAction>
+          <ButtonAction
+            icon='like'
+            isActive={!!post?.likedBy.find((item) => item.id === user?.id)}
+          >
+            {post?.likedBy.length || 0}
+          </ButtonAction>
           {/* <ButtonAction icon='comment'>10</ButtonAction>
           <ButtonAction icon='share'>10</ButtonAction> */}
         </div>
         <div>
-          <p className='flex flex-row'>
-            <img className='mr-1' src={EyeIcon} /> 1
-          </p>
+          <p className='flex flex-row'>{post?.watched || 0}</p>
         </div>
       </div>
       <hr />

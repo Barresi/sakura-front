@@ -1,26 +1,27 @@
 import { useTheme } from '@app/providers/theme-context/lib/useTheme'
-import { useState, type FC } from 'react'
+import { type FC } from 'react'
 import { cn } from '../lib/merge-classes'
 import { Button, type IButtonProps } from './button'
 
-interface IButtonActionProps extends IButtonProps {}
+interface IButtonActionProps extends IButtonProps {
+  isActive?: boolean
+}
 
 const ButtonAction: FC<IButtonActionProps> = ({
   children,
   icon,
   className,
   onClick,
+  isActive,
   ...props
 }) => {
-  const [active, setActive] = useState(true)
-
   const { theme } = useTheme()
 
-  const toggleActive = (): void => {
-    setActive((active) => !active)
-  }
-
-  const whichLike = active ? (theme === 'dark' ? 'likeActiveDark' : 'likeActive') : 'like'
+  const whichLike = isActive
+    ? theme === 'dark'
+      ? 'likeActiveDark'
+      : 'likeActive'
+    : 'like'
 
   return (
     <Button
@@ -30,7 +31,7 @@ const ButtonAction: FC<IButtonActionProps> = ({
         theme === 'light' ? 'lg:border-text' : '',
         className
       )}
-      onClick={onClick || toggleActive}
+      onClick={onClick}
       icon={icon === 'like' ? whichLike : icon}
       {...props}
     >

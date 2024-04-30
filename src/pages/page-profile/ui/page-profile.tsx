@@ -1,4 +1,5 @@
 import { selectAllUsers } from '@app/store/reducers/friends/selectors'
+import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { PostNews } from '@entities/post-news/ui/post-news'
 import { InputCreatePost } from '@features/input-create-post'
@@ -11,6 +12,7 @@ import { type FC } from 'react'
 import { useParams } from 'react-router-dom'
 
 const PageProfile: FC = () => {
+  const posts = useAppSelector(selectAllPosts)
   const user = useAppSelector(selectUser)
   const allUsers = useAppSelector(selectAllUsers)
   const { id } = useParams()
@@ -40,9 +42,11 @@ const PageProfile: FC = () => {
           />
 
           {isMyProfile && <InputCreatePost />}
-          <PostNews />
-          <PostNews />
-          <PostNews />
+          {posts
+            .filter((post) => post.createdById === currentUser?.id)
+            .map((post, ind) => (
+              <PostNews post={post} key={ind} postCreater={currentUser} />
+            ))}
         </div>
       </div>
     </div>
