@@ -1,5 +1,6 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonChangeTheme } from '@features/button-change-theme'
+import { ButtonInfo } from '@features/button-info'
 import { ButtonOpenNotifications } from '@features/button-open-notifications'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
@@ -26,6 +27,7 @@ const Header: FC<IHeaderProps> = ({ className, ...props }) => {
       {isMobile ? <Logo isAdaptive /> : <div></div>}
 
       <div className='flex items-center justify-center gap-[15px]'>
+        <ButtonInfo />
         <ButtonChangeTheme className='flex lg:hidden' />
         <ButtonOpenNotifications />
         <UserAvatar
