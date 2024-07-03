@@ -12,7 +12,6 @@ import {
 import { TitleGradient } from '@shared/ui/title-gradient'
 import { type FC, type ReactNode } from 'react'
 import { CardTeammate } from './card-teammate/card-teammate'
-import { CarouselDesc } from './carousel-desc/carousel-desc'
 import { CarouselTeam } from './carousel-team/carousel-team'
 
 interface IButtonInfoProps {
@@ -55,28 +54,25 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
             обширной семьи имеет возможность поделиться своими историями, планами и
             предоставлять поддержку другим воинам, проходящим через аналогичные испытания.
           </p>
-          <CarouselDesc className=' lg:hidden' />
-          <div className='hidden lg:flex  flex-col gap-7'>
-            <TitleGradient>О нашем проекте</TitleGradient>
-            <p>
-              «Sakura» – это не просто социальная сеть, это общество единомышленников,
-              объединенных стремлением к самосовершенствованию и достижению поставленных
-              целей. У нас каждый может найти своего союзника, готового поддержать в
-              сложные моменты, реализовывать совместные проекты и совершенствовать свои
-              навыки.
-            </p>
-            <TitleGradient>Технологический стек</TitleGradient>
-            <p>
-              Наши разработчики работают с высокотехнологичным стеком, включающим в себя
-              Back-end технологии, такие как: Node Express Redis TypeScript Docker
-              PostgreSQL
-              <br />
-              а также front-end инструментарий: TypeScript React Redux Toolkit Css
-              <br />
-              Мы используем websocket (socket.io), чтобы обеспечить быструю и надежную
-              коммуникацию между нашими самураями.
-            </p>
-          </div>
+
+          <TitleGradient>О нашем проекте</TitleGradient>
+          <p>
+            «Sakura» – это не просто социальная сеть, это общество единомышленников,
+            объединенных стремлением к самосовершенствованию и достижению поставленных
+            целей. У нас каждый может найти своего союзника, готового поддержать в сложные
+            моменты, реализовывать совместные проекты и совершенствовать свои навыки.
+          </p>
+          <TitleGradient>Технологический стек</TitleGradient>
+          <p>
+            Наши разработчики работают с высокотехнологичным стеком, включающим в себя
+            Back-end технологии, такие как: Node Express Redis TypeScript Docker
+            PostgreSQL
+            <br />
+            а также front-end инструментарий: TypeScript React Redux Toolkit Css
+            <br />
+            Мы используем websocket (socket.io), чтобы обеспечить быструю и надежную
+            коммуникацию между нашими самураями.
+          </p>
 
           <TitleGradient>Команда проекта</TitleGradient>
           <CarouselTeam className=' lg:hidden' team={team} />
