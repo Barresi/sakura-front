@@ -42,7 +42,7 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
       <DialogTrigger>
         <ButtonSetting icon='info' className={className} />
       </DialogTrigger>
-      <DialogContent className=' max-w-none w-[80vw] xxl:w-[1200px] '>
+      <DialogContent className=' max-w-none w-[98vw] md:w-[80vw] xl:w-[900px] '>
         <DialogTitle>О проекте</DialogTitle>
 
         <div className='flex flex-col gap-7 overflow-auto items-center text-center max-h-[82vh]'>
@@ -81,6 +81,13 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
               <CardTeammate {...teammate} key={ind} isMobile={false} />
             ))}
           </div>
+
+          <p>
+            Присоединяйтесь к нам в «Sakura» и станьте частью этого захватывающего
+            путешествия к самосовершенствованию. Вместе мы сможем достичь великих высот и
+            создать уникальное сообщество самураев!
+          </p>
+
           {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
           <DialogFooter className='w-full'>
             <DialogClose asChild>
