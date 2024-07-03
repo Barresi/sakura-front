@@ -43,7 +43,7 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
       <DialogTrigger>
         <ButtonSetting icon='info' className={className} />
       </DialogTrigger>
-      <DialogContent className='flex flex-col gap-7 max-w-none w-[80vw] items-center text-center'>
+      <DialogContent className='flex flex-col gap-7 max-w-none w-[80vw] xxl:w-[1200px] max-h-[92vh] items-center text-center overflow-auto'>
         {/* @ts-expect-error не рабочие пропсы у DialogHeader */}
         <DialogHeader>
           <DialogTitle>О проекте</DialogTitle>
@@ -75,8 +75,8 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
         </p>
         <TitleGradient>Команда проекта</TitleGradient>
         <div></div>
-        <CarouselDesc className=' hidden' />
-        <CarouselTeam className=' hidden' team={team} />
+        <CarouselDesc className=' lg:hidden' />
+        <CarouselTeam className=' lg:hidden' team={team} />
 
         {/* @ts-expect-error не рабочие пропсы у DialogFooter */}
         <DialogFooter>

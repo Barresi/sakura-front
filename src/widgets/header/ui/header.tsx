@@ -27,7 +27,7 @@ const Header: FC<IHeaderProps> = ({ className, ...props }) => {
       {isMobile ? <Logo isAdaptive /> : <div></div>}
 
       <div className='flex items-center justify-center gap-[15px]'>
-        <ButtonInfo />
+        <ButtonInfo className='lg:hidden' />
         <ButtonChangeTheme className='flex lg:hidden' />
         <ButtonOpenNotifications />
         <UserAvatar
