@@ -4,6 +4,7 @@ import { type FC } from 'react'
 
 interface ICardTeammateProps extends ITeammate {
   className?: string
+  isMobile: boolean
 }
 const CardTeammate: FC<ICardTeammateProps> = ({
   className,
@@ -11,20 +12,27 @@ const CardTeammate: FC<ICardTeammateProps> = ({
   desc,
   firstName,
   role,
-  telegram
+  telegram,
+  isMobile
 }) => {
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-[10px] px-3 py-4 rounded-[10px] ${className}`}
+      className={`flex items-center  m-auto px-3 py-4 rounded-[10px] text-lg leading-5 ${className} ${
+        isMobile
+          ? 'flex-col max-w-[400px] bg-ghostlyWhite dark:bg-[#3C3C51] gap-[10px] justify-center'
+          : 'gap-2 w-[100%] justify-between'
+      }`}
     >
-      <div>
+      <div className='flex flex-col gap-[10px]'>
         <UserAvatar src={avatar} className='w-[80px] h-[80px]' />
-        <h4>
-          {firstName} ({telegram})
+        <h4 className='dark:text-[#7070BF] text-redHover'>
+          {firstName} <br /> ({telegram})
         </h4>
       </div>
-      <h5>{role}</h5>
-      <p>{desc}</p>
+      <h5 className={isMobile ? 'text-[#A3A3A3]' : 'text-[#A3A3A3] basis-[150px] grow-0'}>
+        {role}
+      </h5>
+      <p className={isMobile ? '' : 'grow-0 shrink-0 basis-[65%] text-left'}>{desc}</p>
     </div>
   )
 }

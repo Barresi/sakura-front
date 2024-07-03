@@ -35,11 +35,11 @@ const CarouselTeam: FC<ICarouselTeamProps> = ({ className, team }) => {
       <CarouselContent>
         {team.map((teammate, ind) => (
           <CarouselItem key={ind}>
-            <CardTeammate {...teammate} />
+            <CardTeammate {...teammate} isMobile />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className='flex gap-2 justify-center'>
+      <div className='flex gap-2 justify-center mt-7'>
         {Array(count)
           .fill('1')
           .map((_, ind) => (

@@ -10,6 +10,9 @@ interface ICarouselDescProps {
   className?: string
 }
 const CarouselDesc: FC<ICarouselDescProps> = ({ className }) => {
+  const carouselItemClassName =
+    'px-[5px] py-[15px] rounded-[10px] border-2 border-redHover h-full'
+
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
@@ -31,7 +34,7 @@ const CarouselDesc: FC<ICarouselDescProps> = ({ className }) => {
     <Carousel className={`w-full ${className}`} setApi={setApi}>
       <CarouselContent>
         <CarouselItem>
-          <div className='p-1'>
+          <div className={carouselItemClassName}>
             Добро пожаловать в мир «Sakura» – уникального социального проекта, где каждый
             пользователь становится не просто участником, а настоящим самураем,
             исследующим долгий и увлекательный путь к своей цели. Мы гордимся представить
@@ -41,7 +44,7 @@ const CarouselDesc: FC<ICarouselDescProps> = ({ className }) => {
           </div>
         </CarouselItem>
         <CarouselItem>
-          <div className='p-1'>
+          <div className={carouselItemClassName}>
             «Sakura» – это не просто социальная сеть, это общество единомышленников,
             объединенных стремлением к самосовершенствованию и достижению поставленных
             целей. У нас каждый может найти своего союзника, готового поддержать в сложные
@@ -49,7 +52,7 @@ const CarouselDesc: FC<ICarouselDescProps> = ({ className }) => {
           </div>
         </CarouselItem>
       </CarouselContent>
-      <div className='flex gap-2 justify-center'>
+      <div className='flex gap-2 justify-center mt-7'>
         {Array(count)
           .fill('1')
           .map((_, ind) => (
