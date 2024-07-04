@@ -9,8 +9,8 @@ export const getAllPostsThunk = createAsyncThunk<IGetPostsResponse>(
     try {
       return await getAllPosts()
     } catch (err) {
-      if (err instanceof AxiosError && err.response?.data.msg) {
-        return rejectWithValue(err.response.data.msg)
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.message)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }

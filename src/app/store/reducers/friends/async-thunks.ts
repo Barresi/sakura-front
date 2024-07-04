@@ -17,8 +17,8 @@ export const getAllUsersThunk = createAsyncThunk<IAllUsersResponse>(
     try {
       return await getAllUsers()
     } catch (err) {
-      if (err instanceof AxiosError && err.response?.data.msg) {
-        return rejectWithValue(err.response.data.msg)
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.message)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
@@ -32,8 +32,8 @@ export const getFriendsThunk = createAsyncThunk<IFriendsResponse>(
     try {
       return await getFriends()
     } catch (err) {
-      if (err instanceof AxiosError && err.response?.data.msg) {
-        return rejectWithValue(err.response.data.msg)
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.message)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
@@ -47,8 +47,8 @@ export const getReceivedThunk = createAsyncThunk<IReceivedResponse>(
     try {
       return await getReceived()
     } catch (err) {
-      if (err instanceof AxiosError && err.response?.data.msg) {
-        return rejectWithValue(err.response.data.msg)
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.message)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
@@ -62,8 +62,8 @@ export const getSendedThunk = createAsyncThunk<ISendedResponse>(
     try {
       return await getSended()
     } catch (err) {
-      if (err instanceof AxiosError && err.response?.data.msg) {
-        return rejectWithValue(err.response.data.msg)
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.message)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }
