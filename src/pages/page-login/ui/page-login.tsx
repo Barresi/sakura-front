@@ -28,7 +28,7 @@ const PageLogin: FC = () => {
       if (data.meta.requestStatus === 'fulfilled') {
         toast({
           title: 'Системное уведомление',
-          description: 'Вы успешно зашли в свой аккаунт' as string
+          description: 'Вы успешно вошли в свой аккаунт' as string
         })
       } else {
         toast({ title: 'Системное уведомление', description: data.payload as string })
