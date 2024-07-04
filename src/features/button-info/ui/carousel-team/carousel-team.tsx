@@ -1,3 +1,4 @@
+import { CardTeammate } from '@entities/card-teammate/ui/card-teammate'
 import { type ITeammate } from '@shared/lib/types/types'
 import {
   Carousel,
@@ -6,7 +7,6 @@ import {
   type CarouselApi
 } from '@shared/ui/carousel'
 import { useEffect, useState, type FC } from 'react'
-import { CardTeammate } from '../card-teammate/card-teammate'
 
 interface ICarouselTeamProps {
   className?: string

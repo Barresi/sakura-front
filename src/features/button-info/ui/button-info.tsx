@@ -1,3 +1,4 @@
+import { CardTeammate } from '@entities/card-teammate/ui/card-teammate'
 import { type ITeammate } from '@shared/lib/types/types'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
@@ -11,7 +12,6 @@ import {
 } from '@shared/ui/dialog'
 import { TitleGradient } from '@shared/ui/title-gradient'
 import { type FC, type ReactNode } from 'react'
-import { CardTeammate } from './card-teammate/card-teammate'
 import { CarouselTeam } from './carousel-team/carousel-team'
 
 interface IButtonInfoProps {

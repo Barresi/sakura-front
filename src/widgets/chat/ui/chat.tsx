@@ -1,6 +1,6 @@
 import { SocketEvents } from '@app/providers/socket-context/lib/socket-context'
 import { useSocket } from '@app/providers/socket-context/lib/useSocket'
-import { Message } from '@entities/message/message'
+import { Message } from '@entities/message'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { parseDateToMonth } from '@shared/lib/parse-date'
 import { type IMessage } from '@shared/lib/types/api'
