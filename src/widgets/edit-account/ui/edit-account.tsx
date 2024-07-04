@@ -190,8 +190,8 @@ const EditAccount: FC = () => {
                     message: 'Минимальное кол-во символов: 2'
                   },
                   maxLength: {
-                    value: 20,
-                    message: 'Максимальное кол-во символов: 20'
+                    value: 10,
+                    message: 'Максимальное кол-во символов: 10'
                   },
                   pattern: {
                     value: nameRegExp,
@@ -215,8 +215,8 @@ const EditAccount: FC = () => {
                     message: 'Минимальное кол-во символов: 2'
                   },
                   maxLength: {
-                    value: 20,
-                    message: 'Максимальное кол-во символов: 20'
+                    value: 10,
+                    message: 'Максимальное кол-во символов: 10'
                   },
                   pattern: {
                     value: nameRegExp,
