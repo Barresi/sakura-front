@@ -16,7 +16,7 @@ const PageFriends: FC = () => {
     <div className='w-full flex flex-col xxl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] lg:mb-[20px] px-[20px] lg:px-0'>
       <FilterFriendsTabs handleChangeType={handleChangeType} type={type} />
 
-      <div className='list w-full xxl:w-2/3 bg-white dark:bg-grayBlue rounded-[10px] p-[20px] xxl:p-[30px]'>
+      <div className='list w-full xxl:w-2/3 bg-white dark:bg-grayBlue rounded-[10px] p-[20px] xxl:py-[29px] xxl:px-[30px]'>
         <DefaultFriendsTab type={type} />
       </div>
     </div>
