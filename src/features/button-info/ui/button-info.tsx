@@ -84,7 +84,7 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
       <DialogContent className=' max-w-none w-[98vw] md:w-[80vw] xl:w-[900px] '>
         <DialogTitle>О проекте</DialogTitle>
 
-        <div className='flex flex-col gap-7 overflow-auto  max-h-[82vh] px-1'>
+        <div className='flex flex-col gap-7 overflow-auto  max-h-[82vh] pr-2'>
           <p>
             Добро пожаловать в мир <b className='tracking-wider'>«Sakura»</b> -
             уникального некоммерческого проекта, созданного сообществом энтузиастов. Мы
