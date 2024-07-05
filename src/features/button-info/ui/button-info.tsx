@@ -24,7 +24,7 @@ const team: ITeammate[] = [
   {
     avatar: '',
     firstName: 'Айгуль',
-    role: 'Back-End Dev',
+    role: 'Backend Dev',
     telegram: '@aigul_tok',
     desc: 'Мастерство Айгуль в создании надежного и мощного back-end обеспечивает стойкость нашей платформы.'
   },
@@ -52,14 +52,14 @@ const team: ITeammate[] = [
   {
     avatar: '',
     firstName: 'Денис',
-    role: 'Основатель, Front-End Dev',
+    role: 'Основатель, Frontend Dev',
     telegram: '@VPDenis',
     desc: 'Денис отвечает за общее направление и стратегию проекта, а также активно участвует в разработке front-end.'
   },
   {
     avatar: '',
     firstName: 'Денис',
-    role: 'Front-End Dev',
+    role: 'Frontend Dev',
     telegram: '@Dunissimmo',
     desc: 'Второй Денис работает над созданием интерактивных и отзывчивых интерфейсов, обеспечивая пользователям превосходный опыт взаимодействия с приложением.'
   },
@@ -73,7 +73,7 @@ const team: ITeammate[] = [
 ]
 
 const backTools = ['Node', 'Express', 'Redis', 'TypeScript', 'Docker', 'PostgreSQL']
-const frontTools = ['TypeScript', 'React', 'Redux', 'Toolkit', 'Css']
+const frontTools = ['TypeScript', 'React', 'Redux Toolkit', 'Tailwind', 'Shadcn UI']
 
 const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
   return (
@@ -84,34 +84,34 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
       <DialogContent className=' max-w-none w-[98vw] md:w-[80vw] xl:w-[900px] '>
         <DialogTitle>О проекте</DialogTitle>
 
-        <div className='flex flex-col gap-7 overflow-auto  max-h-[82vh]'>
+        <div className='flex flex-col gap-7 overflow-auto  max-h-[82vh] mx-1'>
           <p>
-            Добро пожаловать в мир «Sakura» – уникального социального проекта, где каждый
-            пользователь становится не просто участником, а настоящим самураем,
-            исследующим долгий и увлекательный путь к своей цели. Мы гордимся представить
-            нашу социальную сеть, построенную на японской тематике, где каждый член нашей
-            обширной семьи имеет возможность поделиться своими историями, планами и
-            предоставлять поддержку другим воинам, проходящим через аналогичные испытания.
+            Добро пожаловать в мир <b className='tracking-wider'>«Sakura»</b> -
+            уникального некоммерческого проекта, созданного сообществом энтузиастов. Мы
+            гордимся представить нашу социальную сеть. Мы создали место, где каждый может
+            раскрыть свой потенциал и вместе с другими участниками реализовывать
+            совместные идеи. Мы не стремились к финансовой прибыли. Цель нашего проекта -
+            продемонстрировать и доказать, что даже некоммерческие инициативы способны
+            создавать продукты и достигать скромных, но все же результатов.
           </p>
-          <TitleGradient>Немного о нас</TitleGradient>
+          <TitleGradient>О нашем проекте</TitleGradient>
           <p>
-            «Sakura» – это не просто социальная сеть, это общество единомышленников,
-            объединенных стремлением к самосовершенствованию и достижению поставленных
-            целей. У нас каждый может найти своего союзника, готового поддержать в сложные
-            моменты, реализовывать совместные проекты и совершенствовать свои навыки.
+            <b className='tracking-wider'>«Sakura»</b> - это социальная сеть, где каждый
+            пользователь становится самураем, преодолевающим долгий и тернистый путь к
+            достижению своих целей. Здесь каждый пользователь может делиться своими
+            историями, планами и идеями с другими пользователями. Среди функционала{' '}
+            <b className='tracking-wider'>«Sakura»</b> - чаты, возможность добавить
+            другого пользователя в друзья, система уведомлений, настройка аккаунта,
+            редактирование профиля, просмотр новостей и многое другое. Наша социальная
+            сеть вдохновлена духом самураев и их стремлением к совершенству.
           </p>
           <TitleGradient>Технологический стек</TitleGradient>
           <p>
-            Наши разработчики работают с высокотехнологичным стеком, включающим в себя
-            Back-end технологии, такие как:{' '}
-            <div className='inline-flex gap-1 flex-wrap '>
-              {backTools.map((item, ind) => (
-                <TitleTechTools key={ind}>{item}</TitleTechTools>
-              ))}
-            </div>
-          </p>
-          <p>
-            а также front-end инструментарий:{' '}
+            Мы использовали передовые технологии веб-разработки, чтобы обеспечить удобство
+            и безопасность нашим пользователям:
+            <br />
+            <br />
+            Frontend:{' '}
             <div className='inline-flex gap-1 flex-wrap '>
               {frontTools.map((item, ind) => (
                 <TitleTechTools key={ind}>{item}</TitleTechTools>
@@ -119,8 +119,16 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
             </div>
           </p>
           <p>
+            Backend:{' '}
+            <div className='inline-flex gap-1 flex-wrap '>
+              {backTools.map((item, ind) => (
+                <TitleTechTools key={ind}>{item}</TitleTechTools>
+              ))}
+            </div>
+          </p>
+          <p>
             Мы используем <TitleTechTools>websocket (socket.io)</TitleTechTools>, чтобы
-            обеспечить быструю и надежную коммуникацию между нашими самураями.
+            обеспечить быструю и надежную коммуникацию между нашими пользователями.
           </p>
 
           <TitleGradient>Команда проекта</TitleGradient>
