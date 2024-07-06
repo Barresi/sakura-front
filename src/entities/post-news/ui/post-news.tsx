@@ -32,7 +32,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
             <p className='text-[#ADB5BD]'>{createDate}</p>
           </div>
         </div>
-        <div>{buttonDelete}</div>
+        <div className='ml-2'>{buttonDelete}</div>
       </div>
       <p>
         {post?.text}
