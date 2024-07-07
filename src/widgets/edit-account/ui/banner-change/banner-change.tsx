@@ -1,11 +1,11 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { handleFileChange } from '@shared/lib/handle-file-change'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { Banner } from '@shared/ui/banner'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { useEffect, useState, type FC } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { handleFileChange } from '../../lib/handle-file-change'
 
 const BannerChange: FC = () => {
   const { control } = useFormContext()

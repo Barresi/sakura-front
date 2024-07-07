@@ -1,10 +1,10 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { handleFileChange } from '@shared/lib/handle-file-change'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { Input } from '@shared/ui/input'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { useEffect, useState, type FC } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { handleFileChange } from '../../lib/handle-file-change'
 
 const AvatarChange: FC = () => {
   const { control } = useFormContext()
