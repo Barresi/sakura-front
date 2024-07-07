@@ -1,12 +1,21 @@
-export const handleFileChange = (
-  file: File,
-  setPreviewUrl: (res: string) => void
+export const handleFilesChange = (
+  files: FileList,
+  setPreviewUrls: (res: string[]) => void
 ): void => {
-  if (file) {
+  const fileReaders: FileReader[] = []
+  const urls: string[] = []
+
+  Array.from(files).forEach((file) => {
     const reader = new FileReader()
+    fileReaders.push(reader)
+
     reader.onload = () => {
-      setPreviewUrl(reader.result as string)
+      urls.push(reader.result as string)
+      if (urls.length === files.length) {
+        setPreviewUrls(urls)
+      }
     }
+
     reader.readAsDataURL(file)
-  }
+  })
 }

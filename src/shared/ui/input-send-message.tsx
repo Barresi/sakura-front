@@ -1,10 +1,12 @@
-import { useState, type FC } from 'react'
+import { useState, type ChangeEvent, type FC } from 'react'
 import { cn } from '../lib/merge-classes'
 import { Input, type IInputProps } from './input'
 import { UserAvatar } from './user-avatar'
 
 import clip from '@assets/ui/clip.svg'
 import send from '@assets/ui/send.svg'
+import { handleFilesChange } from '@shared/lib/handle-file-change'
+import { toast } from '@widgets/toaster/lib/use-toast'
 
 interface IInputSendMessageProps extends IInputProps {
   avatar?: string | null
@@ -22,9 +24,21 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
   ...props
 }) => {
   const [message, setMessage] = useState('')
-  const [files, setFiles] = useState<FileList>()
-  console.log(files)
+  const [previewUrls, setPreviewUrls] = useState<string[]>([])
+
   const withAvatar = avatar !== undefined
+
+  const handleInputFiles = (e: ChangeEvent<HTMLInputElement>): void => {
+    const files = e.target.files as FileList
+    if (files.length > 4) {
+      toast({
+        title: 'Системное уведомление',
+        description: 'Максимумальное количество файлов для загрузки - 4.'
+      })
+    } else {
+      handleFilesChange(files, setPreviewUrls)
+    }
+  }
 
   return (
     <form
@@ -36,13 +50,13 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
         }
       }}
     >
-      {/* <div className='flex gap-1'>
-        {pictures?.map((item, ind) => (
+      <div className='flex gap-1'>
+        {previewUrls.map((item, ind) => (
           <div key={ind} className='w-[50px] h-[50px]'>
             <img src={item} />
           </div>
         ))}
-      </div> */}
+      </div>
       <div className='w-full relative flex'>
         {withAvatar && (
           <UserAvatar
@@ -79,11 +93,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
               id='clipRef'
               accept='image/*'
               multiple
-              onChange={(e) => {
-                const files = e.target.files as FileList
-                if (files.length > 4) alert('poshel naxuy')
-                setFiles(files)
-              }}
+              onChange={handleInputFiles}
             />
           </div>
 
