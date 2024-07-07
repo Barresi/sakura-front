@@ -103,7 +103,6 @@ const EditAccount: FC = () => {
   }
 
   const onSubmit = (form: IFormInputs): void => {
-    console.log(form)
     const payloadWithoutNullProperties = removeNullProperties(form)
     dispatch(editUserInfoThunk(payloadWithoutNullProperties)).then((data) => {
       if (data.meta.requestStatus === 'fulfilled') {

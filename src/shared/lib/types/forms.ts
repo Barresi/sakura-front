@@ -24,5 +24,5 @@ export interface IEditUserSecurityInfoForm {
 }
 export interface ICreatePostForm {
   text: string
-  pictures?: string
+  pictures?: FileList
 }
