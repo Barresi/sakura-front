@@ -149,7 +149,7 @@ export interface IPost {
   id: string
   text: string
   pictures: string[]
-  watched: number
+  watchedBy: string[]
   createdById: string
   createdBy: IUser
   likedBy: IUser[]

@@ -52,7 +52,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         <div>
           <div className='flex flex-row text-lg font-bold text-darkElectricBlue leading-[23px] gap-2'>
             <img src={eye} />
-            {post?.watched || 0}
+            {post?.watchedBy.length}
           </div>
         </div>
       </div>
