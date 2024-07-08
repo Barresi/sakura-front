@@ -165,9 +165,7 @@ export interface IPostResponse
   deleted: string | null
 }
 
-export interface IGetPostsResponse {
-  posts: IPostResponse[]
-}
+export interface IGetPostsResponse extends Array<IPostResponse> {}
 export interface ICreatePostResponse extends IPostResponse {}
 export interface IMarkWatchedPostResponse {
   watched: number

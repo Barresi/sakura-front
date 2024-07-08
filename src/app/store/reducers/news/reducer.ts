@@ -26,7 +26,7 @@ const newsSlice = createSlice({
     })
     builder.addCase(getAllPostsThunk.fulfilled, (state, action) => {
       state.isLoading = false
-      state.posts = action.payload.posts
+      state.posts = action.payload
         .map((post) => ({
           ...post,
           createdAt: convertStringToDate(post.createdAt) as Date,
