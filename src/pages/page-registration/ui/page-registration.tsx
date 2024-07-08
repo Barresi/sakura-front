@@ -1,9 +1,9 @@
-import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { ButtonChangeTheme } from '@features/button-change-theme'
+import { ButtonInfo } from '@features/button-info'
 import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
 import { emailRegExp, nameRegExp, passwordRegExp } from '@shared/lib/reg-exp'
 import { type IRegistrationForm } from '@shared/lib/types/forms'
 import { Button } from '@shared/ui/button'
-import { ButtonSetting } from '@shared/ui/button-setting'
 import { Input } from '@shared/ui/input'
 import { Logo } from '@shared/ui/logo'
 import { registrationThunk } from '@store/reducers/profileInfo/async-thunks'
@@ -20,7 +20,6 @@ const PageRegistration: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { toggleTheme } = useTheme()
   const {
     register,
     handleSubmit,
@@ -51,11 +50,10 @@ const PageRegistration: FC = () => {
 
   return (
     <div className='flex justify-center items-center px-5 py-5 min-h-[100vh]'>
-      <ButtonSetting
-        icon='theme'
-        className='absolute top-5 left-5'
-        onClick={toggleTheme}
-      />
+      <div className=' absolute top-5 left-5 flex gap-2'>
+        <ButtonChangeTheme />
+        <ButtonInfo />
+      </div>
       <div className='max-w-xl rounded-[10px] m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-white dark:bg-grayBlue w-[100%] mt-[64px] md:mt-auto '>
         <div>
           <Logo />

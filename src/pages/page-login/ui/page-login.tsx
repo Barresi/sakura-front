@@ -1,9 +1,9 @@
-import { useTheme } from '@app/providers/theme-context/lib/useTheme'
+import { ButtonChangeTheme } from '@features/button-change-theme'
+import { ButtonInfo } from '@features/button-info'
 import { useAppDispatch } from '@shared/lib/hooks/store-hooks'
 import { emailRegExp, passwordRegExp } from '@shared/lib/reg-exp'
 import { type ILoginForm } from '@shared/lib/types/forms'
 import { Button } from '@shared/ui/button'
-import { ButtonSetting } from '@shared/ui/button-setting'
 import { Input } from '@shared/ui/input'
 import { Logo } from '@shared/ui/logo'
 import { loginThunk } from '@store/reducers/profileInfo/async-thunks'
@@ -16,7 +16,6 @@ const PageLogin: FC = () => {
   const { toast } = useToast()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { toggleTheme } = useTheme()
   const {
     register,
     handleSubmit,
@@ -38,11 +37,11 @@ const PageLogin: FC = () => {
 
   return (
     <div className='flex justify-center items-center py-5 px-5 min-h-[100vh]'>
-      <ButtonSetting
-        icon='theme'
-        className=' absolute top-5 left-5'
-        onClick={toggleTheme}
-      />
+      <div className=' absolute top-5 left-5 flex gap-2'>
+        <ButtonChangeTheme />
+        <ButtonInfo />
+      </div>
+
       <div className='max-w-xl rounded-[10px] m-auto rounded-xl p-8 flex flex-col gap-12 items-center bg-white dark:bg-grayBlue w-[100%] mt-[64px] md:mt-auto'>
         <div>
           <Logo />
