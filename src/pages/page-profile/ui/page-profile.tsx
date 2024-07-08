@@ -5,12 +5,13 @@ import { PostNews } from '@entities/post-news'
 import { ButtonDeletePost } from '@features/button-delete-post'
 import { ButtonLikePost } from '@features/button-like-post'
 import { InputCreatePost } from '@features/input-create-post'
+import { markWatchedPost } from '@shared/api/news/news'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { type IAllUser } from '@shared/lib/types/api'
 import { Banner } from '@shared/ui/banner'
 import { BlockProfile } from '@widgets/block-profile'
 import { BlockProfileMobile } from '@widgets/block-profile-mobile'
-import { type FC } from 'react'
+import { useEffect, type FC } from 'react'
 import { useParams } from 'react-router-dom'
 
 const PageProfile: FC = () => {
@@ -26,6 +27,15 @@ const PageProfile: FC = () => {
     .filter((item) => item !== undefined) as IAllUser[] | undefined
 
   // Todo Добавить "Страница не найдена" при отсутствии currentUser
+
+  const currentUserPosts = posts.filter((post) => post.createdById === currentUser?.id)
+
+  useEffect(() => {
+    const notWatchedPostIds = currentUserPosts
+      .filter((post) => !post.watchedBy.find((id) => id === user?.id))
+      .map((post) => post.id)
+    if (notWatchedPostIds.length) markWatchedPost(notWatchedPostIds)
+  }, [])
 
   return (
     <div>
@@ -44,16 +54,14 @@ const PageProfile: FC = () => {
           />
 
           {isMyProfile && <InputCreatePost />}
-          {posts
-            .filter((post) => post.createdById === currentUser?.id)
-            .map((post, ind) => (
-              <PostNews
-                post={post}
-                key={ind}
-                buttonLike={<ButtonLikePost post={post} />}
-                buttonDelete={<ButtonDeletePost post={post} />}
-              />
-            ))}
+          {currentUserPosts.map((post, ind) => (
+            <PostNews
+              post={post}
+              key={ind}
+              buttonLike={<ButtonLikePost post={post} />}
+              buttonDelete={<ButtonDeletePost post={post} />}
+            />
+          ))}
         </div>
       </div>
     </div>
