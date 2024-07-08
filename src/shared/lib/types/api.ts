@@ -107,7 +107,8 @@ export enum NotificationTypeEnum {
   sendFriendRequest = 'sendFriendRequest',
   acceptFriendRequest = 'acceptFriendRequest',
   rejectFriend = 'rejectFriendRequest',
-  getMessage = 'getMessageRequest'
+  getMessage = 'getMessageRequest',
+  likePost = 'likePost'
 }
 
 export interface INotification {

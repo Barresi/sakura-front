@@ -12,6 +12,7 @@ import {
   getSendedThunk
 } from './store/reducers/friends/async-thunks'
 import { getUserChatsThunk } from './store/reducers/messenger/async-thunks'
+import { getAllPostsThunk } from './store/reducers/news/async-thunks'
 import { getUserNotificationsThunk } from './store/reducers/notifications/async-thunks'
 import { userInfoThunk } from './store/reducers/profileInfo/async-thunks'
 
@@ -25,6 +26,11 @@ interface payloadNtfFncGetMessage {
   text: string
   createdAt: string
   updatedAt: string
+}
+interface payloadNtfFncLikePost {
+  notificationId: string
+  postId: string
+  userId: string
 }
 
 const App: FC = () => {
@@ -78,6 +84,17 @@ const App: FC = () => {
     dispatch(getAllUsersThunk())
     dispatch(getUserChatsThunk())
   }
+  const getNtfLikePost = (payload: payloadNtfFncLikePost): void => {
+    const { userId } = payload
+
+    toast({
+      title: 'Новое уведомление',
+      notificationType: NotificationTypeEnum.likePost,
+      userId
+    })
+    dispatch(getUserNotificationsThunk())
+    dispatch(getAllPostsThunk())
+  }
 
   useEffect(() => {
     dispatch(userInfoThunk())
@@ -88,11 +105,13 @@ const App: FC = () => {
     socket.on(SocketEvents.NTF_USER_ACCEPT_FRIEND_EVENT, getNtfAcceptFriend)
     socket.on(SocketEvents.NTF_USER_REJECT_FRIEND_EVENT, getNtfRejectFriend)
     socket.on(SocketEvents.NTF_GET_MESSAGE_EVENT, getNtfGetMessage)
+    socket.on(SocketEvents.NTF_LIKE_POST_EVENT, getNtfLikePost)
     return () => {
       socket.off(SocketEvents.NTF_USER_SEND_FRIEND_EVENT, getNtfSendFriend)
       socket.off(SocketEvents.NTF_USER_ACCEPT_FRIEND_EVENT, getNtfAcceptFriend)
       socket.off(SocketEvents.NTF_USER_REJECT_FRIEND_EVENT, getNtfRejectFriend)
       socket.off(SocketEvents.NTF_GET_MESSAGE_EVENT, getNtfGetMessage)
+      socket.off(SocketEvents.NTF_LIKE_POST_EVENT, getNtfLikePost)
     }
   }, [socket])
   return (

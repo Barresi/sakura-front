@@ -4,5 +4,6 @@ export const friendActions = {
   [NotificationTypeEnum.sendFriendRequest]: 'подал(а) Вам заявку в друзья',
   [NotificationTypeEnum.acceptFriendRequest]: 'принял(а) Вашу заявку в друзья',
   [NotificationTypeEnum.rejectFriend]: 'отклонил(а) Вашу заявку в друзья',
-  [NotificationTypeEnum.getMessage]: 'написал(а) Вам личное сообщение'
+  [NotificationTypeEnum.getMessage]: 'написал(а) Вам личное сообщение',
+  [NotificationTypeEnum.likePost]: 'оценил(а) Ваш пост'
 }
