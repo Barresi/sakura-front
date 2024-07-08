@@ -5,9 +5,10 @@ import { PostNews } from '@entities/post-news'
 import { ButtonDeletePost } from '@features/button-delete-post'
 import { ButtonLikePost } from '@features/button-like-post'
 import { InputCreatePost } from '@features/input-create-post'
+import { markWatchedPost } from '@shared/api/news/news'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { NewsTabs } from '@shared/lib/types/other'
-import { type FC } from 'react'
+import { useEffect, type FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FilterNewsTabs } from './filter-news-tabs/filter-news-tabs'
 
@@ -30,6 +31,14 @@ const PageNews: FC = () => {
   const handleChangeType = (newstype: NewsTabs): void => {
     setSearchParams({ newstype })
   }
+
+  useEffect(() => {
+    const notWatchedPostIds = posts
+      .filter((post) => !post.watchedBy.find((id) => id === user?.id))
+      .map((post) => post.id)
+    if (notWatchedPostIds.length) markWatchedPost(notWatchedPostIds)
+  }, [])
+
   return (
     <div className='w-full flex flex-col xxl:flex-row-reverse justify-between gap-[20px] lg:gap-[30px] lg:mb-[20px] px-[20px] lg:px-0'>
       <FilterNewsTabs handleChangeType={handleChangeType} type={type} />

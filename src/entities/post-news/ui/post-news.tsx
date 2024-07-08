@@ -1,10 +1,10 @@
 import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 import { type IPost } from '@shared/lib/types/api'
+import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
-import { LinkName } from '@shared/ui/link-name'
 
 interface IPostNewsProps {
   post: IPost | undefined

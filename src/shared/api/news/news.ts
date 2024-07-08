@@ -23,9 +23,11 @@ export const createPost = async (form: ICreatePostForm): Promise<ICreatePostResp
 }
 
 export const markWatchedPost = async (
-  postId: string
+  postIds: string[]
 ): Promise<IMarkWatchedPostResponse> => {
-  const res = await apiWithAuth.post<IMarkWatchedPostResponse>(`/posts/${postId}/watched`)
+  const res = await apiWithAuth.post<IMarkWatchedPostResponse>(`/posts/watched`, {
+    postIds
+  })
 
   return res.data
 }
