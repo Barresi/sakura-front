@@ -15,9 +15,7 @@ export const getAllPosts = async (): Promise<IGetPostsResponse> => {
 }
 
 export const createPost = async (form: ICreatePostForm): Promise<ICreatePostResponse> => {
-  const res = await apiWithAuth.post<ICreatePostResponse>('/posts', form, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  })
+  const res = await apiWithAuth.post<ICreatePostResponse>('/posts', form)
 
   return res.data
 }
