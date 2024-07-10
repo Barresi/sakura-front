@@ -43,18 +43,25 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         {/* Todo добавить показать полностью */}
       </p>
 
-      {post?.pictures.length && (
-        <CarouselWithPoints className='sm:hidden'>
-          {post?.pictures.map((picture, ind) => (
-            <CarouselItem key={ind}>
-              <img
-                src={urlOnBackend + picture}
-                className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
-              />
-            </CarouselItem>
-          ))}
-        </CarouselWithPoints>
-      )}
+      {post?.pictures.length ? (
+        post?.pictures.length === 1 ? (
+          <img
+            src={urlOnBackend + post?.pictures[0]}
+            className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
+          />
+        ) : (
+          <CarouselWithPoints className='sm:hidden'>
+            {post?.pictures.map((picture, ind) => (
+              <CarouselItem key={ind}>
+                <img
+                  src={urlOnBackend + picture}
+                  className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
+                />
+              </CarouselItem>
+            ))}
+          </CarouselWithPoints>
+        )
+      ) : null}
 
       <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] hidden sm:grid'>
         {post?.pictures.map((picture, ind) => (
