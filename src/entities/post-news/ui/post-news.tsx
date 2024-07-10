@@ -42,9 +42,15 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         {/* Todo добавить показать полностью */}
       </p>
 
-      <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
+      <div className='grid grid-cols-2 auto-rows-fr gap-3 max-h-[500px] '>
         {post?.pictures.map((picture, ind) => (
-          <img src={urlOnBackend + picture} key={ind} />
+          <img
+            src={urlOnBackend + picture}
+            key={ind}
+            className={`object-cover w-full h-full rounded-[10px] ${
+              post?.pictures.length === 1 && ind === 0 ? 'col-span-2' : ''
+            } ${post?.pictures.length === 3 && ind === 0 ? 'row-span-2' : ''}`}
+          />
         ))}
       </div>
 
