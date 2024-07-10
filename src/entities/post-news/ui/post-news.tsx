@@ -4,9 +4,7 @@ import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
-import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import eye from '@assets/ui/Eye.svg'
-import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 
 interface IPostNewsProps {
   post: IPost | undefined
@@ -14,11 +12,12 @@ interface IPostNewsProps {
   buttonDelete: ReactNode
 }
 const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
-  const user = useAppSelector(selectUser)
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
     : 'Дата неизвестна'
-  const urlOnBackend = `${import.meta.env.VITE_BACKEND_DOMEN}/ftp/posts/${user?.id}/`
+  const urlOnBackend = `${
+    import.meta.env.VITE_BACKEND_DOMEN
+  }/ftp/posts/${post?.createdById}/`
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
       <div className='flex flex-row justify-between'>
