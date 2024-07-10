@@ -2,6 +2,7 @@ import { CardTeammate } from '@entities/card-teammate/ui/card-teammate'
 import { type ITeammate } from '@shared/lib/types/types'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
+import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 import {
   Dialog,
   DialogClose,
@@ -13,7 +14,6 @@ import {
 import { TitleGradient } from '@shared/ui/title-gradient'
 import { TitleTechTools } from '@shared/ui/title-tech-tools'
 import { type FC, type ReactNode } from 'react'
-import { CarouselTeam } from './carousel-team/carousel-team'
 
 interface IButtonInfoProps {
   children?: ReactNode
@@ -132,7 +132,13 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
           </p>
 
           <TitleGradient>Команда проекта</TitleGradient>
-          <CarouselTeam className=' lg:hidden' team={team} />
+          <CarouselWithPoints className='lg:hidden'>
+            {team.map((teammate, ind) => (
+              <CarouselItem key={ind}>
+                <CardTeammate {...teammate} isMobile />
+              </CarouselItem>
+            ))}
+          </CarouselWithPoints>
           <div className='hidden lg:flex  flex-col gap-[5px]'>
             {team.map((teammate, ind) => (
               <CardTeammate {...teammate} key={ind} isMobile={false} />

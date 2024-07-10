@@ -5,6 +5,7 @@ import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
+import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 
 interface IPostNewsProps {
   post: IPost | undefined
@@ -42,7 +43,18 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         {/* Todo добавить показать полностью */}
       </p>
 
-      <div className='grid grid-cols-2 auto-rows-fr gap-3 max-h-[500px] '>
+      <CarouselWithPoints className='sm:hidden'>
+        {post?.pictures.map((picture, ind) => (
+          <CarouselItem key={ind}>
+            <img
+              src={urlOnBackend + picture}
+              className='object-cover w-full h-full rounded-[10px]'
+            />
+          </CarouselItem>
+        ))}
+      </CarouselWithPoints>
+
+      <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] hidden sm:grid'>
         {post?.pictures.map((picture, ind) => (
           <img
             src={urlOnBackend + picture}
