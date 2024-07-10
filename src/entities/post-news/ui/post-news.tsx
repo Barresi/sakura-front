@@ -2,9 +2,10 @@ import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 import { type IPost } from '@shared/lib/types/api'
 import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
-import { type FC, type ReactNode } from 'react'
+import { useState, type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
+import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 
 interface IPostNewsProps {
@@ -13,12 +14,21 @@ interface IPostNewsProps {
   buttonDelete: ReactNode
 }
 const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const maxLength = useWindowSize(1024) ? 200 : 400
+
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
     : 'Дата неизвестна'
+
   const urlOnBackend = `${
     import.meta.env.VITE_BACKEND_DOMEN
   }/ftp/posts/${post?.createdById}/`
+
+  const toggleExpand = (): void => {
+    setIsExpanded(!isExpanded)
+  }
+
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
       <div className='flex flex-row justify-between'>
@@ -38,10 +48,28 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         </div>
         <div className='ml-2'>{buttonDelete}</div>
       </div>
-      <p>
-        {post?.text}
-        {/* Todo добавить показать полностью */}
-      </p>
+      <div>
+        {isExpanded ? (
+          <div>
+            {post?.text}
+            <button onClick={toggleExpand} className='text-twitter block'>
+              Скрыть
+            </button>
+          </div>
+        ) : (
+          <div>
+            {post?.text.slice(0, maxLength)}
+            {post?.text.length ? post?.text.length > maxLength && '...' : null}
+            {post?.text.length
+              ? post?.text.length > maxLength && (
+                  <button onClick={toggleExpand} className='text-twitter block'>
+                    Показать полностью
+                  </button>
+                )
+              : null}
+          </div>
+        )}
+      </div>
 
       {post?.pictures.length ? (
         post?.pictures.length === 1 ? (
@@ -63,17 +91,19 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         )
       ) : null}
 
-      <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] hidden sm:grid'>
-        {post?.pictures.map((picture, ind) => (
-          <img
-            src={urlOnBackend + picture}
-            key={ind}
-            className={`object-cover w-full h-full rounded-[10px] ${
-              post?.pictures.length === 1 && ind === 0 ? 'col-span-2' : ''
-            } ${post?.pictures.length === 3 && ind === 0 ? 'row-span-2' : ''}`}
-          />
-        ))}
-      </div>
+      {post?.pictures.length ? (
+        <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] hidden sm:grid'>
+          {post?.pictures.map((picture, ind) => (
+            <img
+              src={urlOnBackend + picture}
+              key={ind}
+              className={`object-cover w-full h-full rounded-[10px] ${
+                post?.pictures.length === 1 && ind === 0 ? 'col-span-2' : ''
+              } ${post?.pictures.length === 3 && ind === 0 ? 'row-span-2' : ''}`}
+            />
+          ))}
+        </div>
+      ) : null}
 
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
