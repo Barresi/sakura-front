@@ -58,7 +58,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
         }
       }}
     >
-      <div className='flex gap-1 pl-5'>
+      <div className='flex gap-1 pl-5 pr-5'>
         {previewUrls.map((item, ind) => (
           <div key={ind} className=' relative'>
             <img src={item} className='object-cover w-[70px] h-[70px] rounded-[10px]' />
