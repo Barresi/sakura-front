@@ -38,11 +38,11 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         {post?.text}
         {/* Todo добавить показать полностью */}
       </p>
-      {/* Todo добавить фото 
-       <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
+
+      <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
         {post?.pictures.map((picture, ind) => <img src={picture} key={ind} />)}
-       </div>
-      */}
+      </div>
+
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
           {buttonLike}
