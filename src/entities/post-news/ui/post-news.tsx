@@ -44,12 +44,12 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
       </p>
 
       {post?.pictures.length && (
-        <CarouselWithPoints className='sm:hidden h-[500px]'>
+        <CarouselWithPoints className='sm:hidden'>
           {post?.pictures.map((picture, ind) => (
             <CarouselItem key={ind}>
               <img
                 src={urlOnBackend + picture}
-                className='object-cover w-full h-full rounded-[10px] max-h-[400px]'
+                className='object-cover w-full h-full rounded-[10px] h-[400px]'
               />
             </CarouselItem>
           ))}
