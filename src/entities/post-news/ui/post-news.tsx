@@ -15,6 +15,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
     : 'Дата неизвестна'
+  const urlOnBackend = import.meta.env.VITE_BACKEND_DOMEN + '/ftp/posts/'
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
       <div className='flex flex-row justify-between'>
@@ -40,7 +41,9 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
       </p>
 
       <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
-        {post?.pictures.map((picture, ind) => <img src={picture} key={ind} />)}
+        {post?.pictures.map((picture, ind) => (
+          <img src={urlOnBackend + picture} key={ind} />
+        ))}
       </div>
 
       <div className='flex flex-row justify-between items-center'>
