@@ -85,6 +85,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
           className={cn(
             'py-[20px] px-[20px] pr-[60px] rounded-[10px]',
             withAvatar && 'pl-[80px]',
+            withPicture && 'pr-[100px]',
             className
           )}
           onChange={(e) => {
