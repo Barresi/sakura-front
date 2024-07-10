@@ -75,7 +75,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         post?.pictures.length === 1 ? (
           <img
             src={urlOnBackend + post?.pictures[0]}
-            className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
+            className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px] sm:hidden'
           />
         ) : (
           <CarouselWithPoints className='sm:hidden'>
