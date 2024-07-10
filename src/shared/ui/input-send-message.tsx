@@ -58,7 +58,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
         }
       }}
     >
-      <div className='flex gap-1 pl-5 pr-5'>
+      <div className='flex gap-2 pl-5 pr-5'>
         {previewUrls.map((item, ind) => (
           <div key={ind} className=' relative'>
             <img src={item} className='object-cover w-[70px] h-[70px] rounded-[10px]' />
@@ -67,7 +67,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
                 deletePictureFromInput(ind)
               }}
               type='button'
-              className='rounded-full bg-white w-4 h-4 p-[2px] absolute right-0 top-0'
+              className='rounded-full bg-white w-5 h-5 lg:w-4 lg:h-4 p-[2px] absolute right-0 top-0'
             >
               <img src={clear} className='w-full h-full' />
             </button>
