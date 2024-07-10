@@ -1,12 +1,12 @@
+import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 import { type IPost } from '@shared/lib/types/api'
+import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { useState, type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
-import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
-import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 
 interface IPostNewsProps {
   post: IPost | undefined
