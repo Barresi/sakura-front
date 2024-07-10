@@ -13,14 +13,7 @@ const InputCreatePost: FC<IInputCreatePostProps> = ({ className }) => {
   const user = useAppSelector(selectUser)
   const dispatch = useAppDispatch()
   const handleCreatePost = async (text: string, pictures?: FileList): Promise<void> => {
-    const formData = new FormData()
-    formData.append(`text`, text)
-    if (pictures)
-      Array.from(pictures).forEach((file, index) => {
-        formData.append(`file${index}`, file)
-      })
-
-    await createPost(formData)
+    await createPost({ text, pictures })
     dispatch(getAllPostsThunk())
   }
   return (

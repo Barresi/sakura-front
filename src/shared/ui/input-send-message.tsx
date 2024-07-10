@@ -12,7 +12,7 @@ import send from '@assets/ui/send.svg'
 interface IInputSendMessageProps extends IInputProps {
   avatar?: string | null
   withPicture: boolean
-  sendMessage: (message: string, pictures?: FileList) => void
+  sendMessage: (message: string, pictures?: FileList) => Promise<void>
 }
 
 // Todo Переписать в textarea

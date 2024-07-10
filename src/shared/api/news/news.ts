@@ -14,8 +14,17 @@ export const getAllPosts = async (): Promise<IGetPostsResponse> => {
   return res.data
 }
 
-export const createPost = async (form: ICreatePostForm): Promise<ICreatePostResponse> => {
-  const res = await apiWithAuth.post<ICreatePostResponse>('/posts', form)
+export const createPost = async ({
+  text,
+  pictures
+}: ICreatePostForm): Promise<ICreatePostResponse> => {
+  const formData = new FormData()
+  formData.append(`text`, text)
+  if (pictures)
+    Array.from(pictures).forEach((file) => {
+      formData.append('pictures', file)
+    })
+  const res = await apiWithAuth.post<ICreatePostResponse>('/posts', formData)
 
   return res.data
 }
