@@ -1,4 +1,4 @@
-import { selectAllUsers } from '@app/store/reducers/friends/selectors'
+import { selectAllUsers, selectFriends } from '@app/store/reducers/friends/selectors'
 import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { PostNews } from '@entities/post-news'
@@ -8,6 +8,7 @@ import { InputCreatePost } from '@features/input-create-post'
 import { markWatchedPost } from '@shared/api/news/news'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { type IAllUser } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 import { Banner } from '@shared/ui/banner'
 import { BlockProfile } from '@widgets/block-profile'
 import { BlockProfileMobile } from '@widgets/block-profile-mobile'
@@ -17,14 +18,27 @@ import { useParams } from 'react-router-dom'
 const PageProfile: FC = () => {
   const posts = useAppSelector(selectAllPosts)
   const user = useAppSelector(selectUser)
+  const userFriends = useAppSelector(selectFriends)
   const allUsers = useAppSelector(selectAllUsers)
   const { id } = useParams()
-  const currentUser = allUsers.find((item) => item.id === id)
   const isMyProfile = user?.id === id
 
-  const friends = currentUser?.friends
-    .map((friendId) => allUsers?.find((item) => item.id === friendId))
-    .filter((item) => item !== undefined) as IAllUser[] | undefined
+  // Разная логика в зависимости от текущей страницы
+  const currentUser = (isMyProfile ? user : allUsers.find((item) => item.id === id)) as
+    | IUser
+    | IAllUser
+  const currentUserFriends: string[] | undefined = isMyProfile
+    ? userFriends.map((friend) =>
+        friend.fromId === user?.id ? friend.toId : friend.fromId
+      )
+    : allUsers.find((item) => item.id === currentUser?.id)?.friends
+
+  // Поиск айди в массиве всех пользователей
+  const friends: IAllUser[] | undefined = currentUserFriends
+    ? currentUserFriends
+        .map((friendId) => allUsers?.find((item) => item.id === friendId))
+        .filter((item) => item !== undefined)
+    : []
 
   // Todo Добавить "Страница не найдена" при отсутствии currentUser
 

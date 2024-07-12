@@ -2,11 +2,12 @@ import { RowFriends } from '@entities/row-friends'
 import { ButtonEditProfile } from '@features/button-edit-profile'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { type IAllUser } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
 interface IBlockProfileProps {
-  user: IAllUser | undefined
+  user: IAllUser | IUser | undefined
   isMyProfile: boolean
   friends: IAllUser[] | undefined
 }
