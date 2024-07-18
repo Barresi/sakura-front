@@ -4,9 +4,10 @@ import { type IPost } from '@shared/lib/types/api'
 import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
-import { useState, type FC, type ReactNode } from 'react'
+import { type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
+import { ShowFullText } from '@shared/ui/show-full-text'
 
 interface IPostNewsProps {
   post: IPost | undefined
@@ -14,7 +15,6 @@ interface IPostNewsProps {
   buttonDelete: ReactNode
 }
 const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
   const maxLength = useWindowSize(1024) ? 200 : 400
 
   const createDate = post?.createdAt
@@ -24,10 +24,6 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
   const urlOnBackend = `${
     import.meta.env.VITE_BACKEND_DOMEN
   }/ftp/posts/${post?.createdById}/`
-
-  const toggleExpand = (): void => {
-    setIsExpanded(!isExpanded)
-  }
 
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
@@ -49,28 +45,8 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         </div>
         <div className='ml-2'>{buttonDelete}</div>
       </div>
-      <div>
-        {isExpanded ? (
-          <div>
-            {post?.text}
-            <button onClick={toggleExpand} className='text-twitter block'>
-              Скрыть
-            </button>
-          </div>
-        ) : (
-          <div>
-            {post?.text.slice(0, maxLength)}
-            {post?.text.length ? post?.text.length > maxLength && '...' : null}
-            {post?.text.length
-              ? post?.text.length > maxLength && (
-                  <button onClick={toggleExpand} className='text-twitter block'>
-                    Показать полностью
-                  </button>
-                )
-              : null}
-          </div>
-        )}
-      </div>
+
+      <ShowFullText text={post?.text} maxLength={maxLength} />
 
       {post?.pictures.length ? (
         post?.pictures.length === 1 ? (
