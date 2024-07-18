@@ -43,7 +43,6 @@ const AvatarChange: FC = () => {
               (document.getElementById('avatarRef') as HTMLInputElement | null)?.click()
             }
           >
-            {/* Todo сделать затемнение только при ховере */}
             <div className='absolute left-0 right-0 top-0 bottom-0 rounded-full flex lg:hidden justify-center items-center group-hover:flex'>
               <span className='z-[3] text-md usm:text-sm font-medium text-white'>
                 Изменить фото
