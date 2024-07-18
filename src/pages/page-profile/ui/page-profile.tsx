@@ -58,7 +58,8 @@ const PageProfile: FC = () => {
         <div className='w-full xxl:w-2/3 rounded-[10px] flex flex-col gap-[20px] xl:gap-[30px]'>
           <Banner
             className='h-[180px] sm:h-[295px] lg:h-[337px]'
-            src={currentUser?.banner || null}
+            src={currentUser.banner || null}
+            userId={currentUser.id}
           />
           {/* mobile user info */}
           <BlockProfileMobile
