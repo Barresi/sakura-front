@@ -18,7 +18,7 @@ const InputCreatePost: FC<IInputCreatePostProps> = ({ className }) => {
   }
   return (
     <InputSendMessage
-      avatar={user?.avatar}
+      user={{ avatar: user?.avatar, userId: user?.id }}
       sendMessage={handleCreatePost}
       placeholder='Что у вас нового?'
       className={cn(className, 'border-none')}

@@ -35,6 +35,7 @@ const CardMessage: FC<ICardMessageProps> = ({
       )}
     >
       <UserAvatar
+        userId={friendId}
         src={friend?.avatar || null}
         className='w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]'
       />

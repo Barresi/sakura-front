@@ -37,6 +37,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
             className='w-[50px] h-[50px] mr-[15px]'
             src={post?.createdBy?.avatar || null}
             link={post?.createdBy?.id}
+            userId={post?.createdById}
           />
           <div>
             <LinkName

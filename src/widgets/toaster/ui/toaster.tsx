@@ -38,7 +38,7 @@ const Toaster: FC = () => {
               <div className='flex items-center gap-[15px]'>
                 {notificationType ? (
                   <>
-                    <UserAvatar src={user?.avatar || null} />
+                    <UserAvatar src={user?.avatar || null} userId={user?.id} />
                     <div className='flex flex-col gap-[5px]'>
                       <span className='font-bold text-twitter'>
                         {user?.firstName} {user?.lastName}

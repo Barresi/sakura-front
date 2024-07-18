@@ -10,7 +10,7 @@ import clip from '@assets/ui/clip.svg'
 import send from '@assets/ui/send.svg'
 
 interface IInputSendMessageProps extends IInputProps {
-  avatar?: string | null
+  user?: { avatar: string | null | undefined; userId: string | undefined }
   withPicture: boolean
   sendMessage: (message: string, pictures?: FileList) => Promise<void>
 }
@@ -19,7 +19,7 @@ interface IInputSendMessageProps extends IInputProps {
 
 const InputSendMessage: FC<IInputSendMessageProps> = ({
   withPicture = false,
-  avatar,
+  user,
   className,
   sendMessage,
   ...props
@@ -27,7 +27,7 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
   const [message, setMessage] = useState('')
   const [previewUrls, setPreviewUrls] = useState<string[]>([])
 
-  const withAvatar = avatar !== undefined
+  const withAvatar = user !== undefined
 
   const handleInputFiles = (e: ChangeEvent<HTMLInputElement>): void => {
     const files = e.target.files as FileList
@@ -77,7 +77,8 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       <div className='w-full relative flex'>
         {withAvatar && (
           <UserAvatar
-            src={avatar}
+            src={user.avatar}
+            userId={user.userId}
             className='absolute top-[10px] z-[2] left-[20px] w-[40px] h-[40px]'
           />
         )}

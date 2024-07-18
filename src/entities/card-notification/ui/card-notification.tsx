@@ -24,6 +24,7 @@ const CardNotification: FC<ICardNotificationProps> = ({ className, date, id, typ
       <div className='flex items-center gap-[15px]'>
         <div className='self-start'>
           <UserAvatar
+            userId={id}
             className='w-[60px] h-[60px] '
             src={user?.avatar || null}
             link={id}

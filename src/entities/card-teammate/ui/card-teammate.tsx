@@ -24,6 +24,7 @@ const CardTeammate: FC<ICardTeammateProps> = ({
       }`}
     >
       <div className='flex flex-col gap-[10px] shrink-0 basis-[140px]'>
+        {/* @ts-expect-error Аватары берутся локально, userId не нужен */}
         <UserAvatar src={avatar} className='w-[80px] h-[80px]' />
         <h4 className={`dark:text-[#7070BF] text-redHover text-center`}>
           {firstName} <br /> ({telegram})

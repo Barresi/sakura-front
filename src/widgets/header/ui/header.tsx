@@ -31,6 +31,7 @@ const Header: FC<IHeaderProps> = ({ className, ...props }) => {
         <ButtonChangeTheme className='flex lg:hidden' />
         <ButtonOpenNotifications />
         <UserAvatar
+          userId={user?.id}
           link={user?.id}
           src={user?.avatar || null}
           className='w-[44px] h-[44px]'

@@ -129,7 +129,7 @@ const Chat: FC = () => {
           >{`${friend?.firstName} ${friend?.lastName}`}</LinkName>
         </div>
 
-        <UserAvatar src={friend?.avatar || null} link={friendId} />
+        <UserAvatar src={friend?.avatar || null} link={friendId} userId={friend?.id} />
       </div>
       <div
         ref={container}

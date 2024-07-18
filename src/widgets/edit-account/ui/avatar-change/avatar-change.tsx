@@ -55,6 +55,7 @@ const AvatarChange: FC = () => {
               className='h-[100%] w-[100%]'
               src={avatarImg || null}
               isImgNotOnBackend
+              userId={user?.id}
             />
             <Input
               type='file'

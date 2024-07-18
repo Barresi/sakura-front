@@ -35,7 +35,7 @@ const PageProfile: FC = () => {
     : allUsers.find((item) => item.id === currentUser?.id)?.friends
 
   // Поиск айди в массиве всех пользователей
-  const friends: IAllUser[] | undefined = currentUserFriends
+  const friends: IAllUser[] = currentUserFriends
     ? currentUserFriends
         .map((friendId) => allUsers?.find((item) => item.id === friendId))
         .filter((item) => item !== undefined)

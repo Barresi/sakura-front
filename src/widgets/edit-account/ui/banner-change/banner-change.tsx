@@ -39,7 +39,7 @@ const BannerChange: FC = () => {
         }, [previewUrl, user?.banner])
         return (
           <div className='relative flex-grow h-[120px] usm:h-full w-full'>
-            <Banner src={bannerImg || null} isImgNotOnBackend />
+            <Banner src={bannerImg || null} isImgNotOnBackend userId={user?.id} />
             <Button
               variant='secondary'
               className='absolute bottom-[40px] right-[50%] translate-x-[50%] usm:translate-x-0 usm:right-[20px] usm:bottom-[20px] w-[190px] h-[40px] lg:right-[30px] lg:bottom-[30px] xxl:right-[20px]'
