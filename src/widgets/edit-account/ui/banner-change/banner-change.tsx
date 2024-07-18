@@ -1,6 +1,7 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { handleFilesChange } from '@shared/lib/handle-file-change'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { URL_BANNERS } from '@shared/lib/url'
 import { Banner } from '@shared/ui/banner'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
@@ -30,7 +31,8 @@ const BannerChange: FC = () => {
           if (previewUrl) {
             setBannerImg(previewUrl[0])
           } else if (user?.banner) {
-            setBannerImg(user?.banner)
+            const urlOnBackend = `${URL_BANNERS}${user?.id}/${user?.banner}`
+            setBannerImg(urlOnBackend)
           } else {
             setBannerImg(null)
           }

@@ -1,6 +1,7 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { handleFilesChange } from '@shared/lib/handle-file-change'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
+import { URL_AVATARS } from '@shared/lib/url'
 import { Input } from '@shared/ui/input'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { useEffect, useState, type FC } from 'react'
@@ -29,7 +30,8 @@ const AvatarChange: FC = () => {
           if (previewUrl) {
             setAvatarImg(previewUrl[0])
           } else if (user?.avatar) {
-            setAvatarImg(user?.avatar)
+            const urlOnBackend = `${URL_AVATARS}${user?.id}/${user?.avatar}`
+            setAvatarImg(urlOnBackend)
           } else {
             setAvatarImg(null)
           }
