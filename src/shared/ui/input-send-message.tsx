@@ -17,6 +17,8 @@ interface IInputSendMessageProps extends IInputProps {
 
 // Todo Переписать в textarea
 
+const maxPictureLength = 4
+
 const InputSendMessage: FC<IInputSendMessageProps> = ({
   withPicture = false,
   user,
@@ -31,14 +33,14 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
 
   const handleInputFiles = (e: ChangeEvent<HTMLInputElement>): void => {
     const files = e.target.files as FileList
-    if (files.length > 4) {
+    if (files.length > maxPictureLength) {
       toast({
         title: 'Системное уведомление',
-        description: 'Максимумальное количество файлов для загрузки - 4.'
+        description: `Максимальное количество файлов для загрузки - ${maxPictureLength}.`
       })
-    } else {
-      handleFilesChange(files, setPreviewUrls)
+      return
     }
+    handleFilesChange(files, setPreviewUrls)
   }
 
   const deletePictureFromInput = (ind: number): void => {
@@ -51,11 +53,10 @@ const InputSendMessage: FC<IInputSendMessageProps> = ({
       onSubmit={(e) => {
         const files = (document.getElementById('clipRef') as HTMLInputElement)?.files
         e.preventDefault()
-        if (message) {
-          sendMessage(message, files || undefined)
-          setMessage('')
-          setPreviewUrls([])
-        }
+
+        sendMessage(message, files || undefined)
+        setMessage('')
+        setPreviewUrls([])
       }}
     >
       <div className='flex gap-2 pl-5 pr-5'>
