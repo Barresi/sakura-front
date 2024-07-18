@@ -25,7 +25,7 @@ const BlockProfileMobile: FC<IBlockProfileMobileProps> = ({
           <UserAvatar
             userId={user?.id}
             src={user?.avatar || null}
-            className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px]'
+            className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px] border-2 border-white dark:border-grayBlue'
           />
           <div className=' mt-[50px] sm:mt-0 sm:mx-0 sm:ml-[200px]'>
             <h4 className='text-[32px] leading-10 text-center sm:text-start'>
