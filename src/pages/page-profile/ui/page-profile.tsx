@@ -27,6 +27,7 @@ const PageProfile: FC = () => {
   const currentUser = (isMyProfile ? user : allUsers.find((item) => item.id === id)) as
     | IUser
     | IAllUser
+    | undefined
   const currentUserFriends: string[] | undefined = isMyProfile
     ? userFriends.map((friend) =>
         friend.fromId === user?.id ? friend.toId : friend.fromId
@@ -58,8 +59,8 @@ const PageProfile: FC = () => {
         <div className='w-full xxl:w-2/3 rounded-[10px] flex flex-col gap-[20px] xl:gap-[30px]'>
           <Banner
             className='h-[180px] sm:h-[295px] lg:h-[337px]'
-            src={currentUser.banner || null}
-            userId={currentUser.id}
+            src={currentUser?.banner || null}
+            userId={currentUser?.id}
           />
           {/* mobile user info */}
           <BlockProfileMobile

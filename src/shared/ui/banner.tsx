@@ -1,14 +1,14 @@
 import { cn } from '@shared/lib/merge-classes'
+import { URL_BANNERS } from '@shared/lib/url'
 import { type FC } from 'react'
 
 import banner from '@assets/banner/default user banner.jpg'
-import { URL_BANNERS } from '@shared/lib/url'
 
 interface IBannerProps {
   className?: string
   src: string | null
   isImgNotOnBackend?: boolean
-  userId: string
+  userId: string | undefined
 }
 
 const Banner: FC<IBannerProps> = ({ className, src, isImgNotOnBackend, userId }) => {
