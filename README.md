@@ -46,11 +46,26 @@ _Frontend часть Open Source проекта "Sakura"_
 
 ---
 
-🔨 Используемые технологии:
+**Фронтенд:**
 
--    React (hooks, router-dom)
--    Redux Toolkit
--    TypeScript
--    Shadcn UI / Tailwind
--    ESLint / Prettier
--    Vite
+<img src="https://img.shields.io/badge/React-494a52?style=for-the-badge&logo=react&logoColor=white"/> <img src="https://img.shields.io/badge/Redux Toolkit-494a52?style=for-the-badge&logo=redux&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-494a52?style=for-the-badge&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Shadcn UI-494a52?style=for-the-badge&logo=shadcnui&logoColor=white"/> <img src="https://img.shields.io/badge/Tailwind-494a52?style=for-the-badge&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-494a52?style=for-the-badge&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-494a52?style=for-the-badge&logo=prettier&logoColor=white"/> <img src="https://img.shields.io/badge/Vite-494a52?style=for-the-badge&logo=vite&logoColor=white"/> <img src="https://img.shields.io/badge/Socket.io-494a52?style=for-the-badge&logo=socketdotio&logoColor=white"/>
+
+**Бэкенд:**
+
+<img src="https://img.shields.io/badge/Express-494a52?style=for-the-badge&logo=Express&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-494a52?style=for-the-badge&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/PostgreSQL-494a52?style=for-the-badge&logo=PostgreSQL&logoColor=white"/> <img src="https://img.shields.io/badge/Prisma-494a52?style=for-the-badge&logo=Prisma&logoColor=white"/> <img src="https://img.shields.io/badge/Redis-494a52?style=for-the-badge&logo=Redis&logoColor=white"/> <img src="https://img.shields.io/badge/Zod-494a52?style=for-the-badge&logo=Zod&logoColor=white"/> <img src="https://img.shields.io/badge/Docker-494a52?style=for-the-badge&logo=Docker&logoColor=white"/> <img src="https://img.shields.io/badge/Pino-494a52?style=for-the-badge&logo=Pino&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-494a52?style=for-the-badge&logo=prettier&logoColor=white"/> <img src="https://img.shields.io/badge/husky-494a52?style=for-the-badge&logo=husky&logoColor=white"/> <img src="https://img.shields.io/badge/Swagger-494a52?style=for-the-badge&logo=Swagger&logoColor=white"/> <img src="https://img.shields.io/badge/Socket.io-494a52?style=for-the-badge&logo=socketdotio&logoColor=white"/>
+
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br/><a href="https://t.me/Alex130395"><sub><b>Алексей Кузнецов</b></sub></a><br/><sub>Project Manager</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/VPDenis"><sub><b>Денис Дюжиков</b></sub></a><br/><sub>Founder, Frontend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Dunissimmo"><sub><b>Денис</b></sub></a><br/><sub>Frontend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/aigul_tok"><sub><b>Айгуль</b></sub></a><br/><sub>Backend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Assokka"><sub><b>Екатерина</b></sub></a><br/><sub>DevOps</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Overkast"><sub><b>Борис</b></sub></a><br/><sub>UX/UI-designer</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Maria_Kalinichenko"><sub><b>Мария</b></sub></a><br/><sub>QA-engineer</sub></td>
+    </tr>
+  </tbody>
+</table>
