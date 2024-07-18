@@ -29,9 +29,7 @@ const AvatarChange: FC = () => {
           if (previewUrl) {
             setAvatarImg(previewUrl[0])
           } else if (user?.avatar) {
-            const urlOnBackend =
-              import.meta.env.VITE_BACKEND_DOMEN + '/ftp/avatars/' + user?.avatar
-            setAvatarImg(urlOnBackend)
+            setAvatarImg(user?.avatar)
           } else {
             setAvatarImg(null)
           }
