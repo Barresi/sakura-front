@@ -30,9 +30,7 @@ const BannerChange: FC = () => {
           if (previewUrl) {
             setBannerImg(previewUrl[0])
           } else if (user?.banner) {
-            const urlOnBackend =
-              import.meta.env.VITE_BACKEND_DOMEN + '/ftp/banners/' + user?.banner
-            setBannerImg(urlOnBackend)
+            setBannerImg(user?.banner)
           } else {
             setBannerImg(null)
           }
