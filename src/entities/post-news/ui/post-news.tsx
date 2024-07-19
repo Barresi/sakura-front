@@ -30,7 +30,13 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
     if (!post?.pictures.length) return null
     // Десктоп версия картинок
     if (isMobile) {
-      if (post?.pictures.length === 1) return null
+      if (post?.pictures.length === 1)
+        return (
+          <img
+            src={urlOnBackend + post?.pictures[0]}
+            className='object-cover w-full h-[400px] rounded-[10px]'
+          />
+        )
 
       return (
         <CarouselWithPoints className='sm:hidden'>
