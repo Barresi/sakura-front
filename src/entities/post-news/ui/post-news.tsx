@@ -1,12 +1,12 @@
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
 import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
 import { type IPost } from '@shared/lib/types/api'
-import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 import { LinkName } from '@shared/ui/link-name'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
 import eye from '@assets/ui/Eye.svg'
+import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
 import { ShowFullText } from '@shared/ui/show-full-text'
 
 interface IPostNewsProps {
@@ -16,6 +16,7 @@ interface IPostNewsProps {
 }
 const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
   const maxLength = useWindowSize(1024) ? 200 : 400
+  const isMobile = useWindowSize(640)
 
   const createDate = post?.createdAt
     ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
@@ -24,6 +25,47 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
   const urlOnBackend = `${
     import.meta.env.VITE_BACKEND_DOMEN
   }/ftp/posts/${post?.createdById}/`
+
+  const pictures = (): null | ReactNode => {
+    if (!post?.pictures.length) return null
+    // Десктоп версия картинок
+    if (isMobile) {
+      if (post?.pictures.length === 1)
+        return (
+          <img
+            src={urlOnBackend + post?.pictures[0]}
+            className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
+          />
+        )
+
+      return (
+        <CarouselWithPoints className='sm:hidden'>
+          {post?.pictures.map((picture, ind) => (
+            <CarouselItem key={ind}>
+              <img
+                src={urlOnBackend + picture}
+                className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
+              />
+            </CarouselItem>
+          ))}
+        </CarouselWithPoints>
+      )
+    }
+
+    return (
+      <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] grid'>
+        {post?.pictures.map((picture, ind) => (
+          <img
+            src={urlOnBackend + picture}
+            key={ind}
+            className={`object-cover w-full h-full rounded-[10px] ${
+              post?.pictures.length === 1 && ind === 0 ? 'col-span-2' : ''
+            } ${post?.pictures.length === 3 && ind === 0 ? 'row-span-2' : ''}`}
+          />
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
@@ -48,39 +90,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
 
       <ShowFullText text={post?.text} maxLength={maxLength} />
 
-      {post?.pictures.length ? (
-        post?.pictures.length === 1 ? (
-          <img
-            src={urlOnBackend + post?.pictures[0]}
-            className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px] sm:hidden'
-          />
-        ) : (
-          <CarouselWithPoints className='sm:hidden'>
-            {post?.pictures.map((picture, ind) => (
-              <CarouselItem key={ind}>
-                <img
-                  src={urlOnBackend + picture}
-                  className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
-                />
-              </CarouselItem>
-            ))}
-          </CarouselWithPoints>
-        )
-      ) : null}
-
-      {post?.pictures.length ? (
-        <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] hidden sm:grid'>
-          {post?.pictures.map((picture, ind) => (
-            <img
-              src={urlOnBackend + picture}
-              key={ind}
-              className={`object-cover w-full h-full rounded-[10px] ${
-                post?.pictures.length === 1 && ind === 0 ? 'col-span-2' : ''
-              } ${post?.pictures.length === 3 && ind === 0 ? 'row-span-2' : ''}`}
-            />
-          ))}
-        </div>
-      ) : null}
+      {pictures()}
 
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
