@@ -53,7 +53,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
     }
 
     return (
-      <div className=' grid-cols-2 auto-rows-fr gap-3 max-h-[500px] grid'>
+      <div className=' grid-cols-2 auto-rows-fr gap-3 h-[400px] grid'>
         {post?.pictures.map((picture, ind) => (
           <img
             src={urlOnBackend + picture}
