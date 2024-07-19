@@ -61,11 +61,11 @@ _Frontend часть Open Source проекта "Sakura"_
     <tr>
       <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br/><a href="https://t.me/Alex130395"><sub><b>Алексей Кузнецов</b></sub></a><br/><sub>Project Manager</sub></td>
       <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/VPDenis"><sub><b>Денис Дюжиков</b></sub></a><br/><sub>Founder, Frontend dev</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Dunissimmo"><sub><b>Денис</b></sub></a><br/><sub>Frontend dev</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/aigul_tok"><sub><b>Айгуль</b></sub></a><br/><sub>Backend dev</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Assokka"><sub><b>Екатерина</b></sub></a><br/><sub>DevOps</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Overkast"><sub><b>Борис</b></sub></a><br/><sub>UX/UI-designer</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Maria_Kalinichenko"><sub><b>Мария</b></sub></a><br/><sub>QA-engineer</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Dunissimmo"><sub><b>Денис Москвин</b></sub></a><br/><sub>Frontend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/aigul_tok"><sub><b>Айгуль Токтасынова</b></sub></a><br/><sub>Backend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Assokka"><sub><b>Екатерина Фёдорова</b></sub></a><br/><sub>DevOps</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Overkast"><sub><b>Борис Маслов</b></sub></a><br/><sub>UX/UI-designer</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Maria_Kalinichenko"><sub><b>Мария Калиниченко</b></sub></a><br/><sub>QA-engineer</sub></td>
     </tr>
   </tbody>
 </table>
