@@ -34,7 +34,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
         return (
           <img
             src={urlOnBackend + post?.pictures[0]}
-            className='object-cover w-full h-[400px] rounded-[10px]'
+            className='object-cover w-full h-[20vh] rounded-[10px]'
           />
         )
 
@@ -44,7 +44,7 @@ const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
             <CarouselItem key={ind}>
               <img
                 src={urlOnBackend + picture}
-                className='object-cover w-full h-full rounded-[10px] max-h-[400px] min-h-[150px]'
+                className='object-cover w-full rounded-[10px] h-[20vh]'
               />
             </CarouselItem>
           ))}
