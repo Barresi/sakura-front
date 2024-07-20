@@ -29,7 +29,7 @@ const CardTeammate: FC<ICardTeammateProps> = ({
         {/* @ts-expect-error Аватары берутся локально, userId не нужен */}
         <UserAvatar
           src={avatar ? teamPhotos[avatar] : defAvatar}
-          className={isMobile ? 'rounded-[10px] w-full h-[250px]' : 'w-[80px] h-[80px]'}
+          className={isMobile ? 'rounded-[10px] w-full h-[250px]' : 'w-[120px] h-[120px]'}
           isImgNotOnBackend
         />
         <h4 className={`dark:text-[#7070BF] text-redHover text-center`}>
@@ -43,7 +43,11 @@ const CardTeammate: FC<ICardTeammateProps> = ({
       >
         {role}
       </h5>
-      <p className={isMobile ? 'text-center' : 'grow-0 shrink-0 basis-[65%] text-left'}>
+      <p
+        className={
+          isMobile ? 'text-center' : 'grow-0 shrink-0 basis-[65%] text-left leading-7'
+        }
+      >
         {desc}
       </p>
     </div>
