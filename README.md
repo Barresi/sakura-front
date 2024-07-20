@@ -12,7 +12,6 @@ _Frontend часть Open Source проекта "Sakura"_
 
 - **Чаты:** Возможность общаться с другими пользователями через личные и групповые чаты.
 
-
 - **Добавление в друзья:** Функция позволяет пользователям добавлять друг друга в список друзей для более легкого взаимодействия и доступа к профилям.
 
 - **Система уведомлений:** Уведомления о новых сообщениях, друзьях, активности в группах и других событиях, чтобы пользователи всегда оставались в курсе происходящего.
@@ -23,9 +22,7 @@ _Frontend часть Open Source проекта "Sakura"_
 
 - **Просмотр новостей:** Доступ к новостной ленте, где пользователи могут узнавать актуальную информацию о событиях, обновлениях и интересных материалах от сообщества.
 
-- **Смена темы приложения:** Опция выбора темы оформления для приложения, чтобы пользователи могли настроить внешний вид интерфейса в соответствии со своими предпочтениями и комфортом для глаз.  
-
-
+- **Смена темы приложения:** Опция выбора темы оформления для приложения, чтобы пользователи могли настроить внешний вид интерфейса в соответствии со своими предпочтениями и комфортом для глаз.
 
 Этот функционал обеспечивает удобство взаимодействия и позволяет пользователям наслаждаться полным и разнообразным опытом использования социальной сети **Sakura**.
 
@@ -37,8 +34,8 @@ _Frontend часть Open Source проекта "Sakura"_
 
 Взаимодействие с сервером происходит посредством:
 
--    **REST API** - регистрация, авторизация, взаимодействие с друзьями, получение информации о пользователе, некоторый функционал мессенджера и т.д.
--    **WebSocket** - функционал получения всех типов уведомлений, чаты с другими пользователями.
+- **REST API** - регистрация, авторизация, взаимодействие с друзьями, получение информации о пользователе, некоторый функционал мессенджера и т.д.
+- **WebSocket** - функционал получения всех типов уведомлений, чаты с другими пользователями.
 
 Управление состоянием хранилища происходит при помощи библиотеки **Redux Toolkit**.
 
@@ -59,13 +56,13 @@ _Frontend часть Open Source проекта "Sakura"_
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br/><a href="https://t.me/Alex130395"><sub><b>Алексей Кузнецов</b></sub></a><br/><sub>Project Manager</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/VPDenis"><sub><b>Денис Дюжиков</b></sub></a><br/><sub>Founder, Frontend dev</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Dunissimmo"><sub><b>Денис Москвин</b></sub></a><br/><sub>Frontend dev</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/aigul_tok"><sub><b>Айгуль Токтасынова</b></sub></a><br/><sub>Backend dev</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Assokka"><sub><b>Екатерина Фёдорова</b></sub></a><br/><sub>DevOps</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Overkast"><sub><b>Борис Маслов</b></sub></a><br/><sub>UX/UI-designer</sub></td>
-      <td align="center" valign="top" width="14.28%"><img src="https://i.ibb.co/tPJZ2rj/image.png" width="100px;" /><br /><a href="https://t.me/Maria_Kalinichenko"><sub><b>Мария Калиниченко</b></sub></a><br/><sub>QA-engineer</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Alexey.jpg" width="100px;" /><br/><a href="https://t.me/Alex130395"><sub><b>Алексей Кузнецов</b></sub></a><br/><sub>Project Manager</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Denis.jpg" width="100px;" /><br /><a href="https://t.me/VPDenis"><sub><b>Денис Дюжиков</b></sub></a><br/><sub>Founder, Frontend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Denis2.jfif" width="100px;" /><br /><a href="https://t.me/Dunissimmo"><sub><b>Денис Москвин</b></sub></a><br/><sub>Frontend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Aigul.jpg" width="100px;" /><br /><a href="https://t.me/aigul_tok"><sub><b>Айгуль Токтасынова</b></sub></a><br/><sub>Backend dev</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Kate.jpg" width="100px;" /><br /><a href="https://t.me/Assokka"><sub><b>Екатерина Фёдорова</b></sub></a><br/><sub>DevOps</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Boris.jfif" width="100px;" /><br /><a href="https://t.me/Overkast"><sub><b>Борис Маслов</b></sub></a><br/><sub>UX/UI-designer</sub></td>
+      <td align="center" valign="top" width="14.28%"><img src="./src//shared/assets/sakura-team/Maria.jfif" width="100px;" /><br /><a href="https://t.me/Maria_Kalinichenko"><sub><b>Мария Калиниченко</b></sub></a><br/><sub>QA-engineer</sub></td>
     </tr>
   </tbody>
 </table>
