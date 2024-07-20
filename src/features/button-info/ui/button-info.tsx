@@ -1,5 +1,5 @@
 import { CardTeammate } from '@entities/card-teammate/ui/card-teammate'
-import { type ITeammate } from '@shared/lib/types/types'
+import { team } from '@shared/lib/team'
 import { Button } from '@shared/ui/button'
 import { ButtonSetting } from '@shared/ui/button-setting'
 import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
@@ -19,58 +19,6 @@ interface IButtonInfoProps {
   children?: ReactNode
   className?: string
 }
-
-const team: ITeammate[] = [
-  {
-    avatar: '',
-    firstName: 'Айгуль',
-    role: 'Backend Dev',
-    telegram: '@aigul_tok',
-    desc: 'Айгуль – наш мастер кодовых свитков. Её навыки в бэкенд-разработке обеспечивают мощь и надежность "Sakura", как крепость, защищающая наше цифровое сообщество.'
-  },
-  {
-    avatar: '',
-    firstName: 'Екатерина',
-    role: 'DevOps',
-    telegram: '@Assokka',
-    desc: 'Екатерина, наш DevOps-дзен-мастер, отвечает за безупречную работу инфраструктуры "Sakura". Благодаря её искусству автоматизации, платформа всегда стабильна, как гора Фудзи.'
-  },
-  {
-    avatar: '',
-    firstName: 'Алексей',
-    role: 'PM',
-    telegram: '@Alex130395',
-    desc: 'Алексей – наш стратег и руководитель, как мудрый даймё, координирующий команду и ведя нас к успеху. Его умение управлять проектами помогает нам достигать всех поставленных целей.'
-  },
-  {
-    avatar: '',
-    firstName: 'Борис',
-    role: 'UX/UI Designer',
-    telegram: '@Overkast',
-    desc: 'Борис – художник нашего виртуального сада "Sakura". Его креативность и внимание к деталям превращают платформу в эстетически приятное и интуитивно понятное пространство, вдохновляя пользователей на новые подвиги.'
-  },
-  {
-    avatar: '',
-    firstName: 'Денис',
-    role: 'Основатель, Frontend Dev',
-    telegram: '@VPDenis',
-    desc: 'Денис – основатель и фронтенд-воин "Sakura". Его видение и опыт создают волшебный интерфейс, который завораживает и вдохновляет пользователей.'
-  },
-  {
-    avatar: '',
-    firstName: 'Денис',
-    role: 'Frontend Dev',
-    telegram: '@Dunissimmo',
-    desc: 'Второй Денис – наш художник интерфейсов, превращающий "Sakura" в интерактивный и отзывчивый мир. Его работа обеспечивает превосходный пользовательский опыт, как искусный каллиграф создает свои шедевры.'
-  },
-  {
-    avatar: '',
-    firstName: 'Мария',
-    role: 'QA',
-    telegram: '@Maria_Kalinichenko',
-    desc: 'Мария – наш самурай качества, чья задача – обеспечить безупречную работу "Sakura". Она тщательно тестирует каждую функцию, как катана проверяется на остроту, гарантируя надежность и стабильность платформы.'
-  }
-]
 
 const backTools = ['Node', 'Express', 'Redis', 'TypeScript', 'Docker', 'PostgreSQL']
 const frontTools = ['TypeScript', 'React', 'Redux Toolkit', 'Tailwind', 'Shadcn UI']
@@ -134,7 +82,7 @@ const ButtonInfo: FC<IButtonInfoProps> = ({ className }) => {
           <TitleGradient>Команда проекта</TitleGradient>
           <CarouselWithPoints className='lg:hidden'>
             {team.map((teammate, ind) => (
-              <CarouselItem key={ind}>
+              <CarouselItem key={ind} className='sm:basis-1/2'>
                 <CardTeammate {...teammate} isMobile />
               </CarouselItem>
             ))}

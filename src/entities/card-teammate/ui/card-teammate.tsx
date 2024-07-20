@@ -1,6 +1,8 @@
-import { type ITeammate } from '@shared/lib/types/types'
+import { teamPhotos, type ITeammate } from '@shared/lib/team'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
+
+import defAvatar from '@assets/avatar/default avatar light.svg'
 
 interface ICardTeammateProps extends ITeammate {
   className?: string
@@ -17,15 +19,19 @@ const CardTeammate: FC<ICardTeammateProps> = ({
 }) => {
   return (
     <div
-      className={`flex items-center  m-auto px-3 py-4 rounded-[10px] text-lg leading-5 ${className} ${
+      className={`flex items-center  m-auto p-4 usm:px-8 usm:py-8 rounded-[10px] text-lg leading-5 ${className} ${
         isMobile
-          ? 'flex-col max-w-[400px] bg-ghostlyWhite dark:bg-[#3C3C51] gap-[10px] justify-center h-full'
+          ? 'flex-col  bg-ghostlyWhite dark:bg-[#3C3C51] gap-[10px] h-full'
           : 'gap-2 w-[100%] justify-between'
       }`}
     >
-      <div className='flex flex-col gap-[10px] shrink-0 basis-[140px]'>
+      <div className='flex flex-col gap-[10px] shrink-0 basis-[140px] w-full'>
         {/* @ts-expect-error Аватары берутся локально, userId не нужен */}
-        <UserAvatar src={avatar} className='w-[80px] h-[80px]' />
+        <UserAvatar
+          src={avatar ? teamPhotos[avatar] : defAvatar}
+          className={isMobile ? 'rounded-[10px] w-full h-[250px]' : 'w-[80px] h-[80px]'}
+          isImgNotOnBackend
+        />
         <h4 className={`dark:text-[#7070BF] text-redHover text-center`}>
           {firstName} <br /> ({telegram})
         </h4>

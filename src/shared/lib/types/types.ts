@@ -11,11 +11,3 @@ export interface IUser {
   gender: 'male' | 'female' | null
   description: string | null
 }
-
-export interface ITeammate {
-  avatar: string
-  firstName: string
-  telegram: string
-  desc: string
-  role: string
-}
