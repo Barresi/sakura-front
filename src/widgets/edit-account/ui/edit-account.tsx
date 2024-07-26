@@ -248,8 +248,8 @@ const EditAccount: FC = () => {
             <Textarea
               {...register('description', {
                 maxLength: {
-                  value: 200,
-                  message: 'Максимальное кол-во символов: 200'
+                  value: 1000,
+                  message: 'Максимальное кол-во символов: 1000'
                 }
               })}
               error={

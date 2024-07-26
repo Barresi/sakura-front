@@ -3,6 +3,7 @@ import { ButtonEditProfile } from '@features/button-edit-profile'
 import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-friend-actions'
 import { type IAllUser } from '@shared/lib/types/api'
 import { type IUser } from '@shared/lib/types/types'
+import { ShowFullText } from '@shared/ui/show-full-text'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC } from 'react'
 
@@ -24,7 +25,13 @@ const BlockProfile: FC<IBlockProfileProps> = ({ user, isMyProfile, friends }) =>
         <h4 className='text-[32px] leading-10 text-center'>
           {user?.firstName} {user?.lastName}
         </h4>
-        {user?.description && <div className=' text-center'>{user?.description}</div>}
+        {user?.description && (
+          <ShowFullText
+            text={user?.description}
+            maxLength={100}
+            className=' text-center'
+          />
+        )}
         {/* <CardProfileDesc /> */}
         <RowFriends
           friends={friends?.map((friend) => ({

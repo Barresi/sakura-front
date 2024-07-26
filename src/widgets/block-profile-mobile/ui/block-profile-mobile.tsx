@@ -6,6 +6,7 @@ import { type FC } from 'react'
 
 import { ButtonEditProfile } from '@features/button-edit-profile'
 import { type IAllUser } from '@shared/lib/types/api'
+import { ShowFullText } from '@shared/ui/show-full-text'
 
 interface IBlockProfileMobileProps {
   user: IUser | undefined
@@ -31,9 +32,12 @@ const BlockProfileMobile: FC<IBlockProfileMobileProps> = ({
             <h4 className='text-[32px] leading-10 text-center sm:text-start'>
               {user?.firstName} {user?.lastName}
             </h4>
-            <div className='block text-center sm:hidden mt-[20px] w-full mb-[20px]'>
-              {user?.description}
-            </div>
+            <ShowFullText
+              text={user?.description}
+              maxLength={100}
+              className='block text-center sm:hidden mt-[20px] w-full mb-[20px]'
+            />
+
             {/* <CardProfileDesc /> */}
           </div>
         </div>
@@ -45,9 +49,11 @@ const BlockProfileMobile: FC<IBlockProfileMobileProps> = ({
       </div>
       <div className='sm:mt-[15px] w-full gap-[20px] flex items-center flex-col lg:flex-row'>
         {user?.description && (
-          <div className='flex-[50%] hidden sm:block w-full self-start'>
-            {user?.description}
-          </div>
+          <ShowFullText
+            text={user?.description}
+            maxLength={100}
+            className='flex-[50%] hidden sm:block w-full self-start'
+          />
         )}
         <div className='w-full lg:flex-[50%] self-start flex flex-col gap-[15px]'>
           <RowFriends
