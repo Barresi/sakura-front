@@ -13,6 +13,7 @@ interface IInputCreatePostProps {
 }
 
 const maxMbOfFiles = 2
+const maxLengthText = 1000
 
 const InputCreatePost: FC<IInputCreatePostProps> = ({ className }) => {
   const user = useAppSelector(selectUser)
@@ -22,6 +23,13 @@ const InputCreatePost: FC<IInputCreatePostProps> = ({ className }) => {
       toast({
         title: 'Системное уведомление',
         description: `Максимальный размер файлов для загрузки - ${maxMbOfFiles}МБ`
+      })
+      return
+    }
+    if (text.length > maxLengthText) {
+      toast({
+        title: 'Системное уведомление',
+        description: `Максимальный размер текста в посте - ${maxLengthText} символов`
       })
       return
     }
