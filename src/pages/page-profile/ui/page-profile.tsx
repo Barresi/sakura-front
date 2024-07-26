@@ -1,6 +1,7 @@
 import { selectAllUsers, selectFriends } from '@app/store/reducers/friends/selectors'
 import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { PostEmpty } from '@entities/post-empty'
 import { PostNews } from '@entities/post-news'
 import { ButtonDeletePost } from '@features/button-delete-post'
 import { ButtonLikePost } from '@features/button-like-post'
@@ -14,6 +15,26 @@ import { BlockProfile } from '@widgets/block-profile'
 import { BlockProfileMobile } from '@widgets/block-profile-mobile'
 import { useEffect, type FC } from 'react'
 import { useParams } from 'react-router-dom'
+
+const myProfileText = (
+  <>
+    <p className=' text-lg'>Добро пожаловать в ваш профиль!</p>
+    <p className=' text-lg'>
+      Пока здесь нет постов, но не волнуйтесь – это отличная возможность начать свою
+      историю. Поделитесь своими мыслями, планами и идеями с сообществом Sakura. Ваши
+      первые посты могут вдохновить других самураев на новые свершения!
+    </p>
+  </>
+)
+const otherProfileText = (
+  <>
+    <p className=' text-lg'>Добро пожаловать в профиль пользователя!</p>
+    <p className=' text-lg'>
+      На данный момент здесь нет постов. Возвращайтесь позже, чтобы узнать больше о мыслях
+      и идеях этого самурая.
+    </p>
+  </>
+)
 
 const PageProfile: FC = () => {
   const posts = useAppSelector(selectAllPosts)
@@ -70,14 +91,18 @@ const PageProfile: FC = () => {
           />
 
           {isMyProfile && <InputCreatePost />}
-          {currentUserPosts.map((post, ind) => (
-            <PostNews
-              post={post}
-              key={ind}
-              buttonLike={<ButtonLikePost post={post} />}
-              buttonDelete={<ButtonDeletePost post={post} />}
-            />
-          ))}
+          {currentUserPosts.length ? (
+            currentUserPosts.map((post, ind) => (
+              <PostNews
+                post={post}
+                key={ind}
+                buttonLike={<ButtonLikePost post={post} />}
+                buttonDelete={<ButtonDeletePost post={post} />}
+              />
+            ))
+          ) : (
+            <PostEmpty>{isMyProfile ? myProfileText : otherProfileText}</PostEmpty>
+          )}
         </div>
       </div>
     </div>

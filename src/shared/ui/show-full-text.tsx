@@ -2,7 +2,7 @@ import { useState, type FC } from 'react'
 
 interface IShowFullTextProps {
   text: string | undefined | null
-  maxLength: number
+  maxLength?: number
   className?: string
 }
 const ShowFullText: FC<IShowFullTextProps> = ({ className, maxLength = 200, text }) => {

@@ -1,6 +1,7 @@
 import { selectFriends } from '@app/store/reducers/friends/selectors'
 import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { PostEmpty } from '@entities/post-empty'
 import { PostNews } from '@entities/post-news'
 import { ButtonDeletePost } from '@features/button-delete-post'
 import { ButtonLikePost } from '@features/button-like-post'
@@ -45,14 +46,24 @@ const PageNews: FC = () => {
 
       <div className='list w-full xxl:w-2/3 rounded-[10px] flex flex-col gap-[30px]'>
         <InputCreatePost />
-        {tabs[type].map((post, ind) => (
-          <PostNews
-            post={post}
-            key={ind}
-            buttonLike={<ButtonLikePost post={post} />}
-            buttonDelete={<ButtonDeletePost post={post} />}
-          />
-        ))}
+        {tabs[type].length ? (
+          tabs[type].map((post, ind) => (
+            <PostNews
+              post={post}
+              key={ind}
+              buttonLike={<ButtonLikePost post={post} />}
+              buttonDelete={<ButtonDeletePost post={post} />}
+            />
+          ))
+        ) : (
+          <PostEmpty>
+            <p className=' text-lg'>Добро пожаловать в раздел новостей Sakura!</p>
+            <p className=' text-lg'>
+              На данный момент здесь нет новых постов. Возвращайтесь позже, чтобы узнать о
+              последних событиях, обновлениях и историях от нашего сообщества самураев.
+            </p>
+          </PostEmpty>
+        )}
       </div>
     </div>
   )
