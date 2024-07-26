@@ -22,6 +22,9 @@ import arrow from '@assets/ui/arrow.svg'
 import { AppRoutes } from '@shared/lib/types/routes'
 import { LinkName } from '@shared/ui/link-name'
 import { TitleSystem } from '@shared/ui/title-system'
+import { toast } from '@widgets/toaster/lib/use-toast'
+
+const maxMessageLength = 1000
 
 const Chat: FC = () => {
   const {
@@ -52,6 +55,13 @@ const Chat: FC = () => {
 
   const sendMessage = (message: string): void => {
     if (!socket) return
+    if (message.length > maxMessageLength) {
+      toast({
+        title: 'Системное уведомление',
+        description: `Максимальный размер сообщения - ${maxMessageLength} символов`
+      })
+      return
+    }
     socket.emit(SEND_MESSAGE_EVENT, {
       userId: user?.id,
       message,
