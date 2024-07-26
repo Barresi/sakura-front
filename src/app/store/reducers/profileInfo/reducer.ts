@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { capitalizeFirstLetter } from '@shared/lib/capitalize-first-letter'
-import { convertBirthDate } from '@shared/lib/convert-birth-date'
+import { convertStringToDate } from '@shared/lib/convert-string-to-date'
 import { deleteCookie, setCookie } from '@shared/lib/cookie'
 import { AuthStatus } from '@shared/lib/types/api'
 import { type IUser } from '@shared/lib/types/types'
@@ -48,7 +48,7 @@ const profileInfoSlice = createSlice({
         ...user,
         firstName: capitalizeFirstLetter(user.firstName),
         lastName: capitalizeFirstLetter(user.lastName),
-        birthDate: convertBirthDate(user.birthDate)
+        birthDate: convertStringToDate(user.birthDate)
       }
 
       setCookie('accessToken', action.payload.accessToken)
@@ -84,7 +84,7 @@ const profileInfoSlice = createSlice({
         ...user,
         firstName: capitalizeFirstLetter(user.firstName),
         lastName: capitalizeFirstLetter(user.lastName),
-        birthDate: convertBirthDate(user.birthDate)
+        birthDate: convertStringToDate(user.birthDate)
       }
       state.status = AuthStatus.authorized
     })
@@ -107,7 +107,7 @@ const profileInfoSlice = createSlice({
           ...updatedFields,
           firstName: capitalizeFirstLetter(updatedFields.firstName),
           lastName: capitalizeFirstLetter(updatedFields.lastName),
-          birthDate: convertBirthDate(updatedFields.birthDate)
+          birthDate: convertStringToDate(updatedFields.birthDate)
         }
     })
     builder.addCase(editUserInfoThunk.rejected, (state, action) => {

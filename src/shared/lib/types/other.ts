@@ -4,3 +4,8 @@ export enum FriendTabs {
   SENDED = 'sended',
   FRIENDS = 'friends'
 }
+
+export enum NewsTabs {
+  ALL = 'all',
+  FRIENDS = 'friends'
+}

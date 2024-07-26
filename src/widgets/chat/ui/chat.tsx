@@ -1,6 +1,6 @@
 import { SocketEvents } from '@app/providers/socket-context/lib/socket-context'
 import { useSocket } from '@app/providers/socket-context/lib/useSocket'
-import { Message } from '@entities/message/message'
+import { Message } from '@entities/message'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { parseDateToMonth } from '@shared/lib/parse-date'
 import { type IMessage } from '@shared/lib/types/api'
@@ -21,6 +21,10 @@ import {
 import arrow from '@assets/ui/arrow.svg'
 import { AppRoutes } from '@shared/lib/types/routes'
 import { LinkName } from '@shared/ui/link-name'
+import { TitleSystem } from '@shared/ui/title-system'
+import { toast } from '@widgets/toaster/lib/use-toast'
+
+const maxMessageLength = 1000
 
 const Chat: FC = () => {
   const {
@@ -51,6 +55,13 @@ const Chat: FC = () => {
 
   const sendMessage = (message: string): void => {
     if (!socket) return
+    if (message.length > maxMessageLength) {
+      toast({
+        title: 'Системное уведомление',
+        description: `Максимальный размер сообщения - ${maxMessageLength} символов`
+      })
+      return
+    }
     socket.emit(SEND_MESSAGE_EVENT, {
       userId: user?.id,
       message,
@@ -128,17 +139,17 @@ const Chat: FC = () => {
           >{`${friend?.firstName} ${friend?.lastName}`}</LinkName>
         </div>
 
-        <UserAvatar src={friend?.avatar || null} link={friendId} />
+        <UserAvatar src={friend?.avatar || null} link={friendId} userId={friend?.id} />
       </div>
       <div
         ref={container}
         className='h-[100%] mt-[80px] flex flex-col overflow-auto overflow-x-hidden mb-[50px] md:mb-[70px] xxl:mb-[90px] scrollbar-none bg-body dark:bg-bodyDark md:bg-white md:dark:bg-grayBlue md:px-5'
       >
-        <span className=' text-center my-4 text-signalBlack dark:text-darkGray'>
+        <TitleSystem className='mt-4'>
           {currentChat?.createdBy === user?.id
             ? `Вы создали чат`
             : `${friend?.firstName} создал(а) чат`}
-        </span>
+        </TitleSystem>
 
         {formattedMessages.map(({ date, messages }) => {
           return (

@@ -16,9 +16,15 @@ export interface IEditUserInfoForm {
   birthDate?: 'string'
   gender?: 'string'
   description?: 'string'
+  avatar?: File | null
+  banner?: File | null
 }
 export interface IEditUserSecurityInfoForm {
   email?: string
   password?: string
   confirmPassword: string
+}
+export interface ICreatePostForm {
+  text: string
+  pictures?: FileList
 }

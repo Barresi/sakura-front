@@ -20,9 +20,12 @@ export const getUserInfo = async (): Promise<IGetUserInfoResponse> => {
 export const editUserInfo = async (
   form: IEditUserInfoForm
 ): Promise<IEditUserInfoResponse> => {
-  const res = await apiWithAuth.patch<IEditUserInfoResponse>('/auth/account', form, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  })
+  const formData = new FormData()
+  for (const property in form) {
+    formData.append(property, form[property as keyof IEditUserInfoForm] as File | string)
+  }
+
+  const res = await apiWithAuth.patch<IEditUserInfoResponse>('/auth/account', formData)
 
   return res.data
 }

@@ -9,8 +9,8 @@ export const getUserChatsThunk = createAsyncThunk<IGetUserChatsResponse>(
     try {
       return await getUserChatsRequest()
     } catch (err) {
-      if (err instanceof AxiosError && err.response?.data.msg) {
-        return rejectWithValue(err.response.data.msg)
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.message)
       } else {
         return rejectWithValue('Упс, что-то пошло не так')
       }

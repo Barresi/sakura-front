@@ -19,5 +19,6 @@ export enum SocketEvents {
   NTF_USER_SEND_FRIEND_EVENT = 'ntfSendFriend',
   NTF_USER_ACCEPT_FRIEND_EVENT = 'ntfAcceptFriend',
   NTF_USER_REJECT_FRIEND_EVENT = 'ntfRejectFriend',
-  NTF_GET_MESSAGE_EVENT = 'ntfGetMessage'
+  NTF_GET_MESSAGE_EVENT = 'ntfGetMessage',
+  NTF_LIKE_POST_EVENT = 'ntfLikePost'
 }

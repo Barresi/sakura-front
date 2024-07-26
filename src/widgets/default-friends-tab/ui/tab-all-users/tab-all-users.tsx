@@ -4,6 +4,7 @@ import { ButtonsFriendActions } from '@features/buttons-friend-actions/buttons-f
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { FriendTabs } from '@shared/lib/types/other'
 import { type IBaseTabProps } from '@shared/lib/types/props'
+import { TitleSystem } from '@shared/ui/title-system'
 import { selectAllUsers } from '@store/reducers/friends/selectors'
 import { selectUser } from '@store/reducers/profileInfo/selectors'
 import { type FC } from 'react'
@@ -18,7 +19,9 @@ const TabAllUsers: FC<ITabAllUsersProps> = ({ search }) => {
   return (
     <>
       {users?.length < 1 ? (
-        <span className='text-lg flex justify-center mt-5'>Здесь пока ничего нет</span>
+        <TitleSystem className='text-lg flex justify-center mt-5'>
+          Здесь пока ничего нет
+        </TitleSystem>
       ) : (
         <div className='flex flex-col gap-[20px]'>
           {users

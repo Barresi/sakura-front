@@ -44,7 +44,7 @@ html {
 
 body {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 /* Отключает изменение цвета background и color у input при автозаполнении*/

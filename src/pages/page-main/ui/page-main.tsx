@@ -1,3 +1,4 @@
+import { getAllPostsThunk } from '@app/store/reducers/news/async-thunks'
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useCurrentRoute } from '@shared/lib/hooks/useCurrentRoute'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
@@ -32,6 +33,7 @@ const PageMain: FC = () => {
         dispatch(getFriendsThunk())
         dispatch(getAllUsersThunk())
         dispatch(getUserNotificationsThunk())
+        dispatch(getAllPostsThunk())
       })
     }
   }, [status])

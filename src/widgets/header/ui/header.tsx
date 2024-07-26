@@ -1,5 +1,6 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonChangeTheme } from '@features/button-change-theme'
+import { ButtonInfo } from '@features/button-info'
 import { ButtonOpenNotifications } from '@features/button-open-notifications'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
@@ -23,12 +24,18 @@ const Header: FC<IHeaderProps> = ({ className, ...props }) => {
       {...props}
     >
       {/* пустой div нужен для того, чтобы иконки не уехали в левый край, а остались в правом */}
-      {isMobile ? <Logo isAdaptive /> : <div></div>}
+      {isMobile ? (
+        <Logo isAdaptive className='w-[44px] h-[44px] md:w-auto' />
+      ) : (
+        <div></div>
+      )}
 
       <div className='flex items-center justify-center gap-[15px]'>
+        <ButtonInfo className='lg:hidden' />
         <ButtonChangeTheme className='flex lg:hidden' />
         <ButtonOpenNotifications />
         <UserAvatar
+          userId={user?.id}
           link={user?.id}
           src={user?.avatar || null}
           className='w-[44px] h-[44px]'

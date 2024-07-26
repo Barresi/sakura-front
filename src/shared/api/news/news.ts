@@ -1,0 +1,52 @@
+import {
+  type ICreatePostResponse,
+  type IDeletePostResponse,
+  type IGetPostsResponse,
+  type ILikePostResponse,
+  type IMarkWatchedPostResponse
+} from '@shared/lib/types/api'
+import { type ICreatePostForm } from '@shared/lib/types/forms'
+import { apiWithAuth } from '../api'
+
+export const getAllPosts = async (): Promise<IGetPostsResponse> => {
+  const res = await apiWithAuth.get<IGetPostsResponse>('/posts')
+
+  return res.data
+}
+
+export const createPost = async ({
+  text,
+  pictures
+}: ICreatePostForm): Promise<ICreatePostResponse> => {
+  const formData = new FormData()
+  formData.append(`text`, text)
+  if (pictures)
+    Array.from(pictures).forEach((file) => {
+      formData.append('pictures', file)
+    })
+  const res = await apiWithAuth.post<ICreatePostResponse>('/posts', formData)
+
+  return res.data
+}
+
+export const markWatchedPost = async (
+  postIds: string[]
+): Promise<IMarkWatchedPostResponse> => {
+  const res = await apiWithAuth.post<IMarkWatchedPostResponse>(`/posts/watched`, {
+    postIds
+  })
+
+  return res.data
+}
+
+export const likePost = async (postId: string): Promise<ILikePostResponse> => {
+  const res = await apiWithAuth.patch<ILikePostResponse>(`/posts/${postId}/liked`)
+
+  return res.data
+}
+
+export const deletePost = async (postId: string): Promise<IDeletePostResponse> => {
+  const res = await apiWithAuth.delete<IDeletePostResponse>(`/posts/${postId}`)
+
+  return res.data
+}

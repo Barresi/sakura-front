@@ -1,64 +1,111 @@
-import { Button } from '@shared/ui/button'
-import { ButtonAction } from '@shared/ui/button-action'
+import { useWindowSize } from '@shared/lib/hooks/useWindowSize'
+import { parseDateToMonth, parseDateToTime } from '@shared/lib/parse-date'
+import { type IPost } from '@shared/lib/types/api'
+import { CarouselItem, CarouselWithPoints } from '@shared/ui/carousel'
+import { LinkName } from '@shared/ui/link-name'
+import { ShowFullText } from '@shared/ui/show-full-text'
 import { UserAvatar } from '@shared/ui/user-avatar'
 import { type FC, type ReactNode } from 'react'
 
-import EyeIcon from './Eye.svg'
-import icon1 from './icon1.svg'
-import Image1 from './image.png'
+import eye from '@assets/ui/Eye.svg'
 
 interface IPostNewsProps {
-  children?: ReactNode
-  className?: string
+  post: IPost | undefined
+  buttonLike: ReactNode
+  buttonDelete: ReactNode
 }
-const PostNews: FC<IPostNewsProps> = () => {
+const PostNews: FC<IPostNewsProps> = ({ post, buttonLike, buttonDelete }) => {
+  const maxLength = useWindowSize(1024) ? 200 : 400
+  const isMobile = useWindowSize(640)
+
+  const createDate = post?.createdAt
+    ? `${parseDateToMonth(post?.createdAt)} в ${parseDateToTime(post?.createdAt)}`
+    : 'Дата неизвестна'
+
+  const urlOnBackend = `${
+    import.meta.env.VITE_BACKEND_DOMEN
+  }/ftp/posts/${post?.createdById}/`
+
+  const pictures = (): null | ReactNode => {
+    if (!post?.pictures.length) return null
+    // Десктоп версия картинок
+    if (isMobile) {
+      if (post?.pictures.length === 1)
+        return (
+          <img
+            src={urlOnBackend + post?.pictures[0]}
+            className='object-cover w-full h-[300px] rounded-[10px]'
+          />
+        )
+
+      return (
+        <CarouselWithPoints className='sm:hidden'>
+          {post?.pictures.map((picture, ind) => (
+            <CarouselItem key={ind}>
+              <img
+                src={urlOnBackend + picture}
+                className='object-cover w-full rounded-[10px] h-[300px]'
+              />
+            </CarouselItem>
+          ))}
+        </CarouselWithPoints>
+      )
+    }
+
+    return (
+      <div className=' grid-cols-2 auto-rows-fr gap-3 h-[400px] grid'>
+        {post?.pictures.map((picture, ind) => (
+          <img
+            src={urlOnBackend + picture}
+            key={ind}
+            className={`object-cover w-full h-full rounded-[10px] ${
+              post?.pictures.length === 1 && ind === 0 ? 'col-span-2' : ''
+            } ${post?.pictures.length === 3 && ind === 0 ? 'row-span-2' : ''}`}
+          />
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className='w-full bg-white dark:bg-grayBlue rounded-[10px] p-[30px] grid gap-[20px]'>
       <div className='flex flex-row justify-between'>
         <div className='flex flex-row justify-start w-full'>
-          <UserAvatar className='w-[50px] h-[50px] mr-[15px]' />
+          <UserAvatar
+            className='w-[50px] h-[50px] mr-[15px]'
+            src={post?.createdBy?.avatar || null}
+            link={post?.createdBy?.id}
+            userId={post?.createdById}
+          />
           <div>
-            <h4 className='text-[#D22828] text-[18px] font-bold'>Борис Маслов</h4>
-            <p className='text-[#ADB5BD]'>21 окт. в 13:11</p>
+            <LinkName
+              link={post?.createdBy.id}
+              className='text-[#D22828] text-[18px] font-bold'
+            >{`${post?.createdBy?.firstName} ${post?.createdBy?.lastName}`}</LinkName>
+            <p className='text-[#ADB5BD]'>{createDate}</p>
           </div>
         </div>
-        <div>
-          <Button variant='text'>
-            <img src={icon1} />
-          </Button>
-        </div>
+        <div className='ml-2'>{buttonDelete}</div>
       </div>
-      <p>
-        15 октября прошёл финал онлайн-хакатона VTB API hackathon 2022, я принял в нем
-        участие, участвовал впервые. Наша команда в составе 3-ёх человек заняла 7 место.
-        Было 2 задачи:
-        <br /> <br />
-        1 Создайте продукты на основе API <br /> 2 Разработайте инструменты обеспечения
-        безопасности API <br />
-        <span className='text-[#20B5EE]'>Показать полностью</span>
-      </p>
-      <div className='grid grid-rows-1 grid-flow-col gap-3 md:h-[500px]'>
-        <div>
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-        </div>
-        <div className='hidden md:grid md:gap-3'>
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-          <img className='h-full object-cover rounded-[10px]' src={Image1} />
-        </div>
-      </div>
+
+      <ShowFullText text={post?.text} maxLength={maxLength} />
+
+      {pictures()}
+
       <div className='flex flex-row justify-between items-center'>
         <div className='flex flex-row gap-[2px] md:gap-[10px]'>
-          <ButtonAction icon='like'>10</ButtonAction>
+          {buttonLike}
           {/* <ButtonAction icon='comment'>10</ButtonAction>
           <ButtonAction icon='share'>10</ButtonAction> */}
         </div>
         <div>
-          <p className='flex flex-row'>
-            <img className='mr-1' src={EyeIcon} /> 1
-          </p>
+          <div className='flex flex-row text-lg font-bold text-darkElectricBlue leading-[23px] gap-2'>
+            <img src={eye} />
+            {post?.watchedBy.length}
+          </div>
         </div>
       </div>
-      <hr />
+      <hr className='text-lg font-bold text-darkElectricBlue leading-[23px]' />
       {/* 
       <div className='flex flex-row justify-start w-full'>
         <UserAvatar src={} className='w-[50px] h-[50px] mr-[15px]' />

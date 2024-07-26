@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { capitalizeFirstLetter } from '@shared/lib/capitalize-first-letter'
-import { convertBirthDate } from '@shared/lib/convert-birth-date'
+import { convertStringToDate } from '@shared/lib/convert-string-to-date'
 import { FriendsRequestStatus, type IAllUser, type IFriend } from '@shared/lib/types/api'
 import {
   getAllUsersThunk,
@@ -52,7 +52,7 @@ const friendsSlice = createSlice({
             .filter((friend) => friend.status === FriendsRequestStatus.accepted)
             .map((item) => item.toId)
         ],
-        birthDate: convertBirthDate(user.birthDate)
+        birthDate: convertStringToDate(user.birthDate)
       }))
     })
     builder.addCase(getAllUsersThunk.rejected, (state, action) => {

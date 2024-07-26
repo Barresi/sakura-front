@@ -6,6 +6,7 @@ import { type FC } from 'react'
 
 import { ButtonEditProfile } from '@features/button-edit-profile'
 import { type IAllUser } from '@shared/lib/types/api'
+import { ShowFullText } from '@shared/ui/show-full-text'
 
 interface IBlockProfileMobileProps {
   user: IUser | undefined
@@ -23,16 +24,20 @@ const BlockProfileMobile: FC<IBlockProfileMobileProps> = ({
       <div className='flex flex-row justify-between flex-[90px]'>
         <div className='flex flex-row justify-center sm:justify-start w-full'>
           <UserAvatar
+            userId={user?.id}
             src={user?.avatar || null}
-            className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px]'
+            className='absolute w-[170px] sm:w-[200px] h-[170px] sm:h-[200px] sm:mr-[15px] inset-x-0 sm:inset-auto mx-auto top-[-100px] sm:left-[20px] sm:top-[-85px] border-2 border-white dark:border-grayBlue'
           />
           <div className=' mt-[50px] sm:mt-0 sm:mx-0 sm:ml-[200px]'>
             <h4 className='text-[32px] leading-10 text-center sm:text-start'>
               {user?.firstName} {user?.lastName}
             </h4>
-            <div className='block text-center sm:hidden mt-[20px] w-full mb-[20px]'>
-              {user?.description}
-            </div>
+            <ShowFullText
+              text={user?.description}
+              maxLength={100}
+              className='block text-center sm:hidden mt-[20px] w-full mb-[20px]'
+            />
+
             {/* <CardProfileDesc /> */}
           </div>
         </div>
@@ -44,12 +49,19 @@ const BlockProfileMobile: FC<IBlockProfileMobileProps> = ({
       </div>
       <div className='sm:mt-[15px] w-full gap-[20px] flex items-center flex-col lg:flex-row'>
         {user?.description && (
-          <div className='flex-[50%] hidden sm:block w-full self-start'>
-            {user?.description}
-          </div>
+          <ShowFullText
+            text={user?.description}
+            maxLength={100}
+            className='flex-[50%] hidden sm:block w-full self-start'
+          />
         )}
         <div className='w-full lg:flex-[50%] self-start flex flex-col gap-[15px]'>
-          <RowFriends avatars={friends?.map((friend) => friend?.avatar)} />
+          <RowFriends
+            friends={friends?.map((friend) => ({
+              avatar: friend?.avatar,
+              userId: friend.id
+            }))}
+          />
           {isMyProfile ? (
             <ButtonEditProfile type='text' className='sm:hidden' />
           ) : (

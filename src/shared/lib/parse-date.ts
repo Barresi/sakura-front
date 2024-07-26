@@ -12,7 +12,7 @@ const months = [
   'ноября',
   'декабря'
 ]
-export function parseDateToYear(date: string): string {
+export function parseDateToYear(date: string | Date): string {
   const parseDate = new Date(date)
   const day = parseDate.getDate().toString()
   const month = (parseDate.getMonth() + 1).toString()
@@ -20,7 +20,7 @@ export function parseDateToYear(date: string): string {
     month.length < 2 ? '0' + month : month
   }.${parseDate.getFullYear()}`
 }
-export function parseDateToMonth(date: string): string {
+export function parseDateToMonth(date: string | Date): string {
   const parseDate = new Date(date)
   if (parseDate.getDate() === new Date().getDate()) return 'Сегодня'
   if (parseDate.getDate() === new Date().getDate() - 1) return 'Вчера'
@@ -29,7 +29,7 @@ export function parseDateToMonth(date: string): string {
 
   return `${day} ${months[month]}`
 }
-export function parseDateToTime(date: string): string {
+export function parseDateToTime(date: string | Date): string {
   const parseDate = new Date(date)
   const hours = parseDate.getHours().toString()
   const min = parseDate.getMinutes().toString()

@@ -59,19 +59,21 @@ const AvatarFallback = forwardRef<
 AvatarFallback.displayName = Fallback.displayName
 
 interface IUserAvatarProps {
-  src: string | null
+  src: string | null | undefined
   isImgNotOnBackend?: boolean
   className?: string
   link?: string
+  userId: string | undefined
 }
 
 const UserAvatar: FC<IUserAvatarProps> = ({
   src,
   className,
   isImgNotOnBackend,
-  link
+  link,
+  userId
 }) => {
-  const img = isImgNotOnBackend ? src : URL_AVATARS + src
+  const img = isImgNotOnBackend ? src : `${URL_AVATARS}${userId}/${src}`
 
   if (link) {
     return (

@@ -33,14 +33,29 @@ apiWithAuth.interceptors.response.use(
           throw error
         }
       } else {
-        throw error
+        throw new AxiosError(error.response?.data.msg)
       }
-      // Todo настроить грамотный вывод ошибок ниже
     } else if (error.request) {
       // Запрос был сделан, но ответ не получен
-      throw new AxiosError(
-        'Похоже у нас проблемы с серверами, попробуйте зайти чуть позже'
-      )
+      throw new AxiosError('Похоже у нас проблемы с серверами, попробуйте зайти позже')
+    } else {
+      // Произошло что-то при настройке запроса, вызвавшее ошибку
+      throw new AxiosError('Что-то пошло не так, попробуйте перезагрузить страницу')
+    }
+  }
+)
+
+api.interceptors.response.use(
+  (config) => {
+    return config
+  },
+  async (error) => {
+    if (error.response) {
+      // Запрос был сделан, и сервер ответил кодом состояния, который выходит за пределы 2xx
+      throw new AxiosError(error.response?.data.msg)
+    } else if (error.request) {
+      // Запрос был сделан, но ответ не получен
+      throw new AxiosError('Похоже у нас проблемы с серверами, попробуйте зайти позже')
     } else {
       // Произошло что-то при настройке запроса, вызвавшее ошибку
       throw new AxiosError('Что-то пошло не так, попробуйте перезагрузить страницу')

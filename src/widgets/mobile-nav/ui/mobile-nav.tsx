@@ -1,7 +1,7 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonNav } from '@features/button-nav'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { FriendTabs } from '@shared/lib/types/other'
+import { FriendTabs, NewsTabs } from '@shared/lib/types/other'
 import { AppRoutes } from '@shared/lib/types/routes'
 import { selectReceived } from '@store/reducers/friends/selectors'
 import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
@@ -25,7 +25,7 @@ const MobileNav: FC = () => {
       <ButtonNav
         className='w-full h-full flex-col px-0 justify-center items-center text-center text-[12px] md:text-[14px]'
         icon='news'
-        to={AppRoutes.NEWS}
+        to={{ pathname: AppRoutes.NEWS, search: `newstype=${NewsTabs.ALL}` }}
       >
         Новости
       </ButtonNav>

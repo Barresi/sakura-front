@@ -1,12 +1,12 @@
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
 import { ButtonChangeTheme } from '@features/button-change-theme'
+import { ButtonInfo } from '@features/button-info'
 import { ButtonLogout } from '@features/button-logout'
 import { ButtonNav } from '@features/button-nav'
 import { ButtonSettings } from '@features/button-settings/ui/button-settings'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
-import { FriendTabs } from '@shared/lib/types/other'
+import { FriendTabs, NewsTabs } from '@shared/lib/types/other'
 import { AppRoutes } from '@shared/lib/types/routes'
-import { ButtonSetting } from '@shared/ui/button-setting'
 import { Logo } from '@shared/ui/logo'
 import { selectReceived } from '@store/reducers/friends/selectors'
 import { selectMessengerUserChats } from '@store/reducers/messenger/selectors'
@@ -35,7 +35,7 @@ const Sidebar: FC = () => {
           <ButtonNav
             className='w-full justify-start gap-[10px]'
             icon='news'
-            to={AppRoutes.NEWS}
+            to={{ pathname: AppRoutes.NEWS, search: `newstype=${NewsTabs.ALL}` }}
           >
             Новости
           </ButtonNav>
@@ -62,7 +62,7 @@ const Sidebar: FC = () => {
 
       <div className='flex justify-between w-[100%]'>
         <ButtonLogout variant='icon' />
-        <ButtonSetting icon='info' />
+        <ButtonInfo />
         <ButtonChangeTheme />
         <ButtonSettings />
       </div>

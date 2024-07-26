@@ -1,26 +1,77 @@
-import { selectAllUsers } from '@app/store/reducers/friends/selectors'
+import { selectAllUsers, selectFriends } from '@app/store/reducers/friends/selectors'
+import { selectAllPosts } from '@app/store/reducers/news/selectors'
 import { selectUser } from '@app/store/reducers/profileInfo/selectors'
+import { PostEmpty } from '@entities/post-empty'
+import { PostNews } from '@entities/post-news'
+import { ButtonDeletePost } from '@features/button-delete-post'
+import { ButtonLikePost } from '@features/button-like-post'
+import { InputCreatePost } from '@features/input-create-post'
+import { markWatchedPost } from '@shared/api/news/news'
 import { useAppSelector } from '@shared/lib/hooks/store-hooks'
 import { type IAllUser } from '@shared/lib/types/api'
+import { type IUser } from '@shared/lib/types/types'
 import { Banner } from '@shared/ui/banner'
-import { InputSendMessage } from '@shared/ui/input-send-message'
 import { BlockProfile } from '@widgets/block-profile'
 import { BlockProfileMobile } from '@widgets/block-profile-mobile'
-import { type FC } from 'react'
+import { useEffect, type FC } from 'react'
 import { useParams } from 'react-router-dom'
 
+const myProfileText = (
+  <>
+    <p className=' text-lg'>Добро пожаловать в ваш профиль!</p>
+    <p className=' text-lg'>
+      Пока здесь нет постов, но не волнуйтесь – это отличная возможность начать свою
+      историю. Поделитесь своими мыслями, планами и идеями с сообществом Sakura. Ваши
+      первые посты могут вдохновить других самураев на новые свершения!
+    </p>
+  </>
+)
+const otherProfileText = (
+  <>
+    <p className=' text-lg'>Добро пожаловать в профиль пользователя!</p>
+    <p className=' text-lg'>
+      На данный момент здесь нет постов. Возвращайтесь позже, чтобы узнать больше о мыслях
+      и идеях этого самурая.
+    </p>
+  </>
+)
+
 const PageProfile: FC = () => {
+  const posts = useAppSelector(selectAllPosts)
   const user = useAppSelector(selectUser)
+  const userFriends = useAppSelector(selectFriends)
   const allUsers = useAppSelector(selectAllUsers)
   const { id } = useParams()
-  const currentUser = allUsers.find((item) => item.id === id)
   const isMyProfile = user?.id === id
 
-  const friends = currentUser?.friends
-    .map((friendId) => allUsers?.find((item) => item.id === friendId))
-    .filter((item) => item !== undefined) as IAllUser[] | undefined
+  // Разная логика в зависимости от текущей страницы
+  const currentUser = (isMyProfile ? user : allUsers.find((item) => item.id === id)) as
+    | IUser
+    | IAllUser
+    | undefined
+  const currentUserFriends: string[] | undefined = isMyProfile
+    ? userFriends.map((friend) =>
+        friend.fromId === user?.id ? friend.toId : friend.fromId
+      )
+    : allUsers.find((item) => item.id === currentUser?.id)?.friends
+
+  // Поиск айди в массиве всех пользователей
+  const friends: IAllUser[] = currentUserFriends
+    ? currentUserFriends
+        .map((friendId) => allUsers?.find((item) => item.id === friendId))
+        .filter((item) => item !== undefined)
+    : []
 
   // Todo Добавить "Страница не найдена" при отсутствии currentUser
+
+  const currentUserPosts = posts.filter((post) => post.createdById === currentUser?.id)
+
+  useEffect(() => {
+    const notWatchedPostIds = currentUserPosts
+      .filter((post) => !post.watchedBy.find((id) => id === user?.id))
+      .map((post) => post.id)
+    if (notWatchedPostIds.length) markWatchedPost(notWatchedPostIds)
+  }, [])
 
   return (
     <div>
@@ -30,6 +81,7 @@ const PageProfile: FC = () => {
           <Banner
             className='h-[180px] sm:h-[295px] lg:h-[337px]'
             src={currentUser?.banner || null}
+            userId={currentUser?.id}
           />
           {/* mobile user info */}
           <BlockProfileMobile
@@ -38,17 +90,19 @@ const PageProfile: FC = () => {
             friends={friends}
           />
 
-          {isMyProfile && (
-            <InputSendMessage
-              avatar={currentUser?.avatar || null}
-              sendMessage={() => {}}
-              placeholder='Что у вас нового?'
-              className='border-none'
-            />
+          {isMyProfile && <InputCreatePost />}
+          {currentUserPosts.length ? (
+            currentUserPosts.map((post, ind) => (
+              <PostNews
+                post={post}
+                key={ind}
+                buttonLike={<ButtonLikePost post={post} />}
+                buttonDelete={<ButtonDeletePost post={post} />}
+              />
+            ))
+          ) : (
+            <PostEmpty>{isMyProfile ? myProfileText : otherProfileText}</PostEmpty>
           )}
-          {/* <PostNews />
-          <PostNews />
-          <PostNews /> */}
         </div>
       </div>
     </div>

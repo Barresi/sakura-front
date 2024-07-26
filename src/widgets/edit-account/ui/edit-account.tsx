@@ -190,8 +190,8 @@ const EditAccount: FC = () => {
                     message: 'Минимальное кол-во символов: 2'
                   },
                   maxLength: {
-                    value: 20,
-                    message: 'Максимальное кол-во символов: 20'
+                    value: 10,
+                    message: 'Максимальное кол-во символов: 10'
                   },
                   pattern: {
                     value: nameRegExp,
@@ -215,8 +215,8 @@ const EditAccount: FC = () => {
                     message: 'Минимальное кол-во символов: 2'
                   },
                   maxLength: {
-                    value: 20,
-                    message: 'Максимальное кол-во символов: 20'
+                    value: 10,
+                    message: 'Максимальное кол-во символов: 10'
                   },
                   pattern: {
                     value: nameRegExp,
@@ -248,8 +248,8 @@ const EditAccount: FC = () => {
             <Textarea
               {...register('description', {
                 maxLength: {
-                  value: 200,
-                  message: 'Максимальное кол-во символов: 200'
+                  value: 1000,
+                  message: 'Максимальное кол-во символов: 1000'
                 }
               })}
               error={
