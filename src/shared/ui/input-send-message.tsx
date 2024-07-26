@@ -11,8 +11,8 @@ import send from '@assets/ui/send.svg'
 
 interface IInputSendMessageProps extends IInputProps {
   user?: { avatar: string | null | undefined; userId: string | undefined }
-  withPicture: boolean
-  sendMessage: (message: string, pictures?: FileList) => Promise<void>
+  withPicture?: boolean
+  sendMessage: (message: string, pictures?: FileList) => Promise<void> | void
 }
 
 // Todo Переписать в textarea
